@@ -7,6 +7,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -41,6 +42,7 @@ public class ActSearchShelter extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedArea = area[position];
+                Log.d(CDictionary.Debug_TAG,selectedArea);
                 //Toast.makeText(MainActivity.this, "你選的是" + lunch[position], Toast.LENGTH_SHORT).show();
             }
 
@@ -68,6 +70,7 @@ public class ActSearchShelter extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedType = type[position];
+                Log.d(CDictionary.Debug_TAG,selectedType);
             }
 
             @Override
@@ -91,7 +94,7 @@ public class ActSearchShelter extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putString(CDictionary.BK_Area, selectedArea);
             bundle.putString(CDictionary.BK_Type, selectedType);
-            Intent intent = new Intent(ActSearchShelter.this, ActCategory.class);
+            Intent intent = new Intent(ActSearchShelter.this, ActShelterPetList.class);
             intent.putExtras(bundle);
             startActivity(intent);
         }
