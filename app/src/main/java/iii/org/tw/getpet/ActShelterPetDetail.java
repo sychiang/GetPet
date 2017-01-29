@@ -22,7 +22,7 @@ public class ActShelterPetDetail extends AppCompatActivity {
         setContentView(R.layout.act_shelter_pet_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        init();
+        initComponent();
         Intent intent = getIntent();
         tvID.setText(intent.getExtras().getString(CDictionary.BK_animal_id));
         tvKind.setText(intent.getExtras().getString(CDictionary.BK_animal_kind));
@@ -77,7 +77,7 @@ public class ActShelterPetDetail extends AppCompatActivity {
         }
     }
 
-    private void init(){
+    private void initComponent(){
         tvID = (TextView)findViewById(R.id.tvID);
         tvKind = (TextView)findViewById(R.id.tvKind);
         tvSex = (TextView)findViewById(R.id.tvSex);

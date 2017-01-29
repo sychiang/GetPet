@@ -25,7 +25,7 @@ public class ActSearchShelter extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_searchshelter);
-        init();
+        initComponent();
 
         //縣市下拉選單
         final String[] area = {"全部","臺北市", "新北市", "基隆市", "宜蘭縣",
@@ -100,7 +100,7 @@ public class ActSearchShelter extends AppCompatActivity {
         }
     };
 
-    public void init(){
+    public void initComponent(){
         btnSearch = (Button)findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(btnSearch_Click);
         spinner_area = (Spinner)findViewById(R.id.spinner_area);

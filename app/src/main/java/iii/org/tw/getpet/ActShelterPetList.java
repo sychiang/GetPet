@@ -51,9 +51,9 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
         Intent intent = getIntent();
         String url = "http://data.coa.gov.tw/Service/OpenData/AnimalOpenData.aspx?$top=50";
         String condArea = intent.getExtras().getString(CDictionary.BK_Area);
-        Log.d(CDictionary.Debug_TAG, "get" + condArea);
+        Log.d(CDictionary.Debug_TAG, "get cond1" + condArea);
         String condType = intent.getExtras().getString(CDictionary.BK_Type);
-        Log.d(CDictionary.Debug_TAG, "get" + condType);
+        Log.d(CDictionary.Debug_TAG, "get cond2" + condType);
         switch (condArea) {
             case "全部":
                 break;
