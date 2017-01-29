@@ -4,22 +4,22 @@ package model;
  * Created by user on 2017/1/29.
  */
 
-public class Message {
-    private String title;
+public class CMessage {
+    private String subject;
     private String content;
     private String sender;
     private String receiver;
 
 
-    public Message(String title, String content, String sender, String receiver) {
-        this.title = title;
+    public CMessage(String subject, String content, String sender, String receiver) {
+        this.subject = subject;
         this.content = content;
         this.sender = sender;
         this.receiver = receiver;
     }
 
-    public String getTitle() {
-        return title;
+    public String getSubject() {
+        return subject;
     }
 
     public String getContent() {return content;}

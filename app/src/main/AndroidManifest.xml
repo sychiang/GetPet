@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="iii.org.tw.getpet">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -22,7 +23,8 @@
         <activity
             android:name=".ActShelterPetDetail"
             android:label="@string/title_activity_act_shelter_pet_detail"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ActMsgBox"></activity>
     </application>
 
 </manifest>

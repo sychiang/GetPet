@@ -24,7 +24,7 @@ public class ActHome extends AppCompatActivity {
 
     View.OnClickListener btnMsgbox_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            Intent intent = new Intent(ActHome.this, ActCategory.class);
+            Intent intent = new Intent(ActHome.this, ActMsgBox.class);
             startActivity(intent);
         }
     };

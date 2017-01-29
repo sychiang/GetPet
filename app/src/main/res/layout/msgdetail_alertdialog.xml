@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/lblsubject"
+        android:layout_width="70dip"
+        android:layout_height="wrap_content"
+        android:text="主旨"
+        android:layout_margin="10px"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/msg_subject"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/lblsubject"
+        android:layout_toRightOf="@+id/lblsubject"
+        android:text="顯示訊息主旨"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/lblsender"
+        android:layout_width="70dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblsubject"
+        android:layout_margin="10px"
+        android:text="寄件人"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/msg_sender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/lblsender"
+        android:layout_toRightOf="@+id/lblsender"
+        android:text="顯示寄件人"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="20sp" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10px"
+        android:layout_below="@+id/lblsender">
+        <TextView
+            android:id="@+id/msg_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="顯示訊息內文顯示訊息內文顯示訊息內文顯示訊息內文顯示訊息內文顯示訊息內文顯示訊息內文顯示訊息內文"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="20sp" />
+    </ScrollView>
+</RelativeLayout>
