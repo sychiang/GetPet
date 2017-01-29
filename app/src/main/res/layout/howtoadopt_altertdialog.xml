@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/content_line1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="line1"
+            android:layout_margin="5dp"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/content_line2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="line2"
+            android:layout_margin="5dp"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="20sp" />
+        <TextView
+            android:id="@+id/content_line3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="line3"
+            android:layout_margin="5dp"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/content_line4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="line4"
+            android:layout_margin="5dp"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/content_line5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="line5"
+            android:layout_margin="5dp"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/content_line6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="line6"
+            android:layout_margin="5dp"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/content_line7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="line7"
+            android:layout_margin="5dp"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/content_line8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="line8"
+            android:layout_margin="5dp"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/content_line9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="line9"
+            android:layout_margin="5dp"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/content_line10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="line10"
+            android:layout_margin="5dp"
+            android:textColor="#040404"
+            android:typeface="sans"
+            android:textSize="20sp" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

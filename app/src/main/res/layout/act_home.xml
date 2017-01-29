@@ -15,4 +15,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="認養搜尋" />
+
+    <Button
+        android:id="@+id/btnMsgbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnAdoptSearch"
+        android:text="訊息通知" />
 </RelativeLayout>

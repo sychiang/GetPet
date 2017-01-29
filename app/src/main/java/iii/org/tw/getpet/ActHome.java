@@ -12,7 +12,7 @@ public class ActHome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_home);
-        init();
+        initComponent();
     }
 
     View.OnClickListener btnAdoptSearch_Click=new View.OnClickListener(){
@@ -22,9 +22,19 @@ public class ActHome extends AppCompatActivity {
         }
     };
 
-    public void init(){
+    View.OnClickListener btnMsgbox_Click=new View.OnClickListener(){
+        public void onClick(View arg0) {
+            Intent intent = new Intent(ActHome.this, ActCategory.class);
+            startActivity(intent);
+        }
+    };
+
+    public void initComponent(){
         btnAdoptSearch = (Button)findViewById(R.id.btnAdoptSearch);
         btnAdoptSearch.setOnClickListener(btnAdoptSearch_Click);
+
+        btnMsgbox = (Button)findViewById(R.id.btnMsgbox);
+        btnMsgbox.setOnClickListener(btnMsgbox_Click);
     }
-    Button btnAdoptSearch;
+    Button btnAdoptSearch,btnMsgbox;
 }
