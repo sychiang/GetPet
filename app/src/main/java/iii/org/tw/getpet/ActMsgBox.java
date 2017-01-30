@@ -28,14 +28,14 @@ public class ActMsgBox extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_msg_box);
 
-        CMessage msg1 = new CMessage("我是主旨1","您好! 歡迎使用GetPet系統","Administrator","testUser");
-        CMessage msg2 = new CMessage("我是主旨2","您好! 我是testSender1 我是testSender1 我是testSender1","testSender1","testUser");
-        CMessage msg3 = new CMessage("我是主旨3","您好! 我是testSender2","testSender2","testUser");
-        CMessage msg4 = new CMessage("我是主旨4","您好! 我是testSender3","testSender3","testUser");
-        CMessage msg5 = new CMessage("我是主旨5","您好! 我是testSender4","testSender4","testUser");
-        CMessage msg6 = new CMessage("我是主旨6","您好! 我是testSender5","testSender5","testUser");
-        CMessage msg7 = new CMessage("我是主旨7","您好! 我是testSender6","testSender6","testUser");
-        CMessage msg8 = new CMessage("我是主旨7","您好! 我是testSender7","testSender7","testUser");
+        CMessage msg1 = new CMessage("系統通知","您好! 歡迎使用GetPet系統","Administrator","testUser");
+        CMessage msg2 = new CMessage("我是主旨1","您好! 我是testSender1 我是testSender1 我是testSender1","testSender1","testUser");
+        CMessage msg3 = new CMessage("我是主旨2","您好! 我是testSender2 我是testSender2 我是testSender2","testSender2","testUser");
+        CMessage msg4 = new CMessage("我是主旨3","您好! 我是testSender3 我是testSender3 我是testSender3","testSender3","testUser");
+        CMessage msg5 = new CMessage("我是主旨4","您好! 我是testSender4 我是testSender4 我是testSender4","testSender4","testUser");
+        CMessage msg6 = new CMessage("我是主旨5","您好! 我是testSender5 我是testSender5 我是testSender5","testSender5","testUser");
+        CMessage msg7 = new CMessage("我是主旨6","您好! 我是testSender6 我是testSender6 我是testSender6","testSender6","testUser");
+        CMessage msg8 = new CMessage("我是主旨7","您好! 我是testSender7 我是testSender7 我是testSender7","testSender7","testUser");
 
         myDataset.add(msg1);
         myDataset.add(msg2);
@@ -59,7 +59,6 @@ public class ActMsgBox extends AppCompatActivity {
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public TextView tvTitle, tvSender;
-            //public ImageView mImageView;
             public CardView cardView;
 
             public ViewHolder(View view) {
