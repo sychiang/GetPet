@@ -24,7 +24,8 @@
             android:name=".ActShelterPetDetail"
             android:label="@string/title_activity_act_shelter_pet_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ActMsgBox"></activity>
+        <activity android:name=".ActMsgBox" />
+        <activity android:name=".ActAdoptPairList"></activity>
     </application>
 
 </manifest>
