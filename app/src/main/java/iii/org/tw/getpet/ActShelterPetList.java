@@ -183,8 +183,14 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
                                     MaxDataNum = petlist.size(); // 設置最大數據條數
                                     size = String.format("%d", petlist.size());
                                     Log.d("Debug", size);
-                                    for (int i = 0; i < 10; i++) {
-                                        showlist.add(petlist.get(i));
+                                    if(MaxDataNum<10){
+                                        for (int i = 0; i < MaxDataNum; i++) {
+                                            showlist.add(petlist.get(i));
+                                        }
+                                    }else{
+                                        for (int i = 0; i < 10; i++) {
+                                            showlist.add(petlist.get(i));
+                                        }
                                     }
                                     size = String.format("%d", showlist.size());
                                     Log.d("Debug", size);

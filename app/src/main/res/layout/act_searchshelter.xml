@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/cardview_light_background"
     tools:context="iii.org.tw.getpet.ActSearchShelter">
 
     <LinearLayout
@@ -17,6 +18,9 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:layout_marginTop="50px"
+            android:paddingLeft="10px"
+            android:background="@drawable/spinner_style"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -28,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Spinner
+
                 android:layout_margin="50px"
                 android:id="@+id/spinner_area"
                 android:layout_width="500px"
@@ -37,6 +42,9 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="50px"
+            android:paddingLeft="10px"
+            android:background="@drawable/spinner_style"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -61,10 +69,12 @@
             android:id="@+id/btnSearch"
             android:background="@drawable/searchbtn_style"
             android:drawableLeft="@drawable/searchicon2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="750px"
+            android:paddingLeft="10px"
+            android:layout_height="170px"
             android:textSize="25sp"
-            android:text="搜尋"/>
+            android:textColor="#000000"
+            android:text="搜尋" />
 
     </LinearLayout>
 

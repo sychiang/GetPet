@@ -25,8 +25,9 @@ public class ActCategory extends AppCompatActivity {
         setContentView(R.layout.act_category);
 
         ArrayList<Category> myDataset = new ArrayList<>();
-        Category category1 = new Category("收容所",R.drawable.adoption_support);
-        Category category2 = new Category("送養配對",R.drawable.demophoto);
+        //Category category1 = new Category("收容所",R.drawable.adoption_support);
+        Category category1 = new Category("收容所",R.drawable.category_shelter);
+        Category category2 = new Category("送養配對",R.drawable.category_adoptpair);
         myDataset.add(category1);
         myDataset.add(category2);
 
