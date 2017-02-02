@@ -91,4 +91,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_act_adopt_pair_detail">ActAdoptPairDetail</string>
 </resources>

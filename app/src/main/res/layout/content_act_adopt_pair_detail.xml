@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="iii.org.tw.getpet.ActShelterPetDetail"
+    tools:showIn="@layout/act_shelter_pet_detail">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <!--預留圖片瀏覽-->
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/ivPhoto"
+            android:layout_width="800px"
+            android:layout_height="800px"
+            android:scaleType="fitCenter"
+            android:src="@drawable/demophoto"
+            android:layout_marginBottom="20dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_margin="20px"
+                android:id="@+id/line1"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="小名："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:text="xxxxxxxxxx"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:text="品種："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvType"
+                    android:text="xxxxxxxxxx"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="20px"
+                android:id="@+id/line2"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="性別："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvSex"
+                    android:text="xxxxxxxxxx"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:text="毛色："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvColor"
+                    android:text="xxxxxxxxxx"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="20px"
+                android:id="@+id/line3"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="年紀："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvAge"
+                    android:text="xxxxxxxxxx"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:text="所在地："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvArea"
+                    android:text="xxxxxxxxxx"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="20px"
+                android:id="@+id/line4"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="生育："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvIfBirth"
+                    android:text="xxxxxxxxxx"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:text="晶片："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvIfChip"
+                    android:text="xxxxxxxxxx"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="20px"
+                android:id="@+id/line5"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="健康狀態："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvHealthy"
+                    android:text="xxxxxxxxxx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="20px"
+                android:id="@+id/line6"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="病況說明："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvDisease"
+                    android:text="xxxxxxxxxx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="20px"
+                android:id="@+id/line7"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="送養理由："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvReason"
+                    android:text="xxxxxxxxxx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="20px"
+                android:id="@+id/line8"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="備註："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/tvNote"
+                        android:text="xxxxxxxxxx"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                </ScrollView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="20px"
+                android:id="@+id/line9"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btnCheckCond"
+                    android:text="認養條件"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_margin="20px"
+                android:id="@+id/line10"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/btnLeaveMsg"
+                    android:text="我要留言"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:layout_toRightOf="@+id/btnLeaveMsg"
+                    android:id="@+id/btnTrack"
+                    android:text="我要留言"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+                <Button
+                    android:layout_toRightOf="@+id/btnTrack"
+                    android:id="@+id/btnAdopt"
+                    android:text="我要認養"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

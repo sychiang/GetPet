@@ -141,7 +141,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-                bundle.putString(CDictionary.BK_animal_id, petlist.get(position).getAnimalName());
+                bundle.putString(CDictionary.BK_animal_name, petlist.get(position).getAnimalName());
 //                bundle.putString(CDictionary.BK_animal_kind, petlist.get(position).getAnimal_kind());
 //                bundle.putString(CDictionary.BK_animal_sex, petlist.get(position).getAnimal_sex());
 //                bundle.putString(CDictionary.BK_animal_bodytype, petlist.get(position).getAnimal_bodytype());
@@ -152,9 +152,9 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
 //                bundle.putString(CDictionary.BK_shelter_address, petlist.get(position).getShelter_address());
 //                bundle.putString(CDictionary.BK_shelter_tel, petlist.get(position).getShelter_tel());
 //                bundle.putString(CDictionary.BK_animal_remark, petlist.get(position).getAnimal_remark());
-//                Intent intent = new Intent(ActAdoptPairList.this, ActShelterPetDetail.class);
+                Intent intent = new Intent(ActAdoptPairList.this, ActAdoptPairDetail.class);
 //                intent.putExtras(bundle);
-//                startActivity(intent);
+                startActivity(intent);
             }
         });
     }

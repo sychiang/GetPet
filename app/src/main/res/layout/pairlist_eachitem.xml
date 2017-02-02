@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:padding="5dip" >
 
-    <!--  ListView最左邊的縮略圖 -->
+    <!--  ListView最左邊的縮圖 -->
     <LinearLayout android:id="@+id/thumbnail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

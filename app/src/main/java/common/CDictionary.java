@@ -19,5 +19,6 @@ public class CDictionary {
     public static final String BK_shelter_address = "BK_shelter_address";
     public static final String BK_shelter_tel = "BK_shelter_tel";
     public static final String BK_animal_remark = "BK_animal_remark";
+    public static final String BK_animal_name = "BK_animal_name";
 
 }

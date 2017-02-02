@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="iii.org.tw.getpet.ActShelterPetDetail">
+    tools:context="iii.org.tw.getpet.ActAdoptPairDetail">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/category_shelter"
+                android:src="@drawable/category_adoptpair"
                 app:layout_collapseMode="parallax" />
 
             <android.support.v7.widget.Toolbar
@@ -40,6 +40,6 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_act_shelter_pet_detail" />
+    <include layout="@layout/content_act_adopt_pair_detail" />
 
 </android.support.design.widget.CoordinatorLayout>
