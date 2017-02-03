@@ -40,7 +40,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:drawableTop="@drawable/home_icon1_01_80"
+                android:drawableTop="@drawable/home_icon1"
                 android:layout_weight="1"
                 android:id="@+id/btnGoAdoptSearch"
                 android:text="認養搜尋"
@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Button
-                android:drawableTop="@drawable/home_icon1_01_80"
+                android:drawableTop="@drawable/home_icon2"
                 android:layout_weight="1"
                 android:id="@+id/btnGoPairSetting"
                 android:text="配對設定"
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Button
-                android:drawableTop="@drawable/home_icon1_01_80"
+                android:drawableTop="@drawable/home_icon3"
                 android:layout_weight="1"
                 android:id="@+id/btnGoPetHelper"
                 android:text="寵物小幫手"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:drawableTop="@drawable/home_icon1_01_80"
+                android:drawableTop="@drawable/home_icon4"
                 android:layout_weight="1"
                 android:id="@+id/btnGoMapSearch"
                 android:text="地圖尋找"
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Button
-                android:drawableTop="@drawable/home_icon1_01_80"
+                android:drawableTop="@drawable/home_icon5"
                 android:layout_weight="1"
                 android:id="@+id/btnGoUpload"
                 android:text="送養管理"
@@ -94,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Button
-                android:drawableTop="@drawable/home_icon1_01_80"
+                android:drawableTop="@drawable/home_icon6"
                 android:layout_weight="1"
                 android:id="@+id/btnGoSetting"
                 android:text="系統設定"
