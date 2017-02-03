@@ -92,4 +92,8 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_act_adopt_pair_detail">ActAdoptPairDetail</string>
+    <string name="title_activity_act_home_page">ActHomePage</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
