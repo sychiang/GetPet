@@ -18,7 +18,7 @@
             android:layout_width="100dip"
             android:layout_height="100dip"
             android:scaleType="centerInside"
-            android:src="@drawable/demophoto"/>
+            android:src="@drawable/default_photo"/>
     </LinearLayout>
 
     <!-- 小名 -->

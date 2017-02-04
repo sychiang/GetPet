@@ -15,14 +15,38 @@
         android:layout_height="wrap_content">
 
         <!--預留圖片瀏覽-->
-        <ImageView
-            android:layout_gravity="center"
-            android:id="@+id/ivPhoto"
-            android:layout_width="800px"
-            android:layout_height="800px"
-            android:scaleType="fitCenter"
-            android:src="@drawable/demophoto"
-            android:layout_marginBottom="20dp" />
+        <ViewFlipper
+            android:foregroundGravity="center"
+            android:id="@+id/viewflipper"
+            android:layout_width="match_parent"
+            android:layout_height="243dp"
+            android:layout_marginBottom="20dp" >
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/ivPhotoOne"
+                android:layout_width="800px"
+                android:layout_height="800px"
+                android:scaleType="fitCenter"
+                android:src="@drawable/default_photo" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/ivPhotoTwo"
+                android:layout_width="800px"
+                android:layout_height="800px"
+                android:scaleType="fitCenter"
+                android:src="@drawable/default_photo" />
+
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/ivPhotoThree"
+                android:layout_width="800px"
+                android:layout_height="800px"
+                android:scaleType="fitCenter"
+                android:src="@drawable/default_photo" />
+
+        </ViewFlipper>
 
         <LinearLayout
             android:orientation="vertical"

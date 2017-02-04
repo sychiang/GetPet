@@ -41,6 +41,10 @@ public class CDictionary {
     public static final String BK_animalAdoptedDate = "BK_animalAdoptedDate";
     public static final String BK_animalNote = "BK_animalNote";
 
+    public static final String BK_animalPicURL1 = "BK_animalPicURL1";
+    public static final String BK_animalPicURL2 = "BK_animalPicURL2";
+    public static final String BK_animalPicURL3 = "BK_animalPicURL3";
+
     public static final String BK_fb_name = "BK_fb_name";
     public static final String BK_fb_id = "BK_fb_id";
 

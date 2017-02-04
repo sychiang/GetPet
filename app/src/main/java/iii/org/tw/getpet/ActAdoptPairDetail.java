@@ -7,11 +7,20 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import common.CDictionary;
+
+
+import android.view.animation.AnimationUtils;
+
+import com.bumptech.glide.Glide;
+
 
 public class ActAdoptPairDetail extends AppCompatActivity {
 
@@ -24,6 +33,17 @@ public class ActAdoptPairDetail extends AppCompatActivity {
         setSupportActionBar(toolbar);
         initComponent();
         Intent intent = getIntent();
+
+        if(intent.getExtras().get(CDictionary.BK_animalPicURL1) != null){
+            Glide.with(ActAdoptPairDetail.this).load(intent.getExtras().getString(CDictionary.BK_animalPicURL1)).into(ivPhotoOne);
+        }
+        if(intent.getExtras().get(CDictionary.BK_animalPicURL2) != null){
+            Glide.with(ActAdoptPairDetail.this).load(intent.getExtras().getString(CDictionary.BK_animalPicURL2)).into(ivPhotoTwo);
+        }
+        if(intent.getExtras().get(CDictionary.BK_animalPicURL3) != null){
+            Glide.with(ActAdoptPairDetail.this).load(intent.getExtras().getString(CDictionary.BK_animalPicURL3)).into(ivPhotoThree);
+        }
+
         tvName.setText(intent.getExtras().getString(CDictionary.BK_animalName));
         tvType.setText(intent.getExtras().getString(CDictionary.BK_animalName));
         tvSex.setText(intent.getExtras().getString(CDictionary.BK_animalGender));
@@ -36,6 +56,16 @@ public class ActAdoptPairDetail extends AppCompatActivity {
         tvDisease.setText(intent.getExtras().getString(CDictionary.BK_animalDisease_Other));
         tvReason.setText(intent.getExtras().getString(CDictionary.BK_animalReason));
         tvNote.setText(intent.getExtras().getString(CDictionary.BK_animalNote));
+
+        //輪播功能
+        fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+        fade_out = AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
+        viewFlipper.setAnimation(fade_in);
+        viewFlipper.setAnimation(fade_out);
+        //sets auto flipping
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setFlipInterval(5000);
+        viewFlipper.startFlipping();
     }
 
     private void initComponent(){
@@ -51,7 +81,10 @@ public class ActAdoptPairDetail extends AppCompatActivity {
         tvDisease = (TextView)findViewById(R.id.tvDisease);
         tvReason = (TextView)findViewById(R.id.tvReason);
         tvNote = (TextView)findViewById(R.id.tvNote);
-        ivPhoto = (ImageView)findViewById(R.id.imgDog);
+        ivPhotoOne = (ImageView)findViewById(R.id.ivPhotoOne);
+        ivPhotoTwo = (ImageView)findViewById(R.id.ivPhotoTwo);
+        ivPhotoThree = (ImageView)findViewById(R.id.ivPhotoThree);
+        viewFlipper=(ViewFlipper)findViewById(R.id.viewflipper);
 
         btnCheckCond = (Button)findViewById(R.id.btnCheckCond);
         //btnCheckCond.setOnClickListener(btnCheckCond_Click);
@@ -67,8 +100,10 @@ public class ActAdoptPairDetail extends AppCompatActivity {
 
     }
     Button btnCheckCond,btnLeaveMsg,btnTrack,btnAdopt;
-    ImageView ivPhoto;
+    ImageView ivPhotoOne,ivPhotoTwo,ivPhotoThree;
     TextView tvName, tvType, tvSex, tvColor, tvAge, tvArea,tvIfBirth,tvIfChip,tvHealthy,tvDisease,tvReason,tvNote;
+    ViewFlipper viewFlipper;
+    Animation fade_in,fade_out;
     //content_line1,content_line2,content_line3,content_line4,content_line5,
     //content_line6,content_line7,content_line8,content_line9,content_line10;
 }

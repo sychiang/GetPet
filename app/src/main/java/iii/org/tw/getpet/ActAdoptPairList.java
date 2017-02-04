@@ -279,6 +279,14 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                 String animalId = String.format("%d",petlist.get(position).getAnimalID());
                 bundle.putString(CDictionary.BK_animalID, animalId);
                 bundle.putString(CDictionary.BK_animalOwner_userID, petlist.get(position).getAnimalOwner_userID());
+                if(petlist.get(position).getAnimalData_Pic().size()>0){
+                    if(petlist.get(position).getAnimalData_Pic().get(0).getAnimalPicAddress() != "")
+                        bundle.putString(CDictionary.BK_animalPicURL1, petlist.get(position).getAnimalData_Pic().get(0).getAnimalPicAddress());
+                    if(petlist.get(position).getAnimalData_Pic().size() >= 2 && petlist.get(position).getAnimalData_Pic().get(1).getAnimalPicAddress() != "")
+                        bundle.putString(CDictionary.BK_animalPicURL2, petlist.get(position).getAnimalData_Pic().get(1).getAnimalPicAddress());
+                    if(petlist.get(position).getAnimalData_Pic().size() >= 3 && petlist.get(position).getAnimalData_Pic().get(2).getAnimalPicAddress() != "")
+                        bundle.putString(CDictionary.BK_animalPicURL3, petlist.get(position).getAnimalData_Pic().get(2).getAnimalPicAddress());
+                }
                 Intent intent = new Intent(ActAdoptPairList.this, ActAdoptPairDetail.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
