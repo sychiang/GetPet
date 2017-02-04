@@ -2,6 +2,7 @@
     <string name="app_name">GetPet</string>
     <string name="title_activity_act_shelter_pet_detail">ActShelterPetDetail</string>
     <string name="large_text">
+
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -96,4 +97,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="FACEBOOK_APP_ID">2710370952435487</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">b8bf25abaf9523450ba4528d1b5b3674=</string>
+
 </resources>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,9 +17,21 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
+import com.facebook.ProfileTracker;
+
+import org.json.JSONObject;
+
+import common.CDictionary;
+
 public class ActHomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
     String userName = "未登入";
+    AccessToken accessToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +40,33 @@ public class ActHomePage extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initComponent();
+        header_username.setText(userName);
+
         //每次進來就先檢查登入資訊
-
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        if(AccessToken.getCurrentAccessToken() != null){
+            Log.d(CDictionary.Debug_TAG,"HAVE TOKEN："+ AccessToken.getCurrentAccessToken().getToken());
+            accessToken = AccessToken.getCurrentAccessToken();
+            GraphRequest request = GraphRequest.newMeRequest(
+                    accessToken,
+                    new GraphRequest.GraphJSONObjectCallback() {
+                        @Override
+                        public void onCompleted(JSONObject object, GraphResponse response) {
+                            //讀出姓名 ID FB個人頁面連結
+                            Log.d(CDictionary.Debug_TAG,"FB get"+response);
+                            Log.d(CDictionary.Debug_TAG,"FB get"+object);
+                            Log.d(CDictionary.Debug_TAG,object.optString("name"));
+                            Log.d(CDictionary.Debug_TAG,object.optString("link"));
+                            Log.d(CDictionary.Debug_TAG,object.optString("id"));
+                            userName = object.optString("name");
+                            Log.d(CDictionary.Debug_TAG,"Set userName："+userName);
+                            header_username.setText(userName);
+                        }
+                    });
+            Bundle parameters = new Bundle();
+            parameters.putString("fields", "id,name,link");
+            request.setParameters(parameters);
+            request.executeAsync();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -45,8 +74,14 @@ public class ActHomePage extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
+        Log.d(CDictionary.Debug_TAG,"Get userName："+userName);
+
+    }
+
+    private void goLoginScreen() {
+        Intent intent = new Intent(ActHomePage.this, ActLogin.class);
+        startActivity(intent);
     }
 
     @Override
@@ -86,39 +121,49 @@ public class ActHomePage extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent intent;
 
-//        switch (id){
-//            case R.id.search_setting:
-//                break;
-//            case R.id.notify_setting:
-//                break;
-//            case R.id.messagebox:
-//                Intent intent=new Intent(ActHomePage.this,ActMsgBox.class);
-//                startActivity(intent);
-//                break;
-//            case R.id.contact_us:
-//                break;
-//            case R.id.login:
-//                break;
-//            default:
-//                break;
-//        }
-
-        if (id == R.id.search_setting) {
-
-        } else if (id == R.id.notify_setting) {
-
-        } else if (id == R.id.messagebox) {
-            Intent intent=new Intent(ActHomePage.this,ActMsgBox.class);
-            startActivity(intent);
-
-        } else if (id == R.id.other_setting) {
-
-        } else if (id == R.id.contact_us) {
-
-        } else if (id == R.id.login) {
-
+        switch (id){
+            case R.id.search_setting:
+                break;
+            case R.id.notify_setting:
+                break;
+            case R.id.messagebox:
+                if(AccessToken.getCurrentAccessToken() == null){
+                    Log.d(CDictionary.Debug_TAG,"not log in");
+                    goLoginScreen();
+                } else {
+                    Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
+                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
+                    startActivity(intent);
+                }
+                break;
+            case R.id.contact_us:
+                break;
+            case R.id.login:
+                intent = new Intent(ActHomePage.this, ActLogin.class);
+                startActivityForResult(intent, CDictionary.REQUEST_LOGIN);
+                break;
+            default:
+                break;
         }
+
+//        if (id == R.id.search_setting) {
+//
+//        } else if (id == R.id.notify_setting) {
+//
+//        } else if (id == R.id.messagebox) {
+//            intent=new Intent(ActHomePage.this,ActMsgBox.class);
+//            startActivity(intent);
+//
+//        } else if (id == R.id.other_setting) {
+//
+//        } else if (id == R.id.contact_us) {
+//
+//        } else if (id == R.id.login) {
+//            intent = new Intent(ActHomePage.this, ActLogin.class);
+//            startActivityForResult(intent, CDictionary.REQUEST_LOGIN);
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -184,11 +229,14 @@ public class ActHomePage extends AppCompatActivity
         btnGoUpload.setOnClickListener(btnGoUpload_Click);
         btnGoSetting = (Button)findViewById(R.id.btnGoSetting);
         btnGoSetting.setOnClickListener(btnGoSetting_Click);
-        header_username = (TextView)findViewById(R.id.header_username);
 
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        View header=navigationView.getHeaderView(0);
+        header_username = (TextView)header.findViewById(R.id.header_username);
     }
 
     Button btnGoAdoptSearch,btnGoPairSetting,btnGoPetHelper,btnGoMapSearch,btnGoUpload,btnGoSetting;
     TextView header_username;
-
+    NavigationView navigationView;
 }

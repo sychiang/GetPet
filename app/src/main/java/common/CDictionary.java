@@ -21,4 +21,9 @@ public class CDictionary {
     public static final String BK_animal_remark = "BK_animal_remark";
     public static final String BK_animal_name = "BK_animal_name";
 
+    public static final String BK_fb_name = "BK_fb_name";
+    public static final String BK_fb_id = "BK_fb_id";
+
+    public static final int REQUEST_LOGIN = 0;
+
 }
