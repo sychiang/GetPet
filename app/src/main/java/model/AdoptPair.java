@@ -43,9 +43,9 @@ public class AdoptPair {
     private String animalChip;
     private String animalHealthy;
     private String animalDisease_Other;
-    private int animalOwner_userID;
+    private String animalOwner_userID;
     private String animalReason;
-    private int animalGetter_userID;
+    private String animalGetter_userID;
     private String animalAdopted;
     private Object animalAdoptedDate;
     private String animalNote;
@@ -142,11 +142,11 @@ public class AdoptPair {
         this.animalDisease_Other = animalDisease_Other;
     }
 
-    public int getAnimalOwner_userID() {
+    public String getAnimalOwner_userID() {
         return animalOwner_userID;
     }
 
-    public void setAnimalOwner_userID(int animalOwner_userID) {
+    public void setAnimalOwner_userID(String animalOwner_userID) {
         this.animalOwner_userID = animalOwner_userID;
     }
 
@@ -158,11 +158,11 @@ public class AdoptPair {
         this.animalReason = animalReason;
     }
 
-    public int getAnimalGetter_userID() {
+    public String getAnimalGetter_userID() {
         return animalGetter_userID;
     }
 
-    public void setAnimalGetter_userID(int animalGetter_userID) {
+    public void setAnimalGetter_userID(String animalGetter_userID) {
         this.animalGetter_userID = animalGetter_userID;
     }
 

@@ -51,7 +51,129 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_adopt_pair_list);
         Intent intent = getIntent();
-        String url = "http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas";
+        String url = "http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas?";
+        String condArea = intent.getExtras().getString(CDictionary.BK_Area);
+        Log.d(CDictionary.Debug_TAG, "get cond1" + condArea);
+        String condType = intent.getExtras().getString(CDictionary.BK_Type);
+        Log.d(CDictionary.Debug_TAG, "get cond2" + condType);
+        switch (condArea) {
+            case "全部":
+                break;
+            case "臺北市":
+                url += "$filter=animalAddress eq '臺北市'";
+                break;
+            case "新北市":
+                url += "$filter=animalAddress eq '新北市'";
+                break;
+            case "基隆市":
+                url += "$filter=animalAddress eq '基隆市'";
+                break;
+            case "宜蘭縣":
+                url += "$filter=animalAddress eq '宜蘭縣'";
+                break;
+            case "桃園縣":
+                url += "$filter=animalAddress eq '桃園縣'";
+                break;
+            case "新竹縣":
+                url += "$filter=animalAddress eq '新竹縣'";
+                break;
+            case "新竹市":
+                url += "$filter=animalAddress eq '新竹市'";
+                break;
+            case "苗栗縣":
+                url += "$filter=animalAddress eq '苗栗縣'";
+                break;
+            case "台中市":
+                url += "$filter=animalAddress eq '台中市'";
+                break;
+            case "彰化縣":
+                url += "$filter=animalAddress eq '彰化縣'";
+                break;
+            case "南投縣":
+                url += "$filter=animalAddress eq '南投縣'";
+                break;
+            case "雲林縣":
+                url += "$filter=animalAddress eq '雲林縣'";
+                break;
+            case "嘉義縣":
+                url += "$filter=animalAddress eq '嘉義縣'";
+                break;
+            case "嘉義市":
+                url += "$filter=animalAddress eq '嘉義市'";
+                break;
+            case "台南":
+                url += "$filter=animalAddress eq '台南'";
+                break;
+            case "高雄":
+                url += "$filter=animalAddress eq '高雄'";
+                break;
+            case "屏東縣":
+                url += "$filter=animalAddress eq '屏東縣'";
+                break;
+            case "花蓮縣":
+                url += "$filter=animalAddress eq '花蓮縣'";
+                break;
+            case "臺東縣":
+                url += "$filter=animalAddress eq '臺東縣'";
+                break;
+            case "澎湖縣":
+                url += "$filter=animalAddress eq '澎湖縣'";
+                break;
+            case "金門縣":
+                url += "$filter=animalAddress eq '金門縣'";
+                break;
+            case "連江縣":
+                url += "$filter=animalAddress eq '連江縣'";
+                break;
+            default:
+                break;
+        }
+        if (condArea.equals("全部")) {
+            switch (condType) {
+                case "全部":
+                    break;
+                case "狗":
+                    url += "$filter=animalKind eq '狗'";
+                    break;
+                case "貓":
+                    url += "$filter=animalKind eq '貓'";
+                    break;
+                case "老鼠":
+                    url += "$filter=animalKind eq '老鼠'";
+                    break;
+                case "鳥":
+                    url += "$filter=animalKind eq '鳥'";
+                    break;
+                case "兔":
+                    url += "$filter=animalKind eq '兔'";
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (condType) {
+                case "全部":
+                    break;
+                case "狗":
+                    url += " and animalKind eq '狗'";
+                    break;
+                case "貓":
+                    url += " and animalKind eq '貓'";
+                    break;
+                case "老鼠":
+                    url += " and animalKind eq '老鼠'";
+                    break;
+                case "鳥":
+                    url += " and animalKind eq '鳥'";
+                    break;
+                case "兔":
+                    url += " and animalKind eq '兔'";
+                    break;
+                default:
+                    break;
+            }
+        }
+        Log.d(CDictionary.Debug_TAG, url);
 
         listview = (ListView) findViewById(R.id.pair_petlist);
         // 實例化底部布局
@@ -122,7 +244,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Intent intent = new Intent(ActAdoptPairList.this, ActSearchShelter.class);
+                                            Intent intent = new Intent(ActAdoptPairList.this, ActSearchAdopt.class);
                                             startActivity(intent);
                                         }
                                     });
@@ -141,19 +263,24 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-                bundle.putString(CDictionary.BK_animal_name, petlist.get(position).getAnimalName());
-//                bundle.putString(CDictionary.BK_animal_kind, petlist.get(position).getAnimal_kind());
-//                bundle.putString(CDictionary.BK_animal_sex, petlist.get(position).getAnimal_sex());
-//                bundle.putString(CDictionary.BK_animal_bodytype, petlist.get(position).getAnimal_bodytype());
-//                bundle.putString(CDictionary.BK_animal_colour, petlist.get(position).getAnimal_colour());
-//                bundle.putString(CDictionary.BK_animal_age, petlist.get(position).getAnimal_age());
-//                bundle.putString(CDictionary.BK_album_file, petlist.get(position).getAlbum_file());
-//                bundle.putString(CDictionary.BK_shelter_name, petlist.get(position).getShelter_name());
-//                bundle.putString(CDictionary.BK_shelter_address, petlist.get(position).getShelter_address());
-//                bundle.putString(CDictionary.BK_shelter_tel, petlist.get(position).getShelter_tel());
-//                bundle.putString(CDictionary.BK_animal_remark, petlist.get(position).getAnimal_remark());
+                bundle.putString(CDictionary.BK_animalName, petlist.get(position).getAnimalName());
+                bundle.putString(CDictionary.BK_animalType, petlist.get(position).getAnimalType());
+                bundle.putString(CDictionary.BK_animalGender, petlist.get(position).getAnimalGender());
+                bundle.putString(CDictionary.BK_animalColor, petlist.get(position).getAnimalColor());
+                String age = String.format("%d",petlist.get(position).getAnimalAge());
+                bundle.putString(CDictionary.BK_animalAge, age);
+                bundle.putString(CDictionary.BK_animalAddress, petlist.get(position).getAnimalAddress());
+                bundle.putString(CDictionary.BK_animalBirth, petlist.get(position).getAnimalBirth());
+                bundle.putString(CDictionary.BK_animalChip, petlist.get(position).getAnimalChip());
+                bundle.putString(CDictionary.BK_animalHealthy, petlist.get(position).getAnimalHealthy());
+                bundle.putString(CDictionary.BK_animalDisease_Other, petlist.get(position).getAnimalDisease_Other());
+                bundle.putString(CDictionary.BK_animalReason, petlist.get(position).getAnimalReason());
+                bundle.putString(CDictionary.BK_animalNote, petlist.get(position).getAnimalNote());
+                String animalId = String.format("%d",petlist.get(position).getAnimalID());
+                bundle.putString(CDictionary.BK_animalID, animalId);
+                bundle.putString(CDictionary.BK_animalOwner_userID, petlist.get(position).getAnimalOwner_userID());
                 Intent intent = new Intent(ActAdoptPairList.this, ActAdoptPairDetail.class);
-//                intent.putExtras(bundle);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

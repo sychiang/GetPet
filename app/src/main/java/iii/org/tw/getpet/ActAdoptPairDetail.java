@@ -1,5 +1,6 @@
 package iii.org.tw.getpet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import common.CDictionary;
+
 public class ActAdoptPairDetail extends AppCompatActivity {
 
     @Override
@@ -17,8 +20,22 @@ public class ActAdoptPairDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_adopt_pair_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setTitle("送養的毛孩子");
         setSupportActionBar(toolbar);
         initComponent();
+        Intent intent = getIntent();
+        tvName.setText(intent.getExtras().getString(CDictionary.BK_animalName));
+        tvType.setText(intent.getExtras().getString(CDictionary.BK_animalName));
+        tvSex.setText(intent.getExtras().getString(CDictionary.BK_animalGender));
+        tvColor.setText(intent.getExtras().getString(CDictionary.BK_animalColor));
+        tvAge.setText(intent.getExtras().getString(CDictionary.BK_animalAge));
+        tvArea.setText(intent.getExtras().getString(CDictionary.BK_animalAddress));
+        tvIfBirth.setText(intent.getExtras().getString(CDictionary.BK_animalBirth));
+        tvIfChip.setText(intent.getExtras().getString(CDictionary.BK_animalChip));
+        tvHealthy.setText(intent.getExtras().getString(CDictionary.BK_animalHealthy));
+        tvDisease.setText(intent.getExtras().getString(CDictionary.BK_animalDisease_Other));
+        tvReason.setText(intent.getExtras().getString(CDictionary.BK_animalReason));
+        tvNote.setText(intent.getExtras().getString(CDictionary.BK_animalNote));
     }
 
     private void initComponent(){

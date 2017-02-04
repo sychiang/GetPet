@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.facebook.FacebookSdk;
 import com.facebook.CallbackManager;
@@ -18,19 +19,15 @@ import org.json.JSONObject;
 import java.util.Arrays;
 
 import common.CDictionary;
-import fragment.FBMainFragment;
+
 
 public class ActLogin extends AppCompatActivity {
-    //private FBMainFragment fbMainFragment;
 
     CallbackManager callbackManager;
     AccessToken accessToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //初始化FacebookSdk，記得要放第一行，不然setContentView會出錯
-        FacebookSdk.sdkInitialize(getApplicationContext());
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_login);
 
@@ -41,9 +38,6 @@ public class ActLogin extends AppCompatActivity {
         LoginButton btn_FBlogin = (LoginButton) findViewById(R.id.btn_FBlogin);
 
         btn_FBlogin.setReadPermissions(Arrays.asList("email"));
-
-
-        LoginManager.getInstance().logOut();
 
         //LoginButton增加callback function
         btn_FBlogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -68,8 +62,7 @@ public class ActLogin extends AppCompatActivity {
                                 Log.d(CDictionary.Debug_TAG,object.optString("id"));
                             }
                         });
-
-                //包入你想要得到的資料 送出request
+                //包入想要得到的資料 送出request
                 Bundle parameters = new Bundle();
                 parameters.putString("fields", "id,name,link");
                 request.setParameters(parameters);
@@ -88,10 +81,16 @@ public class ActLogin extends AppCompatActivity {
             }
         });
 
-//        if(savedInstanceState == null){
-//            fbMainFragment = new FBMainFragment();
-//            getSupportFragmentManager().beginTransaction().add(android.R.id.content,fbMainFragment).commit();
-//        }
+        //Check if user is currently logged in
+        if (AccessToken.getCurrentAccessToken() != null && com.facebook.Profile.getCurrentProfile() != null){
+            btn_FBlogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    LoginManager.getInstance().logOut();
+                    goMainScreen();
+                }
+            });
+        }
     }
 
     private void goMainScreen() {

@@ -20,8 +20,9 @@ import android.widget.TextView;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
-import com.facebook.ProfileTracker;
+import com.facebook.accountkit.Account;
+import com.facebook.accountkit.AccountKit;
+import com.facebook.accountkit.AccountKitCallback;
 
 import org.json.JSONObject;
 
@@ -73,15 +74,6 @@ public class ActHomePage extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
-
-        Log.d(CDictionary.Debug_TAG,"Get userName："+userName);
-
-    }
-
-    private void goLoginScreen() {
-        Intent intent = new Intent(ActHomePage.this, ActLogin.class);
-        startActivity(intent);
     }
 
     @Override
@@ -122,11 +114,28 @@ public class ActHomePage extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Intent intent;
+        Bundle bundle = new Bundle();
 
         switch (id){
             case R.id.search_setting:
+                if(AccessToken.getCurrentAccessToken() == null){
+                    Log.d(CDictionary.Debug_TAG,"not log in");
+                    goLoginScreen();
+                } else {
+                    Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
+//                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
+//                    startActivity(intent);
+                }
                 break;
             case R.id.notify_setting:
+                if(AccessToken.getCurrentAccessToken() == null){
+                    Log.d(CDictionary.Debug_TAG,"not log in");
+                    goLoginScreen();
+                } else {
+                    Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
+//                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
+//                    startActivity(intent);
+                }
                 break;
             case R.id.messagebox:
                 if(AccessToken.getCurrentAccessToken() == null){
@@ -135,6 +144,9 @@ public class ActHomePage extends AppCompatActivity
                 } else {
                     Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
                     intent = new Intent(ActHomePage.this,ActMsgBox.class);
+                    Log.d(CDictionary.Debug_TAG,"Get userName："+userName);
+                    bundle.putString(CDictionary.BK_fb_name,userName);
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
                 break;
@@ -169,6 +181,12 @@ public class ActHomePage extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void goLoginScreen() {
+        Intent intent = new Intent(ActHomePage.this, ActLogin.class);
+        startActivity(intent);
+    }
+
     View.OnClickListener btnGoAdoptSearch_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //前往認養搜尋
@@ -211,10 +229,6 @@ public class ActHomePage extends AppCompatActivity
             startActivity(intent);
         }
     };
-
-    public void checkIfLogin(){
-
-    }
 
     public void initComponent(){
         btnGoAdoptSearch = (Button)findViewById(R.id.btnGoAdoptSearch);

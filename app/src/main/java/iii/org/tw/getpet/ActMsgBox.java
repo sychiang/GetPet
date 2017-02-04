@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +18,22 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import common.CDictionary;
 import model.Category;
 import model.CMessage;
 
 public class ActMsgBox extends AppCompatActivity {
     ArrayList<CMessage> myDataset = new ArrayList<>();
+    String name;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_msg_box);
+        Intent intent = getIntent();
+        name = intent.getExtras().getString(CDictionary.BK_fb_name);
+        Log.d(CDictionary.Debug_TAG,"Get userName："+name);
 
         CMessage msg1 = new CMessage("系統通知","您好! 歡迎使用GetPet系統","Administrator","testUser");
         CMessage msg2 = new CMessage("我是主旨1","您好! 我是testSender1 我是testSender1 我是testSender1","testSender1","testUser");

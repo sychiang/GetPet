@@ -117,16 +117,7 @@
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:text="生育："
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent" />
 
-                <TextView
-                    android:id="@+id/tvIfBirth"
-                    android:text="xxxxxxxxxx"
-                    android:layout_width="80dp"
-                    android:layout_height="match_parent" />
                 <TextView
                     android:text="晶片："
                     android:layout_width="70dp"
@@ -136,6 +127,16 @@
                     android:id="@+id/tvIfChip"
                     android:text="xxxxxxxxxx"
                     android:layout_width="80dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:text="生育："
+                    android:layout_width="70dp"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tvIfBirth"
+                    android:text="xxxxxxxxxx"
+                    android:layout_width="100dp"
                     android:layout_height="match_parent" />
 
             </LinearLayout>
@@ -228,35 +229,35 @@
                     android:layout_height="match_parent" />
 
             </LinearLayout>
-            <RelativeLayout
+            <LinearLayout
                 android:layout_margin="20px"
                 android:id="@+id/line10"
                 android:orientation="horizontal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_alignParentLeft="true"
+                    android:layout_weight="1"
                     android:id="@+id/btnLeaveMsg"
                     android:text="我要留言"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent" />
 
                 <Button
-                    android:layout_toRightOf="@+id/btnLeaveMsg"
+                    android:layout_weight="1"
                     android:id="@+id/btnTrack"
-                    android:text="我要留言"
-                    android:layout_width="wrap_content"
+                    android:text="我要追蹤"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent" />
 
                 <Button
-                    android:layout_toRightOf="@+id/btnTrack"
+                    android:layout_weight="1"
                     android:id="@+id/btnAdopt"
                     android:text="我要認養"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent" />
 
-            </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

@@ -76,7 +76,7 @@ public class ActCategory extends AppCompatActivity {
                             startActivity(intent);
                             break;
                         case 1:
-                            intent = new Intent(ActCategory.this, ActAdoptPairList.class);
+                            intent = new Intent(ActCategory.this, ActSearchAdopt.class);
                             startActivity(intent);
                             break;
                         default:
