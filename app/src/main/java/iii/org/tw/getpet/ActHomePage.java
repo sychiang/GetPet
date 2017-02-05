@@ -46,6 +46,7 @@ public class ActHomePage extends AppCompatActivity
 
     //ArrayList<AnimalPic> picList = new ArrayList<AnimalPic>();
     //ArrayList<ImageView> imgViewList = new ArrayList<ImageView>();
+    String userID = "";
     String userName = "未登入";
     AccessToken accessToken;
 
@@ -77,6 +78,9 @@ public class ActHomePage extends AppCompatActivity
                             userName = object.optString("name");
                             Log.d(CDictionary.Debug_TAG,"Set userName："+userName);
                             header_username.setText(userName);
+
+                            userID = object.optString("id");
+                            Log.d(CDictionary.Debug_TAG,"Set userID："+userID);
                         }
                     });
             Bundle parameters = new Bundle();
@@ -164,19 +168,20 @@ public class ActHomePage extends AppCompatActivity
                 }
                 break;
             case R.id.messagebox:
-                intent = new Intent(ActHomePage.this,ActMsgBox.class);
-                startActivity(intent);
-//                if(AccessToken.getCurrentAccessToken() == null){
-//                    Log.d(CDictionary.Debug_TAG,"not log in");
-//                    goLoginScreen();
-//                } else {
-//                    Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
-//                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
-//                    Log.d(CDictionary.Debug_TAG,"Get userName："+userName);
-//                    bundle.putString(CDictionary.BK_fb_name,userName);
-//                    intent.putExtras(bundle);
-//                    startActivity(intent);
-//                }
+//                intent = new Intent(ActHomePage.this,ActMsgBox.class);
+//                startActivity(intent);
+                if(AccessToken.getCurrentAccessToken() == null){
+                    Log.d(CDictionary.Debug_TAG,"not log in");
+                    goLoginScreen();
+                } else {
+                    Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
+                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
+                    Log.d(CDictionary.Debug_TAG,"Get userName："+userName);
+                    bundle.putString(CDictionary.BK_fb_name,userName);
+                    bundle.putString(CDictionary.BK_fb_id,userID);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
                 break;
             case R.id.contact_us:
                 break;
