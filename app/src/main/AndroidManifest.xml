@@ -51,7 +51,8 @@
             android:label="@string/title_activity_act_adopt_pair_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActLogin" />
-        <activity android:name=".ActSearchAdopt"></activity>
+        <activity android:name=".ActSearchAdopt" />
+        <activity android:name=".ActFollowingList"></activity>
     </application>
 
 </manifest>
