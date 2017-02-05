@@ -15,54 +15,74 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import common.CDictionary;
 import model.Category;
 import model.CMessage;
+import model.UserMsg;
 
 public class ActMsgBox extends AppCompatActivity {
-    ArrayList<CMessage> myDataset = new ArrayList<>();
+    ArrayList<UserMsg> myDataset = new ArrayList<UserMsg>();
     String name;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_msg_box);
-        Intent intent = getIntent();
-        name = intent.getExtras().getString(CDictionary.BK_fb_name);
-        Log.d(CDictionary.Debug_TAG,"Get userName："+name);
-
-        CMessage msg1 = new CMessage("系統通知","您好! 歡迎使用GetPet系統","Administrator","testUser");
-        CMessage msg2 = new CMessage("我是主旨1","您好! 我是testSender1 我是testSender1 我是testSender1","testSender1","testUser");
-        CMessage msg3 = new CMessage("我是主旨2","您好! 我是testSender2 我是testSender2 我是testSender2","testSender2","testUser");
-        CMessage msg4 = new CMessage("我是主旨3","您好! 我是testSender3 我是testSender3 我是testSender3","testSender3","testUser");
-        CMessage msg5 = new CMessage("我是主旨4","您好! 我是testSender4 我是testSender4 我是testSender4","testSender4","testUser");
-        CMessage msg6 = new CMessage("我是主旨5","您好! 我是testSender5 我是testSender5 我是testSender5","testSender5","testUser");
-        CMessage msg7 = new CMessage("我是主旨6","您好! 我是testSender6 我是testSender6 我是testSender6","testSender6","testUser");
-        CMessage msg8 = new CMessage("我是主旨7","您好! 我是testSender7 我是testSender7 我是testSender7","testSender7","testUser");
-
-        myDataset.add(msg1);
-        myDataset.add(msg2);
-        myDataset.add(msg3);
-        myDataset.add(msg4);
-        myDataset.add(msg5);
-        myDataset.add(msg6);
-        myDataset.add(msg7);
-        myDataset.add(msg8);
-
-        ActMsgBox.MyAdapter myAdapter = new ActMsgBox.MyAdapter(myDataset);
-        RecyclerView mList = (RecyclerView) findViewById(R.id.msgboxlist_view);
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        String url = "http://twpetanimal.ddns.net:9487/api/v1/MsgUsers";
+        //初始化元件
+        final RecyclerView mList = (RecyclerView) findViewById(R.id.msgboxlist_view);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mList.setLayoutManager(layoutManager);
-        mList.setAdapter(myAdapter);
+
+//        Intent intent = getIntent();
+//        name = intent.getExtras().getString(CDictionary.BK_fb_name);
+//        Log.d(CDictionary.Debug_TAG,"Get userName："+name);
+
+//取回MSG資料存入集合
+        AndroidNetworking.initialize(getApplicationContext());
+        AndroidNetworking.get(url)
+                .setTag(this)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsParsed(new TypeToken<ArrayList<UserMsg>>() {
+                             },
+                        new ParsedRequestListener<ArrayList<UserMsg>>() {
+                            @Override
+                            public void onResponse(ArrayList<UserMsg> response) {
+                                String size = String.format("%d", response.size());
+                                Log.d(CDictionary.Debug_TAG, size);
+                                if (response.size() > 0) {
+                                    for (UserMsg rs : response) {
+                                        myDataset.add(rs);
+                                        Log.d(CDictionary.Debug_TAG, "Get Msg: "+rs.getMsgID());
+                                    }
+                                    ActMsgBox.MyAdapter myAdapter = new ActMsgBox.MyAdapter(myDataset);
+                                    mList.setAdapter(myAdapter);
+                                } else {
+                                    //No Response 什麼都不做
+                                }
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+
+                            }
+                        });
+
     }
 
     public class MyAdapter extends RecyclerView.Adapter<ActMsgBox.MyAdapter.ViewHolder> {
-        private List<CMessage> mData;
+        private List<UserMsg> mData;
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public TextView tvTitle, tvSender;
@@ -76,7 +96,7 @@ public class ActMsgBox extends AppCompatActivity {
             }
         }
 
-        public MyAdapter(List<CMessage> data) {
+        public MyAdapter(List<UserMsg> data) {
             mData = data;
         }
 
@@ -96,9 +116,9 @@ public class ActMsgBox extends AppCompatActivity {
                     TextView msg_content = (TextView) view.findViewById(R.id.msg_content);
 
                     int position = vholder.getAdapterPosition();
-                    msg_subject.setText(myDataset.get(position).getSubject());
-                    msg_sender.setText(myDataset.get(position).getSender());
-                    msg_content.setText(myDataset.get(position).getContent());
+                    msg_subject.setText(myDataset.get(position).getMsgType());
+                    msg_sender.setText(myDataset.get(position).getMsgFrom_userName());
+                    msg_content.setText(myDataset.get(position).getMsgContent());
 
                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgBox.this);
                     dialog.setView(view);
@@ -108,7 +128,6 @@ public class ActMsgBox extends AppCompatActivity {
                         }
                     });
                     dialog.create().show();
-
                 }
             });
             return vholder;
@@ -116,9 +135,9 @@ public class ActMsgBox extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(ActMsgBox.MyAdapter.ViewHolder holder, int position) {
-            CMessage message = mData.get(position);
-            holder.tvTitle.setText(message.getSubject());
-            holder.tvSender.setText(message.getSender());
+            UserMsg message = mData.get(position);
+            holder.tvTitle.setText(message.getMsgType());
+            holder.tvSender.setText(message.getMsgFrom_userID());
         }
 
         @Override

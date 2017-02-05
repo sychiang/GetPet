@@ -64,7 +64,7 @@ public class ActAdoptPairDetail extends AppCompatActivity {
         viewFlipper.setAnimation(fade_out);
         //sets auto flipping
         viewFlipper.setAutoStart(true);
-        viewFlipper.setFlipInterval(5000);
+        viewFlipper.setFlipInterval(3000);
         viewFlipper.startFlipping();
     }
 

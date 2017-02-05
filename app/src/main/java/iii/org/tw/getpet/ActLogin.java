@@ -60,6 +60,7 @@ public class ActLogin extends AppCompatActivity {
                                 Log.d(CDictionary.Debug_TAG,object.optString("name"));
                                 Log.d(CDictionary.Debug_TAG,object.optString("link"));
                                 Log.d(CDictionary.Debug_TAG,object.optString("id"));
+                                Log.d(CDictionary.Debug_TAG,object.optString("email"));
                             }
                         });
                 //包入想要得到的資料 送出request
@@ -83,13 +84,8 @@ public class ActLogin extends AppCompatActivity {
 
         //Check if user is currently logged in
         if (AccessToken.getCurrentAccessToken() != null && com.facebook.Profile.getCurrentProfile() != null){
-            btn_FBlogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    LoginManager.getInstance().logOut();
-                    goMainScreen();
-                }
-            });
+            //登入狀態下不給登出
+            btn_FBlogin.setVisibility(View.INVISIBLE);
         }
     }
 

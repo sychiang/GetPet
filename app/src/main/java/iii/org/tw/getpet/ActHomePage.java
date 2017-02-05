@@ -14,23 +14,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.bumptech.glide.Glide;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.accountkit.Account;
 import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitCallback;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import common.CDictionary;
+import model.AnimalPic;
 
 public class ActHomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //ArrayList<AnimalPic> picList = new ArrayList<AnimalPic>();
+    //ArrayList<ImageView> imgViewList = new ArrayList<ImageView>();
     String userName = "未登入";
     AccessToken accessToken;
 
@@ -58,6 +73,7 @@ public class ActHomePage extends AppCompatActivity
                             Log.d(CDictionary.Debug_TAG,object.optString("name"));
                             Log.d(CDictionary.Debug_TAG,object.optString("link"));
                             Log.d(CDictionary.Debug_TAG,object.optString("id"));
+                            Log.d(CDictionary.Debug_TAG,object.optString("email"));
                             userName = object.optString("name");
                             Log.d(CDictionary.Debug_TAG,"Set userName："+userName);
                             header_username.setText(userName);
@@ -74,6 +90,16 @@ public class ActHomePage extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
+
+        //輪播功能
+        fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+        fade_out = AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
+        viewFlipper.setAnimation(fade_in);
+        viewFlipper.setAnimation(fade_out);
+        //sets auto flipping
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setFlipInterval(3000);
+        viewFlipper.startFlipping();
     }
 
     @Override
@@ -138,17 +164,19 @@ public class ActHomePage extends AppCompatActivity
                 }
                 break;
             case R.id.messagebox:
-                if(AccessToken.getCurrentAccessToken() == null){
-                    Log.d(CDictionary.Debug_TAG,"not log in");
-                    goLoginScreen();
-                } else {
-                    Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
-                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
-                    Log.d(CDictionary.Debug_TAG,"Get userName："+userName);
-                    bundle.putString(CDictionary.BK_fb_name,userName);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
-                }
+                intent = new Intent(ActHomePage.this,ActMsgBox.class);
+                startActivity(intent);
+//                if(AccessToken.getCurrentAccessToken() == null){
+//                    Log.d(CDictionary.Debug_TAG,"not log in");
+//                    goLoginScreen();
+//                } else {
+//                    Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
+//                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
+//                    Log.d(CDictionary.Debug_TAG,"Get userName："+userName);
+//                    bundle.putString(CDictionary.BK_fb_name,userName);
+//                    intent.putExtras(bundle);
+//                    startActivity(intent);
+//                }
                 break;
             case R.id.contact_us:
                 break;
@@ -243,14 +271,23 @@ public class ActHomePage extends AppCompatActivity
         btnGoUpload.setOnClickListener(btnGoUpload_Click);
         btnGoSetting = (Button)findViewById(R.id.btnGoSetting);
         btnGoSetting.setOnClickListener(btnGoSetting_Click);
-
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header=navigationView.getHeaderView(0);
         header_username = (TextView)header.findViewById(R.id.header_username);
+
+        ivPhoto1 = (ImageView)findViewById(R.id.ivPhoto1);
+        ivPhoto2 = (ImageView)findViewById(R.id.ivPhoto2);
+        ivPhoto3 = (ImageView)findViewById(R.id.ivPhoto3);
+        ivPhoto4 = (ImageView)findViewById(R.id.ivPhoto4);
+        ivPhoto5 = (ImageView)findViewById(R.id.ivPhoto5);
+        viewFlipper=(ViewFlipper)findViewById(R.id.viewflipper);
     }
 
     Button btnGoAdoptSearch,btnGoPairSetting,btnGoPetHelper,btnGoMapSearch,btnGoUpload,btnGoSetting;
     TextView header_username;
     NavigationView navigationView;
+    ImageView ivPhoto1,ivPhoto2,ivPhoto3,ivPhoto4,ivPhoto5;
+    ViewFlipper viewFlipper;
+    Animation fade_in,fade_out;
 }
