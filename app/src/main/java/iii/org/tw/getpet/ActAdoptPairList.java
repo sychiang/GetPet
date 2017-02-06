@@ -287,6 +287,16 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                     if(petlist.get(position).getAnimalData_Pic().size() >= 3 && petlist.get(position).getAnimalData_Pic().get(2).getAnimalPicAddress() != "")
                         bundle.putString(CDictionary.BK_animalPicURL3, petlist.get(position).getAnimalData_Pic().get(2).getAnimalPicAddress());
                 }
+
+                bundle.putString(CDictionary.BK_conditionAge,petlist.get(position).getAnimalData_Condition().get(0).getConditionAge());
+                bundle.putString(CDictionary.BK_conditionEconomy,petlist.get(position).getAnimalData_Condition().get(0).getConditionEconomy());
+                bundle.putString(CDictionary.BK_conditionHome,petlist.get(position).getAnimalData_Condition().get(0).getConditionHome());
+                bundle.putString(CDictionary.BK_conditionFamily,petlist.get(position).getAnimalData_Condition().get(0).getConditionFamily());
+                bundle.putString(CDictionary.BK_conditionReply,petlist.get(position).getAnimalData_Condition().get(0).getConditionReply());
+                bundle.putString(CDictionary.BK_conditionPaper,petlist.get(position).getAnimalData_Condition().get(0).getConditionPaper());
+                bundle.putString(CDictionary.BK_conditionFee,petlist.get(position).getAnimalData_Condition().get(0).getConditionFee());
+                bundle.putString(CDictionary.BK_conditionOther,petlist.get(position).getAnimalData_Condition().get(0).getConditionOther());
+
                 Intent intent = new Intent(ActAdoptPairList.this, ActAdoptPairDetail.class);
                 intent.putExtras(bundle);
                 startActivity(intent);

@@ -76,10 +76,17 @@ public class ActMsgBox extends AppCompatActivity {
                                     }
                                     adapter = new MsgListAdapter(myDataset);
                                     recyclerList.setAdapter(adapter);
-//                                    ActMsgBox.MyAdapter myAdapter = new ActMsgBox.MyAdapter(myDataset);
-//                                    mList.setAdapter(myAdapter);
                                 } else {
-                                    //No Response 什麼都不做
+                                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgBox.this);
+                                    dialog.setTitle("目前尚無訊息");
+                                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Intent intent = new Intent(ActMsgBox.this, ActHomePage.class);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                    dialog.create().show();
                                 }
                             }
 

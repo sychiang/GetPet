@@ -60,7 +60,7 @@ public class AdoptPairListAdapter extends BaseAdapter{
 
         if(item.getAnimalData_Pic().size()>0){
             String imgURL = item.getAnimalData_Pic().get(0).getAnimalPicAddress();
-            if(imgURL.length()>0){
+            if(imgURL.toLowerCase().contains(".jpg") || imgURL.toLowerCase().contains(".png")){
                 Glide.with(context).load(imgURL).into(ivImage);
                 //Picasso.with(context).load(imgURL).into(ivImage);
             }

@@ -25,19 +25,19 @@ public class FollowingListAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
 
-    public FollowingListAdapter(List<Following> followList, Context context) {
+    public FollowingListAdapter(Context context, List<Following> followList) {
         this.followList = followList;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return followList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return followList.get(position);
     }
 
     @Override
@@ -58,18 +58,16 @@ public class FollowingListAdapter extends BaseAdapter {
         TextView tvLocation = (TextView) rowView.findViewById(R.id.followpet_location);
         TextView tvDate = (TextView) rowView.findViewById(R.id.followpet_location);
 
-//        if(item.getAnimalData_Pic().size()>0){
-//            String imgURL = item.getAnimalData_Pic().get(0).getAnimalPicAddress();
-//            if(imgURL.length()>0){
-//                Glide.with(context).load(imgURL).into(ivImage);
-//                //Picasso.with(context).load(imgURL).into(ivImage);
-//            }
-//        }
-//
-//        tvName.setText(item.getAnimalName());
-//        tvAge.setText(String.format("%d",item.getAnimalAge()));
-//        tvLocation.setText(item.getAnimalAddress());
-//        tvDate.setText(item.getAnimalDate());
+        if(item.getAnimalPicAddress().toLowerCase().contains(".jpg") || item.getAnimalPicAddress().toLowerCase().contains(".png")){
+            String imgURL = item.getAnimalPicAddress();
+                Glide.with(context).load(imgURL).into(ivImage);
+                //Picasso.with(context).load(imgURL).into(ivImage);
+        }
+
+        tvName.setText(item.getAnimalName());
+        tvAge.setText(String.format("%d",item.getAnimalAge()));
+        tvLocation.setText(item.getAnimalAddress());
+        //tvDate.setText(item.get());
         return rowView;
     }
 }

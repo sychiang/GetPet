@@ -3,8 +3,6 @@ package iii.org.tw.getpet;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -85,7 +83,7 @@ public class ActShelterPetDetail extends AppCompatActivity {
     View.OnClickListener btnHowToAdopt_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             LayoutInflater inflater = LayoutInflater.from(ActShelterPetDetail.this);
-            final View v = inflater.inflate(R.layout.howtoadopt_altertdialog, null);
+            final View v = inflater.inflate(R.layout.howtoadopt_alertdialog, null);
             TextView content_line1,content_line2,content_line3,content_line4,content_line5,
                     content_line6,content_line7,content_line8,content_line9,content_line10;
 

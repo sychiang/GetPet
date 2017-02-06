@@ -32,6 +32,7 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
     ArrayList<Following> showlist = new ArrayList<Following>();
     ListView listview;
     FollowingListAdapter adapter;
+    String name, id;
 
     //listView 分頁加載
     private Button btn_load;
@@ -49,7 +50,7 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_following_list);
         //Intent intent = getIntent();
-        String url = "http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas?";   //改成追蹤清單的API
+        String url = "http://twpetanimal.ddns.net:9487/api/v1/followAnis";   //改成追蹤清單的API
 
         listview = (ListView) findViewById(R.id.followlist);
         // 實例化底部布局
@@ -57,6 +58,14 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
         btn_load = (Button) moreView.findViewById(R.id.btn_load);
         pg = (ProgressBar) moreView.findViewById(R.id.pg);
         handler = new Handler();
+
+        Intent intent = getIntent();
+        name = intent.getExtras().getString(CDictionary.BK_fb_name);
+        Log.d(CDictionary.Debug_TAG,"Get userName："+name);
+        id = intent.getExtras().getString(CDictionary.BK_fb_id);
+        Log.d(CDictionary.Debug_TAG,"Get userID："+id);
+        url += "/"+id;
+        Log.d(CDictionary.Debug_TAG,"Get URL："+url);
 
         //取回JSON資料存入集合
         AndroidNetworking.initialize(getApplicationContext());
@@ -74,30 +83,37 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
                                 if (response.size() > 0) {
                                     for (Following rs : response) {
                                         followList.add(rs);
-                                        Log.d(CDictionary.Debug_TAG, "");
+                                        Log.d(CDictionary.Debug_TAG, "Get "+rs.getFollowID());
                                     }
-                                    MaxDataNum = followList.size(); // 設置最大數據條數
-                                    size = String.format("%d", followList.size());
-                                    Log.d(CDictionary.Debug_TAG, size);
-                                    if(MaxDataNum<10){
-                                        for (int i = 0; i < MaxDataNum; i++) {
-                                            showlist.add(followList.get(i));
+                                    if(followList.size()<50){
+                                        adapter = new FollowingListAdapter(ActFollowingList.this, followList);
+                                        listview.setAdapter(adapter);
+                                    }else {
+                                        MaxDataNum = followList.size(); // 設置最大數據條數
+                                        //size = String.format("%d", followList.size());
+                                        Log.d(CDictionary.Debug_TAG, "Set MaxNum: "+MaxDataNum);
+                                        if(MaxDataNum<10){
+                                            for (int i = 0; i < MaxDataNum; i++) {
+                                                showlist.add(followList.get(i));
+                                                Log.d(CDictionary.Debug_TAG, "showlist add: "+showlist.get(i).getFollowID());
+                                            }
+                                        }else{
+                                            for (int i = 0; i < 10; i++) {
+                                                showlist.add(followList.get(i));
+                                            }
                                         }
-                                    }else{
-                                        for (int i = 0; i < 10; i++) {
-                                            showlist.add(followList.get(i));
-                                        }
-                                    }
-                                    size = String.format("%d", showlist.size());
-                                    Log.d(CDictionary.Debug_TAG, size);
+                                        size = String.format("%d", showlist.size());
+                                        Log.d(CDictionary.Debug_TAG, size);
 
-                                    // 加上底部View，注意要放在setAdapter方法前
-                                    listview.addFooterView(moreView);
-                                    //adapter = new FollowingListAdapter(ActFollowingList.this, showlist);
-                                    listview.setAdapter(adapter);
+                                        // 加上底部View，注意要放在setAdapter方法前
+                                        listview.addFooterView(moreView);
+                                        adapter = new FollowingListAdapter(ActFollowingList.this, showlist);
+                                        listview.setAdapter(adapter);
+                                        Log.d(CDictionary.Debug_TAG,"Set Adapter");
+                                    }
+
                                     // 绑定監聽器
                                     listview.setOnScrollListener(ActFollowingList.this);
-
                                     btn_load.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View v) {

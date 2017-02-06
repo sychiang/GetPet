@@ -45,6 +45,15 @@ public class CDictionary {
     public static final String BK_animalPicURL2 = "BK_animalPicURL2";
     public static final String BK_animalPicURL3 = "BK_animalPicURL3";
 
+    public static final String BK_conditionAge = "BK_conditionAge";
+    public static final String BK_conditionEconomy = "BK_conditionEconomy";
+    public static final String BK_conditionHome = "BK_conditionHome";
+    public static final String BK_conditionFamily = "BK_conditionFamily";
+    public static final String BK_conditionReply = "BK_conditionReply";
+    public static final String BK_conditionPaper = "BK_conditionPaper";
+    public static final String BK_conditionFee = "BK_conditionFee";
+    public static final String BK_conditionOther = "BK_conditionOther";
+
     public static final String BK_fb_name = "BK_fb_name";
     public static final String BK_fb_id = "BK_fb_id";
 

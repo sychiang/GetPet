@@ -183,6 +183,20 @@ public class ActHomePage extends AppCompatActivity
                     startActivity(intent);
                 }
                 break;
+            case R.id.folowinglist:
+                if(AccessToken.getCurrentAccessToken() == null){
+                    Log.d(CDictionary.Debug_TAG,"not log in");
+                    goLoginScreen();
+                } else {
+                    Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
+                    intent = new Intent(ActHomePage.this,ActFollowingList.class);
+                    Log.d(CDictionary.Debug_TAG,"Get userName："+userName);
+                    bundle.putString(CDictionary.BK_fb_name,userName);
+                    bundle.putString(CDictionary.BK_fb_id,userID);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+                break;
             case R.id.contact_us:
                 break;
             case R.id.login:
