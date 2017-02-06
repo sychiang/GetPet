@@ -54,7 +54,7 @@
         android:id="@+id/followpet_location"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/pair_age"
+        android:layout_below="@id/followpet_age"
         android:textColor="#343434"
         android:textSize="10dip"
         android:layout_marginTop="10dp"
