@@ -61,7 +61,7 @@ public class ActHomePage extends AppCompatActivity
 
         //每次進來就先檢查登入資訊
         // && com.facebook.Profile.getCurrentProfile() != null
-        if(AccessToken.getCurrentAccessToken() != null ){
+        if(AccessToken.getCurrentAccessToken() != null && com.facebook.Profile.getCurrentProfile() != null){
             Log.d(CDictionary.Debug_TAG,"HAVE TOKEN："+ AccessToken.getCurrentAccessToken().getToken());
             accessToken = AccessToken.getCurrentAccessToken();
             GraphRequest request = GraphRequest.newMeRequest(

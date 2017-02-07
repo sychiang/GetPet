@@ -88,14 +88,22 @@ public class ActAdoptPairDetail extends AppCompatActivity {
             TextView tv_condFee = (TextView) view.findViewById(R.id.tv_condFee);
             TextView tv_condOther = (TextView) view.findViewById(R.id.tv_condOther);
 
-            tv_condAge.setText(intent.getExtras().getString(CDictionary.BK_conditionAge));
-            tv_condEconomy.setText(intent.getExtras().getString(CDictionary.BK_conditionEconomy));
-            tv_condHome.setText(intent.getExtras().getString(CDictionary.BK_conditionHome));
-            tv_condFamily.setText(intent.getExtras().getString(CDictionary.BK_conditionFamily));
-            tv_condReply.setText(intent.getExtras().getString(CDictionary.BK_conditionReply));
-            tv_condPaper.setText(intent.getExtras().getString(CDictionary.BK_conditionPaper));
-            tv_condFee.setText(intent.getExtras().getString(CDictionary.BK_conditionFee));
-            tv_condOther.setText(intent.getExtras().getString(CDictionary.BK_conditionOther));
+            if(intent.getExtras().containsKey(CDictionary.BK_conditionAge))
+                tv_condAge.setText(intent.getExtras().getString(CDictionary.BK_conditionAge));
+            if(intent.getExtras().containsKey(CDictionary.BK_conditionEconomy))
+                tv_condEconomy.setText(intent.getExtras().getString(CDictionary.BK_conditionEconomy));
+            if(intent.getExtras().containsKey(CDictionary.BK_conditionHome))
+                tv_condHome.setText(intent.getExtras().getString(CDictionary.BK_conditionHome));
+            if(intent.getExtras().containsKey(CDictionary.BK_conditionFamily))
+                tv_condFamily.setText(intent.getExtras().getString(CDictionary.BK_conditionFamily));
+            if(intent.getExtras().containsKey(CDictionary.BK_conditionReply))
+                tv_condReply.setText(intent.getExtras().getString(CDictionary.BK_conditionReply));
+            if(intent.getExtras().containsKey(CDictionary.BK_conditionPaper))
+                tv_condPaper.setText(intent.getExtras().getString(CDictionary.BK_conditionPaper));
+            if(intent.getExtras().containsKey(CDictionary.BK_conditionFee))
+                tv_condFee.setText(intent.getExtras().getString(CDictionary.BK_conditionFee));
+            if(intent.getExtras().containsKey(CDictionary.BK_conditionOther))
+                tv_condOther.setText(intent.getExtras().getString(CDictionary.BK_conditionOther));
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
             dialog.setView(view);

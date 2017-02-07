@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/tv_condAge"
-            android:text="xxxxxxxxxx"
+            android:text="無"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/tv_condEconomy"
-            android:text="xxxxxxxxxx"
+            android:text="無"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -55,7 +55,7 @@
 
         <TextView
             android:id="@+id/tv_condHome"
-            android:text="xxxxxxxxxx"
+            android:text="無"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -74,7 +74,7 @@
 
         <TextView
             android:id="@+id/tv_condFamily"
-            android:text="xxxxxxxxxx"
+            android:text="無"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -92,7 +92,7 @@
 
         <TextView
             android:id="@+id/tv_condReply"
-            android:text="xxxxxxxxxx"
+            android:text="無"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -110,7 +110,7 @@
 
         <TextView
             android:id="@+id/tv_condPaper"
-            android:text="xxxxxxxxxx"
+            android:text="無"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -128,7 +128,7 @@
 
         <TextView
             android:id="@+id/tv_condFee"
-            android:text="xxxxxxxxxx"
+            android:text="無"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
 
@@ -149,7 +149,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/tv_condOther"
-                android:text="xxxxxxxxxx"
+                android:text="無"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
         </ScrollView>

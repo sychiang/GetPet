@@ -75,7 +75,7 @@ public class ActShelterPetDetail extends AppCompatActivity {
         tvShelterTel.setText(intent.getExtras().getString(CDictionary.BK_shelter_tel));
         tvShelterAddress.setText(intent.getExtras().getString(CDictionary.BK_shelter_address));
         tvRemark.setText(intent.getExtras().getString(CDictionary.BK_animal_remark));
-        if(intent.getExtras().getString(CDictionary.BK_album_file).length()>0){
+        if(intent.getExtras().containsKey(CDictionary.BK_album_file)){
             Glide.with(ActShelterPetDetail.this).load(intent.getExtras().getString(CDictionary.BK_album_file)).into(ivPhoto);
         }
     }
@@ -83,20 +83,20 @@ public class ActShelterPetDetail extends AppCompatActivity {
     View.OnClickListener btnHowToAdopt_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             LayoutInflater inflater = LayoutInflater.from(ActShelterPetDetail.this);
-            final View v = inflater.inflate(R.layout.howtoadopt_alertdialog, null);
+            final View view = inflater.inflate(R.layout.howtoadopt_alertdialog, null);
             TextView content_line1,content_line2,content_line3,content_line4,content_line5,
                     content_line6,content_line7,content_line8,content_line9,content_line10;
 
-            content_line1 = (TextView)v.findViewById(R.id.content_line1);
-            content_line2 = (TextView)v.findViewById(R.id.content_line2);
-            content_line3 = (TextView)v.findViewById(R.id.content_line3);
-            content_line4 = (TextView)v.findViewById(R.id.content_line4);
-            content_line5 = (TextView)v.findViewById(R.id.content_line5);
-            content_line6 = (TextView)v.findViewById(R.id.content_line6);
-            content_line7 = (TextView)v.findViewById(R.id.content_line7);
-            content_line8 = (TextView)v.findViewById(R.id.content_line8);
-            content_line9 = (TextView)v.findViewById(R.id.content_line9);
-            content_line10 = (TextView)v.findViewById(R.id.content_line10);
+            content_line1 = (TextView)view.findViewById(R.id.content_line1);
+            content_line2 = (TextView)view.findViewById(R.id.content_line2);
+            content_line3 = (TextView)view.findViewById(R.id.content_line3);
+            content_line4 = (TextView)view.findViewById(R.id.content_line4);
+            content_line5 = (TextView)view.findViewById(R.id.content_line5);
+            content_line6 = (TextView)view.findViewById(R.id.content_line6);
+            content_line7 = (TextView)view.findViewById(R.id.content_line7);
+            content_line8 = (TextView)view.findViewById(R.id.content_line8);
+            content_line9 = (TextView)view.findViewById(R.id.content_line9);
+            content_line10 = (TextView)view.findViewById(R.id.content_line10);
 
             content_line1.setText("一、申請人：年滿20歲之民眾。未滿20歲者，以其法定代理人或法定監護人為飼主。");
             content_line2.setText("二、申請步驟：");
@@ -111,7 +111,7 @@ public class ActShelterPetDetail extends AppCompatActivity {
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(ActShelterPetDetail.this);
             dialog.setTitle("認養須知");
-            dialog.setView(v);
+            dialog.setView(view);
             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

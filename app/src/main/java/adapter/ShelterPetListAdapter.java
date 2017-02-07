@@ -84,7 +84,7 @@ public class ShelterPetListAdapter extends BaseAdapter{
         }
 
         String imgURL = item.getAlbum_file();
-        if(imgURL.length()>0){
+        if(imgURL.toLowerCase().endsWith(".jpg") || imgURL.toLowerCase().endsWith(".png")){
             Glide.with(context).load(imgURL).into(ivImage);
             //Picasso.with(context).load(imgURL).into(ivImage);
         }

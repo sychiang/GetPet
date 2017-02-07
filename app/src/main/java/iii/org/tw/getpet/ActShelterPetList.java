@@ -249,7 +249,10 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
                 bundle.putString(CDictionary.BK_animal_bodytype, petlist.get(position).getAnimal_bodytype());
                 bundle.putString(CDictionary.BK_animal_colour, petlist.get(position).getAnimal_colour());
                 bundle.putString(CDictionary.BK_animal_age, petlist.get(position).getAnimal_age());
-                bundle.putString(CDictionary.BK_album_file, petlist.get(position).getAlbum_file());
+                if(petlist.get(position).getAlbum_file().toLowerCase().endsWith(".jpg") ||
+                        petlist.get(position).getAlbum_file().toLowerCase().endsWith(".png")){
+                    bundle.putString(CDictionary.BK_album_file, petlist.get(position).getAlbum_file());
+                }
                 bundle.putString(CDictionary.BK_shelter_name, petlist.get(position).getShelter_name());
                 bundle.putString(CDictionary.BK_shelter_address, petlist.get(position).getShelter_address());
                 bundle.putString(CDictionary.BK_shelter_tel, petlist.get(position).getShelter_tel());
