@@ -61,11 +61,11 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
 
         Intent intent = getIntent();
         name = intent.getExtras().getString(CDictionary.BK_fb_name);
-        Log.d(CDictionary.Debug_TAG,"Get userName："+name);
+        Log.d(CDictionary.Debug_TAG,"Following Get userName："+name);
         id = intent.getExtras().getString(CDictionary.BK_fb_id);
-        Log.d(CDictionary.Debug_TAG,"Get userID："+id);
+        Log.d(CDictionary.Debug_TAG,"Following Get userID："+id);
         url += "/"+id;
-        Log.d(CDictionary.Debug_TAG,"Get URL："+url);
+        Log.d(CDictionary.Debug_TAG,"Following Get URL："+url);
 
         //取回JSON資料存入集合
         AndroidNetworking.initialize(getApplicationContext());

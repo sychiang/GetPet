@@ -5,7 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.facebook.FacebookSdk;
 import com.facebook.CallbackManager;
 import com.facebook.AccessToken;
@@ -14,17 +19,32 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.accountkit.AccountKit;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 import common.CDictionary;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 public class ActLogin extends AppCompatActivity {
 
     CallbackManager callbackManager;
     AccessToken accessToken;
+
+    OkHttpClient Iv_OkHttp_client = new OkHttpClient();
+    public static final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +66,7 @@ public class ActLogin extends AppCompatActivity {
                 //accessToken之後或許還會用到 先存起來
                 accessToken = loginResult.getAccessToken();
                 Log.d(CDictionary.Debug_TAG,"FB access token got.");
-                Log.d(CDictionary.Debug_TAG,"Access token: "+accessToken);
+                Log.d(CDictionary.Debug_TAG,"Access token: "+accessToken.toString());
 
                 //send request and call graph api
                 GraphRequest request = GraphRequest.newMeRequest(
@@ -68,6 +88,52 @@ public class ActLogin extends AppCompatActivity {
                 parameters.putString("fields", "id,name,link");
                 request.setParameters(parameters);
                 request.executeAsync();
+
+                JSONObject jsonObject = new JSONObject();
+                Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
+                try {
+                    jsonObject.put("ExternalAccessToken", AccessToken.getCurrentAccessToken());
+                    Log.d(CDictionary.Debug_TAG,"GET JSON OBJ : "+jsonObject.optString("ExternalAccessToken"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                Gson gson = new Gson();
+                String strJSONString = gson.toJson(jsonObject);
+                Log.d(CDictionary.Debug_TAG,"Get strJSONString: "+strJSONString);
+
+                RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,strJSONString);
+//                Request postRrequest = new Request.Builder()
+//                        .url("http://twpetanimal.ddns.net:9487/api/v1/Account/AddExternalLogin")
+//                        .addHeader("Content-Type","application/x-www-form-urlencoded")
+//                        .post(requestBody)
+//                        .build();
+//
+//                Call call = Iv_OkHttp_client.newCall(postRrequest);
+//                call.enqueue(new Callback() {
+//                    @Override
+//                    public void onResponse(Call call, Response response) throws IOException {
+//                        final String json = response.body().string();
+//                        Log.d(CDictionary.Debug_TAG,json);
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                try {
+//                                    JSONObject jObj = new JSONObject(json);
+//                                    String id = jObj.getString("animalID");
+//                                    Toast.makeText(ScrollingActivity.this,"上傳成功!(測試用_此次新增資料的id: "+id+")",Toast.LENGTH_SHORT).show();
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                            }
+//                        });
+//                        //parseJson(json);
+//                    }
+//                    @Override
+//                    public void onFailure(Call call, IOException e) {
+//                        Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+//                    }
+//                });
                 goMainScreen();
             }
 
@@ -85,7 +151,7 @@ public class ActLogin extends AppCompatActivity {
         //Check if user is currently logged in
         if (AccessToken.getCurrentAccessToken() != null && com.facebook.Profile.getCurrentProfile() != null){
             //登入狀態下不給登出
-            btn_FBlogin.setVisibility(View.INVISIBLE);
+            //btn_FBlogin.setVisibility(View.INVISIBLE);
         }
     }
 
