@@ -52,7 +52,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActLogin" />
         <activity android:name=".ActSearchAdopt" />
-        <activity android:name=".ActFollowingList"></activity>
+        <activity android:name=".ActFollowingList" />
+        <activity android:name=".ActRegister"></activity>
     </application>
 
 </manifest>

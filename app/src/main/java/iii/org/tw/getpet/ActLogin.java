@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -50,6 +51,7 @@ public class ActLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_login);
+        initComponent();
 
         //宣告callback Manager
         callbackManager = CallbackManager.Factory.create();
@@ -165,4 +167,28 @@ public class ActLogin extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode,resultCode,data);
     }
+
+    View.OnClickListener btn_register_Click=new View.OnClickListener(){
+        public void onClick(View arg0) {
+            Intent intent = new Intent(ActLogin.this, ActRegister.class);
+            startActivity(intent);
+        }
+    };
+
+    View.OnClickListener btn_login_Click=new View.OnClickListener(){
+        public void onClick(View arg0) {
+
+        }
+    };
+
+    public void initComponent(){
+        btn_register = (Button)findViewById(R.id.btn_register);
+        btn_register.setOnClickListener(btn_register_Click);
+
+        btn_login = (Button)findViewById(R.id.btn_login);
+        btn_login.setOnClickListener(btn_login_Click);
+    }
+
+    Button btn_login, btn_register;
+
 }
