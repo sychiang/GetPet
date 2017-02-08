@@ -92,31 +92,27 @@ public class ActLogin extends AppCompatActivity {
                 request.executeAsync();
 
                 JSONObject jsonObject = new JSONObject();
-                Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
                 try {
-                    jsonObject.put("ExternalAccessToken", AccessToken.getCurrentAccessToken());
+                    jsonObject.put("ExternalAccessToken", accessToken.getToken());
                     Log.d(CDictionary.Debug_TAG,"GET JSON OBJ : "+jsonObject.optString("ExternalAccessToken"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                Gson gson = new Gson();
-                String strJSONString = gson.toJson(jsonObject);
-                Log.d(CDictionary.Debug_TAG,"Get strJSONString: "+strJSONString);
+                Log.d(CDictionary.Debug_TAG,"Get strJSONString: "+jsonObject.toString());
 
-                RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,strJSONString);
-//                Request postRrequest = new Request.Builder()
-//                        .url("http://twpetanimal.ddns.net:9487/api/v1/Account/AddExternalLogin")
-//                        .addHeader("Content-Type","application/x-www-form-urlencoded")
-//                        .post(requestBody)
-//                        .build();
-//
-//                Call call = Iv_OkHttp_client.newCall(postRrequest);
-//                call.enqueue(new Callback() {
-//                    @Override
-//                    public void onResponse(Call call, Response response) throws IOException {
-//                        final String json = response.body().string();
-//                        Log.d(CDictionary.Debug_TAG,json);
+                RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
+                Request postRrequest = new Request.Builder()
+                        .url("http://twpetanimal.ddns.net:9487/api/v1/Account/AddExternalLogin")
+                        .addHeader("Content-Type","application/x-www-form-urlencoded")
+                        .post(requestBody)
+                        .build();
+
+                Call call = Iv_OkHttp_client.newCall(postRrequest);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+                        Log.d(CDictionary.Debug_TAG,"GET RESPONSE: "+response.body().toString());
 //                        runOnUiThread(new Runnable() {
 //                            @Override
 //                            public void run() {
@@ -129,13 +125,13 @@ public class ActLogin extends AppCompatActivity {
 //                                }
 //                            }
 //                        });
-//                        //parseJson(json);
-//                    }
-//                    @Override
-//                    public void onFailure(Call call, IOException e) {
-//                        Log.d(CDictionary.Debug_TAG,"POST FAIL......");
-//                    }
-//                });
+                        //parseJson(json);
+                    }
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+                    }
+                });
                 goMainScreen();
             }
 

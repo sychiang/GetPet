@@ -63,7 +63,6 @@ public class ActRegister extends AppCompatActivity {
                                             .show();
                                 }else {
                                     sendRequestToServer();
-                                    requestForToken();
                                 }
                             }
                         })
@@ -112,6 +111,7 @@ public class ActRegister extends AppCompatActivity {
                     public void onResponse(Call call, Response response) throws IOException {
                         final String json = response.body().string();
                         Log.d(CDictionary.Debug_TAG,"GET RESPONSE: "+json);
+                        requestForToken();
 //                        runOnUiThread(new Runnable() {
 //                            @Override
 //                            public void run() {
