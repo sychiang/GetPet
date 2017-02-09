@@ -76,7 +76,7 @@
             android:textSize="23dp"/>
 
         <EditText
-            android:id="@+id/input_pswd"
+            android:id="@+id/input_password"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center_vertical"
@@ -103,7 +103,7 @@
             android:textSize="23dp"/>
 
         <EditText
-            android:id="@+id/input_pswdcfm"
+            android:id="@+id/input_cfmpassword"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center_vertical"
@@ -131,7 +131,7 @@
             android:id="@+id/btnSubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="送出"/>
+            android:text="註冊"/>
 
     </LinearLayout>
 

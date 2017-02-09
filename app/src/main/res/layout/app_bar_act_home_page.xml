@@ -23,6 +23,4 @@
 
     <include layout="@layout/content_act_home_page" />
 
-
-
 </android.support.design.widget.CoordinatorLayout>

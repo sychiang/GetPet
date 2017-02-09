@@ -7,6 +7,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -132,6 +134,7 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
                                     });
                                 } else {
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingList.this);
+                                    dialog.setView(R.layout.nodata_alertdialog);
                                     dialog.setTitle("查無資料");
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
@@ -148,43 +151,34 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
                             public void onError(ANError anError) {
 
                             }
-
                         });
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-//                bundle.putString(CDictionary.BK_animalName, petlist.get(position).getAnimalName());
-//                bundle.putString(CDictionary.BK_animalType, petlist.get(position).getAnimalType());
-//                bundle.putString(CDictionary.BK_animalGender, petlist.get(position).getAnimalGender());
-//                bundle.putString(CDictionary.BK_animalColor, petlist.get(position).getAnimalColor());
-//                String age = String.format("%d",petlist.get(position).getAnimalAge());
-//                bundle.putString(CDictionary.BK_animalAge, age);
-//                bundle.putString(CDictionary.BK_animalAddress, petlist.get(position).getAnimalAddress());
-//                bundle.putString(CDictionary.BK_animalBirth, petlist.get(position).getAnimalBirth());
-//                bundle.putString(CDictionary.BK_animalChip, petlist.get(position).getAnimalChip());
-//                bundle.putString(CDictionary.BK_animalHealthy, petlist.get(position).getAnimalHealthy());
-//                bundle.putString(CDictionary.BK_animalDisease_Other, petlist.get(position).getAnimalDisease_Other());
-//                bundle.putString(CDictionary.BK_animalReason, petlist.get(position).getAnimalReason());
-//                bundle.putString(CDictionary.BK_animalNote, petlist.get(position).getAnimalNote());
-//                String animalId = String.format("%d",petlist.get(position).getAnimalID());
-//                bundle.putString(CDictionary.BK_animalID, animalId);
-//                bundle.putString(CDictionary.BK_animalOwner_userID, petlist.get(position).getAnimalOwner_userID());
-//                if(petlist.get(position).getAnimalData_Pic().size()>0){
-//                    if(petlist.get(position).getAnimalData_Pic().get(0).getAnimalPicAddress() != "")
-//                        bundle.putString(CDictionary.BK_animalPicURL1, petlist.get(position).getAnimalData_Pic().get(0).getAnimalPicAddress());
-//                    if(petlist.get(position).getAnimalData_Pic().size() >= 2 && petlist.get(position).getAnimalData_Pic().get(1).getAnimalPicAddress() != "")
-//                        bundle.putString(CDictionary.BK_animalPicURL2, petlist.get(position).getAnimalData_Pic().get(1).getAnimalPicAddress());
-//                    if(petlist.get(position).getAnimalData_Pic().size() >= 3 && petlist.get(position).getAnimalData_Pic().get(2).getAnimalPicAddress() != "")
-//                        bundle.putString(CDictionary.BK_animalPicURL3, petlist.get(position).getAnimalData_Pic().get(2).getAnimalPicAddress());
-//                }
+
                 Intent intent = new Intent(ActFollowingList.this, ActAdoptPairDetail.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_default, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_backtohome) {
+            Intent intent = new Intent(this, ActHomePage.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void loadMoreData() {

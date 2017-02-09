@@ -7,6 +7,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -220,6 +222,7 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
                                     });
                                 } else {
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActShelterPetList.this);
+                                    dialog.setView(R.layout.nodata_alertdialog);
                                     dialog.setTitle("查無資料");
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
@@ -236,7 +239,6 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
                             public void onError(ANError anError) {
 
                             }
-
                         });
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -262,6 +264,22 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_default, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_backtohome) {
+            Intent intent = new Intent(this, ActHomePage.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void loadMoreData() {

@@ -6,6 +6,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,46 +41,54 @@ public class ActRegister extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_register);
         initComponent();
-
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlertDialog dialog = new AlertDialog.Builder(ActRegister.this)
-                        .setMessage("是否確定送出資料")
-                        .setTitle("送出確認")
-                        .setPositiveButton("送出", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                String emptyInputField = checkInput();
-
-                                if (emptyInputField.length() > 10) {
-                                    new AlertDialog.Builder(ActRegister.this)
-                                            .setMessage(emptyInputField)
-                                            .setTitle("欄位未填")
-                                            .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                }
-                                            })
-                                            .show();
-                                }else {
-                                    sendRequestToServer();
-                                    requestForToken();
-                                }
-                            }
-                        })
-                        .setNegativeButton("取消", null)
-                        .show();
-            }
-        });
-
     }
 
-//    View.OnClickListener btnSubmit_Click=new View.OnClickListener(){
-//        public void onClick(View arg0) {
-//
-//        }
-//    };
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_default, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_backtohome) {
+            Intent intent = new Intent(this, ActHomePage.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    View.OnClickListener btnSubmit_Click = new View.OnClickListener(){
+        public void onClick(View arg0) {
+            AlertDialog dialog = new AlertDialog.Builder(ActRegister.this)
+                    .setMessage("是否確定送出資料")
+                    .setTitle("送出確認")
+                    .setPositiveButton("送出", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String emptyInputField = checkInput();
+
+                            if (emptyInputField.length() > 10) {
+                                new AlertDialog.Builder(ActRegister.this)
+                                        .setMessage(emptyInputField)
+                                        .setTitle("欄位未填")
+                                        .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                            }
+                                        })
+                                        .show();
+                            }else {
+                                sendRequestToServer();
+                                requestForToken();
+                            }
+                        }
+                    })
+                    .setNegativeButton("取消", null)
+                    .show();
+        }
+    };
 
     public void sendRequestToServer(){
 
@@ -90,9 +100,9 @@ public class ActRegister extends AppCompatActivity {
         try {
             jsonObject.put("Email", input_email.getText().toString());
             Log.d(CDictionary.Debug_TAG,"GET EMAIL: "+jsonObject.optString("Email"));
-            jsonObject.put("Password", input_pswd.getText().toString());
+            jsonObject.put("Password", input_password.getText().toString());
             Log.d(CDictionary.Debug_TAG,"GET PSWD : "+jsonObject.optString("Password"));
-            jsonObject.put("ConfirmPassword", input_pswdcfm.getText().toString());
+            jsonObject.put("ConfirmPassword", input_cfmpassword.getText().toString());
             Log.d(CDictionary.Debug_TAG,"GET PSWDCFM : "+jsonObject.optString("ConfirmPassword"));
         } catch (JSONException e) {
             e.printStackTrace();
@@ -140,7 +150,7 @@ public class ActRegister extends AppCompatActivity {
         String requestStr = "";
 
         requestStr += "username="+input_email.getText().toString();
-        requestStr += "&password="+input_pswd.getText().toString();
+        requestStr += "&password="+input_password.getText().toString();
         requestStr += "&grant_type=password";
         Log.d(CDictionary.Debug_TAG,"GET POST BODY : "+requestStr);
 
@@ -156,18 +166,6 @@ public class ActRegister extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Log.d(CDictionary.Debug_TAG,"GET RESPONSE: "+response.body().string());
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                try {
-//                                    JSONObject jObj = new JSONObject(json);
-//                                    String id = jObj.getString("animalID");
-//                                    Toast.makeText(ScrollingActivity.this,"上傳成功!(測試用_此次新增資料的id: "+id+")",Toast.LENGTH_SHORT).show();
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        });
             }
             @Override
             public void onFailure(Call call, IOException e) {
@@ -179,20 +177,20 @@ public class ActRegister extends AppCompatActivity {
     public String checkInput() {
         String emptyInputField = "尚未填寫以下欄位:\n";
         emptyInputField += input_email.getText().toString().isEmpty() ? "電子郵件\n" : "";
-        emptyInputField += input_pswd.getText().toString().isEmpty() ? "密碼\n" : "";
-        emptyInputField += input_pswdcfm.getText().toString().isEmpty() ? "確認密碼\n" : "";
+        emptyInputField += input_password.getText().toString().isEmpty() ? "密碼\n" : "";
+        emptyInputField += input_cfmpassword.getText().toString().isEmpty() ? "確認密碼\n" : "";
         return emptyInputField;
     }
 
     public void initComponent(){
         btnSubmit = (Button)findViewById(R.id.btnSubmit);
-        //btnSubmit.setOnClickListener(btnSubmit_Click);
+        btnSubmit.setOnClickListener(btnSubmit_Click);
 
         input_email = (EditText)findViewById(R.id.input_email);
-        input_pswd = (EditText)findViewById(R.id.input_pswd);
-        input_pswdcfm = (EditText)findViewById(R.id.input_pswdcfm);
+        input_password = (EditText)findViewById(R.id.input_password);
+        input_cfmpassword = (EditText)findViewById(R.id.input_cfmpassword);
     }
 
-    EditText input_email,input_pswd,input_pswdcfm;
+    EditText input_email,input_password,input_cfmpassword;
     Button btnSubmit;
 }

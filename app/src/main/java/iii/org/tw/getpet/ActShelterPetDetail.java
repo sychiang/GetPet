@@ -7,6 +7,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -78,6 +80,22 @@ public class ActShelterPetDetail extends AppCompatActivity {
         if(intent.getExtras().containsKey(CDictionary.BK_album_file)){
             Glide.with(ActShelterPetDetail.this).load(intent.getExtras().getString(CDictionary.BK_album_file)).into(ivPhoto);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_default, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_backtohome) {
+            Intent intent = new Intent(this, ActHomePage.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     View.OnClickListener btnHowToAdopt_Click=new View.OnClickListener(){

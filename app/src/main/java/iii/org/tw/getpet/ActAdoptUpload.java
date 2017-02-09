@@ -60,31 +60,26 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
 public class ActAdoptUpload extends AppCompatActivity {
     object_ConditionOfAdoptPet iv_object_conditionOfAdoptPet_a;
-    //**
     public static ActAdoptUpload scrollingActivity;
-    //***
+
     OkHttpClient Iv_OkHttp_client = new OkHttpClient();
     public static final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
-    //**
+
     private static final int REQUEST_READ_STORAGE = 3;
-    //*
+
     static final int requestCodeImgBtn1 = 1001;
     static final int requestCodeImgBtn2 = 1002;
     static final int requestCodeImgBtn3 = 1003;
     static final int requestCodeImgBtn4 = 1004;
     static final int requestCodeImgBtn5 = 1005;
-    //**
+
     boolean selectedImgForUpload1 = false;
     boolean selectedImgForUpload2 = false;
     boolean selectedImgForUpload3 = false;
     boolean selectedImgForUpload4 = false;
     boolean selectedImgForUpload5 = false;
-    //**
-    Bitmap bitmap1;
-    Bitmap bitmap2;
-    Bitmap bitmap3;
-    Bitmap bitmap4;
-    Bitmap bitmap5;
+
+    Bitmap bitmap1, bitmap2, bitmap3, bitmap4, bitmap5;
     //***
     object_ConditionOfAdoptPet object_conditionOfAdoptPet;
     //**
@@ -97,15 +92,14 @@ public class ActAdoptUpload extends AppCompatActivity {
     boolean[] selectedImgForUploadArray = {selectedImgForUpload1, selectedImgForUpload2, selectedImgForUpload3, selectedImgForUpload4, selectedImgForUpload5};
     ArrayList<object_OfPictureImgurSite> iv_ArrayList_object_OfPictureImgurSite;
     ArrayList<object_ConditionOfAdoptPet> iv_ArrayList_object_ConditionOfAdoptPet;
-    final String[] area = {"全部", "臺北市", "新北市", "基隆市", "宜蘭縣",
+    final String[] area = {"臺北市", "新北市", "基隆市", "宜蘭縣",
             "桃園縣", "新竹縣", "新竹市", "苗栗縣", "臺中市", "彰化縣",
             "南投縣", "雲林縣", "嘉義縣", "嘉義市", "臺南市", "高雄市",
             "屏東縣", "花蓮縣", "臺東縣", "澎湖縣", "金門縣", "連江縣"};
-    final String[] iv_array_animalGender = {"公","母"};
+    final String[] iv_array_animalGender = {"公","母","未知"};
     final String[] iv_array_YesOrNO = {"否","是"};
     private ArrayList<String>[] iv_Array_動物品種清單;
     private ArrayList<String> iv_ArrayList_動物類別清單;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -316,45 +310,6 @@ public class ActAdoptUpload extends AppCompatActivity {
         iv_ArrayList_object_OfPictureImgurSite = new ArrayList<>();
         iv_gson = new Gson();
         setViewComponent();
-
-        //****************************
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                iv_ADialog_a = new AlertDialog.Builder(ActAdoptUpload.this)
-//                        .setMessage("是否確定送出資料")
-//                        .setTitle("送出確認")
-//                        .setPositiveButton("送出", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                String l_string_未填寫的欄位有哪些= check確認是否欄位都有填寫();
-//
-//                                if (l_string_未填寫的欄位有哪些.length() > 10) {
-//                                    new AlertDialog.Builder(ActAdoptUpload.this)
-//                                            .setMessage(l_string_未填寫的欄位有哪些)
-//                                            .setTitle("欄位未填")
-//                                            .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-//                                                @Override
-//                                                public void onClick(DialogInterface dialog, int which) {
-//                                                }
-//                                            })
-//                                            .show();
-//                                }else {
-//                                    try {
-//                                        uploadImageAndGetSiteBack();
-//                                    } catch (Exception e) {
-//                                        e.printStackTrace();
-//                                    }
-//                                    addAllDataToDBServer();
-//                                }
-//                            }
-//                        })
-//                        .setNegativeButton("取消", null)
-//                        .show();
-//            }
-//        });
-        ///**************************
     }
 
     View.OnClickListener btn_sendout_click=new View.OnClickListener(){
@@ -451,10 +406,8 @@ public class ActAdoptUpload extends AppCompatActivity {
     }
 
     public String check確認是否欄位都有填寫() {
-        //************
         String p_string_未填寫的欄位有哪些 = "尚未填寫以下欄位:\n";
         Log.d("原始長度", p_string_未填寫的欄位有哪些.length() + "");
-        //*********
         p_string_未填寫的欄位有哪些 += edTxt_animalName.getText().toString().isEmpty() ? "寵物姓名\n" : "";
         p_string_未填寫的欄位有哪些 += edTxt_animalAge.getText().toString().isEmpty() ? "寵物年齡\n" : "";
         //p_string_未填寫的欄位有哪些 += edTxt_animalChip.getText().toString().isEmpty() ? "是否植入晶片\n" : "";
@@ -463,7 +416,6 @@ public class ActAdoptUpload extends AppCompatActivity {
         p_string_未填寫的欄位有哪些 += edTxt_animalColor.getText().toString().isEmpty() ? "毛色\n" : "";
         //p_string_未填寫的欄位有哪些 += edTxt_animalDate.getText().toString().isEmpty() ? "送養日期\n" : "";
         p_string_未填寫的欄位有哪些 += edTxt_animalReason.getText().toString().isEmpty() ? "送養理由\n" : "";
-
         return p_string_未填寫的欄位有哪些;
     }
 
@@ -584,21 +536,16 @@ public class ActAdoptUpload extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_act_adopt_upload, menu);
+        getMenuInflater().inflate(R.menu.menu_default, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_backtohome) {
+            Intent intent = new Intent(this, ActHomePage.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

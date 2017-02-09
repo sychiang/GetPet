@@ -58,8 +58,7 @@ public class ActLogin extends AppCompatActivity {
 
         //找到login button (facebook套件裡的登入按鈕元件)
         LoginButton btn_FBlogin = (LoginButton) findViewById(R.id.btn_FBlogin);
-
-        btn_FBlogin.setReadPermissions(Arrays.asList("email"));
+        btn_FBlogin.setReadPermissions(Arrays.asList("email"));   //要求存取使用者的email
 
         //LoginButton增加callback function
         btn_FBlogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -113,19 +112,6 @@ public class ActLogin extends AppCompatActivity {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         Log.d(CDictionary.Debug_TAG,"GET RESPONSE: "+response.body().toString());
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                try {
-//                                    JSONObject jObj = new JSONObject(json);
-//                                    String id = jObj.getString("animalID");
-//                                    Toast.makeText(ScrollingActivity.this,"上傳成功!(測試用_此次新增資料的id: "+id+")",Toast.LENGTH_SHORT).show();
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        });
-                        //parseJson(json);
                     }
                     @Override
                     public void onFailure(Call call, IOException e) {
@@ -173,6 +159,7 @@ public class ActLogin extends AppCompatActivity {
 
     View.OnClickListener btn_login_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
+
 
         }
     };

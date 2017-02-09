@@ -60,6 +60,30 @@ public class ActHomePage extends AppCompatActivity
         header_username.setText(userName);
 
         //每次進來就先檢查登入資訊
+        //checkIfLogin();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        //輪播功能
+        fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+        fade_out = AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
+        viewFlipper.setAnimation(fade_in);
+        viewFlipper.setAnimation(fade_out);
+        //sets auto flipping
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setFlipInterval(3000);
+        viewFlipper.startFlipping();
+    }
+
+    public void checkIfNormalLogin(){
+
+    }
+
+    public void checkIfFBLogin(){
         if(AccessToken.getCurrentAccessToken() != null && com.facebook.Profile.getCurrentProfile() != null){
             Log.d(CDictionary.Debug_TAG,"HAVE TOKEN："+ AccessToken.getCurrentAccessToken().getToken());
             accessToken = AccessToken.getCurrentAccessToken();
@@ -88,22 +112,6 @@ public class ActHomePage extends AppCompatActivity
             request.setParameters(parameters);
             request.executeAsync();
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        //輪播功能
-        fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
-        fade_out = AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
-        viewFlipper.setAnimation(fade_in);
-        viewFlipper.setAnimation(fade_out);
-        //sets auto flipping
-        viewFlipper.setAutoStart(true);
-        viewFlipper.setFlipInterval(3000);
-        viewFlipper.startFlipping();
     }
 
     @Override
@@ -116,27 +124,27 @@ public class ActHomePage extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.act_home_page, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.act_home_page, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_backtohome) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
