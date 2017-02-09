@@ -45,6 +45,7 @@ dependencies {
     compile 'com.amitshekhar.android:android-networking:0.3.0'
     // okHttp
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.android.support:design:25.1.0'
     testCompile 'junit:junit:4.12'
 }

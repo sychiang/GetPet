@@ -99,5 +99,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="FACEBOOK_APP_ID">2710370952435487</string>
     <string name="ACCOUNT_KIT_CLIENT_TOKEN">b8bf25abaf9523450ba4528d1b5b3674=</string>
+    <string name="title_activity_act_adopt_upload">ActAdoptUpload</string>
 
 </resources>

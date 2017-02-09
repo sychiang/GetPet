@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="iii.org.tw.getpet.ActAdoptUpload"
+    tools:showIn="@layout/act_adopt_upload">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/line1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="寵物類別" />
+            <Spinner
+                android:layout_weight="1"
+                android:layout_width="530px"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_animalKind"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="寵物品種" />
+
+            <Spinner
+                android:layout_weight="1"
+                android:layout_width="530px"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_animalType"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="所在縣市" />
+            <Spinner
+                android:layout_weight="1"
+                android:layout_width="530px"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_animalArea"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="性別" />
+            <Spinner
+                android:layout_weight="1"
+                android:layout_width="530px"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_animalGender"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="是否結紮" />
+            <Spinner
+                android:layout_weight="1"
+                android:layout_width="530px"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_animalBirth"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="有無晶片" />
+            <Spinner
+                android:layout_weight="1"
+                android:layout_width="530px"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_animalChip"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="動物姓名" />
+            <EditText
+                android:minWidth="250dp"
+                android:layout_weight="1"
+                android:id="@+id/edTxt_animalName"
+                android:layout_marginLeft="10dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="年齡" />
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/edTxt_animalAge"
+                android:layout_marginLeft="10dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="毛色" />
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/edTxt_animalColor"
+                android:layout_marginLeft="10dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="健康狀態" />
+
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/edTxt_animalHealthy"
+                android:layout_marginLeft="10dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="病況說明" />
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/edTxt_animalDisease_Other"
+                android:layout_marginLeft="10dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="送養理由" />
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/edTxt_animalReason"
+                android:layout_marginLeft="10dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                android:text="送養備註" />
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/edTxt_animalNote"
+                android:layout_marginLeft="10dp"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/line15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+            <Button
+                android:text="設定領養條件(非必填)"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnAdoptCondition" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/line16"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="23dp"
+                android:text="點擊+號選擇圖片" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/line17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20px"
+            android:orientation="horizontal">
+            <ImageButton
+                android:layout_weight="1"
+                android:id="@+id/imgBtn1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_ios7_plus_empty" />
+            <ImageButton
+                android:layout_weight="1"
+                android:id="@+id/imgBtn2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_ios7_plus_empty" />
+            <ImageButton
+                android:layout_weight="1"
+                android:id="@+id/imgBtn3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_ios7_plus_empty" />
+            <ImageButton
+                android:layout_weight="1"
+                android:id="@+id/imgBtn4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_ios7_plus_empty" />
+            <ImageButton
+                android:layout_weight="1"
+                android:id="@+id/imgBtn5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                android:src="@drawable/icon_ios7_plus_empty" />
+        </LinearLayout>
+        <Button
+            android:text="送出資料"
+            android:id="@+id/btn_sendout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

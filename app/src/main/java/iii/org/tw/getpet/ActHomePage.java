@@ -60,7 +60,6 @@ public class ActHomePage extends AppCompatActivity
         header_username.setText(userName);
 
         //每次進來就先檢查登入資訊
-        // && com.facebook.Profile.getCurrentProfile() != null
         if(AccessToken.getCurrentAccessToken() != null && com.facebook.Profile.getCurrentProfile() != null){
             Log.d(CDictionary.Debug_TAG,"HAVE TOKEN："+ AccessToken.getCurrentAccessToken().getToken());
             accessToken = AccessToken.getCurrentAccessToken();
@@ -266,7 +265,7 @@ public class ActHomePage extends AppCompatActivity
     View.OnClickListener btnGoUpload_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //前往送養管理
-            Intent intent = new Intent(ActHomePage.this, ActCategory.class);
+            Intent intent = new Intent(ActHomePage.this, ActAdoptUpload.class);
             startActivity(intent);
         }
     };

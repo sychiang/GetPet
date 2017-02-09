@@ -59,4 +59,7 @@ public class CDictionary {
 
     public static final int REQUEST_LOGIN = 0;
 
+    public static final int IntentRqCodeOfPetAdoptCondition = 0;
+    public static final int IntentRqCodeOfOpenAlbum = 1;
+
 }

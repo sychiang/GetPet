@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:padding="5px"
+                android:id="@+id/line1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:background="@drawable/spinner_style"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:text="認養年齡限制：" />
+
+                <EditText
+                    android:id="@+id/edTxt_conditionAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:minWidth="400dp"
+                    android:maxLength="3" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:padding="5px"
+                android:id="@+id/line2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:background="@drawable/spinner_style"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:text="經濟條件：" />
+
+                <EditText
+                    android:id="@+id/edTxt_conditionEconomy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="經濟條件"
+                    android:maxLength="10"
+                    android:minWidth="400dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:padding="5px"
+                android:id="@+id/line3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:background="@drawable/spinner_style"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:text="認養環境：" />
+
+                <EditText
+                    android:id="@+id/edTxt_conditionHome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="認養環境"
+                    android:maxLength="10"
+                    android:minWidth="400dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:padding="5px"
+                android:id="@+id/line4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:background="@drawable/spinner_style"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:text="家人或室友是否允許：" />
+
+                <EditText
+                    android:id="@+id/edTxt_conditionFamily"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="家人或室友是否允許"
+                    android:maxLength="10"
+                    android:minWidth="400dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:padding="5px"
+                android:id="@+id/line5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:background="@drawable/spinner_style"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:text="願意回報後續動態：" />
+
+                <EditText
+                    android:id="@+id/edTxt_conditionReply"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:hint="願意回報狀態"
+                    android:maxLength="10"
+                    android:minWidth="400dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:padding="5px"
+                android:id="@+id/line6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:background="@drawable/spinner_style"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:text="是否提供切結書：" />
+
+                <EditText
+                    android:id="@+id/edTxt_conditionPaper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="切結書"
+                    android:maxLength="10"
+                    android:minWidth="400dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:padding="5px"
+                android:id="@+id/line7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:background="@drawable/spinner_style"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:text="額外負擔金額：" />
+
+                <EditText
+                    android:id="@+id/edTxt_conditionFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="補助金額"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:minWidth="400dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:padding="5px"
+                android:id="@+id/line8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:background="@drawable/spinner_style"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:text="其他條件：" />
+
+                <EditText
+                    android:id="@+id/edTxt_conditionOther"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="(100字內)"
+                    android:maxLength="100"
+                    android:minWidth="400dp" />
+            </LinearLayout>
+
+
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="確認送出"
+                android:textSize="19dp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
