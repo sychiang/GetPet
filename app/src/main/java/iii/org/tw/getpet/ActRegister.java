@@ -63,6 +63,7 @@ public class ActRegister extends AppCompatActivity {
                                             .show();
                                 }else {
                                     sendRequestToServer();
+                                    requestForToken();
                                 }
                             }
                         })
@@ -72,6 +73,12 @@ public class ActRegister extends AppCompatActivity {
         });
 
     }
+
+//    View.OnClickListener btnSubmit_Click=new View.OnClickListener(){
+//        public void onClick(View arg0) {
+//
+//        }
+//    };
 
     public void sendRequestToServer(){
 
@@ -105,8 +112,6 @@ public class ActRegister extends AppCompatActivity {
                     public void onResponse(Call call, Response response) throws IOException {
                         final String json = response.body().string();
                         Log.d(CDictionary.Debug_TAG,"GET RESPONSE: "+json);
-                        //註冊成功後回傳資料 給 "http://twpetanimal.ddns.net:9487/token"要token
-                        requestForToken();
 //                        runOnUiThread(new Runnable() {
 //                            @Override
 //                            public void run() {
@@ -181,6 +186,7 @@ public class ActRegister extends AppCompatActivity {
 
     public void initComponent(){
         btnSubmit = (Button)findViewById(R.id.btnSubmit);
+        //btnSubmit.setOnClickListener(btnSubmit_Click);
 
         input_email = (EditText)findViewById(R.id.input_email);
         input_pswd = (EditText)findViewById(R.id.input_pswd);
