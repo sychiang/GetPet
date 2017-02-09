@@ -11,13 +11,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="iii.org.tw.getpet.ActLogin">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="263dp"
-        android:layout_height="42dp"
+    <TextView
+        android:gravity="center_horizontal"
+        android:id="@+id/tv_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="20pt"
-        android:layout_weight="0.02"
-        android:src="@drawable/category_shelter" />
+        android:visibility="gone"
+        android:text="訪客"
+        android:textSize="25sp"/>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/view"
@@ -45,6 +47,7 @@
             android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPassword"
             android:hint="Password" />
     </android.support.design.widget.TextInputLayout>
 
@@ -54,7 +57,15 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:text="LOGIN" />
+        android:text="Sign In" />
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:text="Sign Out" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_register"

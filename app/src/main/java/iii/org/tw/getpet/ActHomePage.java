@@ -47,7 +47,8 @@ public class ActHomePage extends AppCompatActivity
     //ArrayList<AnimalPic> picList = new ArrayList<AnimalPic>();
     //ArrayList<ImageView> imgViewList = new ArrayList<ImageView>();
     String userID = "";
-    String userName = "未登入";
+    String userName = "";
+    String token = "";
     AccessToken accessToken;
 
     @Override
@@ -57,7 +58,9 @@ public class ActHomePage extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initComponent();
-        header_username.setText(userName);
+
+        userName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"訪客");
+        header_username.setText("Hi, "+userName);
 
         //每次進來就先檢查登入資訊
         //checkIfLogin();
@@ -123,28 +126,6 @@ public class ActHomePage extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.act_home_page, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_backtohome) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

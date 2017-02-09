@@ -2,6 +2,7 @@ package iii.org.tw.getpet;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -81,7 +83,6 @@ public class ActRegister extends AppCompatActivity {
                                         .show();
                             }else {
                                 sendRequestToServer();
-                                requestForToken();
                             }
                         }
                     })
@@ -91,7 +92,6 @@ public class ActRegister extends AppCompatActivity {
     };
 
     public void sendRequestToServer(){
-
         OkHttpClient Iv_OkHttp_client = new OkHttpClient();
         final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
 
@@ -121,19 +121,8 @@ public class ActRegister extends AppCompatActivity {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         final String json = response.body().string();
-                        Log.d(CDictionary.Debug_TAG,"GET RESPONSE: "+json);
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                try {
-//                                    JSONObject jObj = new JSONObject(json);
-//                                    String id = jObj.getString("animalID");
-//                                    Toast.makeText(ScrollingActivity.this,"上傳成功!(測試用_此次新增資料的id: "+id+")",Toast.LENGTH_SHORT).show();
-//                                } catch (JSONException e) {
-//                                    e.printStackTrace();
-//                                }
-//                            }
-//                        });
+                        Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
+                        requestForToken();
                     }
                     @Override
                     public void onFailure(Call call, IOException e) {
@@ -143,12 +132,10 @@ public class ActRegister extends AppCompatActivity {
     }
 
     public void requestForToken(){
-
         OkHttpClient Iv_OkHttp_client = new OkHttpClient();
         final MediaType Iv_MTyp_JSON = MediaType.parse("txt; charset=utf-8");
 
         String requestStr = "";
-
         requestStr += "username="+input_email.getText().toString();
         requestStr += "&password="+input_password.getText().toString();
         requestStr += "&grant_type=password";
@@ -165,11 +152,68 @@ public class ActRegister extends AppCompatActivity {
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.d(CDictionary.Debug_TAG,"GET RESPONSE: "+response.body().string());
+                final String reponseMsg = response.body().string();
+                Log.d(CDictionary.Debug_TAG,"GET RESPONSE: "+reponseMsg);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String access_token = "";
+                        try {
+                            JSONObject jObj = new JSONObject(reponseMsg);
+                            access_token = jObj.getString("access_token");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        if(access_token != ""){
+                            SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
+                            String[] strArray = input_email.getText().toString().split("@");
+                            userInfo.edit().putString(CDictionary.SK_username,strArray[0])
+                                    .putString(CDictionary.SK_token,access_token)
+                                    .commit();
+                            String name = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"訪客");
+                            String access = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+                            Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF: "+name);
+                            Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF: "+access);
+                            AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
+                            dialog.setTitle("註冊成功");
+                            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(ActRegister.this, ActHomePage.class);
+                                    startActivity(intent);
+                                }
+                            });
+                            dialog.create().show();
+                        } else{
+                            AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
+                            dialog.setTitle("註冊失敗");
+                            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                }
+                            });
+                            dialog.create().show();
+                        }
+                    }
+                });
             }
             @Override
             public void onFailure(Call call, IOException e) {
                 Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
+                        dialog.setTitle("註冊失敗");
+                        dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                    }
+                });
             }
         });
     }

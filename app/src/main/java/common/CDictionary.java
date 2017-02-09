@@ -6,6 +6,7 @@ package common;
 
 public class CDictionary {
     public static final String Debug_TAG = "Debug_TAG";
+    //Bundle key
     public static final String BK_Area = "BK_Area";
     public static final String BK_Type = "BK_Type";
     public static final String BK_animal_id = "BK_animal_id";
@@ -61,5 +62,9 @@ public class CDictionary {
 
     public static final int IntentRqCodeOfPetAdoptCondition = 0;
     public static final int IntentRqCodeOfOpenAlbum = 1;
+
+    //SharedPreferences key
+    public static final String SK_username = "SK_username";
+    public static final String SK_token = "SK_token";
 
 }

@@ -263,7 +263,7 @@
                 <Button
                     android:layout_weight="1"
                     android:id="@+id/btnLeaveMsg"
-                    android:text="我要留言"
+                    android:text="留言板"
                     android:layout_width="0dp"
                     android:layout_height="match_parent" />
 
