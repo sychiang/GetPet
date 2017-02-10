@@ -118,24 +118,24 @@ public class ActLogin extends AppCompatActivity {
                 Log.d(CDictionary.Debug_TAG,"Get strJSONString: "+jsonObject.toString());
 
                 RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
+
                 Request postRrequest = new Request.Builder()
-                        .url("http://twpetanimal.ddns.net:9487/api/v1/Account/AddExternalLogin")
-                        .addHeader("Content-Type","application/x-www-form-urlencoded")
-                        .post(requestBody)
+                        .url("http://localhost:59840/api/Account/ExternalLogin?provider=Facebook&response_type=token&client_id=self&redirect_uri=http%3A%2F%2Flocalhost%3A59840%2F&state=WXxVP8KJi7IHsADh8D1pzm-aO9Ol635Pv5bdl8rZKNY1")
+                        .get()
                         .build();
 
                 Call call = Iv_OkHttp_client.newCall(postRrequest);
                 call.enqueue(new Callback() {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        Log.d(CDictionary.Debug_TAG,"GET RESPONSE: "+response.body().toString());
+                        Log.d(CDictionary.Debug_TAG,"GET RESPONSE FOM OUR SERVER: "+response.body().toString());
                     }
                     @Override
                     public void onFailure(Call call, IOException e) {
-                        Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+                        Log.d(CDictionary.Debug_TAG,"NO RESPONSE......");
                     }
                 });
-                goMainScreen();
+                //goMainScreen();
             }
 
             @Override
@@ -275,6 +275,30 @@ public class ActLogin extends AppCompatActivity {
 
     }
 
+    View.OnClickListener btn_test_Click=new View.OnClickListener(){
+        public void onClick(View arg0) {
+            Log.d(CDictionary.Debug_TAG,"TEST BTN CLICK.......");
+            Request request = new Request.Builder()
+                    .url("http://localhost:59840/api/Account/ExternalLogins?returnUrl=%2f&generateState=true")
+                    .addHeader("Content-Type", "text")
+                    .get()
+                    .build();
+            Log.d(CDictionary.Debug_TAG,"REQUEST BUILD.......");
+
+            Call call = Iv_OkHttp_client.newCall(request);
+            call.enqueue(new Callback() {
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    Log.d(CDictionary.Debug_TAG,"GET RESPONSE FOM OUR SERVER: "+response.body().toString());
+                }
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    Log.d(CDictionary.Debug_TAG,"NO RESPONSE......");
+                }
+            });
+        }
+    };
+
     public void initComponent(){
         btn_register = (Button)findViewById(R.id.btn_register);
         btn_register.setOnClickListener(btn_register_Click);
@@ -289,9 +313,12 @@ public class ActLogin extends AppCompatActivity {
         input_password = (EditText)findViewById(R.id.input_password);
 
         tv_username = (TextView)findViewById(R.id.tv_username);
+
+        btn_test = (Button)findViewById(R.id.btn_test);
+        btn_test.setOnClickListener(btn_test_Click);
     }
 
-    Button btn_login, btn_register,btn_logout;
+    Button btn_login, btn_register,btn_logout, btn_test;
     EditText input_account, input_password;
     TextView tv_username;
 
