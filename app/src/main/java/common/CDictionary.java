@@ -58,6 +58,9 @@ public class CDictionary {
     public static final String BK_fb_name = "BK_fb_name";
     public static final String BK_fb_id = "BK_fb_id";
 
+    public static final String BK_username = "BK_username";
+    public static final String BK_userid = "BK_userid";
+
     public static final int REQUEST_LOGIN = 0;
 
     public static final int IntentRqCodeOfPetAdoptCondition = 0;
@@ -65,6 +68,7 @@ public class CDictionary {
 
     //SharedPreferences key
     public static final String SK_username = "SK_username";
+    public static final String SK_userid = "SK_userid";
     public static final String SK_token = "SK_token";
 
 }

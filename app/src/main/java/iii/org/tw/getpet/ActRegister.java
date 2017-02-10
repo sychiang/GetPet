@@ -82,7 +82,19 @@ public class ActRegister extends AppCompatActivity {
                                         })
                                         .show();
                             }else {
-                                sendRequestToServer();
+                                if(input_password.getText().toString() != input_cfmpassword.getText().toString()){
+                                    new AlertDialog.Builder(ActRegister.this)
+                                            .setMessage(emptyInputField)
+                                            .setTitle("確認密碼錯誤")
+                                            .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                }
+                                            })
+                                            .show();
+                                } else {
+                                    sendRequestToServer();
+                                }
                             }
                         }
                     })
@@ -169,11 +181,13 @@ public class ActRegister extends AppCompatActivity {
                             String[] strArray = input_email.getText().toString().split("@");
                             userInfo.edit().putString(CDictionary.SK_username,strArray[0])
                                     .putString(CDictionary.SK_token,access_token)
+                                    .putString(CDictionary.SK_userid,input_email.getText().toString())
                                     .commit();
                             String name = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"訪客");
                             String access = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
-                            Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF: "+name);
-                            Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF: "+access);
+                            Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF NAME: "+name);
+                            Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF TOKEN: "+access);
+                            Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF ID: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,""));
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
                             dialog.setTitle("註冊成功");
                             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {

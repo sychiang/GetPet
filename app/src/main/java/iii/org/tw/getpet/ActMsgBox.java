@@ -50,12 +50,11 @@ public class ActMsgBox extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerList.setLayoutManager(layoutManager);
 
-        Intent intent = getIntent();
-        name = intent.getExtras().getString(CDictionary.BK_fb_name);
-        Log.d(CDictionary.Debug_TAG,"Get userName："+name);
-        id = intent.getExtras().getString(CDictionary.BK_fb_id);
-        Log.d(CDictionary.Debug_TAG,"Get userID："+id);
-        url += "/"+id;
+        name = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+name);
+        id = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+id);
+        //url += "/"+id;
         Log.d(CDictionary.Debug_TAG,"Get URL："+url);
 
 //取回MSG資料存入集合

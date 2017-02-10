@@ -1,9 +1,11 @@
 package iii.org.tw.getpet;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -58,12 +60,14 @@ public class ActHomePage extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initComponent();
-
-        userName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"訪客");
-        header_username.setText("Hi, "+userName);
-
         //每次進來就先檢查登入資訊
-        //checkIfLogin();
+        token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+        Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF TOKEN: "+token);
+        if( token != ""){
+            userID = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+            userName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"訪客");
+            header_username.setText("Hi, "+userName);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -137,21 +141,37 @@ public class ActHomePage extends AppCompatActivity
 
         switch (id){
             case R.id.search_setting:
-                if(AccessToken.getCurrentAccessToken() == null){
+                if(token == ""){
                     Log.d(CDictionary.Debug_TAG,"not log in");
-                    goLoginScreen();
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
+                    dialog.setTitle("尚未登入, 請先登入會員");
+                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            goLoginScreen();
+                        }
+                    });
+                    dialog.create().show();
                 } else {
-                    Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
+                    Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+token);
 //                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
 //                    startActivity(intent);
                 }
                 break;
             case R.id.notify_setting:
-                if(AccessToken.getCurrentAccessToken() == null){
+                if(token == ""){
                     Log.d(CDictionary.Debug_TAG,"not log in");
-                    goLoginScreen();
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
+                    dialog.setTitle("尚未登入, 請先登入會員");
+                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            goLoginScreen();
+                        }
+                    });
+                    dialog.create().show();
                 } else {
-                    Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
+                    Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+token);
 //                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
 //                    startActivity(intent);
                 }
@@ -159,16 +179,23 @@ public class ActHomePage extends AppCompatActivity
             case R.id.messagebox:
 //                intent = new Intent(ActHomePage.this,ActMsgBox.class);
 //                startActivity(intent);
-                if(AccessToken.getCurrentAccessToken() == null){
+                if(token == ""){
                     Log.d(CDictionary.Debug_TAG,"not log in");
-                    goLoginScreen();
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
+                    dialog.setTitle("尚未登入, 請先登入會員");
+                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            goLoginScreen();
+                        }
+                    });
+                    dialog.create().show();
                 } else {
-                    Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
+                    Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+token);
                     intent = new Intent(ActHomePage.this,ActMsgBox.class);
-                    Log.d(CDictionary.Debug_TAG,"Get userName："+userName);
-                    bundle.putString(CDictionary.BK_fb_name,userName);
-                    bundle.putString(CDictionary.BK_fb_id,userID);
-                    intent.putExtras(bundle);
+                    Log.d(CDictionary.Debug_TAG,"GET USER ID："+userID);
+//                    bundle.putString(CDictionary.BK_userid,userID);
+//                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
                 break;

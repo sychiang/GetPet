@@ -7,24 +7,26 @@ package model;
 public class UserMsg {
 
     /**
-     * msgID : 2
-     * msgTime : 20170202
-     * msgFrom_userID : 0cee9178-0b2d-42e9-859d-cf061e4750f3
-     * msgTo_userID : aaa15863-b4c7-43ee-a73b-2cdc74b7f6a5
-     * msgType : 認養通知
-     * msgFromURL : AAAA
-     * msgContent : 用戶AAA 想要認養您的寵物ww
-     * msgFrom_userName : blueness927@gmail.com
+     * msgID : 1
+     * msgTime : 2017/02/02
+     * msgFrom_userID : 01d7f07d-9676-4de8-bc5f-44faf3ab0551
+     * msgFrom_userName : bbbb@gmail.com
+     * msgTo_userID : 0cee9178-0b2d-42e9-859d-cf061e4750f3
+     * msgType : 留言板通知
+     * msgFromURL : AAA
+     * msgContent : 您有一則新留言
+     * msgRead : 已讀
      */
 
     private int msgID;
     private String msgTime;
     private String msgFrom_userID;
+    private String msgFrom_userName;
     private String msgTo_userID;
     private String msgType;
     private String msgFromURL;
     private String msgContent;
-    private String msgFrom_userName;
+    private String msgRead;
 
     public int getMsgID() {
         return msgID;
@@ -48,6 +50,14 @@ public class UserMsg {
 
     public void setMsgFrom_userID(String msgFrom_userID) {
         this.msgFrom_userID = msgFrom_userID;
+    }
+
+    public String getMsgFrom_userName() {
+        return msgFrom_userName;
+    }
+
+    public void setMsgFrom_userName(String msgFrom_userName) {
+        this.msgFrom_userName = msgFrom_userName;
     }
 
     public String getMsgTo_userID() {
@@ -82,11 +92,11 @@ public class UserMsg {
         this.msgContent = msgContent;
     }
 
-    public String getMsgFrom_userName() {
-        return msgFrom_userName;
+    public String getMsgRead() {
+        return msgRead;
     }
 
-    public void setMsgFrom_userName(String msgFrom_userName) {
-        this.msgFrom_userName = msgFrom_userName;
+    public void setMsgRead(String msgRead) {
+        this.msgRead = msgRead;
     }
 }
