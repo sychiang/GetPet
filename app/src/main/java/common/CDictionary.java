@@ -55,6 +55,8 @@ public class CDictionary {
     public static final String BK_conditionFee = "BK_conditionFee";
     public static final String BK_conditionOther = "BK_conditionOther";
 
+    public static final String BK_animalID_following = "BK_animalID_following";
+
     public static final String BK_fb_name = "BK_fb_name";
     public static final String BK_fb_id = "BK_fb_id";
 

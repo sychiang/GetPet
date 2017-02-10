@@ -200,16 +200,16 @@ public class ActHomePage extends AppCompatActivity
                 }
                 break;
             case R.id.folowinglist:
-                if(AccessToken.getCurrentAccessToken() == null){
+                if(token == ""){
                     Log.d(CDictionary.Debug_TAG,"not log in");
                     goLoginScreen();
                 } else {
-                    Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
+                    //Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
                     intent = new Intent(ActHomePage.this,ActFollowingList.class);
                     Log.d(CDictionary.Debug_TAG,"Get userName："+userName);
-                    bundle.putString(CDictionary.BK_fb_name,userName);
-                    bundle.putString(CDictionary.BK_fb_id,userID);
-                    intent.putExtras(bundle);
+//                    bundle.putString(CDictionary.BK_fb_name,userName);
+//                    bundle.putString(CDictionary.BK_fb_id,userID);
+//                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
                 break;

@@ -155,8 +155,9 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-                bundle.putString(CDictionary.BK_animal_id, String.format("%d",showlist.get(position).getAnimalID()));
-                Intent intent = new Intent(ActFollowingList.this, ActAdoptPairDetail.class);
+                bundle.putString(CDictionary.BK_animalID_following, String.format("%d",followList.get(position).getAnimalID()));
+                Log.d(CDictionary.Debug_TAG,"SET ANIMAL ID: "+String.format("%d",followList.get(position).getAnimalID()));
+                Intent intent = new Intent(ActFollowingList.this, ActFollowingDetail.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

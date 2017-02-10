@@ -24,133 +24,130 @@ import android.widget.ViewFlipper;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 import common.CDictionary;
+import cz.msebera.android.httpclient.Header;
 import model.AdoptPair;
 
 public class ActFollowingDetail extends AppCompatActivity {
     ArrayList<AdoptPair> petlist = new ArrayList<AdoptPair>();
     String url = "http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas";
-    Intent intent;
     String animalid = "";
     LayoutInflater inflater;
     Context mContext = ActFollowingDetail.this;
-    AdoptPair item;
+    AdoptPair adoptpair;
+
+    Gson gson = new Gson();
+    AsyncHttpClient httpclient = new AsyncHttpClient();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_following_detail);
+        setTitle("iPet 幸福轉運站");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initComponent();
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
         //取回JSON資料
-        intent = getIntent();
-        if(intent.getExtras().containsKey(CDictionary.BK_animal_id)){
-            animalid = intent.getExtras().getString(CDictionary.BK_animal_id);
+        Intent intent = getIntent();
+        if(intent.getExtras().containsKey(CDictionary.BK_animalID_following)){
+            animalid = intent.getExtras().getString(CDictionary.BK_animalID_following);
             Log.d(CDictionary.Debug_TAG, "GET ANIMAL ID: " + animalid);
             url += "/"+animalid;
             Log.d(CDictionary.Debug_TAG, "GET URL: " + url);
         }
 
-        AndroidNetworking.initialize(getApplicationContext());
-        AndroidNetworking.get(url)
-                .setTag(this)
-                .setPriority(Priority.HIGH)
-                .build()
-                .getAsParsed(new TypeToken<ArrayList<AdoptPair>>() {
-                             },
-                        new ParsedRequestListener<ArrayList<AdoptPair>>() {
-                            @Override
-                            public void onResponse(ArrayList<AdoptPair> response) {
-                                String size = String.format("%d", response.size());
-                                Log.d(CDictionary.Debug_TAG, size);
-                                if (response.size() > 0) {
-                                    item = response.get(0);
-                                    //圖片處理
-                                    if(item.getAnimalData_Pic().size()>0){
-                                        if(item.getAnimalData_Pic().get(0).getAnimalPicAddress().toLowerCase().endsWith(".jpg") ||
-                                                item.getAnimalData_Pic().get(0).getAnimalPicAddress().toLowerCase().endsWith(".png"))
-                                            Glide.with(mContext).load(item.getAnimalData_Pic().get(0).getAnimalPicAddress()).into(ivPhotoOne);
-                                        if(item.getAnimalData_Pic().size() >= 2){
-                                            if(item.getAnimalData_Pic().get(1).getAnimalPicAddress().toLowerCase().endsWith(".jpg") ||
-                                                    item.getAnimalData_Pic().get(1).getAnimalPicAddress().toLowerCase().endsWith(".png")){
-                                                Glide.with(mContext).load(item.getAnimalData_Pic().get(1).getAnimalPicAddress()).into(ivPhotoTwo);
-                                            }
-                                        }
-                                        if(item.getAnimalData_Pic().size() >= 3){
-                                            if(item.getAnimalData_Pic().get(2).getAnimalPicAddress().toLowerCase().endsWith(".jpg") ||
-                                                    item.getAnimalData_Pic().get(2).getAnimalPicAddress().toLowerCase().endsWith(".png")){
-                                                Glide.with(mContext).load(item.getAnimalData_Pic().get(2).getAnimalPicAddress()).into(ivPhotoThree);
-                                            }
-                                        }
-                                    }
-
-                                    tvName.setText(item.getAnimalName());
-                                    tvType.setText(item.getAnimalType());
-                                    tvSex.setText(item.getAnimalGender());
-                                    tvColor.setText(item.getAnimalColor());
-                                    tvAge.setText(String.format("%d",item.getAnimalAge()));
-                                    tvArea.setText(item.getAnimalAddress());
-                                    tvIfBirth.setText(item.getAnimalBirth());
-                                    tvIfChip.setText(item.getAnimalChip());
-                                    tvHealthy.setText(item.getAnimalHealthy());
-                                    tvDisease.setText(item.getAnimalDisease_Other());
-                                    tvReason.setText(item.getAnimalReason());
-                                    tvNote.setText(item.getAnimalNote());
-
-                                    tv_condAge.setText(item.getAnimalData_Condition().get(0).getConditionAge());
-                                    tv_condEconomy.setText(item.getAnimalData_Condition().get(0).getConditionEconomy());
-                                    tv_condHome.setText(item.getAnimalData_Condition().get(0).getConditionHome());
-                                    tv_condFamily.setText(item.getAnimalData_Condition().get(0).getConditionFamily());
-                                    tv_condReply.setText(item.getAnimalData_Condition().get(0).getConditionReply());
-                                    tv_condPaper.setText(item.getAnimalData_Condition().get(0).getConditionPaper());
-                                    tv_condFee.setText(item.getAnimalData_Condition().get(0).getConditionFee());
-                                    tv_condOther.setText(item.getAnimalData_Condition().get(0).getConditionOther());
-
-//                                    for (AdoptPair rs : response) {
-//                                        petlist.add(rs);
-//                                        Log.d(CDictionary.Debug_TAG, ""+rs.getAnimalID());
-//                                    }
-
+        Log.d(CDictionary.Debug_TAG, "GET URL: " + url);
+        httpclient.get(ActFollowingDetail.this, url, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        String responsestr = new String(responseBody);
+                        Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+responsestr);
+                        adoptpair = gson.fromJson(responsestr,AdoptPair.class);
+                        Log.d(CDictionary.Debug_TAG,"GET PET ID: "+adoptpair.getAnimalID());
+                        if (adoptpair != null ) {
+                            //圖片處理
+                            if(adoptpair.getAnimalData_Pic().size()>0){
+                                if(adoptpair.getAnimalData_Pic().get(0).getAnimalPicAddress().toLowerCase().endsWith(".jpg") ||
+                                        adoptpair.getAnimalData_Pic().get(0).getAnimalPicAddress().toLowerCase().endsWith(".png")){
+                                    Glide.with(mContext).load(adoptpair.getAnimalData_Pic().get(0).getAnimalPicAddress()).into(ivPhotoOne);
                                 } else {
-                                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingDetail.this);
-                                    dialog.setView(R.layout.nodata_alertdialog);
-                                    dialog.setTitle("查無資料");
-                                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Intent intent = new Intent(ActFollowingDetail.this, ActFollowingList.class);
-                                            startActivity(intent);
-                                        }
-                                    });
-                                    dialog.create().show();
+                                    ivPhotoOne.setImageResource(R.drawable.default_photo);
+                                }
+                                if(adoptpair.getAnimalData_Pic().size() >= 2){
+                                    if(adoptpair.getAnimalData_Pic().get(1).getAnimalPicAddress().toLowerCase().endsWith(".jpg") ||
+                                            adoptpair.getAnimalData_Pic().get(1).getAnimalPicAddress().toLowerCase().endsWith(".png")){
+                                        Glide.with(mContext).load(adoptpair.getAnimalData_Pic().get(1).getAnimalPicAddress()).into(ivPhotoTwo);
+                                    } else {
+                                    }
+                                } else {
+                                    ivPhotoTwo.setImageResource(R.drawable.default_photo);
+                                }
+                                if(adoptpair.getAnimalData_Pic().size() >= 3){
+                                    if(adoptpair.getAnimalData_Pic().get(2).getAnimalPicAddress().toLowerCase().endsWith(".jpg") ||
+                                            adoptpair.getAnimalData_Pic().get(2).getAnimalPicAddress().toLowerCase().endsWith(".png")){
+                                        Glide.with(mContext).load(adoptpair.getAnimalData_Pic().get(2).getAnimalPicAddress()).into(ivPhotoThree);
+                                    } else {
+                                    }
+                                } else {
+                                    ivPhotoThree.setImageResource(R.drawable.default_photo);
                                 }
                             }
 
+                            tvName.setText(adoptpair.getAnimalName());
+                            tvType.setText(adoptpair.getAnimalType());
+                            tvSex.setText(adoptpair.getAnimalGender());
+                            tvColor.setText(adoptpair.getAnimalColor());
+                            tvAge.setText(String.format("%d",adoptpair.getAnimalAge()));
+                            tvArea.setText(adoptpair.getAnimalAddress());
+                            tvIfBirth.setText(adoptpair.getAnimalBirth());
+                            tvIfChip.setText(adoptpair.getAnimalChip());
+                            tvHealthy.setText(adoptpair.getAnimalHealthy());
+                            tvDisease.setText(adoptpair.getAnimalDisease_Other());
+                            tvReason.setText(adoptpair.getAnimalReason());
+                            tvNote.setText(adoptpair.getAnimalNote());
+
+                        } else {
+                            AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingDetail.this);
+                            dialog.setView(R.layout.nodata_alertdialog);
+                            dialog.setTitle("查無資料");
+                            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(ActFollowingDetail.this, ActFollowingList.class);
+                                    startActivity(intent);
+                                }
+                            });
+                            dialog.create().show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingDetail.this);
+                        dialog.setTitle("連線失敗");
+                        dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onError(ANError anError) {
-
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(ActFollowingDetail.this, ActFollowingList.class);
+                                startActivity(intent);
                             }
-
                         });
-
-
+                        dialog.create().show();
+                    }
+                });
 
         //輪播功能
         fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
@@ -186,21 +183,26 @@ public class ActFollowingDetail extends AppCompatActivity {
             inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(R.layout.showcondition_alertdialog, null);
 
-//                tv_condAge.setText(intent.getExtras().getString(CDictionary.BK_conditionAge));
-//
-//                tv_condEconomy.setText(intent.getExtras().getString(CDictionary.BK_conditionEconomy));
-//
-//                tv_condHome.setText(intent.getExtras().getString(CDictionary.BK_conditionHome));
-//
-//                tv_condFamily.setText(intent.getExtras().getString(CDictionary.BK_conditionFamily));
-//
-//                tv_condReply.setText(intent.getExtras().getString(CDictionary.BK_conditionReply));
-//
-//                tv_condPaper.setText(intent.getExtras().getString(CDictionary.BK_conditionPaper));
-//
-//                tv_condFee.setText(intent.getExtras().getString(CDictionary.BK_conditionFee));
-//
-//                tv_condOther.setText(intent.getExtras().getString(CDictionary.BK_conditionOther));
+            tv_condAge = (TextView) view.findViewById(R.id.tv_condAge);
+            tv_condEconomy = (TextView) view.findViewById(R.id.tv_condEconomy);
+            tv_condHome = (TextView) view.findViewById(R.id.tv_condHome);
+            tv_condFamily = (TextView) view.findViewById(R.id.tv_condFamily);
+            tv_condReply = (TextView) view.findViewById(R.id.tv_condReply);
+            tv_condPaper = (TextView) view.findViewById(R.id.tv_condPaper);
+            tv_condFee = (TextView) view.findViewById(R.id.tv_condFee);
+            tv_condOther = (TextView) view.findViewById(R.id.tv_condOther);
+
+            if(adoptpair.getAnimalData_Condition().size()>0){
+                Log.d(CDictionary.Debug_TAG,"GET COND: "+adoptpair.getAnimalData_Condition().get(0).getConditionID());
+                tv_condAge.setText(adoptpair.getAnimalData_Condition().get(0).getConditionAge());
+                tv_condEconomy.setText(adoptpair.getAnimalData_Condition().get(0).getConditionEconomy());
+                tv_condHome.setText(adoptpair.getAnimalData_Condition().get(0).getConditionHome());
+                tv_condFamily.setText(adoptpair.getAnimalData_Condition().get(0).getConditionFamily());
+                tv_condReply.setText(adoptpair.getAnimalData_Condition().get(0).getConditionReply());
+                tv_condPaper.setText(adoptpair.getAnimalData_Condition().get(0).getConditionPaper());
+                tv_condFee.setText(adoptpair.getAnimalData_Condition().get(0).getConditionFee());
+                tv_condOther.setText(adoptpair.getAnimalData_Condition().get(0).getConditionOther());
+            }
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
             dialog.setView(view);
@@ -216,13 +218,6 @@ public class ActFollowingDetail extends AppCompatActivity {
     View.OnClickListener btnLeaveMsg_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //開啟留言板
-
-        }
-    };
-
-    View.OnClickListener btnTrack_Click=new View.OnClickListener(){
-        public void onClick(View arg0) {
-            //我要追蹤
 
         }
     };
@@ -260,15 +255,6 @@ public class ActFollowingDetail extends AppCompatActivity {
 
         btnAdopt = (Button)findViewById(R.id.btnAdopt);
         btnAdopt.setOnClickListener(btnAdopt_Click);
-
-        tv_condAge = (TextView) findViewById(R.id.tv_condAge);
-        tv_condEconomy = (TextView) findViewById(R.id.tv_condEconomy);
-        tv_condHome = (TextView) findViewById(R.id.tv_condHome);
-        tv_condFamily = (TextView) findViewById(R.id.tv_condFamily);
-        tv_condReply = (TextView) findViewById(R.id.tv_condReply);
-        tv_condPaper = (TextView) findViewById(R.id.tv_condPaper);
-        tv_condFee = (TextView) findViewById(R.id.tv_condFee);
-        tv_condOther = (TextView) findViewById(R.id.tv_condOther);
 
     }
     Button btnCheckCond,btnLeaveMsg,btnAdopt;
