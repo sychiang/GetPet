@@ -58,7 +58,11 @@
             android:name=".ActAdoptUpload"
             android:label="@string/title_activity_act_adopt_upload"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ActConditionInput"></activity>
+        <activity android:name=".ActConditionInput" />
+        <activity
+            android:name=".ActFollowingDetail"
+            android:label="@string/title_activity_act_following_detail"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

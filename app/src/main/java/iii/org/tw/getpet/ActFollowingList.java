@@ -61,13 +61,12 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
         pg = (ProgressBar) moreView.findViewById(R.id.pg);
         handler = new Handler();
 
-        Intent intent = getIntent();
-        name = intent.getExtras().getString(CDictionary.BK_fb_name);
-        Log.d(CDictionary.Debug_TAG,"Following Get userName："+name);
-        id = intent.getExtras().getString(CDictionary.BK_fb_id);
-        Log.d(CDictionary.Debug_TAG,"Following Get userID："+id);
-        url += "/"+id;
-        Log.d(CDictionary.Debug_TAG,"Following Get URL："+url);
+        name = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+name);
+        id = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+id);
+        //url += "/"+id;
+        Log.d(CDictionary.Debug_TAG,"GET URL："+url);
 
         //取回JSON資料存入集合
         AndroidNetworking.initialize(getApplicationContext());
@@ -134,8 +133,7 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
                                     });
                                 } else {
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingList.this);
-                                    dialog.setView(R.layout.nodata_alertdialog);
-                                    dialog.setTitle("查無資料");
+                                    dialog.setTitle("尚未有追蹤項目");
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -157,7 +155,7 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-
+                bundle.putString(CDictionary.BK_animal_id, String.format("%d",showlist.get(position).getAnimalID()));
                 Intent intent = new Intent(ActFollowingList.this, ActAdoptPairDetail.class);
                 intent.putExtras(bundle);
                 startActivity(intent);

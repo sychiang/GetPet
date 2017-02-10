@@ -55,7 +55,7 @@ public class ActMsgBox extends AppCompatActivity {
         id = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
         Log.d(CDictionary.Debug_TAG,"GET USER ID："+id);
         //url += "/"+id;
-        Log.d(CDictionary.Debug_TAG,"Get URL："+url);
+        Log.d(CDictionary.Debug_TAG,"GET URL："+url);
 
 //取回MSG資料存入集合
         AndroidNetworking.initialize(getApplicationContext());

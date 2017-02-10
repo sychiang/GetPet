@@ -242,6 +242,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                                     });
                                 } else {
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairList.this);
+                                    dialog.setView(R.layout.nodata_alertdialog);
                                     dialog.setTitle("查無資料");
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
