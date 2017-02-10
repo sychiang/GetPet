@@ -49,6 +49,7 @@ public class ActLogin extends AppCompatActivity {
     CallbackManager callbackManager;
     AccessToken accessToken;
     SharedPreferences userInfo;
+    String fbEmail, fbUsername, fbID;
 
     OkHttpClient Iv_OkHttp_client = new OkHttpClient();
     public static final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
@@ -70,21 +71,23 @@ public class ActLogin extends AppCompatActivity {
             btn_logout.setVisibility(View.VISIBLE);
         }
 
-        //宣告callback Manager
+        //宣告FB SDK callback Manager
         callbackManager = CallbackManager.Factory.create();
 
         //找到login button (facebook套件裡的登入按鈕元件)
         LoginButton btn_FBlogin = (LoginButton) findViewById(R.id.btn_FBlogin);
-        btn_FBlogin.setReadPermissions(Arrays.asList("email"));   //要求存取使用者的email
+//        btn_FBlogin.setReadPermissions(Arrays.asList(
+//                "public_profile", "email", "user_birthday", "user_friends"));    要求存取使用者的各項資料
+
+        btn_FBlogin.setReadPermissions(Arrays.asList("public_profile", "email"));  //要求存取使用者的基本資料&Email
 
         //LoginButton增加callback function
         btn_FBlogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
-            public void onSuccess(LoginResult loginResult) {//成功登入
-                //accessToken之後或許還會用到 先存起來
+            public void onSuccess(LoginResult loginResult) {
+                //成功登入, accessToken之後或許還會用到 先存起來
                 accessToken = loginResult.getAccessToken();
-                Log.d(CDictionary.Debug_TAG,"FB access token got.");
-                Log.d(CDictionary.Debug_TAG,"Access token: "+accessToken.toString());
+                Log.d(CDictionary.Debug_TAG,"FB ACCESS TOKEN  GET: "+accessToken.toString());
 
                 //send request and call graph api
                 GraphRequest request = GraphRequest.newMeRequest(
@@ -94,48 +97,23 @@ public class ActLogin extends AppCompatActivity {
                             @Override
                             public void onCompleted(JSONObject object, GraphResponse response) {
                                 //讀出姓名 ID FB個人頁面連結
-                                Log.d(CDictionary.Debug_TAG,"FB get"+response);
+                                Log.d(CDictionary.Debug_TAG,"FB GET RESPONSE"+response);
                                 Log.d(CDictionary.Debug_TAG,object.optString("name"));
                                 Log.d(CDictionary.Debug_TAG,object.optString("link"));
                                 Log.d(CDictionary.Debug_TAG,object.optString("id"));
                                 Log.d(CDictionary.Debug_TAG,object.optString("email"));
+
+                                fbID = object.optString("id");
+                                fbUsername = object.optString("name");
+                                fbEmail = object.optString("email");
+                                doRegisterExternal();
                             }
                         });
                 //包入想要得到的資料 送出request
                 Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,link");
+                parameters.putString("fields", "id,name,link,email");
                 request.setParameters(parameters);
                 request.executeAsync();
-
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("ExternalAccessToken", accessToken.getToken());
-                    Log.d(CDictionary.Debug_TAG,"GET JSON OBJ : "+jsonObject.optString("ExternalAccessToken"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                Log.d(CDictionary.Debug_TAG,"Get strJSONString: "+jsonObject.toString());
-
-                RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
-
-                Request postRrequest = new Request.Builder()
-                        .url("http://localhost:59840/api/Account/ExternalLogin?provider=Facebook&response_type=token&client_id=self&redirect_uri=http%3A%2F%2Flocalhost%3A59840%2F&state=WXxVP8KJi7IHsADh8D1pzm-aO9Ol635Pv5bdl8rZKNY1")
-                        .get()
-                        .build();
-
-                Call call = Iv_OkHttp_client.newCall(postRrequest);
-                call.enqueue(new Callback() {
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        Log.d(CDictionary.Debug_TAG,"GET RESPONSE FOM OUR SERVER: "+response.body().toString());
-                    }
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        Log.d(CDictionary.Debug_TAG,"NO RESPONSE......");
-                    }
-                });
-                //goMainScreen();
             }
 
             @Override
@@ -154,6 +132,47 @@ public class ActLogin extends AppCompatActivity {
             //登入狀態下不給登出
             //btn_FBlogin.setVisibility(View.INVISIBLE);
         }
+    }
+
+    public void doRegisterExternal(){
+        OkHttpClient Iv_OkHttp_client = new OkHttpClient();
+        final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
+
+        JSONObject jsonObject = new JSONObject();
+        Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
+        try {
+            jsonObject.put("Email", fbEmail);
+            Log.d(CDictionary.Debug_TAG,"GET EMAIL: "+jsonObject.optString("Email"));
+            jsonObject.put("UserName", fbUsername);
+            Log.d(CDictionary.Debug_TAG,"GET USERNAME: "+jsonObject.optString("UserName"));
+            jsonObject.put("Provider", "Facebook");
+            Log.d(CDictionary.Debug_TAG,"GET PROVIDER: "+jsonObject.optString("Provider"));
+            jsonObject.put("ExternalAccessToken", accessToken.getToken());
+            Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+jsonObject.optString("ExternalAccessToken"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
+        Request postRrequest = new Request.Builder()
+                .url("http://twpetanimal.ddns.net:9487/api/v1/Account/RegisterExternal")
+                .addHeader("Accept", "application/json")
+                .addHeader("Content-Type", "application/json")
+                .post(requestBody)
+                .build();
+
+        Call call = Iv_OkHttp_client.newCall(postRrequest);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String json = response.body().string();
+                Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
+            }
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+            }
+        });
     }
 
     private void goMainScreen() {
@@ -272,7 +291,6 @@ public class ActLogin extends AppCompatActivity {
                 });
             }
         });
-
     }
 
     View.OnClickListener btn_test_Click=new View.OnClickListener(){
