@@ -281,7 +281,7 @@ public class ActHomePage extends AppCompatActivity
     View.OnClickListener btnGoUpload_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //前往送養管理
-            Intent intent = new Intent(ActHomePage.this, ActAdoptUpload.class);
+            Intent intent = new Intent(ActHomePage.this, ActAdoptUploadList.class);
             startActivity(intent);
         }
     };

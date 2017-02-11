@@ -1,12 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by iii on 2017/2/9.
  */
 
-public class object_petDataForSelfDB {
+public class object_petDataForSelfDB implements Serializable {
     private int animalID;
     private String animalName;
     private String animalAddress;

@@ -2,22 +2,16 @@ package iii.org.tw.getpet;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -26,28 +20,28 @@ import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import adapter.AdoptUploadListAdapter;
 import adapter.MsgListAdapter;
 import common.CDictionary;
-import model.Category;
-import model.CMessage;
+import model.AdoptPair;
 import model.UserMsg;
+import model.object_petDataForSelfDB;
 
-public class ActMsgBox extends AppCompatActivity {
-    ArrayList<UserMsg> myDataset = new ArrayList<UserMsg>();
+public class ActAdoptUploadList extends AppCompatActivity {
+    ArrayList<object_petDataForSelfDB> myDataset = new ArrayList<object_petDataForSelfDB>();
     String name, id, token;
-    MsgListAdapter adapter;
+    AdoptUploadListAdapter adapter;
     RecyclerView recyclerList;
     String url = "http://twpetanimal.ddns.net:9487/api/v1/MsgUsers";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_msg_box);
+        setContentView(R.layout.act_adopt_upload_list);
 
         //初始化元件
-        recyclerList = (RecyclerView) findViewById(R.id.msgboxlist_view);
+        recyclerList = (RecyclerView) findViewById(R.id.adoptUploadList_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerList.setLayoutManager(layoutManager);
@@ -56,10 +50,9 @@ public class ActMsgBox extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-                Intent intent = new Intent(ActMsgBox.this, ActMsgInput.class);
+                Intent intent = new Intent(ActAdoptUploadList.this, ActAdoptUpload.class);
                 startActivity(intent);
+
             }
         });
         getDatafromServer();
@@ -72,31 +65,31 @@ public class ActMsgBox extends AppCompatActivity {
         Log.d(CDictionary.Debug_TAG,"GET USER ID："+id);
         token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
         Log.d(CDictionary.Debug_TAG,"GET USER ID："+token);
-        url += "/"+name;
+        //url += "/"+name;
         Log.d(CDictionary.Debug_TAG,"GET URL："+url);
-        //取回MSG資料存入集合
+
         AndroidNetworking.initialize(getApplicationContext());
         AndroidNetworking.get(url)
                 .setTag(this)
                 .setPriority(Priority.HIGH)
                 .build()
-                .getAsParsed(new TypeToken<ArrayList<UserMsg>>() {
+                .getAsParsed(new TypeToken<ArrayList<object_petDataForSelfDB>>() {
                              },
-                        new ParsedRequestListener<ArrayList<UserMsg>>() {
+                        new ParsedRequestListener<ArrayList<object_petDataForSelfDB>>() {
                             @Override
-                            public void onResponse(ArrayList<UserMsg> response) {
+                            public void onResponse(ArrayList<object_petDataForSelfDB> response) {
                                 String size = String.format("%d", response.size());
                                 Log.d(CDictionary.Debug_TAG, size);
                                 if (response.size() > 0) {
-                                    for (UserMsg rs : response) {
+                                    for (object_petDataForSelfDB rs : response) {
                                         myDataset.add(rs);
-                                        Log.d(CDictionary.Debug_TAG, "GET MSG: "+rs.getMsgID());
+                                        Log.d(CDictionary.Debug_TAG, "GET PET: "+rs.getAnimalID());
                                     }
-                                    adapter = new MsgListAdapter(myDataset);
+                                    adapter = new AdoptUploadListAdapter(myDataset);
                                     recyclerList.setAdapter(adapter);
                                 } else {
-                                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgBox.this);
-                                    dialog.setTitle("目前尚無訊息");
+                                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptUploadList.this);
+                                    dialog.setTitle("目前尚無上傳資料");
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -115,32 +108,4 @@ public class ActMsgBox extends AppCompatActivity {
                         });
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(CDictionary.Debug_TAG,"TEST ON PAUSE");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(CDictionary.Debug_TAG,"TEST ON RESUME");
-        getDatafromServer();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_default, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_backtohome) {
-            Intent intent = new Intent(this, ActHomePage.class);
-            startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

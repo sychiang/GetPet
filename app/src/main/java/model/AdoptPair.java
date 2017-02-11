@@ -1,12 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by user on 2017/2/1.
  */
 
-public class AdoptPair {
+public class AdoptPair implements Serializable {
 
     /**
      * animalID : 1

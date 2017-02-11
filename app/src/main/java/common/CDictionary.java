@@ -1,5 +1,7 @@
 package common;
 
+import model.AdoptPair;
+
 /**
  * Created by user on 2017/1/28.
  */
@@ -77,10 +79,14 @@ public class CDictionary {
 
     public static final int IntentRqCodeOfPetAdoptCondition = 0;
     public static final int IntentRqCodeOfOpenAlbum = 1;
+    public static final int IntentRqCodeOfOpenEditPetData = 2;
 
     //SharedPreferences key
     public static final String SK_username = "SK_username";
     public static final String SK_userid = "SK_userid";
     public static final String SK_token = "SK_token";
+
+    //Intent key
+    public static final String IK_adoptuploaditem = "IK_adoptuploaditem";
 
 }

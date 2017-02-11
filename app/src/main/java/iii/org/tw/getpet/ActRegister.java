@@ -37,6 +37,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ActRegister extends AppCompatActivity {
+    String access_token = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,19 +83,20 @@ public class ActRegister extends AppCompatActivity {
                                         })
                                         .show();
                             }else {
-                                if(input_password.getText().toString() != input_cfmpassword.getText().toString()){
-                                    new AlertDialog.Builder(ActRegister.this)
-                                            .setMessage(emptyInputField)
-                                            .setTitle("確認密碼錯誤")
-                                            .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                }
-                                            })
-                                            .show();
-                                } else {
-                                    sendRequestToServer();
-                                }
+                                sendRequestToServer();
+//                                if(input_password.getText().toString() != input_cfmpassword.getText().toString()){
+//                                    new AlertDialog.Builder(ActRegister.this)
+//                                            .setMessage(emptyInputField)
+//                                            .setTitle("確認密碼錯誤")
+//                                            .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+//                                                @Override
+//                                                public void onClick(DialogInterface dialog, int which) {
+//                                                }
+//                                            })
+//                                            .show();
+//                                } else {
+//                                    sendRequestToServer();
+//                                }
                             }
                         }
                     })
@@ -110,6 +112,8 @@ public class ActRegister extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
         Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
         try {
+            jsonObject.put("UserName", "test04");
+            Log.d(CDictionary.Debug_TAG,"GET PSWDCFM : "+jsonObject.optString("ConfirmPassword"));
             jsonObject.put("Email", input_email.getText().toString());
             Log.d(CDictionary.Debug_TAG,"GET EMAIL: "+jsonObject.optString("Email"));
             jsonObject.put("Password", input_password.getText().toString());
@@ -148,7 +152,8 @@ public class ActRegister extends AppCompatActivity {
         final MediaType Iv_MTyp_JSON = MediaType.parse("txt; charset=utf-8");
 
         String requestStr = "";
-        requestStr += "username="+input_email.getText().toString();
+        //requestStr += "username="+input_email.getText().toString();
+        requestStr += "username=test05";
         requestStr += "&password="+input_password.getText().toString();
         requestStr += "&grant_type=password";
         Log.d(CDictionary.Debug_TAG,"GET POST BODY : "+requestStr);
@@ -169,7 +174,7 @@ public class ActRegister extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String access_token = "";
+                        //String access_token = "";
                         try {
                             JSONObject jObj = new JSONObject(reponseMsg);
                             access_token = jObj.getString("access_token");
@@ -177,6 +182,7 @@ public class ActRegister extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         if(access_token != ""){
+                            requestForUserInfo();
                             SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
                             String[] strArray = input_email.getText().toString().split("@");
                             userInfo.edit().putString(CDictionary.SK_username,strArray[0])
@@ -230,6 +236,48 @@ public class ActRegister extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void requestForUserInfo(){
+        OkHttpClient Iv_OkHttp_client = new OkHttpClient();
+        final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
+
+//        JSONObject jsonObject = new JSONObject();
+//        Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
+//        try {
+//            jsonObject.put("Email", input_email.getText().toString());
+//            Log.d(CDictionary.Debug_TAG,"GET EMAIL: "+jsonObject.optString("Email"));
+//            jsonObject.put("Password", input_password.getText().toString());
+//            Log.d(CDictionary.Debug_TAG,"GET PSWD : "+jsonObject.optString("Password"));
+//            jsonObject.put("ConfirmPassword", input_cfmpassword.getText().toString());
+//            Log.d(CDictionary.Debug_TAG,"GET PSWDCFM : "+jsonObject.optString("ConfirmPassword"));
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+
+        //RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
+        Request postRequest = new Request.Builder()
+                .url("http://twpetanimal.ddns.net:9487/api/v1/Account/UserInfo")
+                .addHeader("Accept", "application/json")
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization","Bearer "+access_token)
+                .get()
+                .build();
+
+        Call call = Iv_OkHttp_client.newCall(postRequest);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String json = response.body().string();
+                Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
+
+            }
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+            }
+        });
+
     }
 
     public String checkInput() {

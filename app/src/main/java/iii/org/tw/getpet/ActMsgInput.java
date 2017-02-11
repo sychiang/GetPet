@@ -27,7 +27,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ActMsgInput extends AppCompatActivity {
-    String name, id;
+    String name, id, token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,8 @@ public class ActMsgInput extends AppCompatActivity {
         Log.d(CDictionary.Debug_TAG,"GET USER NAME："+name);
         id = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
         Log.d(CDictionary.Debug_TAG,"GET USER ID："+id);
+        token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+token);
     }
 
     View.OnClickListener btnSubmit_Click=new View.OnClickListener(){
@@ -82,10 +84,10 @@ public class ActMsgInput extends AppCompatActivity {
             Log.d(CDictionary.Debug_TAG,"GET msgID: "+jsonObject.optString("msgID"));
             jsonObject.put("msgTime","");
             Log.d(CDictionary.Debug_TAG,"GET msgTime: "+jsonObject.optString("msgTime"));
-            jsonObject.put("msgFrom_userID", "86644d36-0c69-4117-bb75-c500486eea71");
+            jsonObject.put("msgFrom_userID", name);
             Log.d(CDictionary.Debug_TAG,"GET msgFrom_userID: "+jsonObject.optString("msgFrom_userID"));
-            //jsonObject.put("msgTo_userID", edTxt_msgTo_userID.getText().toString());
-            jsonObject.put("msgTo_userID", "86644d36-0c69-4117-bb75-c500486eea71");
+            jsonObject.put("msgTo_userID", edTxt_msgTo_userID.getText().toString());
+            //jsonObject.put("msgTo_userID", "86644d36-0c69-4117-bb75-c500486eea71");
             Log.d(CDictionary.Debug_TAG,"GET msgTo_userID: "+jsonObject.optString("msgTo_userID"));
             jsonObject.put("msgType", "站內信");
             Log.d(CDictionary.Debug_TAG,"GET msgType: "+jsonObject.optString("msgType"));
@@ -105,6 +107,7 @@ public class ActMsgInput extends AppCompatActivity {
                 .url("http://twpetanimal.ddns.net:9487/api/v1/MsgUsers")
                 .addHeader("Accept", "application/json")
                 .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization","Bearer "+token)
                 .post(requestBody)
                 .build();
 

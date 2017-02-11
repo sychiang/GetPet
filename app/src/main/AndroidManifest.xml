@@ -4,6 +4,9 @@
     package="iii.org.tw.getpet">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -69,7 +72,15 @@
             android:name=".ActMsgShow"
             android:label="@string/title_activity_act_msg_show"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
-        <activity android:name=".ActMsgInput"></activity>
+        <activity android:name=".ActMsgInput" />
+        <activity
+            android:name=".ActAdoptUploadList"
+            android:label="@string/title_activity_act_adopt_upload_list"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActAdoptEdit"
+            android:label="@string/title_activity_act_adopt_edit"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -32,6 +32,8 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static android.content.Context.MODE_PRIVATE;
+
 /**
  * Created by user on 2017/2/5.
  */
@@ -71,24 +73,13 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 int position = vholder.getAdapterPosition();
-                //LayoutInflater inflater = LayoutInflater.from(ActMsgBox.this);
-//                final View view = inflater.inflate(R.layout.msgdetail_alertdialog, null);
-//                TextView msg_subject = (TextView) view.findViewById(R.id.msg_subject);
-//                TextView msg_sender = (TextView) view.findViewById(R.id.msg_sender);
-//                TextView msg_content = (TextView) view.findViewById(R.id.msg_content);
-//
-//                msg_subject.setText(mData.get(position).getMsgType());
-//                msg_sender.setText(mData.get(position).getMsgFrom_userName());
-//                msg_content.setText(mData.get(position).getMsgContent());
-//
-//                AlertDialog.Builder dialog = new AlertDialog.Builder(v.getContext());
-//                dialog.setView(view);
-//                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                    }
-//                });
-//                dialog.create().show();
+
+                String name = mContext.getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+                Log.d(CDictionary.Debug_TAG,"GET USER NAME："+name);
+                String id = mContext.getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+                Log.d(CDictionary.Debug_TAG,"GET USER ID："+id);
+                String token = mContext.getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+                Log.d(CDictionary.Debug_TAG,"GET USER ID："+token);
 
                 Intent intent = new Intent(mContext, ActMsgShow.class);
                 Bundle bundle = new Bundle();
@@ -132,6 +123,7 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.ViewHold
                             .url(strURL)
                             .addHeader("Accept", "application/json")
                             .addHeader("Content-Type", "application/json")
+                            .addHeader("Authorization","Bearer "+token)
                             .put(requestBody)
                             .build();
 

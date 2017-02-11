@@ -102,5 +102,7 @@
     <string name="title_activity_act_adopt_upload">ActAdoptUpload</string>
     <string name="title_activity_act_following_detail">ActFollowingDetail</string>
     <string name="title_activity_act_msg_show">ActMsgShow</string>
+    <string name="title_activity_act_adopt_upload_list">ActAdoptUploadList</string>
+    <string name="title_activity_act_adopt_edit">ActAdoptEdit</string>
 
 </resources>
