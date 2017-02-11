@@ -243,6 +243,7 @@ public class ActLogin extends AppCompatActivity {
                             userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
                             String[] strArray = input_account.getText().toString().split("@");
                             userInfo.edit().putString(CDictionary.SK_username,strArray[0])
+                                    .putString(CDictionary.SK_userid,input_account.getText().toString())
                                     .putString(CDictionary.SK_token,access_token)
                                     .commit();
                             String name = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"訪客");

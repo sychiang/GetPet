@@ -121,14 +121,14 @@ public class ActRegister extends AppCompatActivity {
         }
 
         RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
-                Request postRrequest = new Request.Builder()
+                Request postRequest = new Request.Builder()
                         .url("http://twpetanimal.ddns.net:9487/api/v1/Account/Register")
                         .addHeader("Accept", "application/json")
                         .addHeader("Content-Type", "application/json")
                         .post(requestBody)
                         .build();
 
-                Call call = Iv_OkHttp_client.newCall(postRrequest);
+                Call call = Iv_OkHttp_client.newCall(postRequest);
                 call.enqueue(new Callback() {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
@@ -154,13 +154,13 @@ public class ActRegister extends AppCompatActivity {
         Log.d(CDictionary.Debug_TAG,"GET POST BODY : "+requestStr);
 
         RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,requestStr);
-        Request postRrequest = new Request.Builder()
+        Request postRequest = new Request.Builder()
                 .url("http://twpetanimal.ddns.net:9487/token")
                 .addHeader("Content-Type","application/x-www-form-urlencoded")
                 .post(requestBody)
                 .build();
 
-        Call call = Iv_OkHttp_client.newCall(postRrequest);
+        Call call = Iv_OkHttp_client.newCall(postRequest);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
