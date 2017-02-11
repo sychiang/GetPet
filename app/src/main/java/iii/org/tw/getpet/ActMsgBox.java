@@ -37,12 +37,12 @@ public class ActMsgBox extends AppCompatActivity {
     String name, id;
     MsgListAdapter adapter;
     RecyclerView recyclerList;
+    String url = "http://twpetanimal.ddns.net:9487/api/v1/MsgUsers";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_msg_box);
-        String url = "http://twpetanimal.ddns.net:9487/api/v1/MsgUsers";
 
         //初始化元件
         recyclerList = (RecyclerView) findViewById(R.id.msgboxlist_view);
@@ -57,7 +57,50 @@ public class ActMsgBox extends AppCompatActivity {
         //url += "/"+id;
         Log.d(CDictionary.Debug_TAG,"GET URL："+url);
 
-//取回MSG資料存入集合
+        //取回MSG資料存入集合
+//        AndroidNetworking.initialize(getApplicationContext());
+//        AndroidNetworking.get(url)
+//                .setTag(this)
+//                .setPriority(Priority.HIGH)
+//                .build()
+//                .getAsParsed(new TypeToken<ArrayList<UserMsg>>() {
+//                             },
+//                        new ParsedRequestListener<ArrayList<UserMsg>>() {
+//                            @Override
+//                            public void onResponse(ArrayList<UserMsg> response) {
+//                                String size = String.format("%d", response.size());
+//                                Log.d(CDictionary.Debug_TAG, size);
+//                                if (response.size() > 0) {
+//                                    for (UserMsg rs : response) {
+//                                        myDataset.add(rs);
+//                                        Log.d(CDictionary.Debug_TAG, "Get Msg: "+rs.getMsgID());
+//                                    }
+//                                    adapter = new MsgListAdapter(myDataset);
+//                                    recyclerList.setAdapter(adapter);
+//                                } else {
+//                                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgBox.this);
+//                                    dialog.setTitle("目前尚無訊息");
+//                                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(DialogInterface dialog, int which) {
+//                                            Intent intent = new Intent(ActMsgBox.this, ActHomePage.class);
+//                                            startActivity(intent);
+//                                        }
+//                                    });
+//                                    dialog.create().show();
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onError(ANError anError) {
+//
+//                            }
+//                        });
+        getDatafromServer();
+    }
+
+    public void getDatafromServer(){
+        //取回MSG資料存入集合
         AndroidNetworking.initialize(getApplicationContext());
         AndroidNetworking.get(url)
                 .setTag(this)
@@ -96,6 +139,19 @@ public class ActMsgBox extends AppCompatActivity {
 
                             }
                         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(CDictionary.Debug_TAG,"TEST ON PAUSE");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(CDictionary.Debug_TAG,"TEST ON RESUME");
+        getDatafromServer();
     }
 
     @Override

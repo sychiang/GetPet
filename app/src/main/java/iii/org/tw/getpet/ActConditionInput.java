@@ -18,6 +18,7 @@ public class ActConditionInput extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_condition_input);
+        setTitle("認養條件填寫");
         init();
     }
 
@@ -39,7 +40,6 @@ public class ActConditionInput extends AppCompatActivity {
     }
 
     private void init() {
-
         edTxt_conditionAge=(EditText)findViewById(R.id.edTxt_conditionAge);
         edTxt_conditionEconomy=(EditText)findViewById(R.id.edTxt_conditionEconomy);
         edTxt_conditionHome=(EditText)findViewById(R.id.edTxt_conditionHome);

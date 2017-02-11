@@ -101,5 +101,6 @@
     <string name="ACCOUNT_KIT_CLIENT_TOKEN">b8bf25abaf9523450ba4528d1b5b3674=</string>
     <string name="title_activity_act_adopt_upload">ActAdoptUpload</string>
     <string name="title_activity_act_following_detail">ActFollowingDetail</string>
+    <string name="title_activity_act_msg_show">ActMsgShow</string>
 
 </resources>

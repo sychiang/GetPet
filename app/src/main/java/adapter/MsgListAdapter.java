@@ -2,19 +2,35 @@ package adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.List;
 
+import common.CDictionary;
 import iii.org.tw.getpet.ActMsgBox;
+import iii.org.tw.getpet.ActMsgShow;
 import iii.org.tw.getpet.R;
 import model.UserMsg;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * Created by user on 2017/2/5.
@@ -54,29 +70,87 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.ViewHold
         vholder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //LayoutInflater inflater = LayoutInflater.from(ActMsgBox.this);
-                final View view = inflater.inflate(R.layout.msgdetail_alertdialog, null);
-                TextView msg_subject = (TextView) view.findViewById(R.id.msg_subject);
-                TextView msg_sender = (TextView) view.findViewById(R.id.msg_sender);
-                TextView msg_content = (TextView) view.findViewById(R.id.msg_content);
-
                 int position = vholder.getAdapterPosition();
-                msg_subject.setText(mData.get(position).getMsgType());
-                msg_sender.setText(mData.get(position).getMsgFrom_userName());
-                msg_content.setText(mData.get(position).getMsgContent());
+                //LayoutInflater inflater = LayoutInflater.from(ActMsgBox.this);
+//                final View view = inflater.inflate(R.layout.msgdetail_alertdialog, null);
+//                TextView msg_subject = (TextView) view.findViewById(R.id.msg_subject);
+//                TextView msg_sender = (TextView) view.findViewById(R.id.msg_sender);
+//                TextView msg_content = (TextView) view.findViewById(R.id.msg_content);
+//
+//                msg_subject.setText(mData.get(position).getMsgType());
+//                msg_sender.setText(mData.get(position).getMsgFrom_userName());
+//                msg_content.setText(mData.get(position).getMsgContent());
+//
+//                AlertDialog.Builder dialog = new AlertDialog.Builder(v.getContext());
+//                dialog.setView(view);
+//                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                    }
+//                });
+//                dialog.create().show();
 
-                AlertDialog.Builder dialog = new AlertDialog.Builder(v.getContext());
-                dialog.setView(view);
-                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(mContext, ActMsgShow.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(CDictionary.BK_msg_id, String.format("%d",mData.get(position).getMsgID()));
+                bundle.putString(CDictionary.BK_msg_time, mData.get(position).getMsgTime());
+                bundle.putString(CDictionary.BK_msg_fromuserid, mData.get(position).getMsgFrom_userID());
+                bundle.putString(CDictionary.BK_msg_fromusername, mData.get(position).getMsgFrom_userName());
+                bundle.putString(CDictionary.BK_msg_touserid, mData.get(position).getMsgTo_userID());
+                bundle.putString(CDictionary.BK_msg_subject, mData.get(position).getMsgType());
+                bundle.putString(CDictionary.BK_msg_fromurl, mData.get(position).getMsgFromURL());
+                bundle.putString(CDictionary.BK_msg_content, mData.get(position).getMsgContent());
+                bundle.putString(CDictionary.BK_msg_read, mData.get(position).getMsgRead());
+                intent.putExtras(bundle);
+                mContext.startActivity(intent);
+
+                if(mData.get(position).getMsgRead().equals("未讀")){
+                    String strURL = "http://twpetanimal.ddns.net:9487/api/v1/MsgUsers";
+                    strURL += "/"+String.format("%d",mData.get(position).getMsgID());
+                    Log.d(CDictionary.Debug_TAG,"GET URL: "+strURL);
+                    //傳送PUT修改為已讀
+                    OkHttpClient okhttpclient = new OkHttpClient();
+                    final MediaType mediatype_json = MediaType.parse("application/json; charset=utf-8");
+
+                    JSONObject jsonObject = new JSONObject();
+                    Log.d(CDictionary.Debug_TAG,"CREATE JSON OBJ: "+jsonObject.toString());
+                    try {
+                        jsonObject.put("msgID", mData.get(position).getMsgID());
+                        jsonObject.put("msgTime", mData.get(position).getMsgTime());
+                        jsonObject.put("msgFrom_userID", mData.get(position).getMsgFrom_userID());
+                        jsonObject.put("msgTo_userID", mData.get(position).getMsgTo_userID());
+                        jsonObject.put("msgType", mData.get(position).getMsgType());
+                        jsonObject.put("msgFromURL", mData.get(position).getMsgFromURL());
+                        jsonObject.put("msgContent", mData.get(position).getMsgContent());
+                        jsonObject.put("msgRead","已讀");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                });
-                dialog.create().show();
+
+                    RequestBody requestBody =  RequestBody.create(mediatype_json,jsonObject.toString());
+                    Request postRequest = new Request.Builder()
+                            .url(strURL)
+                            .addHeader("Accept", "application/json")
+                            .addHeader("Content-Type", "application/json")
+                            .put(requestBody)
+                            .build();
+
+                    Call call = okhttpclient.newCall(postRequest);
+                    call.enqueue(new Callback() {
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            final String json = response.body().string();
+                            Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
+                        }
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            Log.d(CDictionary.Debug_TAG,"PUT FAIL......");
+                        }
+                    });
+                }
             }
         });
         return vholder;
-
     }
 
     @Override

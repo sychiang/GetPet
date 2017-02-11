@@ -57,6 +57,16 @@ public class CDictionary {
 
     public static final String BK_animalID_following = "BK_animalID_following";
 
+    public static final String BK_msg_subject = "BK_msg_subject";
+    public static final String BK_msg_id= "BK_msg_id";
+    public static final String BK_msg_time = "BK_msg_time";
+    public static final String BK_msg_fromuserid= "BK_msg_fromuserid";
+    public static final String BK_msg_fromusername = "BK_msg_fromusername";
+    public static final String BK_msg_touserid= "BK_msg_touserid";
+    public static final String BK_msg_fromurl = "BK_msg_fromurl";
+    public static final String BK_msg_content= "BK_msg_content";
+    public static final String BK_msg_read = "BK_msg_read";
+
     public static final String BK_fb_name = "BK_fb_name";
     public static final String BK_fb_id = "BK_fb_id";
 

@@ -550,7 +550,6 @@ public class ActAdoptUpload extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     class uploadImgByCallable extends Thread {
         String image;
         CountDownLatch latch;
