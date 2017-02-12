@@ -42,6 +42,7 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.ViewHold
     private List<UserMsg> mData;
     private Context mContext;
     private LayoutInflater inflater;
+    private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
 
     public MsgListAdapter(List<UserMsg> data) {
         mData = data;
@@ -74,12 +75,12 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.ViewHold
             public void onClick(View v) {
                 int position = vholder.getAdapterPosition();
 
-                String name = mContext.getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
-                Log.d(CDictionary.Debug_TAG,"GET USER NAME："+name);
-                String id = mContext.getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
-                Log.d(CDictionary.Debug_TAG,"GET USER ID："+id);
-                String token = mContext.getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
-                Log.d(CDictionary.Debug_TAG,"GET USER ID："+token);
+                UserName = mContext.getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+                Log.d(CDictionary.Debug_TAG,"GET USER NAME："+UserName);
+                UserId = mContext.getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+                Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
+                access_token = mContext.getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+                Log.d(CDictionary.Debug_TAG,"GET USER ID："+access_token);
 
                 Intent intent = new Intent(mContext, ActMsgShow.class);
                 Bundle bundle = new Bundle();
@@ -123,7 +124,7 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.ViewHold
                             .url(strURL)
                             .addHeader("Accept", "application/json")
                             .addHeader("Content-Type", "application/json")
-                            .addHeader("Authorization","Bearer "+token)
+                            .addHeader("Authorization","Bearer "+access_token)
                             .put(requestBody)
                             .build();
 
@@ -132,7 +133,7 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.ViewHold
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
                             final String json = response.body().string();
-                            Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
+                            Log.d(CDictionary.Debug_TAG,"RESPONSE BODY: "+json);
                         }
                         @Override
                         public void onFailure(Call call, IOException e) {

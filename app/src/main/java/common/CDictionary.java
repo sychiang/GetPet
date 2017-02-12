@@ -82,6 +82,7 @@ public class CDictionary {
     public static final int IntentRqCodeOfOpenEditPetData = 2;
 
     //SharedPreferences key
+    public static final String SK_useremail = "SK_useremail";
     public static final String SK_username = "SK_username";
     public static final String SK_userid = "SK_userid";
     public static final String SK_token = "SK_token";

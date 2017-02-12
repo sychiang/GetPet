@@ -25,13 +25,11 @@
             android:layout_height="match_parent"
             android:text="收件人：" />
 
-        <EditText
-            android:inputType="textEmailAddress"
-            android:id="@+id/edTxt_msgTo_userID"
+        <TextView
+            android:id="@+id/tv_msgTo_userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="400dp"
-            android:hint="收件人帳號(Email)" />
+            android:minWidth="400dp" />
 
     </LinearLayout>
 

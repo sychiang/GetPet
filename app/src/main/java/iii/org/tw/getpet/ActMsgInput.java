@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -27,7 +28,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ActMsgInput extends AppCompatActivity {
-    String name, id, token;
+    private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
+    private String msgID, msgTime, msgFrom_userID, msgFrom_userName, msgTo_userID, msgType, msgFromURL, msgContent, msgRead;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +37,20 @@ public class ActMsgInput extends AppCompatActivity {
         setContentView(R.layout.act_msg_input);
         initComponent();
 
-        name = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
-        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+name);
-        id = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
-        Log.d(CDictionary.Debug_TAG,"GET USER ID："+id);
-        token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
-        Log.d(CDictionary.Debug_TAG,"GET USER ID："+token);
+        UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+UserName);
+        UserId = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
+        access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+access_token);
+
+        Intent intent = getIntent();
+        if(intent != null){
+            msgFrom_userID = intent.getExtras().getString(CDictionary.BK_msg_fromuserid);
+            msgFrom_userName = intent.getExtras().getString(CDictionary.BK_msg_fromusername);
+            tv_msgTo_userName.setText(msgFrom_userName);
+        }
+
     }
 
     View.OnClickListener btnSubmit_Click=new View.OnClickListener(){
@@ -52,7 +62,6 @@ public class ActMsgInput extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String emptyInputField = checkInput();
-
                             if (emptyInputField.length() > 10) {
                                 new AlertDialog.Builder(ActMsgInput.this)
                                         .setMessage(emptyInputField)
@@ -84,9 +93,9 @@ public class ActMsgInput extends AppCompatActivity {
             Log.d(CDictionary.Debug_TAG,"GET msgID: "+jsonObject.optString("msgID"));
             jsonObject.put("msgTime","");
             Log.d(CDictionary.Debug_TAG,"GET msgTime: "+jsonObject.optString("msgTime"));
-            jsonObject.put("msgFrom_userID", name);
+            jsonObject.put("msgFrom_userID", UserId);
             Log.d(CDictionary.Debug_TAG,"GET msgFrom_userID: "+jsonObject.optString("msgFrom_userID"));
-            jsonObject.put("msgTo_userID", edTxt_msgTo_userID.getText().toString());
+            jsonObject.put("msgTo_userID", msgFrom_userID);
             //jsonObject.put("msgTo_userID", "86644d36-0c69-4117-bb75-c500486eea71");
             Log.d(CDictionary.Debug_TAG,"GET msgTo_userID: "+jsonObject.optString("msgTo_userID"));
             jsonObject.put("msgType", "站內信");
@@ -107,7 +116,7 @@ public class ActMsgInput extends AppCompatActivity {
                 .url("http://twpetanimal.ddns.net:9487/api/v1/MsgUsers")
                 .addHeader("Accept", "application/json")
                 .addHeader("Content-Type", "application/json")
-                .addHeader("Authorization","Bearer "+token)
+                .addHeader("Authorization","Bearer "+access_token)
                 .post(requestBody)
                 .build();
 
@@ -155,7 +164,6 @@ public class ActMsgInput extends AppCompatActivity {
 
     public String checkInput() {
         String emptyInputField = "尚未填寫以下欄位:\n";
-        emptyInputField += edTxt_msgTo_userID.getText().toString().isEmpty() ? "收件人\n" : "";
         emptyInputField += edTxt_msgContent.getText().toString().isEmpty() ? "內文\n" : "";
         return emptyInputField;
     }
@@ -164,9 +172,11 @@ public class ActMsgInput extends AppCompatActivity {
         btnSubmit = (Button)findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(btnSubmit_Click);
 
-        edTxt_msgTo_userID=(EditText)findViewById(R.id.edTxt_msgTo_userID);
         edTxt_msgContent=(EditText)findViewById(R.id.edTxt_msgContent);
+
+        tv_msgTo_userName=(TextView)findViewById(R.id.tv_msgTo_userName);
     }
     Button btnSubmit;
     EditText edTxt_msgTo_userID, edTxt_msgContent;
+    TextView tv_msgTo_userName;
 }

@@ -72,12 +72,22 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btnOK"
+    android:id="@+id/btnOK"
+    android:layout_below="@+id/scrollview"
+    android:layout_alignParentRight="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="確定"
+    android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/btnReply"
+        android:visibility="visible"
         android:layout_below="@+id/scrollview"
-        android:layout_alignParentRight="true"
+        android:layout_toLeftOf="@+id/btnOK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="確定"
+        android:text="回覆"
         android:textSize="20sp"/>
 
 </RelativeLayout>

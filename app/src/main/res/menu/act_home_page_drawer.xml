@@ -18,10 +18,10 @@
             android:id="@+id/folowinglist"
             android:icon="@drawable/item_icon"
             android:title="追蹤清單" />
-        <item
-            android:id="@+id/other_setting"
-            android:icon="@drawable/item_icon"
-            android:title="其他設定" />
+        <!--<item-->
+            <!--android:id="@+id/other_setting"-->
+            <!--android:icon="@drawable/item_icon"-->
+            <!--android:title="其他設定" />-->
         <item
             android:id="@+id/contact_us"
             android:icon="@drawable/item_icon"

@@ -50,6 +50,7 @@ public class ActLogin extends AppCompatActivity {
     AccessToken accessToken;
     SharedPreferences userInfo;
     String fbEmail, fbUsername, fbID;
+    private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
 
     OkHttpClient Iv_OkHttp_client = new OkHttpClient();
     public static final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
@@ -196,7 +197,15 @@ public class ActLogin extends AppCompatActivity {
     View.OnClickListener btn_logout_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             userInfo.edit().clear().commit();
-            goMainScreen();
+            AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
+            dialog.setTitle("您已登出系統");
+            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    goMainScreen();
+                }
+            });
+            dialog.create().show();
         }
     };
 
@@ -214,25 +223,24 @@ public class ActLogin extends AppCompatActivity {
         requestStr += "username="+input_account.getText().toString();
         requestStr += "&password="+input_password.getText().toString();
         requestStr += "&grant_type=password";
-        Log.d(CDictionary.Debug_TAG,"GET POST BODY : "+requestStr);
 
         RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,requestStr);
-        Request postRrequest = new Request.Builder()
+        Log.d(CDictionary.Debug_TAG,"POST BODY : "+requestStr);
+        Request postRequest = new Request.Builder()
                 .url("http://twpetanimal.ddns.net:9487/token")
                 .addHeader("Content-Type","application/x-www-form-urlencoded")
                 .post(requestBody)
                 .build();
 
-        Call call = Iv_OkHttp_client.newCall(postRrequest);
+        Call call = Iv_OkHttp_client.newCall(postRequest);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String reponseMsg = response.body().string();
-                Log.d(CDictionary.Debug_TAG,"GET RESPONSE: "+reponseMsg);
+                Log.d(CDictionary.Debug_TAG,"(TOKEN)RESPONSE BODY: "+reponseMsg);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String access_token = "";
                         try {
                             JSONObject jObj = new JSONObject(reponseMsg);
                             access_token = jObj.getString("access_token");
@@ -240,26 +248,7 @@ public class ActLogin extends AppCompatActivity {
                             e.printStackTrace();
                         }
                         if(access_token != ""){
-                            userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
-                            String[] strArray = input_account.getText().toString().split("@");
-                            userInfo.edit().putString(CDictionary.SK_username,strArray[0])
-                                    .putString(CDictionary.SK_userid,input_account.getText().toString())
-                                    .putString(CDictionary.SK_token,access_token)
-                                    .commit();
-                            String name = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"訪客");
-                            String access = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
-                            Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF: "+name);
-                            Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF: "+access);
-                            AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
-                            dialog.setTitle("登入成功");
-                            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(ActLogin.this, ActHomePage.class);
-                                    startActivity(intent);
-                                }
-                            });
-                            dialog.create().show();
+                            requestForUserInfo();
                         } else{
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
                             dialog.setTitle("登入失敗");
@@ -276,7 +265,7 @@ public class ActLogin extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+                Log.d(CDictionary.Debug_TAG,"REQUEST FOR TOKEN FAIL......");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -292,6 +281,76 @@ public class ActLogin extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void requestForUserInfo(){
+        OkHttpClient Iv_OkHttp_client = new OkHttpClient();
+
+        Request getRequest = new Request.Builder()
+                .url("http://twpetanimal.ddns.net:9487/api/v1/Account/UserInfo")
+                .addHeader("Accept", "application/json")
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization","Bearer "+access_token)
+                .get()
+                .build();
+        Log.d(CDictionary.Debug_TAG,"BEARER TOKEN: "+access_token);
+
+        Call call = Iv_OkHttp_client.newCall(getRequest);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String reponseMsg = response.body().string();
+                Log.d(CDictionary.Debug_TAG,"(USERINFO)RESPONSE BODY: "+reponseMsg);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject jObj = new JSONObject(reponseMsg);
+                            Email = jObj.getString("Email");
+                            UserName = jObj.getString("UserName");
+                            UserId = jObj.getString("UserId");
+                            HasRegistered = jObj.getString("HasRegistered");
+                            LoginProvider = jObj.getString("LoginProvider");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
+                        userInfo.edit().putString(CDictionary.SK_username,input_account.getText().toString())
+                                .putString(CDictionary.SK_token,access_token)
+                                .putString(CDictionary.SK_userid,UserId)
+                                .putString(CDictionary.SK_useremail,Email)
+                                .commit();
+                        Log.d(CDictionary.Debug_TAG,"測試暫存 USERNAME: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,""));
+                        Log.d(CDictionary.Debug_TAG,"測試暫存 TOKEN: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,""));
+                        Log.d(CDictionary.Debug_TAG,"測試暫存 USERID: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,""));
+                        Log.d(CDictionary.Debug_TAG,"測試暫存 EMAIL: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_useremail,""));
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
+                        dialog.setTitle("登入成功");
+                        dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                goMainScreen();
+                            }
+                        });
+                        dialog.create().show();
+                    }
+                });
+            }
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d(CDictionary.Debug_TAG,"GET USERINFO FAIL......");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
+                dialog.setTitle("登入失敗");
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                dialog.create().show();
+            }
+        });
+
     }
 
     View.OnClickListener btn_test_Click=new View.OnClickListener(){

@@ -48,10 +48,9 @@ public class ActHomePage extends AppCompatActivity
 
     //ArrayList<AnimalPic> picList = new ArrayList<AnimalPic>();
     //ArrayList<ImageView> imgViewList = new ArrayList<ImageView>();
-    String userID = "";
-    String userName = "";
-    String token = "";
     AccessToken accessToken;
+    private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
+    String fbEmail, fbUsername, fbID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +60,12 @@ public class ActHomePage extends AppCompatActivity
         setSupportActionBar(toolbar);
         initComponent();
         //每次進來就先檢查登入資訊
-        token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
-        Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF TOKEN: "+token);
-        if( token != ""){
-            userID = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
-            userName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"訪客");
-            header_username.setText("Hi, "+userName);
+        access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+        Log.d(CDictionary.Debug_TAG,"SHAREDPREF TOKEN: "+access_token);
+        if( access_token != ""){
+            UserId = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+            UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"訪客");
+            header_username.setText("Hi, "+UserName);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -92,7 +91,7 @@ public class ActHomePage extends AppCompatActivity
 
     public void checkIfFBLogin(){
         if(AccessToken.getCurrentAccessToken() != null && com.facebook.Profile.getCurrentProfile() != null){
-            Log.d(CDictionary.Debug_TAG,"HAVE TOKEN："+ AccessToken.getCurrentAccessToken().getToken());
+            Log.d(CDictionary.Debug_TAG,"FB TOKEN："+ AccessToken.getCurrentAccessToken().getToken());
             accessToken = AccessToken.getCurrentAccessToken();
             GraphRequest request = GraphRequest.newMeRequest(
                     accessToken,
@@ -100,22 +99,18 @@ public class ActHomePage extends AppCompatActivity
                         @Override
                         public void onCompleted(JSONObject object, GraphResponse response) {
                             //讀出姓名 ID FB個人頁面連結
-                            Log.d(CDictionary.Debug_TAG,"FB get"+response);
-                            Log.d(CDictionary.Debug_TAG,"FB get"+object);
-                            Log.d(CDictionary.Debug_TAG,object.optString("name"));
-                            Log.d(CDictionary.Debug_TAG,object.optString("link"));
-                            Log.d(CDictionary.Debug_TAG,object.optString("id"));
-                            Log.d(CDictionary.Debug_TAG,object.optString("email"));
-                            userName = object.optString("name");
-                            Log.d(CDictionary.Debug_TAG,"Set userName："+userName);
-                            header_username.setText(userName);
-
-                            userID = object.optString("id");
-                            Log.d(CDictionary.Debug_TAG,"Set userID："+userID);
+                            Log.d(CDictionary.Debug_TAG,"FB RESPONSE BODY: "+response);
+                            fbUsername = object.optString("name");
+                            Log.d(CDictionary.Debug_TAG,"Set userName："+fbUsername);
+                            header_username.setText(fbUsername);
+                            fbID = object.optString("id");
+                            Log.d(CDictionary.Debug_TAG,"Set userID："+fbID);
+                            fbEmail = object.optString("email");
+                            Log.d(CDictionary.Debug_TAG,"Set userID："+fbEmail);
                         }
                     });
             Bundle parameters = new Bundle();
-            parameters.putString("fields", "id,name,link");
+            parameters.putString("fields", "id,name,link,email");
             request.setParameters(parameters);
             request.executeAsync();
         }
@@ -141,7 +136,7 @@ public class ActHomePage extends AppCompatActivity
 
         switch (id){
             case R.id.search_setting:
-                if(token == ""){
+                if(access_token == ""){
                     Log.d(CDictionary.Debug_TAG,"not log in");
                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
                     dialog.setTitle("尚未登入, 請先登入會員");
@@ -153,13 +148,13 @@ public class ActHomePage extends AppCompatActivity
                     });
                     dialog.create().show();
                 } else {
-                    Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+token);
+                    Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+access_token);
 //                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
 //                    startActivity(intent);
                 }
                 break;
             case R.id.notify_setting:
-                if(token == ""){
+                if(access_token == ""){
                     Log.d(CDictionary.Debug_TAG,"not log in");
                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
                     dialog.setTitle("尚未登入, 請先登入會員");
@@ -171,7 +166,7 @@ public class ActHomePage extends AppCompatActivity
                     });
                     dialog.create().show();
                 } else {
-                    Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+token);
+                    Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+access_token);
 //                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
 //                    startActivity(intent);
                 }
@@ -179,7 +174,7 @@ public class ActHomePage extends AppCompatActivity
             case R.id.messagebox:
 //                intent = new Intent(ActHomePage.this,ActMsgBox.class);
 //                startActivity(intent);
-                if(token == ""){
+                if(access_token == ""){
                     Log.d(CDictionary.Debug_TAG,"not log in");
                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
                     dialog.setTitle("尚未登入, 請先登入會員");
@@ -191,25 +186,26 @@ public class ActHomePage extends AppCompatActivity
                     });
                     dialog.create().show();
                 } else {
-                    Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+token);
+                    Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+access_token);
                     intent = new Intent(ActHomePage.this,ActMsgBox.class);
-                    Log.d(CDictionary.Debug_TAG,"GET USER ID："+userID);
-//                    bundle.putString(CDictionary.BK_userid,userID);
-//                    intent.putExtras(bundle);
+                    Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
                     startActivity(intent);
                 }
                 break;
             case R.id.folowinglist:
-                if(token == ""){
+                if(access_token == ""){
                     Log.d(CDictionary.Debug_TAG,"not log in");
-                    goLoginScreen();
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
+                    dialog.setTitle("尚未登入, 請先登入會員");
+                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            goLoginScreen();
+                        }
+                    });
+                    dialog.create().show();
                 } else {
-                    //Log.d(CDictionary.Debug_TAG,AccessToken.getCurrentAccessToken().getToken());
                     intent = new Intent(ActHomePage.this,ActFollowingList.class);
-                    Log.d(CDictionary.Debug_TAG,"Get userName："+userName);
-//                    bundle.putString(CDictionary.BK_fb_name,userName);
-//                    bundle.putString(CDictionary.BK_fb_id,userID);
-//                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
                 break;
@@ -222,23 +218,6 @@ public class ActHomePage extends AppCompatActivity
             default:
                 break;
         }
-
-//        if (id == R.id.search_setting) {
-//
-//        } else if (id == R.id.notify_setting) {
-//
-//        } else if (id == R.id.messagebox) {
-//            intent=new Intent(ActHomePage.this,ActMsgBox.class);
-//            startActivity(intent);
-//
-//        } else if (id == R.id.other_setting) {
-//
-//        } else if (id == R.id.contact_us) {
-//
-//        } else if (id == R.id.login) {
-//            intent = new Intent(ActHomePage.this, ActLogin.class);
-//            startActivityForResult(intent, CDictionary.REQUEST_LOGIN);
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -260,8 +239,21 @@ public class ActHomePage extends AppCompatActivity
     View.OnClickListener btnGoPairSetting_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //前往配對設定
-            Intent intent = new Intent(ActHomePage.this, ActCategory.class);
-            startActivity(intent);
+            if(access_token == ""){
+                Log.d(CDictionary.Debug_TAG,"not log in");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
+                dialog.setTitle("尚未登入, 請先登入會員");
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        goLoginScreen();
+                    }
+                });
+                dialog.create().show();
+            } else {
+//                Intent intent = new Intent(ActHomePage.this, ActCategory.class);
+//                startActivity(intent);
+            }
         }
     };
     View.OnClickListener btnGoPetHelper_Click=new View.OnClickListener(){
@@ -281,15 +273,41 @@ public class ActHomePage extends AppCompatActivity
     View.OnClickListener btnGoUpload_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //前往送養管理
-            Intent intent = new Intent(ActHomePage.this, ActAdoptUploadList.class);
-            startActivity(intent);
+            if(access_token == ""){
+                Log.d(CDictionary.Debug_TAG,"not log in");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
+                dialog.setTitle("尚未登入, 請先登入會員");
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        goLoginScreen();
+                    }
+                });
+                dialog.create().show();
+            } else {
+                Intent intent = new Intent(ActHomePage.this, ActAdoptUploadList.class);
+                startActivity(intent);
+            }
         }
     };
     View.OnClickListener btnGoSetting_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //前往系統設定
-            Intent intent = new Intent(ActHomePage.this, ActCategory.class);
-            startActivity(intent);
+            if(access_token == ""){
+                Log.d(CDictionary.Debug_TAG,"not log in");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
+                dialog.setTitle("尚未登入, 請先登入會員");
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        goLoginScreen();
+                    }
+                });
+                dialog.create().show();
+            } else {
+//                Intent intent = new Intent(ActHomePage.this, ActAdoptUploadList.class);
+//                startActivity(intent);
+            }
         }
     };
 

@@ -36,7 +36,7 @@ import model.UserMsg;
 
 public class ActMsgBox extends AppCompatActivity {
     ArrayList<UserMsg> myDataset = new ArrayList<UserMsg>();
-    String name, id, token;
+    private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
     MsgListAdapter adapter;
     RecyclerView recyclerList;
     String url = "http://twpetanimal.ddns.net:9487/api/v1/MsgUsers";
@@ -52,27 +52,33 @@ public class ActMsgBox extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerList.setLayoutManager(layoutManager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-                Intent intent = new Intent(ActMsgBox.this, ActMsgInput.class);
-                startActivity(intent);
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(ActMsgBox.this, ActMsgInput.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+UserName);
+        UserId = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
+        access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+access_token);
+
         getDatafromServer();
     }
 
     public void getDatafromServer(){
-        name = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
-        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+name);
-        id = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
-        Log.d(CDictionary.Debug_TAG,"GET USER ID："+id);
-        token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
-        Log.d(CDictionary.Debug_TAG,"GET USER ID："+token);
-        url += "/"+name;
+        UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+        Log.d(CDictionary.Debug_TAG,"MSG USER NAME："+UserName);
+        UserId = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+        Log.d(CDictionary.Debug_TAG,"MSG USER ID："+UserId);
+        access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+        Log.d(CDictionary.Debug_TAG,"TOKEN："+access_token);
+        url += "/"+UserId;
         Log.d(CDictionary.Debug_TAG,"GET URL："+url);
         //取回MSG資料存入集合
         AndroidNetworking.initialize(getApplicationContext());
@@ -100,8 +106,7 @@ public class ActMsgBox extends AppCompatActivity {
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-//                                            Intent intent = new Intent(ActMsgBox.this, ActHomePage.class);
-//                                            startActivity(intent);
+
                                         }
                                     });
                                     dialog.create().show();

@@ -37,7 +37,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ActRegister extends AppCompatActivity {
-    String access_token = "";
+
+    private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +72,6 @@ public class ActRegister extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String emptyInputField = checkInput();
-
                             if (emptyInputField.length() > 10) {
                                 new AlertDialog.Builder(ActRegister.this)
                                         .setMessage(emptyInputField)
@@ -83,20 +83,19 @@ public class ActRegister extends AppCompatActivity {
                                         })
                                         .show();
                             }else {
-                                sendRequestToServer();
-//                                if(input_password.getText().toString() != input_cfmpassword.getText().toString()){
-//                                    new AlertDialog.Builder(ActRegister.this)
-//                                            .setMessage(emptyInputField)
-//                                            .setTitle("確認密碼錯誤")
-//                                            .setPositiveButton("確定", new DialogInterface.OnClickListener() {
-//                                                @Override
-//                                                public void onClick(DialogInterface dialog, int which) {
-//                                                }
-//                                            })
-//                                            .show();
-//                                } else {
-//                                    sendRequestToServer();
-//                                }
+                                //sendRequestToServer();
+                                if(input_password.getText().toString().equals(input_cfmpassword.getText().toString())){
+                                    sendRegisterRequestToServer();
+                                } else {
+                                    new AlertDialog.Builder(ActRegister.this)
+                                            .setTitle("確認密碼錯誤")
+                                            .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                }
+                                            })
+                                            .show();
+                                }
                             }
                         }
                     })
@@ -105,26 +104,27 @@ public class ActRegister extends AppCompatActivity {
         }
     };
 
-    public void sendRequestToServer(){
+    public void sendRegisterRequestToServer(){
         OkHttpClient Iv_OkHttp_client = new OkHttpClient();
         final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
 
         JSONObject jsonObject = new JSONObject();
-        Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
+        Log.d(CDictionary.Debug_TAG,"CREATE JSON OBJ: "+jsonObject.toString());
         try {
-            jsonObject.put("UserName", "test04");
-            Log.d(CDictionary.Debug_TAG,"GET PSWDCFM : "+jsonObject.optString("ConfirmPassword"));
+            jsonObject.put("UserName", input_username.getText().toString());
+            Log.d(CDictionary.Debug_TAG,"USERNAME: "+jsonObject.optString("UserName"));
             jsonObject.put("Email", input_email.getText().toString());
-            Log.d(CDictionary.Debug_TAG,"GET EMAIL: "+jsonObject.optString("Email"));
+            Log.d(CDictionary.Debug_TAG,"EMAIL: "+jsonObject.optString("Email"));
             jsonObject.put("Password", input_password.getText().toString());
-            Log.d(CDictionary.Debug_TAG,"GET PSWD : "+jsonObject.optString("Password"));
+            Log.d(CDictionary.Debug_TAG,"PASSWORD: "+jsonObject.optString("Password"));
             jsonObject.put("ConfirmPassword", input_cfmpassword.getText().toString());
-            Log.d(CDictionary.Debug_TAG,"GET PSWDCFM : "+jsonObject.optString("ConfirmPassword"));
+            Log.d(CDictionary.Debug_TAG,"CFMPASSWORD: "+jsonObject.optString("ConfirmPassword"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
+        Log.d(CDictionary.Debug_TAG,"JSON STRING: "+jsonObject.toString());
                 Request postRequest = new Request.Builder()
                         .url("http://twpetanimal.ddns.net:9487/api/v1/Account/Register")
                         .addHeader("Accept", "application/json")
@@ -137,7 +137,7 @@ public class ActRegister extends AppCompatActivity {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         final String json = response.body().string();
-                        Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
+                        Log.d(CDictionary.Debug_TAG,"(REGISTER)RESPONSE BODY: "+json);
                         requestForToken();
                     }
                     @Override
@@ -152,13 +152,12 @@ public class ActRegister extends AppCompatActivity {
         final MediaType Iv_MTyp_JSON = MediaType.parse("txt; charset=utf-8");
 
         String requestStr = "";
-        //requestStr += "username="+input_email.getText().toString();
-        requestStr += "username=test05";
+        requestStr += "username="+input_username.getText().toString();
         requestStr += "&password="+input_password.getText().toString();
         requestStr += "&grant_type=password";
-        Log.d(CDictionary.Debug_TAG,"GET POST BODY : "+requestStr);
 
         RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,requestStr);
+        Log.d(CDictionary.Debug_TAG,"POST BODY : "+requestStr);
         Request postRequest = new Request.Builder()
                 .url("http://twpetanimal.ddns.net:9487/token")
                 .addHeader("Content-Type","application/x-www-form-urlencoded")
@@ -170,11 +169,10 @@ public class ActRegister extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String reponseMsg = response.body().string();
-                Log.d(CDictionary.Debug_TAG,"GET RESPONSE: "+reponseMsg);
+                Log.d(CDictionary.Debug_TAG,"(TOKEN)RESPONSE BODY: "+reponseMsg);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        //String access_token = "";
                         try {
                             JSONObject jObj = new JSONObject(reponseMsg);
                             access_token = jObj.getString("access_token");
@@ -183,27 +181,6 @@ public class ActRegister extends AppCompatActivity {
                         }
                         if(access_token != ""){
                             requestForUserInfo();
-                            SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
-                            String[] strArray = input_email.getText().toString().split("@");
-                            userInfo.edit().putString(CDictionary.SK_username,strArray[0])
-                                    .putString(CDictionary.SK_token,access_token)
-                                    .putString(CDictionary.SK_userid,input_email.getText().toString())
-                                    .commit();
-                            String name = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"訪客");
-                            String access = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
-                            Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF NAME: "+name);
-                            Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF TOKEN: "+access);
-                            Log.d(CDictionary.Debug_TAG,"GET SHAREDPREF ID: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,""));
-                            AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
-                            dialog.setTitle("註冊成功");
-                            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(ActRegister.this, ActHomePage.class);
-                                    startActivity(intent);
-                                }
-                            });
-                            dialog.create().show();
                         } else{
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
                             dialog.setTitle("註冊失敗");
@@ -220,7 +197,7 @@ public class ActRegister extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+                Log.d(CDictionary.Debug_TAG,"REQUEST FOR TOKEN FAIL......");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -240,48 +217,78 @@ public class ActRegister extends AppCompatActivity {
 
     public void requestForUserInfo(){
         OkHttpClient Iv_OkHttp_client = new OkHttpClient();
-        final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
+        //final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
 
-//        JSONObject jsonObject = new JSONObject();
-//        Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
-//        try {
-//            jsonObject.put("Email", input_email.getText().toString());
-//            Log.d(CDictionary.Debug_TAG,"GET EMAIL: "+jsonObject.optString("Email"));
-//            jsonObject.put("Password", input_password.getText().toString());
-//            Log.d(CDictionary.Debug_TAG,"GET PSWD : "+jsonObject.optString("Password"));
-//            jsonObject.put("ConfirmPassword", input_cfmpassword.getText().toString());
-//            Log.d(CDictionary.Debug_TAG,"GET PSWDCFM : "+jsonObject.optString("ConfirmPassword"));
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-
-        //RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
-        Request postRequest = new Request.Builder()
+        Request getRequest = new Request.Builder()
                 .url("http://twpetanimal.ddns.net:9487/api/v1/Account/UserInfo")
                 .addHeader("Accept", "application/json")
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization","Bearer "+access_token)
                 .get()
                 .build();
+        Log.d(CDictionary.Debug_TAG,"BEARER TOKEN: "+access_token);
 
-        Call call = Iv_OkHttp_client.newCall(postRequest);
+        Call call = Iv_OkHttp_client.newCall(getRequest);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final String json = response.body().string();
-                Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
-
+                final String reponseMsg = response.body().string();
+                Log.d(CDictionary.Debug_TAG,"(USERINFO)RESPONSE BODY: "+reponseMsg);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            JSONObject jObj = new JSONObject(reponseMsg);
+                            Email = jObj.getString("Email");
+                            UserName = jObj.getString("UserName");
+                            UserId = jObj.getString("UserId");
+                            HasRegistered = jObj.getString("HasRegistered");
+                            LoginProvider = jObj.getString("LoginProvider");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
+                        userInfo.edit().putString(CDictionary.SK_username,input_username.getText().toString())
+                                .putString(CDictionary.SK_token,access_token)
+                                .putString(CDictionary.SK_userid,UserId)
+                                .putString(CDictionary.SK_useremail,Email)
+                                .commit();
+                        Log.d(CDictionary.Debug_TAG,"測試暫存 USERNAME: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,""));
+                        Log.d(CDictionary.Debug_TAG,"測試暫存 TOKEN: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,""));
+                        Log.d(CDictionary.Debug_TAG,"測試暫存 USERID: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,""));
+                        Log.d(CDictionary.Debug_TAG,"測試暫存 EMAIL: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_useremail,""));
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
+                        dialog.setTitle("註冊成功");
+                        dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(ActRegister.this, ActHomePage.class);
+                                startActivity(intent);
+                            }
+                        });
+                        dialog.create().show();
+                    }
+                });
             }
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+                Log.d(CDictionary.Debug_TAG,"GET USERINFO FAIL......");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
+                dialog.setTitle("註冊失敗");
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                dialog.create().show();
             }
         });
-
     }
 
     public String checkInput() {
         String emptyInputField = "尚未填寫以下欄位:\n";
+        emptyInputField += input_username.getText().toString().isEmpty() ? "暱稱\n" : "";
         emptyInputField += input_email.getText().toString().isEmpty() ? "電子郵件\n" : "";
         emptyInputField += input_password.getText().toString().isEmpty() ? "密碼\n" : "";
         emptyInputField += input_cfmpassword.getText().toString().isEmpty() ? "確認密碼\n" : "";
@@ -295,8 +302,9 @@ public class ActRegister extends AppCompatActivity {
         input_email = (EditText)findViewById(R.id.input_email);
         input_password = (EditText)findViewById(R.id.input_password);
         input_cfmpassword = (EditText)findViewById(R.id.input_cfmpassword);
+        input_username = (EditText)findViewById(R.id.input_username);
     }
 
-    EditText input_email,input_password,input_cfmpassword;
+    EditText input_email,input_password,input_cfmpassword,input_username;
     Button btnSubmit;
 }
