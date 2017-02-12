@@ -72,11 +72,12 @@
             android:name=".ActMsgShow"
             android:label="@string/title_activity_act_msg_show"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
-        <activity android:name=".ActMsgInput" />
+        <activity
+            android:name=".ActMsgInput"
+            android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
         <activity
             android:name=".ActAdoptUploadList"
-            android:label="@string/title_activity_act_adopt_upload_list"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_act_adopt_upload_list" />
         <activity
             android:name=".ActAdoptEdit"
             android:label="@string/title_activity_act_adopt_edit"

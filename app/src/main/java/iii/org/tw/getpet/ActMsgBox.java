@@ -66,7 +66,7 @@ public class ActMsgBox extends AppCompatActivity {
         UserId = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
         Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
         access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
-        Log.d(CDictionary.Debug_TAG,"GET USER ID："+access_token);
+        Log.d(CDictionary.Debug_TAG,"GET USER TOKEN："+access_token);
 
         getDatafromServer();
     }

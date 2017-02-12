@@ -11,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.androidnetworking.AndroidNetworking;
@@ -29,16 +31,20 @@ import model.UserMsg;
 import model.object_petDataForSelfDB;
 
 public class ActAdoptUploadList extends AppCompatActivity {
-    ArrayList<object_petDataForSelfDB> myDataset = new ArrayList<object_petDataForSelfDB>();
+    //ArrayList<object_petDataForSelfDB> myDataset = new ArrayList<object_petDataForSelfDB>();
+    ArrayList<AdoptPair> myDataset = new ArrayList<AdoptPair>();
     String name, id, token;
     AdoptUploadListAdapter adapter;
     RecyclerView recyclerList;
-    String url = "http://twpetanimal.ddns.net:9487/api/v1/MsgUsers";
+    String url = "http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_adopt_upload_list);
+        setTitle("送養清單");
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         //初始化元件
         recyclerList = (RecyclerView) findViewById(R.id.adoptUploadList_view);
@@ -73,15 +79,15 @@ public class ActAdoptUploadList extends AppCompatActivity {
                 .setTag(this)
                 .setPriority(Priority.HIGH)
                 .build()
-                .getAsParsed(new TypeToken<ArrayList<object_petDataForSelfDB>>() {
+                .getAsParsed(new TypeToken<ArrayList<AdoptPair>>() {
                              },
-                        new ParsedRequestListener<ArrayList<object_petDataForSelfDB>>() {
+                        new ParsedRequestListener<ArrayList<AdoptPair>>() {
                             @Override
-                            public void onResponse(ArrayList<object_petDataForSelfDB> response) {
+                            public void onResponse(ArrayList<AdoptPair> response) {
                                 String size = String.format("%d", response.size());
                                 Log.d(CDictionary.Debug_TAG, size);
                                 if (response.size() > 0) {
-                                    for (object_petDataForSelfDB rs : response) {
+                                    for (AdoptPair rs : response) {
                                         myDataset.add(rs);
                                         Log.d(CDictionary.Debug_TAG, "GET PET: "+rs.getAnimalID());
                                     }
@@ -106,6 +112,22 @@ public class ActAdoptUploadList extends AppCompatActivity {
 
                             }
                         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_default, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_backtohome) {
+            Intent intent = new Intent(this, ActHomePage.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

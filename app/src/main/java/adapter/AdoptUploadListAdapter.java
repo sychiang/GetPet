@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import common.CDictionary;
+import iii.org.tw.getpet.ActAdoptEdit;
 import iii.org.tw.getpet.ActHomePage;
 import iii.org.tw.getpet.R;
 import model.AdoptPair;
@@ -26,11 +27,12 @@ import model.object_petDataForSelfDB;
  */
 
 public class AdoptUploadListAdapter extends RecyclerView.Adapter<AdoptUploadListAdapter.ViewHolder> {
-    private List<object_petDataForSelfDB> mData;
+    //private List<object_petDataForSelfDB> mData;
+    private List<AdoptPair> mData;
     private Context mContext;
     private LayoutInflater inflater;
 
-    public AdoptUploadListAdapter(List<object_petDataForSelfDB> data) {
+    public AdoptUploadListAdapter(List<AdoptPair> data) {
         this.mData = data;
     }
 
@@ -62,8 +64,10 @@ public class AdoptUploadListAdapter extends RecyclerView.Adapter<AdoptUploadList
             public void onClick(View v) {
                 int position = vholder.getAdapterPosition();
 
-                Intent intent = new Intent(mContext, ActHomePage.class);
-                intent.putExtra("object_ConditionOfAdoptPet_objA",mData.get(position));
+                Intent intent = new Intent(mContext, ActAdoptEdit.class);
+                Bundle bundle = new Bundle();
+
+                //intent.putExtra("object_ConditionOfAdoptPet_objA",mData.get(position));
                 mContext.startActivity(intent);
             }
         });
@@ -73,7 +77,7 @@ public class AdoptUploadListAdapter extends RecyclerView.Adapter<AdoptUploadList
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        object_petDataForSelfDB item = mData.get(position);
+        AdoptPair item = mData.get(position);
         holder.tv_upload_name.setText(item.getAnimalName());
         holder.tv_upload_date.setText(item.getAnimalDate());
         if(item.getAnimalData_Pic().size()>0){

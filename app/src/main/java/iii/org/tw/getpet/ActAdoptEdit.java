@@ -790,13 +790,9 @@ public class ActAdoptEdit extends AppCompatActivity {
         //********
         CountDownLatch latch = new CountDownLatch(iv_int_countHowManyPicNeedUpload);//N个工人的协作
         Log.d("", "進入uploadImageAndGetSiteBack");
-
         for (int i = 0; i < selectedImgForUploadArray.length; i++) {
-
             if (selectedImgForUploadArray[i] == true) {
-
                 // Toast.makeText(ScrollingActivity.this, selectedImgForUploadArray[i]==true? "True: "+i:"sFalse : "+i, Toast.LENGTH_SHORT).show();
-
                 //Drawable drawable = imgBtnArray[i].getBackground();
                 //bitmapArray[i] = ((BitmapDrawable) imgBtnArray[i].getDrawable()).getBitmap();
                 String bitmapStream = transBitmapToStream(bitmapArray[i]);
@@ -805,7 +801,6 @@ public class ActAdoptEdit extends AppCompatActivity {
                 uploadImgByCallable l_uploadImgByCallable = new uploadImgByCallable(bitmapStream, latch);
                 l_uploadImgByCallable.start();
             }
-
         }
         latch.await();
         Log.d(" await完畢", " ");
@@ -831,7 +826,6 @@ public class ActAdoptEdit extends AppCompatActivity {
     class uploadImgByCallable extends Thread {
         String image;
         CountDownLatch latch;
-
         public uploadImgByCallable(String p_image, CountDownLatch p_latch) {
             this.image = p_image;
             this.latch = p_latch;
@@ -855,8 +849,6 @@ public class ActAdoptEdit extends AppCompatActivity {
             String mashapeKey = ""; //設定自己的 Mashape Key
             String clientId = ""; //設定自己的 Clinet ID
             String titleString = "GetPet" + strDate; //設定圖片的標題
-
-
             SyncHttpClient client0 = new SyncHttpClient();
             client0.addHeader("X-Mashape-Key", mashapeKey);
             client0.addHeader("Authorization", "Client-ID " + clientId);
@@ -870,12 +862,10 @@ public class ActAdoptEdit extends AppCompatActivity {
             client0.post(urlString, params, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-
                     if (!response.optBoolean("success") || !response.has("data")) {
                         Log.d("editor", "response: " + response.toString());
                         return;
                     }
-
                     JSONObject data = response.optJSONObject("data");
                     String link = data.optString("link", "");
                     int width = data.optInt("width", 0);
@@ -889,8 +879,6 @@ public class ActAdoptEdit extends AppCompatActivity {
 
                 @Override
                 public void onFailure(int statusCode, Header[] headers, Throwable e, JSONObject error) {
-
-                    Log.d("上傳圖片失敗", "");
                     Log.d("上傳圖片失敗", "");
                 }
             });

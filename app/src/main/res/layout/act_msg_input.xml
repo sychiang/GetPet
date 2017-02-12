@@ -29,7 +29,7 @@
             android:id="@+id/tv_msgTo_userName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="400dp" />
+            android:minWidth="200dp" />
 
     </LinearLayout>
 
@@ -49,10 +49,11 @@
 
         <EditText
             android:inputType="text"
+
             android:id="@+id/edTxt_msgContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="400dp" />
+            android:minWidth="200dp" />
 
     </LinearLayout>
     <Button

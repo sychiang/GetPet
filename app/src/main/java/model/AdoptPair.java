@@ -10,30 +10,33 @@ import java.util.List;
 public class AdoptPair implements Serializable {
 
     /**
-     * animalID : 1
-     * animalName : 小黃
-     * animalAddress : 高雄
-     * animalDate : 20170103
-     * animalGender : 母
-     * animalAge : 3
-     * animalColor : 黃色
-     * animalBirth : 否、沒有生產過
-     * animalChip : 否
-     * animalHealthy : 健康
-     * animalDisease_Other : 已做體內外驅蟲、打過第一劑
-     * animalOwner_userID : 1
-     * animalReason : 愛媽救援的浪浪
-     * animalGetter_userID : 1
-     * animalAdopted : no
-     * animalAdoptedDate : null
-     * animalNote : 需要先收取結紮保證金1000元、結紮後退還。活潑健康、但不喜歡被關籠（關籠會叫）、不挑食、聰明乖巧、學習快。請大家多多幫忙分享，年前送不出去就要原放，希望她別再流浪
-     * animalKind : 狗
-     * animalType : 米克斯
-     * animalData_Pic : [{"animalPicID":1,"animalPic_animalID":1,"animalPicAddress":"http://i.imgur.com/8tnbGMR.jpg"},{"animalPicID":2,"animalPic_animalID":1,"animalPicAddress":"http://i.imgur.com/lmtEwvp.jpg"},{"animalPicID":3,"animalPic_animalID":1,"animalPicAddress":"http://i.imgur.com/QhV5fZa.jpg"},{"animalPicID":9,"animalPic_animalID":1,"animalPicAddress":"http://i.imgur.com/8tnbGMR.jpg"},{"animalPicID":10,"animalPic_animalID":1,"animalPicAddress":"http://i.imgur.com/lmtEwvp.jpg"},{"animalPicID":11,"animalPic_animalID":1,"animalPicAddress":"http://i.imgur.com/QhV5fZa.jpg"}]
-     * animalData_Condition : [{"conditionID":1,"condition_animalID":1,"conditionAge":"不限","conditionEconomy":"需有穩定收入","conditionHome":"不限","conditionFamily":"不限","conditionReply":"不限","conditionPaper":"不限","conditionFee":"不限","conditionOther":"不限"}]
+     * animalID : 0
+     * animalKind : string
+     * animalType : string
+     * animalName : string
+     * animalAddress : string
+     * animalDate : string
+     * animalGender : string
+     * animalAge : 0
+     * animalColor : string
+     * animalBirth : string
+     * animalChip : string
+     * animalHealthy : string
+     * animalDisease_Other : string
+     * animalOwner_userID : string
+     * animalReason : string
+     * animalGetter_userID : string
+     * animalAdopted : string
+     * animalAdoptedDate : string
+     * animalNote : string
+     * animalData_Pic : [{"animalPicID":0,"animalPic_animalID":0,"animalPicAddress":"string"}]
+     * animalData_Condition : [{"conditionID":0,"condition_animalID":0,"conditionAge":"string","conditionEconomy":"string","conditionHome":"string","conditionFamily":"string","conditionReply":"string","conditionPaper":"string","conditionFee":"string","conditionOther":"string"}]
+     * board : [{"boardID":0,"boardTime":"string","board_userID":"string","board_animalID":0,"boardContent":"string"}]
      */
 
     private int animalID;
+    private String animalKind;
+    private String animalType;
     private String animalName;
     private String animalAddress;
     private String animalDate;
@@ -48,12 +51,11 @@ public class AdoptPair implements Serializable {
     private String animalReason;
     private String animalGetter_userID;
     private String animalAdopted;
-    private Object animalAdoptedDate;
+    private String animalAdoptedDate;
     private String animalNote;
-    private String animalKind;
-    private String animalType;
     private List<AnimalDataPicBean> animalData_Pic;
     private List<AnimalDataConditionBean> animalData_Condition;
+    private List<BoardBean> board;
 
     public int getAnimalID() {
         return animalID;
@@ -61,6 +63,22 @@ public class AdoptPair implements Serializable {
 
     public void setAnimalID(int animalID) {
         this.animalID = animalID;
+    }
+
+    public String getAnimalKind() {
+        return animalKind;
+    }
+
+    public void setAnimalKind(String animalKind) {
+        this.animalKind = animalKind;
+    }
+
+    public String getAnimalType() {
+        return animalType;
+    }
+
+    public void setAnimalType(String animalType) {
+        this.animalType = animalType;
     }
 
     public String getAnimalName() {
@@ -175,11 +193,11 @@ public class AdoptPair implements Serializable {
         this.animalAdopted = animalAdopted;
     }
 
-    public Object getAnimalAdoptedDate() {
+    public String getAnimalAdoptedDate() {
         return animalAdoptedDate;
     }
 
-    public void setAnimalAdoptedDate(Object animalAdoptedDate) {
+    public void setAnimalAdoptedDate(String animalAdoptedDate) {
         this.animalAdoptedDate = animalAdoptedDate;
     }
 
@@ -189,22 +207,6 @@ public class AdoptPair implements Serializable {
 
     public void setAnimalNote(String animalNote) {
         this.animalNote = animalNote;
-    }
-
-    public String getAnimalKind() {
-        return animalKind;
-    }
-
-    public void setAnimalKind(String animalKind) {
-        this.animalKind = animalKind;
-    }
-
-    public String getAnimalType() {
-        return animalType;
-    }
-
-    public void setAnimalType(String animalType) {
-        this.animalType = animalType;
     }
 
     public List<AnimalDataPicBean> getAnimalData_Pic() {
@@ -223,11 +225,19 @@ public class AdoptPair implements Serializable {
         this.animalData_Condition = animalData_Condition;
     }
 
+    public List<BoardBean> getBoard() {
+        return board;
+    }
+
+    public void setBoard(List<BoardBean> board) {
+        this.board = board;
+    }
+
     public static class AnimalDataPicBean {
         /**
-         * animalPicID : 1
-         * animalPic_animalID : 1
-         * animalPicAddress : http://i.imgur.com/8tnbGMR.jpg
+         * animalPicID : 0
+         * animalPic_animalID : 0
+         * animalPicAddress : string
          */
 
         private int animalPicID;
@@ -261,16 +271,16 @@ public class AdoptPair implements Serializable {
 
     public static class AnimalDataConditionBean {
         /**
-         * conditionID : 1
-         * condition_animalID : 1
-         * conditionAge : 不限
-         * conditionEconomy : 需有穩定收入
-         * conditionHome : 不限
-         * conditionFamily : 不限
-         * conditionReply : 不限
-         * conditionPaper : 不限
-         * conditionFee : 不限
-         * conditionOther : 不限
+         * conditionID : 0
+         * condition_animalID : 0
+         * conditionAge : string
+         * conditionEconomy : string
+         * conditionHome : string
+         * conditionFamily : string
+         * conditionReply : string
+         * conditionPaper : string
+         * conditionFee : string
+         * conditionOther : string
          */
 
         private int conditionID;
@@ -364,4 +374,60 @@ public class AdoptPair implements Serializable {
             this.conditionOther = conditionOther;
         }
     }
+
+//    public static class BoardBean {
+//        /**
+//         * boardID : 0
+//         * boardTime : string
+//         * board_userID : string
+//         * board_animalID : 0
+//         * boardContent : string
+//         */
+//
+//        private int boardID;
+//        private String boardTime;
+//        private String board_userID;
+//        private int board_animalID;
+//        private String boardContent;
+//
+//        public int getBoardID() {
+//            return boardID;
+//        }
+//
+//        public void setBoardID(int boardID) {
+//            this.boardID = boardID;
+//        }
+//
+//        public String getBoardTime() {
+//            return boardTime;
+//        }
+//
+//        public void setBoardTime(String boardTime) {
+//            this.boardTime = boardTime;
+//        }
+//
+//        public String getBoard_userID() {
+//            return board_userID;
+//        }
+//
+//        public void setBoard_userID(String board_userID) {
+//            this.board_userID = board_userID;
+//        }
+//
+//        public int getBoard_animalID() {
+//            return board_animalID;
+//        }
+//
+//        public void setBoard_animalID(int board_animalID) {
+//            this.board_animalID = board_animalID;
+//        }
+//
+//        public String getBoardContent() {
+//            return boardContent;
+//        }
+//
+//        public void setBoardContent(String boardContent) {
+//            this.boardContent = boardContent;
+//        }
+//    }
 }
