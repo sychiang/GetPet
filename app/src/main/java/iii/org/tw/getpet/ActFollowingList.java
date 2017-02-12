@@ -34,7 +34,7 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
     ArrayList<Following> showlist = new ArrayList<Following>();
     ListView listview;
     FollowingListAdapter adapter;
-    String name, id;
+    private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
 
     //listView 分頁加載
     private Button btn_load;
@@ -54,6 +54,14 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
         //Intent intent = getIntent();
         String url = "http://twpetanimal.ddns.net:9487/api/v1/followAnis";   //改成追蹤清單的API
 
+        //取得使用者基本資料
+        UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+UserName);
+        UserId = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
+        access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER TOKEN："+access_token);
+
         listview = (ListView) findViewById(R.id.followlist);
         // 實例化底部布局
         moreView = getLayoutInflater().inflate(R.layout.loadmoredata, null);
@@ -61,11 +69,11 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
         pg = (ProgressBar) moreView.findViewById(R.id.pg);
         handler = new Handler();
 
-        name = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
-        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+name);
-        id = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
-        Log.d(CDictionary.Debug_TAG,"GET USER ID："+id);
-        //url += "/"+id;
+        UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+UserName);
+        UserId = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
+        url += "/"+UserId;
         Log.d(CDictionary.Debug_TAG,"GET URL："+url);
 
         //取回JSON資料存入集合
