@@ -36,7 +36,7 @@ public class ActMsgShow extends AppCompatActivity {
             msg_sender.setText(msgFrom_userName);
             msg_content.setText(msgContent);
         }
-        if((msgType.equals("留言板通知"))){
+        if((msgType.equals("留言板通知")) || (msgType.equals("系統通知"))){
             btnReply.setVisibility(View.GONE);
         }
 
