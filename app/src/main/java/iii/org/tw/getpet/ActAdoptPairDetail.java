@@ -46,6 +46,7 @@ public class ActAdoptPairDetail extends AppCompatActivity {
     LayoutInflater inflater;
     Context mContext = ActAdoptPairDetail.this;
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
+    String animalid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class ActAdoptPairDetail extends AppCompatActivity {
         setSupportActionBar(toolbar);
         intent = getIntent();
         setTitle("找一個家的"+intent.getExtras().getString(CDictionary.BK_animalName));
+        animalid = intent.getExtras().getString(CDictionary.BK_animalID);
         initComponent();
         //取得使用者基本資料
         UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
@@ -155,11 +157,14 @@ public class ActAdoptPairDetail extends AppCompatActivity {
             dialog.create().show();
         }
     };
-    //我要留言
+    //留言板
     View.OnClickListener btnLeaveMsg_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            //我要留言
-
+            Intent intent = new Intent(ActAdoptPairDetail.this,ActBoardList.class);
+            Bundle bundle = new Bundle();
+            bundle.putString(CDictionary.BK_animalID,animalid);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
     };
     //我要追蹤

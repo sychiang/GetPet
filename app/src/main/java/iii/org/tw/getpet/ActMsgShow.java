@@ -102,6 +102,12 @@ public class ActMsgShow extends AppCompatActivity {
                     deleteMsg();
                 }
             });
+            dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
             dialog.create().show();
         }
     };

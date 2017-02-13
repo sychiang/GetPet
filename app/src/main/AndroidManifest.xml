@@ -81,7 +81,10 @@
         <activity
             android:name=".ActAdoptEdit"
             android:label="@string/title_activity_act_adopt_edit"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActBoardList"
+            android:label="@string/title_activity_act_board_list" />
     </application>
 
 </manifest>

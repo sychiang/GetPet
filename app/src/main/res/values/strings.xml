@@ -104,5 +104,6 @@
     <string name="title_activity_act_msg_show">ActMsgShow</string>
     <string name="title_activity_act_adopt_upload_list">ActAdoptUploadList</string>
     <string name="title_activity_act_adopt_edit">ActAdoptEdit</string>
+    <string name="title_activity_act_board_list">ActBoardList</string>
 
 </resources>

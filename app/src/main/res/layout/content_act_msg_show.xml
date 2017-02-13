@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/delete_icon"
         android:background="@drawable/deletebtn_style"
-        android:text="刪除"
+        android:text=""
         android:textSize="20sp"/>
 
     <Button

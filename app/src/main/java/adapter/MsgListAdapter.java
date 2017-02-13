@@ -160,7 +160,4 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.ViewHold
         return mData.size();
     }
 
-
-
-
 }
