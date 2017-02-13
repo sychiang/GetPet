@@ -26,12 +26,14 @@
             android:layout_height="match_parent"
             android:text="留言內容：" />
 
+
         <EditText
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:id="@+id/edTxt_boardContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="200dp" />
+            android:minWidth="400dp" />
+
 
     </LinearLayout>
     <Button

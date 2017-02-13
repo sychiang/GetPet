@@ -29,10 +29,8 @@ import okhttp3.Response;
 
 public class ActMsgShow extends AppCompatActivity {
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
-
     private String msgID, msgTime, msgFrom_userID, msgFrom_userName, msgTo_userID, msgType, msgFromURL, msgContent, msgRead;
     private  int msg_id;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +75,7 @@ public class ActMsgShow extends AppCompatActivity {
             //finish();
             Intent intent = new Intent(ActMsgShow.this, ActMsgBox.class);
             startActivity(intent);
+            finish();
         }
     };
 
@@ -102,12 +101,7 @@ public class ActMsgShow extends AppCompatActivity {
                     deleteMsg();
                 }
             });
-            dialog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
+            dialog.setNegativeButton("取消", null);
             dialog.create().show();
         }
     };
@@ -140,6 +134,7 @@ public class ActMsgShow extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(ActMsgShow.this,ActMsgBox.class);
                                 startActivity(intent);
+                                finish();
                             }
                         });
                         dialog.create().show();
@@ -161,6 +156,8 @@ public class ActMsgShow extends AppCompatActivity {
             }
         });
     }
+
+
 
     public void initComponent(){
         btnOK = (Button)findViewById(R.id.btnOK);

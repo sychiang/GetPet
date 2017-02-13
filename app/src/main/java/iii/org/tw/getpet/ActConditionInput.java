@@ -50,8 +50,9 @@ public class ActConditionInput extends AppCompatActivity {
         edTxt_conditionOther=(EditText)findViewById(R.id.edTxt_conditionOther);
         //*****
         Intent l_intent = getIntent();
-        object_ConditionOfAdoptPet l_object_ConditionOfAdoptPet = (object_ConditionOfAdoptPet)l_intent.getSerializableExtra("l_object_ConditionOfAdoptPet_objA");
-        if(l_object_ConditionOfAdoptPet != null){
+        if(l_intent.getSerializableExtra("l_object_ConditionOfAdoptPet_objA")!= null){
+            object_ConditionOfAdoptPet l_object_ConditionOfAdoptPet = (object_ConditionOfAdoptPet)l_intent.getSerializableExtra("l_object_ConditionOfAdoptPet_objA");
+
             edTxt_conditionAge.setText(l_object_ConditionOfAdoptPet.getConditionAge());
             edTxt_conditionEconomy.setText(l_object_ConditionOfAdoptPet.getConditionEconomy());
             edTxt_conditionHome.setText(l_object_ConditionOfAdoptPet.getConditionHome());

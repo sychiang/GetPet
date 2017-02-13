@@ -11,15 +11,29 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import common.CDictionary;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class ActBoardInput extends AppCompatActivity {
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
+    String animalid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_board_input);
+        setTitle("");
         initComponent();
 
         UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
@@ -28,6 +42,10 @@ public class ActBoardInput extends AppCompatActivity {
         Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
         access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
         Log.d(CDictionary.Debug_TAG,"GET USER ID："+access_token);
+
+        Intent intent = getIntent();
+        animalid = intent.getExtras().getString(CDictionary.BK_animalID);
+
 
     }
 
@@ -51,7 +69,7 @@ public class ActBoardInput extends AppCompatActivity {
                                         })
                                         .show();
                             }else {
-                                //sendRequestToServer();
+                                sendRequestToServer();
                             }
                         }
                     })
@@ -60,8 +78,85 @@ public class ActBoardInput extends AppCompatActivity {
         }
     };
 
+    public void sendRequestToServer(){
+        OkHttpClient Iv_OkHttp_client = new OkHttpClient();
+        final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
+
+        JSONObject jsonObject = new JSONObject();
+        Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
+        try {
+            jsonObject.put("boardID", 0);
+            Log.d(CDictionary.Debug_TAG,"GET boardID: "+jsonObject.optString("boardID"));
+            jsonObject.put("boardTime","");
+            Log.d(CDictionary.Debug_TAG,"GET boardTime: "+jsonObject.optString("boardTime"));
+            jsonObject.put("board_userID", UserId);
+            Log.d(CDictionary.Debug_TAG,"GET board_userID: "+jsonObject.optString("board_userID"));
+            jsonObject.put("board_animalID", animalid);
+            Log.d(CDictionary.Debug_TAG,"GET board_animalID: "+jsonObject.optString("board_animalID"));
+            jsonObject.put("boardContent", edTxt_boardContent.getText().toString());
+            Log.d(CDictionary.Debug_TAG,"GET boardContent: "+jsonObject.optString("boardContent"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
+        Log.d(CDictionary.Debug_TAG,"GET JSON STRING: "+jsonObject.toString());
+        Request postRequest = new Request.Builder()
+                .url("http://twpetanimal.ddns.net:9487/api/v1/boards")
+                .addHeader("Accept", "application/json")
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization","Bearer "+access_token)
+                .post(requestBody)
+                .build();
+
+        Call call = Iv_OkHttp_client.newCall(postRequest);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String json = response.body().string();
+                Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActBoardInput.this);
+                        dialog.setTitle("留言已送出");
+                        dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                goBoardList();
+                                finish();
+                            }
+                        });
+                        dialog.create().show();
+                    }
+                });
+            }
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActBoardInput.this);
+                dialog.setTitle("留言傳送失敗, 請稍後再試");
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                dialog.create().show();
+            }
+        });
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+    }
+
     private void goBoardList() {
         Intent intent = new Intent(ActBoardInput.this, ActBoardList.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(CDictionary.BK_animalID,animalid);
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 

@@ -12,13 +12,13 @@
     tools:context="iii.org.tw.getpet.ActLogin">
 
     <TextView
+        android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:id="@+id/tv_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20pt"
-        android:visibility="gone"
-        android:text="訪客"
+        android:text="您尚未登入本系統"
         android:textSize="25sp"/>
 
     <android.support.design.widget.TextInputLayout
@@ -33,7 +33,7 @@
             android:id="@+id/input_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Account ID / Email" />
+            android:hint="Account / 帳號(暱稱)" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:hint="Password" />
+            android:hint="Password / 密碼" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatButton
@@ -57,7 +57,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:text="Sign In" />
+        android:text="Sign In / 登入" />
+
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
@@ -65,7 +66,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:visibility="gone"
-        android:text="Sign Out" />
+        android:text="Sign Out / 登出" />
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_register"
@@ -73,22 +74,22 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:text="Sign Up" />
+        android:text="Sign Up / 註冊" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:text="TEST" />
+    <!--<android.support.v7.widget.AppCompatButton-->
+        <!--android:id="@+id/btn_test"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="TEST" />-->
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/btn_FBlogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
+    <!--<com.facebook.login.widget.LoginButton-->
+        <!--android:id="@+id/btn_FBlogin"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:layout_marginBottom="30dp" />-->
 
 </LinearLayout>

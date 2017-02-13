@@ -12,7 +12,6 @@
     tools:context="iii.org.tw.getpet.ActRegister">
 
     <LinearLayout
-        android:layout_margin="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -38,7 +37,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -48,17 +47,17 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical|right"
             android:paddingRight="10px"
-            android:text="暱稱"
-            android:textSize="20dp"/>
+            android:text="帳號(暱稱)"
+            android:textSize="18dp"/>
 
         <EditText
             android:id="@+id/input_username"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:gravity="center_vertical"
-            android:hint="至少兩個字元不可有特殊符號"
+            android:hint="至少為2個字元, 最多8個"
             android:inputType="text"
-            android:maxLength="10"
+            android:maxLength="8"
             android:paddingLeft="10px"
             android:background="@drawable/edittext_style"
             android:minWidth="400dp"/>
@@ -66,7 +65,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -77,7 +76,7 @@
             android:gravity="center_vertical|right"
             android:paddingRight="10px"
             android:text="電子郵件"
-            android:textSize="20dp"/>
+            android:textSize="18dp"/>
 
         <EditText
             android:id="@+id/input_email"
@@ -93,7 +92,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -104,7 +103,7 @@
             android:gravity="center_vertical|right"
             android:paddingRight="10px"
             android:text="密碼"
-            android:textSize="20dp"/>
+            android:textSize="18dp"/>
 
         <EditText
             android:id="@+id/input_password"
@@ -120,7 +119,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -131,7 +130,7 @@
             android:gravity="center_vertical|right"
             android:paddingRight="10px"
             android:text="確認密碼"
-            android:textSize="20dp"/>
+            android:textSize="18dp"/>
 
         <EditText
             android:id="@+id/input_cfmpassword"
@@ -145,7 +144,7 @@
 
     </LinearLayout>
     <LinearLayout
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -164,6 +163,19 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:text="註冊"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="1. 帳號(暱稱): 長度至少為2個字元, 最多8個\n2. 密碼: 長度至少為6個字元，可使用下列四種字元：\n   英文大寫字元(A-Z)、英文小寫字元(a-z)\n   10個基本數字(0-9)、非英文字母字元(ex:!、$、#、%)\n"/>
 
     </LinearLayout>
 

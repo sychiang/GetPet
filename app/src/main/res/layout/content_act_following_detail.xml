@@ -30,6 +30,7 @@
                 android:layout_marginBottom="20dp" >
 
                 <ImageView
+                    android:src="@drawable/default_nopic"
                     android:layout_gravity="center"
                     android:id="@+id/ivPhotoOne"
                     android:layout_width="800px"
@@ -37,6 +38,7 @@
                     android:scaleType="fitCenter" />
 
                 <ImageView
+                    android:src="@drawable/default_nopic"
                     android:layout_gravity="center"
                     android:id="@+id/ivPhotoTwo"
                     android:layout_width="800px"
@@ -45,6 +47,7 @@
                      />
 
                 <ImageView
+                    android:src="@drawable/default_nopic"
                     android:layout_gravity="center"
                     android:id="@+id/ivPhotoThree"
                     android:layout_width="800px"

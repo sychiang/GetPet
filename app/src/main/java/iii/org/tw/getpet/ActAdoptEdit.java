@@ -210,10 +210,10 @@ public class ActAdoptEdit extends AppCompatActivity {
         }
         iv_forCountIn塞圖片到imageButton = 0;
         //final CountDownLatch l_latch = new CountDownLatch(p_object_petDataForSelfDB.getAnimalData_Pic().size());
-        Log.d("++++ length", p_object_petDataForSelfDB.getAnimalData_Pic().size() + "");
+        //Log.d("++++ length", p_object_petDataForSelfDB.getAnimalData_Pic().size() + "");
 
         for (final object_OfPictureImgurSite obj : p_object_petDataForSelfDB.getAnimalData_Pic()) {
-            if (obj.getAnimalPicAddress().length() != 0) {
+            if (obj.getAnimalPicAddress().length() != 0&& iv_forCountIn塞圖片到imageButton<5) {
                 Glide.with(this).load(obj.getAnimalPicAddress()).into(p_ImageButtonArray[iv_forCountIn塞圖片到imageButton]);
                 Thread thread = new Thread(new Runnable() {
                     @Override
@@ -512,14 +512,20 @@ public class ActAdoptEdit extends AppCompatActivity {
                         l_ArrayAdapter_spinner_animalType.setDropDownViewResource(R.layout.spinnercontent_upload);
                         spinner_animalType.setAdapter(l_ArrayAdapter_spinner_animalType);
 
+
                         if (!iv_object_petDataForSelfDB.getAnimalType().equals(null)) {
                             //*
-                            iv_ArrayAdapter_spinner_animalType = new ArrayAdapter<String>(ActAdoptEdit.this, R.layout.spinnercontent_upload, iv_Array_動物品種清單[iv_ArrayAdapter_spinner_animalKind.getPosition(iv_object_petDataForSelfDB.getAnimalKind().toString())]);
-                            spinner_animalType.setAdapter(iv_ArrayAdapter_spinner_animalType);
-                            //*
-                            Log.d("222222", iv_ArrayAdapter_spinner_animalType.getPosition(iv_object_petDataForSelfDB.getAnimalType().toString()) + "");
-                            spinner_animalType.setSelection(iv_ArrayAdapter_spinner_animalType.getPosition(iv_object_petDataForSelfDB.getAnimalType().toString()));
+                            Log.d("顯示品種'", iv_object_petDataForSelfDB.getAnimalType().toString() + "");
+                            if(iv_ArrayAdapter_spinner_animalKind.getPosition(iv_object_petDataForSelfDB.getAnimalKind().toString())>0){
+                                iv_ArrayAdapter_spinner_animalType = new ArrayAdapter<String>(ActAdoptEdit.this, R.layout.spinnercontent_upload, iv_Array_動物品種清單[iv_ArrayAdapter_spinner_animalKind.getPosition(iv_object_petDataForSelfDB.getAnimalKind().toString())]);
+                                spinner_animalType.setAdapter(iv_ArrayAdapter_spinner_animalType);
+                                //*
+                                Log.d("222222", iv_ArrayAdapter_spinner_animalType.getPosition(iv_object_petDataForSelfDB.getAnimalType().toString()) + "");
+                                spinner_animalType.setSelection(iv_ArrayAdapter_spinner_animalType.getPosition(iv_object_petDataForSelfDB.getAnimalType().toString()));
+                            }
+
                         }
+
                     }
                 });
             }
@@ -611,20 +617,20 @@ public class ActAdoptEdit extends AppCompatActivity {
         //**********
         edTxt_animalAge = (EditText) findViewById(R.id.edTxt_animalAge);
         edTxt_animalColor = (EditText) findViewById(R.id.edTxt_animalColor);
-        //edTxt_animalDate = (EditText) findViewById(R.id.edTxt_animalDate);
+        edTxt_animalDate = (EditText) findViewById(R.id.edTxt_animalDate);
         edTxt_animalDisease_Other = (EditText) findViewById(R.id.edTxt_animalDisease_Other);
         edTxt_animalHealthy = (EditText) findViewById(R.id.edTxt_animalHealthy);
         edTxt_animalName = (EditText) findViewById(R.id.edTxt_animalName);
         edTxt_animalNote = (EditText) findViewById(R.id.edTxt_animalNote);
         edTxt_animalReason = (EditText) findViewById(R.id.edTxt_animalReason);
         //*隱藏區****
-        //edTxt_animalOwner_userID = (EditText) findViewById(R.id.edTxt_animalOwner_userID);
+        edTxt_animalOwner_userID = (EditText) findViewById(R.id.edTxt_animalOwner_userID);
         edTxt_animalOwner_userID.setVisibility(View.GONE);
         //
-        //edTxt_animalID = (EditText) findViewById(R.id.edTxt_animalID);
+        edTxt_animalID = (EditText) findViewById(R.id.edTxt_animalID);
         edTxt_animalID.setVisibility(View.GONE);
         //
-        //edTxt_animalDate = (EditText) findViewById(R.id.edTxt_animalDate);
+        edTxt_animalDate = (EditText) findViewById(R.id.edTxt_animalDate);
         edTxt_animalDate.setVisibility(View.GONE);
         //***
         page_editPetData = this;
@@ -635,8 +641,8 @@ public class ActAdoptEdit extends AppCompatActivity {
         btnDelete = (Button) findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(btn_click);
         //**************
-        btnCamera = (Button) findViewById(R.id.btnCamera);
-        btnCamera.setOnClickListener(btn_click);
+//        btnCamera = (Button) findViewById(R.id.btnCamera);
+//        btnCamera.setOnClickListener(btn_click);
         //**************
         imgBtn1 = (ImageButton) findViewById(R.id.imgBtn1);
         imgBtn1.setOnClickListener(btn_click);
@@ -958,22 +964,23 @@ public class ActAdoptEdit extends AppCompatActivity {
                 case R.id.btnDelete:
                     delete資料(String.valueOf(iv_object_petDataForSelfDB.getAnimalID()));
                     break;
-                case R.id.btnCamera:
-                    Intent intentCamera = new Intent(
-                            MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
-
-                    startActivity(intentCamera);
-                    break;
+//                case R.id.btnCamera:
+//                    Intent intentCamera = new Intent(
+//                            MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+//
+//                    startActivity(intentCamera);
+//                    break;
                 case R.id.btnAdoptCondition:
                     Log.d("123", "btnAdoptCondition");
                     Intent intent = new Intent(ActAdoptEdit.this, ActConditionInput.class);
-                    intent.putExtra("l_object_ConditionOfAdoptPet_objA", iv_object_conditionOfAdoptPet_a);
+                    if(iv_object_petDataForSelfDB.getAnimalData_Condition().size()>0)
+                        intent.putExtra("l_object_ConditionOfAdoptPet_objA", iv_object_petDataForSelfDB.getAnimalData_Condition().get(0));
                     startActivityForResult(intent, CDictionary.IntentRqCodeOfPetAdoptCondition);
                     break;
             }
-            if (v.getId() == R.id.btnEdit || v.getId() == R.id.btnDelete || v.getId() == R.id.btnCamera) {
-                return;
-            }
+//            if (v.getId() == R.id.btnEdit || v.getId() == R.id.btnDelete || v.getId() == R.id.btnCamera) {
+//                return;
+//            }
             if (v.getId() != R.id.btnAdoptCondition) {
                 //Toast.makeText(ScrollingActivity.this,String.valueOf(IntentRCodeOfOpenAlbum),Toast.LENGTH_SHORT).show();
                 //**

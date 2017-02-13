@@ -20,7 +20,7 @@
             android:layout_width="800px"
             android:layout_height="800px"
             android:scaleType="fitCenter"
-            android:src="@drawable/default_photo"
+            android:src="@drawable/default_nopic"
             android:layout_marginBottom="20dp" />
 
         <LinearLayout

@@ -32,9 +32,8 @@
                     android:id="@+id/edTxt_conditionAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:minWidth="400dp"
-                    android:maxLength="3" />
+                    android:inputType="textMultiLine"
+                    android:minWidth="400dp"/>
 
             </LinearLayout>
 
@@ -56,8 +55,8 @@
                     android:id="@+id/edTxt_conditionEconomy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="經濟條件"
-                    android:maxLength="10"
+                    android:hint=""
+                    android:inputType="textMultiLine"
                     android:minWidth="400dp" />
 
             </LinearLayout>
@@ -80,8 +79,8 @@
                     android:id="@+id/edTxt_conditionHome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="認養環境"
-                    android:maxLength="10"
+                    android:hint=""
+                    android:inputType="textMultiLine"
                     android:minWidth="400dp" />
 
             </LinearLayout>
@@ -104,8 +103,8 @@
                     android:id="@+id/edTxt_conditionFamily"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="家人或室友是否允許"
-                    android:maxLength="10"
+                    android:hint=""
+                    android:inputType="textMultiLine"
                     android:minWidth="400dp" />
 
             </LinearLayout>
@@ -127,10 +126,9 @@
                 <EditText
                     android:id="@+id/edTxt_conditionReply"
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
-                    android:hint="願意回報狀態"
-                    android:maxLength="10"
+                    android:hint=""
+                    android:inputType="textMultiLine"
                     android:minWidth="400dp" />
 
             </LinearLayout>
@@ -154,7 +152,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="切結書"
-                    android:maxLength="10"
+                    android:inputType="textMultiLine"
                     android:minWidth="400dp" />
 
             </LinearLayout>
@@ -177,9 +175,8 @@
                     android:id="@+id/edTxt_conditionFee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="補助金額"
-                    android:inputType="number"
-                    android:maxLength="10"
+                    android:hint=""
+                    android:inputType="textMultiLine"
                     android:minWidth="400dp" />
 
             </LinearLayout>
@@ -203,12 +200,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="(100字內)"
-                    android:maxLength="100"
+                    android:inputType="textMultiLine"
                     android:minWidth="400dp" />
             </LinearLayout>
-
-
-
             <Button
                 android:id="@+id/btnSubmit"
                 android:gravity="center"

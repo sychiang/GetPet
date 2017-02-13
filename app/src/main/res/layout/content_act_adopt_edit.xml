@@ -400,6 +400,30 @@
                     android:scaleType="centerInside"
                     android:src="@drawable/icon_ios7_plus_empty" />
             </LinearLayout>
+            <!--******hidden**************************************************-->
+
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/edTxt_animalDate"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/edTxt_animalOwner_userID"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:layout_weight="1"
+                android:id="@+id/edTxt_animalID"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+            <!--********************************************************-->
 
             <LinearLayout
                 android:id="@+id/line18"
@@ -422,12 +446,6 @@
                     android:layout_height="wrap_content"
                     android:text="刪除資料" />
 
-                <Button
-                    android:id="@+id/btnCamera"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="開啟拍照" />
             </LinearLayout>
 
         </LinearLayout>

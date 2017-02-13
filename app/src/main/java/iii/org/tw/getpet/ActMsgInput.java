@@ -97,7 +97,6 @@ public class ActMsgInput extends AppCompatActivity {
             jsonObject.put("msgFrom_userID", UserId);
             Log.d(CDictionary.Debug_TAG,"GET msgFrom_userID: "+jsonObject.optString("msgFrom_userID"));
             jsonObject.put("msgTo_userID", msgFrom_userID);
-            //jsonObject.put("msgTo_userID", "86644d36-0c69-4117-bb75-c500486eea71");
             Log.d(CDictionary.Debug_TAG,"GET msgTo_userID: "+jsonObject.optString("msgTo_userID"));
             jsonObject.put("msgType", "站內信");
             Log.d(CDictionary.Debug_TAG,"GET msgType: "+jsonObject.optString("msgType"));
@@ -136,6 +135,7 @@ public class ActMsgInput extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 goMsgBox();
+                                finish();
                             }
                         });
                         dialog.create().show();
@@ -146,7 +146,7 @@ public class ActMsgInput extends AppCompatActivity {
             public void onFailure(Call call, IOException e) {
                 Log.d(CDictionary.Debug_TAG,"POST FAIL......");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgInput.this);
-                dialog.setTitle("訊息傳送失敗");
+                dialog.setTitle("訊息傳送失敗, 請稍後再試");
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -167,6 +167,11 @@ public class ActMsgInput extends AppCompatActivity {
         String emptyInputField = "尚未填寫以下欄位:\n";
         emptyInputField += edTxt_msgContent.getText().toString().isEmpty() ? "內文\n" : "";
         return emptyInputField;
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
     }
 
     public void initComponent(){

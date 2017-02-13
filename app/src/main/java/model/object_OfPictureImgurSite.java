@@ -1,10 +1,12 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Created by iii on 2017/2/9.
  */
 
-public class object_OfPictureImgurSite {
+public class object_OfPictureImgurSite implements Serializable {
     private String animalPicID;
     private String animalPic_animalID;
     private String animalPicAddress;
@@ -12,6 +14,11 @@ public class object_OfPictureImgurSite {
     public object_OfPictureImgurSite(String imgSite){
         animalPicID = "0";
         animalPic_animalID = "0";
+        this.animalPicAddress = imgSite;
+    }
+    public object_OfPictureImgurSite(String picID,String animalID,String imgSite){
+        animalPicID = picID;
+        animalPic_animalID = animalID;
         this.animalPicAddress = imgSite;
     }
 

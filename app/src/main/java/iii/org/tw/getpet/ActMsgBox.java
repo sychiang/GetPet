@@ -39,7 +39,6 @@ public class ActMsgBox extends AppCompatActivity {
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
     MsgListAdapter adapter;
     RecyclerView recyclerList;
-    String url = "http://twpetanimal.ddns.net:9487/api/v1/MsgUsers";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +71,7 @@ public class ActMsgBox extends AppCompatActivity {
     }
 
     public void getDatafromServer(){
+        String url = "http://twpetanimal.ddns.net:9487/api/v1/MsgUsers";
         url += "/"+UserId;
         Log.d(CDictionary.Debug_TAG,"GET URL："+url);
         //取回MSG資料存入集合

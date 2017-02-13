@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import common.CDictionary;
@@ -20,7 +21,11 @@ import iii.org.tw.getpet.ActAdoptEdit;
 import iii.org.tw.getpet.ActHomePage;
 import iii.org.tw.getpet.R;
 import model.AdoptPair;
+import model.object_ConditionOfAdoptPet;
+import model.object_OfPictureImgurSite;
 import model.object_petDataForSelfDB;
+
+import static android.os.Build.VERSION_CODES.M;
 
 /**
  * Created by user on 2017/2/11.
@@ -65,6 +70,61 @@ public class AdoptUploadListAdapter extends RecyclerView.Adapter<AdoptUploadList
                 int position = vholder.getAdapterPosition();
 
                 Intent intent = new Intent(mContext, ActAdoptEdit.class);
+                //這裡要加物件
+                object_petDataForSelfDB obj = new object_petDataForSelfDB();
+                obj.setAnimalID(mData.get(position).getAnimalID());
+                obj.setAnimalType(mData.get(position).getAnimalType());
+                obj.setAnimalKind(mData.get(position).getAnimalKind());
+                obj.setAnimalName(mData.get(position).getAnimalName());
+                obj.setAnimalAddress(mData.get(position).getAnimalAddress());
+                obj.setAnimalDate(mData.get(position).getAnimalDate());
+                obj.setAnimalGender(mData.get(position).getAnimalGender());
+                obj.setAnimalAge(String.valueOf(mData.get(position).getAnimalAge()));
+                obj.setAnimalColor(mData.get(position).getAnimalColor());
+                obj.setAnimalChip(mData.get(position).getAnimalChip());
+                obj.setAnimalBirth(mData.get(position).getAnimalBirth());
+                obj.setAnimalHealthy(mData.get(position).getAnimalHealthy());
+                obj.setAnimalDisease_Other(mData.get(position).getAnimalDisease_Other());
+                obj.setAnimalOwner_userID(mData.get(position).getAnimalOwner_userID());
+                obj.setAnimalReason(mData.get(position).getAnimalReason());
+                obj.setAnimalGetter_userID(mData.get(position).getAnimalGetter_userID());
+                obj.setAnimalAdopted(mData.get(position).getAnimalAdopted());
+                obj.setAnimalAdoptedDate(mData.get(position).getAnimalAdoptedDate());
+                obj.setAnimalNote(mData.get(position).getAnimalNote());
+
+                //***
+                obj.setAnimalData_Pic(new ArrayList<object_OfPictureImgurSite>());
+                for (int i = 0; i < mData.get(position).getAnimalData_Pic().size() ; i++) {
+                    if(mData.get(position).getAnimalData_Pic().get(i)!=null){
+                        object_OfPictureImgurSite img = new object_OfPictureImgurSite(String.valueOf(mData.get(position).getAnimalData_Pic().get(i).getAnimalPicID()),String.valueOf(mData.get(position).getAnimalData_Pic().get(i).getAnimalPic_animalID()),mData.get(position).getAnimalData_Pic().get(i).getAnimalPicAddress());
+                        obj.getAnimalData_Pic().add(img);
+                    }
+                }
+
+                obj.setAnimalData_Condition(new ArrayList<object_ConditionOfAdoptPet>());
+                if(true/*mData.get(0).getAnimalData_Condition().get(0)!=null*/){
+
+                    if(mData.get(position).getAnimalData_Condition().size()>0){
+                        object_ConditionOfAdoptPet conditionOfAdoptPet = new object_ConditionOfAdoptPet();
+                        conditionOfAdoptPet.setConditionID(mData.get(position).getAnimalData_Condition().get(position).getConditionID());
+                        conditionOfAdoptPet.setCondition_animalID(mData.get(position).getAnimalData_Condition().get(position).getCondition_animalID());
+                        conditionOfAdoptPet.setConditionAge(mData.get(position).getAnimalData_Condition().get(position).getConditionAge());
+                        conditionOfAdoptPet.setConditionEconomy(mData.get(position).getAnimalData_Condition().get(position).getConditionEconomy());
+                        conditionOfAdoptPet.setConditionHome(mData.get(position).getAnimalData_Condition().get(position).getConditionHome());
+                        conditionOfAdoptPet.setConditionFamily(mData.get(position).getAnimalData_Condition().get(position).getConditionFamily());
+                        conditionOfAdoptPet.setConditionReply(mData.get(position).getAnimalData_Condition().get(position).getConditionReply());
+                        conditionOfAdoptPet.setConditionPaper(mData.get(position).getAnimalData_Condition().get(position).getConditionPaper());
+                        conditionOfAdoptPet.setConditionFee(mData.get(position).getAnimalData_Condition().get(position).getConditionFee());
+                        conditionOfAdoptPet.setConditionOther(mData.get(position).getAnimalData_Condition().get(position).getConditionOther());
+                        obj.getAnimalData_Condition().add(conditionOfAdoptPet);
+                    }
+
+
+
+                }
+
+
+                intent.putExtra("object_ConditionOfAdoptPet_objA",obj);
                 Bundle bundle = new Bundle();
 
                 //intent.putExtra("object_ConditionOfAdoptPet_objA",mData.get(position));
@@ -82,8 +142,10 @@ public class AdoptUploadListAdapter extends RecyclerView.Adapter<AdoptUploadList
         holder.tv_upload_date.setText(item.getAnimalDate());
         if(item.getAnimalData_Pic().size()>0){
             String imgURL = item.getAnimalData_Pic().get(0).getAnimalPicAddress();
-            if(imgURL.toLowerCase().endsWith(".jpg") || imgURL.toLowerCase().endsWith(".png")){
-                Glide.with(mContext).load(imgURL).into(holder.iv_upload_image);
+            if(imgURL != null){
+                if(imgURL.toLowerCase().endsWith(".jpg") || imgURL.toLowerCase().endsWith(".png")){
+                    Glide.with(mContext).load(imgURL).into(holder.iv_upload_image);
+                }
             }
         }
     }

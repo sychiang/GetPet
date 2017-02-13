@@ -33,10 +33,10 @@ import model.object_petDataForSelfDB;
 public class ActAdoptUploadList extends AppCompatActivity {
     //ArrayList<object_petDataForSelfDB> myDataset = new ArrayList<object_petDataForSelfDB>();
     ArrayList<AdoptPair> myDataset = new ArrayList<AdoptPair>();
-    String name, id, token;
+    private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
     AdoptUploadListAdapter adapter;
     RecyclerView recyclerList;
-    String url = "http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,13 @@ public class ActAdoptUploadList extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerList.setLayoutManager(layoutManager);
 
+        UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+UserName);
+        UserId = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
+        access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER TOKEN："+access_token);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,15 +72,9 @@ public class ActAdoptUploadList extends AppCompatActivity {
     }
 
     public void getDatafromServer(){
-        name = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
-        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+name);
-        id = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
-        Log.d(CDictionary.Debug_TAG,"GET USER ID："+id);
-        token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
-        Log.d(CDictionary.Debug_TAG,"GET USER ID："+token);
-        //url += "/"+name;
+        String url = "http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas";
+        url += "?$filter=animalOwner_userID eq '"+UserId+"'";
         Log.d(CDictionary.Debug_TAG,"GET URL："+url);
-
         AndroidNetworking.initialize(getApplicationContext());
         AndroidNetworking.get(url)
                 .setTag(this)
@@ -95,7 +96,7 @@ public class ActAdoptUploadList extends AppCompatActivity {
                                     recyclerList.setAdapter(adapter);
                                 } else {
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptUploadList.this);
-                                    dialog.setTitle("目前尚無上傳資料");
+                                    dialog.setTitle("您目前尚無上傳資料");
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {

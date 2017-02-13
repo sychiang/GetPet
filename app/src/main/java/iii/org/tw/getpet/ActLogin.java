@@ -68,71 +68,67 @@ public class ActLogin extends AppCompatActivity {
             btn_register.setVisibility(View.GONE);
 
             tv_username.setVisibility(View.VISIBLE);
-            tv_username.setText("Hi, "+userInfo.getString(CDictionary.SK_username,""));
+            tv_username.setText("Hi, "+userInfo.getString(CDictionary.SK_username,"")+"\n您已登入本系統");
             btn_logout.setVisibility(View.VISIBLE);
         }
 
-        //宣告FB SDK callback Manager
-        callbackManager = CallbackManager.Factory.create();
+//        //**********實作FB SDK**********//
+//        //宣告FB SDK callback Manager
+//        callbackManager = CallbackManager.Factory.create();
+//        //找到login button (facebook套件裡的登入按鈕元件)
+//        LoginButton btn_FBlogin = (LoginButton) findViewById(R.id.btn_FBlogin);
+////        btn_FBlogin.setReadPermissions(Arrays.asList(
+////                "public_profile", "email", "user_birthday", "user_friends"));    //要求存取使用者的各項資料
+//
+//        btn_FBlogin.setReadPermissions(Arrays.asList("public_profile", "email"));  //要求存取使用者的基本資料&Email
+//
+//        //LoginButton增加callback function
+//        btn_FBlogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                //成功登入, accessToken之後或許還會用到 先存起來
+//                accessToken = loginResult.getAccessToken();
+//                Log.d(CDictionary.Debug_TAG,"FB ACCESS TOKEN  GET: "+accessToken.toString());
+//
+//                //send request and call graph api
+//                GraphRequest request = GraphRequest.newMeRequest(
+//                        accessToken,
+//                        new GraphRequest.GraphJSONObjectCallback() {
+//                            //當RESPONSE回來的時候會取得JSON物件
+//                            @Override
+//                            public void onCompleted(JSONObject object, GraphResponse response) {
+//                                //讀出姓名 ID FB個人頁面連結
+//                                Log.d(CDictionary.Debug_TAG,"FB GET RESPONSE"+response);
+//                                Log.d(CDictionary.Debug_TAG,object.optString("name"));
+//                                Log.d(CDictionary.Debug_TAG,object.optString("link"));
+//                                Log.d(CDictionary.Debug_TAG,object.optString("id"));
+//                                Log.d(CDictionary.Debug_TAG,object.optString("email"));
+//
+//                                fbID = object.optString("id");
+//                                fbUsername = object.optString("name");
+//                                fbEmail = object.optString("email");
+//                                doRegisterExternal();
+//                            }
+//                        });
+//                //包入想要得到的資料 送出request
+//                Bundle parameters = new Bundle();
+//                parameters.putString("fields", "id,name,link,email");
+//                request.setParameters(parameters);
+//                request.executeAsync();
+//            }
+//
+//            @Override
+//            public void onCancel() {//取消登入
+//                Log.d("FB","CANCEL");
+//            }
+//
+//            @Override
+//            public void onError(FacebookException exception) {//登入失敗
+//                Log.d("FB",exception.toString());
+//            }
+//        });
+//        //**********實作FB SDK**********//
 
-        //找到login button (facebook套件裡的登入按鈕元件)
-        LoginButton btn_FBlogin = (LoginButton) findViewById(R.id.btn_FBlogin);
-//        btn_FBlogin.setReadPermissions(Arrays.asList(
-//                "public_profile", "email", "user_birthday", "user_friends"));    要求存取使用者的各項資料
-
-        btn_FBlogin.setReadPermissions(Arrays.asList("public_profile", "email"));  //要求存取使用者的基本資料&Email
-
-        //LoginButton增加callback function
-        btn_FBlogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                //成功登入, accessToken之後或許還會用到 先存起來
-                accessToken = loginResult.getAccessToken();
-                Log.d(CDictionary.Debug_TAG,"FB ACCESS TOKEN  GET: "+accessToken.toString());
-
-                //send request and call graph api
-                GraphRequest request = GraphRequest.newMeRequest(
-                        accessToken,
-                        new GraphRequest.GraphJSONObjectCallback() {
-                            //當RESPONSE回來的時候會取得JSON物件
-                            @Override
-                            public void onCompleted(JSONObject object, GraphResponse response) {
-                                //讀出姓名 ID FB個人頁面連結
-                                Log.d(CDictionary.Debug_TAG,"FB GET RESPONSE"+response);
-                                Log.d(CDictionary.Debug_TAG,object.optString("name"));
-                                Log.d(CDictionary.Debug_TAG,object.optString("link"));
-                                Log.d(CDictionary.Debug_TAG,object.optString("id"));
-                                Log.d(CDictionary.Debug_TAG,object.optString("email"));
-
-                                fbID = object.optString("id");
-                                fbUsername = object.optString("name");
-                                fbEmail = object.optString("email");
-                                doRegisterExternal();
-                            }
-                        });
-                //包入想要得到的資料 送出request
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "id,name,link,email");
-                request.setParameters(parameters);
-                request.executeAsync();
-            }
-
-            @Override
-            public void onCancel() {//取消登入
-                Log.d("FB","CANCEL");
-            }
-
-            @Override
-            public void onError(FacebookException exception) {//登入失敗
-                Log.d("FB",exception.toString());
-            }
-        });
-
-        //Check if user is currently logged in
-        if (AccessToken.getCurrentAccessToken() != null && com.facebook.Profile.getCurrentProfile() != null){
-            //登入狀態下不給登出
-            //btn_FBlogin.setVisibility(View.INVISIBLE);
-        }
     }
 
     public void doRegisterExternal(){
@@ -392,8 +388,8 @@ public class ActLogin extends AppCompatActivity {
 
         tv_username = (TextView)findViewById(R.id.tv_username);
 
-        btn_test = (Button)findViewById(R.id.btn_test);
-        btn_test.setOnClickListener(btn_test_Click);
+//        btn_test = (Button)findViewById(R.id.btn_test);
+//        btn_test.setOnClickListener(btn_test_Click);
     }
 
     Button btn_login, btn_register,btn_logout, btn_test;
