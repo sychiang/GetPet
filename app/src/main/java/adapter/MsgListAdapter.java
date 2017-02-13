@@ -84,7 +84,8 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.ViewHold
 
                 Intent intent = new Intent(mContext, ActMsgShow.class);
                 Bundle bundle = new Bundle();
-                bundle.putString(CDictionary.BK_msg_id, String.format("%d",mData.get(position).getMsgID()));
+                //bundle.putString(CDictionary.BK_msg_id, String.format("%d",mData.get(position).getMsgID()));
+                bundle.putInt(CDictionary.BK_msg_id, mData.get(position).getMsgID());
                 bundle.putString(CDictionary.BK_msg_time, mData.get(position).getMsgTime());
                 bundle.putString(CDictionary.BK_msg_fromuserid, mData.get(position).getMsgFrom_userID());
                 bundle.putString(CDictionary.BK_msg_fromusername, mData.get(position).getMsgFrom_userName());

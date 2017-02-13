@@ -71,6 +71,28 @@
             android:textSize="20sp" />
     </ScrollView>
 
+    <!--<ImageButton-->
+        <!--android:layout_marginTop="10px"-->
+        <!--android:id="@+id/btnDelete"-->
+        <!--android:layout_below="@+id/scrollview"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/delete_icon"-->
+        <!--android:background="@drawable/deletebtn_style"-->
+        <!--android:textSize="20sp"/>-->
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_below="@+id/scrollview"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/delete_icon"
+        android:background="@drawable/deletebtn_style"
+        android:text="刪除"
+        android:textSize="20sp"/>
+
     <Button
     android:id="@+id/btnOK"
     android:layout_below="@+id/scrollview"
