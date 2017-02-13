@@ -85,6 +85,9 @@
         <activity
             android:name=".ActBoardList"
             android:label="@string/title_activity_act_board_list" />
+        <activity
+            android:name=".ActBoardInput"
+            android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
     </application>
 
 </manifest>

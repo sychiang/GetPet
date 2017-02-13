@@ -150,7 +150,7 @@ public class ActMsgInput extends AppCompatActivity {
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        
                     }
                 });
                 dialog.create().show();

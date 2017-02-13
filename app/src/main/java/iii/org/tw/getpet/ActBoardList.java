@@ -33,6 +33,7 @@ public class ActBoardList extends AppCompatActivity {
     BoardListAdapter adapter;
     RecyclerView recyclerList;
     Intent intent;
+    String animalid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +53,12 @@ public class ActBoardList extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(ActBoardList.this,ActBoardInput.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(CDictionary.BK_animalID,animalid);
+
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
@@ -71,7 +76,7 @@ public class ActBoardList extends AppCompatActivity {
     public void getDatafromServer(){
         String url = "http://twpetanimal.ddns.net:9487/api/v1/boards?";
         intent = getIntent();
-        String animalid = intent.getExtras().getString(CDictionary.BK_animalID);
+        animalid = intent.getExtras().getString(CDictionary.BK_animalID);
         url += "$filter=board_animalID eq "+animalid;
         Log.d(CDictionary.Debug_TAG,"GET URL："+url);
         //取回MSG資料存入集合
