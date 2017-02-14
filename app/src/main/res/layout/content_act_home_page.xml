@@ -2,147 +2,159 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:id="@+id/content_act_home_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
 
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="iii.org.tw.getpet.ActHomePage">
 
     <LinearLayout
         android:id="@+id/upArea"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <!--預留圖片瀏覽-->
         <ViewFlipper
-            android:foregroundGravity="center"
             android:id="@+id/viewflipper"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:layout_marginBottom="20dp" >
+            android:layout_marginBottom="20dp"
+            android:foregroundGravity="center">
 
             <ImageView
-                android:layout_gravity="center"
                 android:id="@+id/ivPhoto1"
                 android:layout_width="1200px"
                 android:layout_height="820px"
+                android:layout_gravity="center"
                 android:scaleType="fitCenter"
                 android:src="@drawable/category_adoptpair" />
 
             <ImageView
-                android:layout_gravity="center"
                 android:id="@+id/ivPhoto2"
                 android:layout_width="1200px"
                 android:layout_height="820px"
+                android:layout_gravity="center"
                 android:scaleType="fitCenter"
                 android:src="@drawable/category_shelter" />
 
             <ImageView
-                android:layout_gravity="center"
                 android:id="@+id/ivPhoto3"
                 android:layout_width="1200px"
                 android:layout_height="820px"
+                android:layout_gravity="center"
                 android:scaleType="fitCenter"
                 android:src="@drawable/category_adoptpair" />
 
             <ImageView
-                android:layout_gravity="center"
                 android:id="@+id/ivPhoto4"
                 android:layout_width="1200px"
                 android:layout_height="820px"
+                android:layout_gravity="center"
                 android:scaleType="fitCenter"
                 android:src="@drawable/category_shelter" />
 
             <ImageView
-                android:layout_gravity="center"
                 android:id="@+id/ivPhoto5"
                 android:layout_width="1200px"
                 android:layout_height="820px"
+                android:layout_gravity="center"
                 android:scaleType="fitCenter"
                 android:src="@drawable/category_adoptpair" />
 
         </ViewFlipper>
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/downArea"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_weight="1"
             android:id="@+id/line1"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <Button
-                android:drawableTop="@drawable/home_icon1"
-                android:layout_weight="1"
                 android:id="@+id/btnGoAdoptSearch"
-                android:text="認養搜尋"
-                android:textSize="14dp"
-                android:background="#FFFFFF"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:drawableTop="@drawable/home_icon2"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:drawableTop="@drawable/home_icon1"
+                android:text=""
+                android:textSize="14dp" />
+
+            <Button
                 android:id="@+id/btnGoPairSetting"
-                android:text="配對設定"
-                android:textSize="14dp"
-                android:background="#FFFFFF"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:drawableTop="@drawable/home_icon3"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:id="@+id/btnGoPetHelper"
-                android:text="寵物小幫手"
-                android:textSize="14dp"
                 android:background="#FFFFFF"
+                android:drawableTop="@drawable/home_icon2"
+                android:text="配對設定"
+                android:textSize="14dp" />
+
+            <Button
+                android:id="@+id/btnGoPetHelper"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:drawableTop="@drawable/home_icon3"
+                android:text="寵物小幫手"
+                android:textSize="14dp" />
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_weight="1"
             android:id="@+id/line2"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
             <Button
-                android:drawableTop="@drawable/home_icon4"
-                android:layout_weight="1"
                 android:id="@+id/btnGoMapSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:drawableTop="@drawable/home_icon4"
                 android:text="地圖尋找"
-                android:textSize="14dp"
-                android:background="#FFFFFF"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="14dp" />
+
             <Button
-                android:drawableTop="@drawable/home_icon5"
-                android:layout_weight="1"
                 android:id="@+id/btnGoUpload"
-                android:text="送養管理"
-                android:textSize="14dp"
-                android:background="#FFFFFF"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:drawableTop="@drawable/home_icon6"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:id="@+id/btnGoSetting"
-                android:text="系統設定"
-                android:textSize="14dp"
                 android:background="#FFFFFF"
+                android:drawableTop="@drawable/home_icon5"
+                android:text="送養管理"
+                android:textSize="14dp" />
+
+            <Button
+                android:id="@+id/btnGoSetting"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:drawableTop="@drawable/home_icon6"
+                android:text="系統設定"
+                android:textSize="14dp" />
 
         </LinearLayout>
 

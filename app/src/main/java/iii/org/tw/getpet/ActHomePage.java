@@ -135,45 +135,7 @@ public class ActHomePage extends AppCompatActivity
         Bundle bundle = new Bundle();
 
         switch (id){
-            case R.id.search_setting:
-                if(access_token == ""){
-                    Log.d(CDictionary.Debug_TAG,"not log in");
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
-                    dialog.setTitle("尚未登入, 請先登入會員");
-                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            goLoginScreen();
-                        }
-                    });
-                    dialog.create().show();
-                } else {
-                    Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+access_token);
-//                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
-//                    startActivity(intent);
-                }
-                break;
-            case R.id.notify_setting:
-                if(access_token == ""){
-                    Log.d(CDictionary.Debug_TAG,"not log in");
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
-                    dialog.setTitle("尚未登入, 請先登入會員");
-                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            goLoginScreen();
-                        }
-                    });
-                    dialog.create().show();
-                } else {
-                    Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+access_token);
-//                    intent = new Intent(ActHomePage.this,ActMsgBox.class);
-//                    startActivity(intent);
-                }
-                break;
             case R.id.messagebox:
-//                intent = new Intent(ActHomePage.this,ActMsgBox.class);
-//                startActivity(intent);
                 if(access_token == ""){
                     Log.d(CDictionary.Debug_TAG,"not log in");
                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
@@ -209,8 +171,8 @@ public class ActHomePage extends AppCompatActivity
                     startActivity(intent);
                 }
                 break;
-            case R.id.contact_us:
-                break;
+//            case R.id.contact_us:
+//                break;
             case R.id.login:
                 intent = new Intent(ActHomePage.this, ActLogin.class);
                 startActivityForResult(intent, CDictionary.REQUEST_LOGIN);
@@ -324,6 +286,7 @@ public class ActHomePage extends AppCompatActivity
         btnGoUpload.setOnClickListener(btnGoUpload_Click);
         btnGoSetting = (Button)findViewById(R.id.btnGoSetting);
         btnGoSetting.setOnClickListener(btnGoSetting_Click);
+
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header=navigationView.getHeaderView(0);
