@@ -2,10 +2,13 @@ package iii.org.tw.getpet;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,12 +16,29 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import common.CDictionary;
 
-public class ActShelterPetDetail extends AppCompatActivity {
+public class ActShelterPetDetail extends AppCompatActivity implements OnMapReadyCallback {
+    Intent intent;
+    Double gv_dblLat, gv_dblLon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +48,7 @@ public class ActShelterPetDetail extends AppCompatActivity {
         setTitle("收容所毛孩");
         setSupportActionBar(toolbar);
         initComponent();
-        Intent intent = getIntent();
+        intent = getIntent();
         tvID.setText(intent.getExtras().getString(CDictionary.BK_animal_id));
         tvKind.setText(intent.getExtras().getString(CDictionary.BK_animal_kind));
         switch (intent.getExtras().getString(CDictionary.BK_animal_sex)){
@@ -79,6 +99,57 @@ public class ActShelterPetDetail extends AppCompatActivity {
         tvRemark.setText(intent.getExtras().getString(CDictionary.BK_animal_remark));
         if(intent.getExtras().containsKey(CDictionary.BK_album_file)){
             Glide.with(ActShelterPetDetail.this).load(intent.getExtras().getString(CDictionary.BK_album_file)).into(ivPhoto);
+        }
+
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+//        mapFragment.getMapAsync(this);
+        final MapFragment map = (MapFragment) getFragmentManager().findFragmentById(R.id.map); //取得地圖
+        map.getMapAsync(this);
+        convertLanLat();
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        if(gv_dblLat != null && gv_dblLon != null){
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(new LatLng(gv_dblLat, gv_dblLon));
+            markerOptions.title(intent.getExtras().getString(CDictionary.BK_shelter_name));
+            markerOptions.draggable(false);
+            googleMap.addMarker(markerOptions);
+
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(markerOptions.getPosition()));
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(markerOptions.getPosition())
+                    .zoom(17)
+                    .build();
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
+    }
+
+    public void convertLanLat(){
+        String lv_strAddress = intent.getExtras().getString(CDictionary.BK_shelter_address);
+
+        if ( lv_strAddress != null) {
+            Geocoder geoCoder = new Geocoder(ActShelterPetDetail.this, Locale.TRADITIONAL_CHINESE);
+            List<Address> addressLocation = null;
+            try {
+                addressLocation = geoCoder.getFromLocationName(lv_strAddress, 1);
+//                if(addressLocation.size() == 0){
+//                    addressLocation = geoCoder.getFromLocationName(lv_strAddress, 2);
+//                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Log.d(CDictionary.Debug_TAG,"ADD SIZE: "+addressLocation.size());
+            if(addressLocation.size() > 0){
+                gv_dblLat = addressLocation.get(0).getLatitude();
+                gv_dblLon = addressLocation.get(0).getLongitude();
+                Log.d(CDictionary.Debug_TAG,"LAT: "+gv_dblLat.toString());
+                Log.d(CDictionary.Debug_TAG,"LON: "+gv_dblLon.toString());
+            }
+        } else {
+            Log.d(CDictionary.Debug_TAG,"LANLAT CONVERT FAIL");
+            //Toast.makeText(ActMain.this, "無資料可顯示", Toast.LENGTH_LONG).show();
         }
     }
 
