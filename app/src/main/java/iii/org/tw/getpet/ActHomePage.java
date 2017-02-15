@@ -193,7 +193,7 @@ public class ActHomePage extends AppCompatActivity
 
     View.OnClickListener btnGoAdoptSearch_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            //前往認養搜尋
+            //前往認養專區
             Intent intent = new Intent(ActHomePage.this, ActCategory.class);
             startActivity(intent);
         }
@@ -221,7 +221,7 @@ public class ActHomePage extends AppCompatActivity
     View.OnClickListener btnGoPetHelper_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //前往寵物小幫手
-            Intent intent = new Intent(ActHomePage.this, ActCategory.class);
+            Intent intent = new Intent(ActHomePage.this, ActPetHelper.class);
             startActivity(intent);
         }
     };
