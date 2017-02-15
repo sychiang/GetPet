@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/act_map_category"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="iii.org.tw.getpet.ActMapCategory">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <ImageView
+            android:layout_weight="1"
+            android:id="@+id/ivPhoto1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:scaleType="fitXY"
+            android:src="@drawable/category_adoptpair" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/btn_AnimalHospital"
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="動物醫院"
+            />
+
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/btn_PetShop"
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="合格寵物業者"
+            />
+
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/btn_Injection"
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="狂犬病注射站"
+            />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

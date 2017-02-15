@@ -69,6 +69,8 @@ public class CDictionary {
     public static final String BK_msg_content= "BK_msg_content";
     public static final String BK_msg_read = "BK_msg_read";
 
+    public static final String BK_mapType = "BK_mapType";
+
     public static final String BK_fb_name = "BK_fb_name";
     public static final String BK_fb_id = "BK_fb_id";
 

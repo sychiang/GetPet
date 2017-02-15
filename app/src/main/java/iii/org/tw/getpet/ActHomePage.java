@@ -228,7 +228,7 @@ public class ActHomePage extends AppCompatActivity
     View.OnClickListener btnGoMapSearch_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //前往地圖搜尋
-            Intent intent = new Intent(ActHomePage.this, ActCategory.class);
+            Intent intent = new Intent(ActHomePage.this, ActMapCategory.class);
             startActivity(intent);
         }
     };

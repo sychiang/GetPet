@@ -124,7 +124,6 @@ public class ActBoardInput extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 goBoardList();
-                                finish();
                             }
                         });
                         dialog.create().show();
@@ -135,7 +134,7 @@ public class ActBoardInput extends AppCompatActivity {
             public void onFailure(Call call, IOException e) {
                 Log.d(CDictionary.Debug_TAG,"POST FAIL......");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActBoardInput.this);
-                dialog.setTitle("留言傳送失敗, 請稍後再試");
+                dialog.setTitle("連線錯誤, 請稍後再試");
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -158,6 +157,7 @@ public class ActBoardInput extends AppCompatActivity {
         bundle.putString(CDictionary.BK_animalID,animalid);
         intent.putExtras(bundle);
         startActivity(intent);
+        finish();
     }
 
     public String checkInput() {

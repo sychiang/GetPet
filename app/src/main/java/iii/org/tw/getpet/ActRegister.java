@@ -62,7 +62,6 @@ public class ActRegister extends AppCompatActivity {
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
-            finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -149,6 +148,15 @@ public class ActRegister extends AppCompatActivity {
                     public void onFailure(Call call, IOException e) {
                         progressDialog.dismiss();
                         Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
+                        dialog.setTitle("連線錯誤, 請稍後再試");
+                        dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        dialog.create().show();
                     }
                 });
     }

@@ -25,6 +25,7 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import common.CDictionary;
+import model.Following;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -36,6 +37,10 @@ import okhttp3.Response;
 
 import android.view.animation.AnimationUtils;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -46,11 +51,13 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -61,6 +68,7 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
     Context mContext = ActAdoptPairDetail.this;
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
     String animalid;
+    ArrayList<Integer> followingList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +120,39 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
         viewFlipper.setAutoStart(true);
         viewFlipper.setFlipInterval(3000);
         viewFlipper.startFlipping();
+
+        getFollowingList();
+
+    }
+
+    public void getFollowingList(){
+        String url = "http://twpetanimal.ddns.net:9487/api/v1/followAnis";
+        url += "/"+UserId;
+
+        AndroidNetworking.initialize(getApplicationContext());
+        AndroidNetworking.get(url)
+                .setTag(this)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsParsed(new TypeToken<ArrayList<Following>>() {
+                             },
+                        new ParsedRequestListener<ArrayList<Following>>() {
+                            @Override
+                            public void onResponse(ArrayList<Following> response) {
+                                String size = String.format("%d", response.size());
+                                Log.d(CDictionary.Debug_TAG, size);
+                                if (response.size() > 0) {
+                                    for (Following rs : response) {
+                                        followingList.add(rs.getAnimalID());
+                                        Log.d(CDictionary.Debug_TAG, "Get " + rs.getAnimalID());
+                                    }
+                                }
+                            }
+                            @Override
+                            public void onError(ANError anError) {
+
+                            }
+                        });
     }
 
     @Override
@@ -126,7 +167,6 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
-            finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -185,70 +225,84 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
     //我要追蹤
     View.OnClickListener btnTrack_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            //我要追蹤
-            OkHttpClient Iv_OkHttp_client = new OkHttpClient();
-            final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
+                //我要追蹤
+                OkHttpClient Iv_OkHttp_client = new OkHttpClient();
+                final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
 
-            JSONObject jsonObject = new JSONObject();
-            Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
-            try {
-                jsonObject.put("followID", 0);
-                Log.d(CDictionary.Debug_TAG,"GET followID: "+jsonObject.optString("followID"));
-                jsonObject.put("follow_userId",UserId);
-                Log.d(CDictionary.Debug_TAG,"GET follow_userId: "+jsonObject.optString("follow_userId"));
-                jsonObject.put("follow_animalID", intent.getExtras().getString(CDictionary.BK_animalID));
-                Log.d(CDictionary.Debug_TAG,"GET follow_animalID: "+jsonObject.optString("follow_animalID"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+                JSONObject jsonObject = new JSONObject();
+                Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
+                try {
+                    jsonObject.put("followID", 0);
+                    Log.d(CDictionary.Debug_TAG,"GET followID: "+jsonObject.optString("followID"));
+                    jsonObject.put("follow_userId",UserId);
+                    Log.d(CDictionary.Debug_TAG,"GET follow_userId: "+jsonObject.optString("follow_userId"));
+                    jsonObject.put("follow_animalID", intent.getExtras().getString(CDictionary.BK_animalID));
+                    Log.d(CDictionary.Debug_TAG,"GET follow_animalID: "+jsonObject.optString("follow_animalID"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
+                Log.d(CDictionary.Debug_TAG,"GET JSON STRING: "+jsonObject.toString());
+                Request postRequest = new Request.Builder()
+                        .url("http://twpetanimal.ddns.net:9487/api/v1/followAnis")
+                        .addHeader("Accept", "application/json")
+                        .addHeader("Content-Type", "application/json")
+                        .addHeader("Authorization","Bearer "+access_token)
+                        .post(requestBody)
+                        .build();
 
-            RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
-            Log.d(CDictionary.Debug_TAG,"GET JSON STRING: "+jsonObject.toString());
-            Request postRequest = new Request.Builder()
-                    .url("http://twpetanimal.ddns.net:9487/api/v1/followAnis")
-                    .addHeader("Accept", "application/json")
-                    .addHeader("Content-Type", "application/json")
-                    .addHeader("Authorization","Bearer "+access_token)
-                    .post(requestBody)
-                    .build();
+                Call call = Iv_OkHttp_client.newCall(postRequest);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onResponse(Call call, final Response response) throws IOException {
+                        final String json = response.body().string();
 
-            Call call = Iv_OkHttp_client.newCall(postRequest);
-            call.enqueue(new Callback() {
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    final String json = response.body().string();
-                    Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
-                            dialog.setTitle("已追蹤");
-                            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    //goMsgBox();
+                        Log.d(CDictionary.Debug_TAG,"GET RESPONSE CODE: "+response.code());
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(response.code() == 409){
+                                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
+                                    //dialog.setTitle("此動物已存在於您的追蹤清單");
+                                    dialog.setMessage("此動物已存在於您的追蹤清單");
+                                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            //goMsgBox();
+                                        }
+                                    });
+                                    dialog.create().show();
+                                } else {
+                                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
+                                    dialog.setTitle("已為您加入追蹤清單");
+                                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            //goMsgBox();
+                                        }
+                                    });
+                                    dialog.create().show();
                                 }
-                            });
-                            dialog.create().show();
+                            }
+                        });
+                    }
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
+                    dialog.setTitle("連線失敗, 請稍後再試");
+                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
                         }
                     });
-                }
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    Log.d(CDictionary.Debug_TAG,"POST FAIL......");
-//                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
-//                    dialog.setTitle("訊息傳送失敗");
-//                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//
-//                        }
-//                    });
-//                    dialog.create().show();
-                }
-            });
+                    dialog.create().show();
+                    }
+                });
         }
     };
+
     //我要認養
     View.OnClickListener btnAdopt_Click=new View.OnClickListener(){
         public void onClick(View arg0) {

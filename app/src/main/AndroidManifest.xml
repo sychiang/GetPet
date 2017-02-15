@@ -98,6 +98,8 @@
         <activity
             android:name=".ActPetHelper"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ActMapCategory" />
+        <activity android:name=".ActMapSearch"></activity>
     </application>
 
 </manifest>

@@ -145,7 +145,7 @@ public class ActMsgShow extends AppCompatActivity {
             public void onFailure(Call call, IOException e) {
                 Log.d(CDictionary.Debug_TAG,"POST FAIL......");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgShow.this);
-                dialog.setTitle("訊息刪除失敗");
+                dialog.setTitle("連線錯誤, 請稍後再試");
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

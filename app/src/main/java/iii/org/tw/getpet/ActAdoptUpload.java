@@ -488,7 +488,19 @@ public class ActAdoptUpload extends AppCompatActivity {
                         try {
                             JSONObject jObj = new JSONObject(json);
                             String id = jObj.getString("animalID");
-                            Toast.makeText(ActAdoptUpload.this, "上傳成功!(測試用_此次新增資料的id: " + id + ")", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(ActAdoptUpload.this, "上傳成功!(測試用_此次新增資料的id: " + id + ")", Toast.LENGTH_SHORT).show();
+                            AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptUpload.this);
+                            dialog.setTitle("資料上傳成功");
+                            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(ActAdoptUpload.this,ActAdoptUploadList.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            });
+                            dialog.create().show();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -558,7 +570,7 @@ public class ActAdoptUpload extends AppCompatActivity {
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
-            finish();
+
         }
         return super.onOptionsItemSelected(item);
     }

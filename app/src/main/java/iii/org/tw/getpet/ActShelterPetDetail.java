@@ -103,8 +103,8 @@ public class ActShelterPetDetail extends AppCompatActivity implements OnMapReady
 
 //        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 //        mapFragment.getMapAsync(this);
-        final MapFragment map = (MapFragment) getFragmentManager().findFragmentById(R.id.map); //取得地圖
-        map.getMapAsync(this);
+        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map); //取得地圖
+        mapFragment.getMapAsync(this);
         convertLanLat();
     }
 

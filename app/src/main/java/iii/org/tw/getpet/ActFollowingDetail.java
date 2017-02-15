@@ -146,6 +146,7 @@ public class ActFollowingDetail extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     Intent intent = new Intent(ActFollowingDetail.this, ActFollowingList.class);
                                     startActivity(intent);
+                                    finish();
                                 }
                             });
                             dialog.create().show();
@@ -161,6 +162,7 @@ public class ActFollowingDetail extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(ActFollowingDetail.this, ActFollowingList.class);
                                 startActivity(intent);
+                                finish();
                             }
                         });
                         dialog.create().show();
@@ -190,7 +192,7 @@ public class ActFollowingDetail extends AppCompatActivity {
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
-            finish();
+
         }
         return super.onOptionsItemSelected(item);
     }

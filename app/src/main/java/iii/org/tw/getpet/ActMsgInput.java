@@ -135,7 +135,6 @@ public class ActMsgInput extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 goMsgBox();
-                                finish();
                             }
                         });
                         dialog.create().show();
@@ -161,6 +160,7 @@ public class ActMsgInput extends AppCompatActivity {
     private void goMsgBox() {
         Intent intent = new Intent(ActMsgInput.this, ActMsgBox.class);
         startActivity(intent);
+        finish();
     }
 
     public String checkInput() {
