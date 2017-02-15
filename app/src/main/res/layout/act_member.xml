@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_act_home_page"
+    android:id="@+id/act_member"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="iii.org.tw.getpet.ActHomePage">
+    tools:context="iii.org.tw.getpet.ActMember">
 
     <LinearLayout
         android:id="@+id/upArea"
@@ -25,38 +23,6 @@
 
             <ImageView
                 android:id="@+id/ivPhoto1"
-                android:layout_width="1200px"
-                android:layout_height="820px"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:src="@drawable/category_shelter" />
-
-            <ImageView
-                android:id="@+id/ivPhoto2"
-                android:layout_width="1200px"
-                android:layout_height="820px"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:src="@drawable/category_shelter" />
-
-            <ImageView
-                android:id="@+id/ivPhoto3"
-                android:layout_width="1200px"
-                android:layout_height="820px"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:src="@drawable/category_adoptpair" />
-
-            <ImageView
-                android:id="@+id/ivPhoto4"
-                android:layout_width="1200px"
-                android:layout_height="820px"
-                android:layout_gravity="center"
-                android:scaleType="fitCenter"
-                android:src="@drawable/category_shelter" />
-
-            <ImageView
-                android:id="@+id/ivPhoto5"
                 android:layout_width="1200px"
                 android:layout_height="820px"
                 android:layout_gravity="center"
@@ -81,36 +47,25 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnGoAdoptSearch"
+                android:id="@+id/btnGoRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                android:drawableTop="@drawable/home_icon1"
-                android:text="認養專區"
+                android:drawableTop="@drawable/member_verification"
+                android:text="會員註冊"
                 android:textSize="14dp" />
 
             <Button
-                android:id="@+id/btnGoMember"
+                android:id="@+id/btnGoSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                android:drawableTop="@drawable/home_icon2"
-                android:text="會員專區"
-                android:textSize="14dp" />
-
-            <Button
-                android:id="@+id/btnGoPetHelper"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/home_icon3"
-                android:text="寵物小幫手"
+                android:drawableTop="@drawable/member_login"
+                android:text="會員登入"
                 android:textSize="14dp" />
 
         </LinearLayout>
@@ -123,41 +78,30 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnGoMapSearch"
+                android:id="@+id/btnGoMsgBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                android:drawableTop="@drawable/home_icon4"
-                android:text="地圖尋找"
+                android:drawableTop="@drawable/member_message"
+                android:text="個人訊息"
                 android:textSize="14dp" />
 
             <Button
-                android:id="@+id/btnGoUpload"
+                android:id="@+id/btnGoFollowing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                android:drawableTop="@drawable/home_icon5"
-                android:text="送養管理"
-                android:textSize="14dp" />
-
-            <Button
-                android:id="@+id/btnGoAboutUs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/home_icon6"
-                android:text="關於我們"
+                android:drawableTop="@drawable/member_list"
+                android:text="追蹤清單"
                 android:textSize="14dp" />
 
         </LinearLayout>
 
-
     </LinearLayout>
+
 
 </LinearLayout>

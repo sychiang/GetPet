@@ -68,13 +68,13 @@
         android:visibility="gone"
         android:text="Sign Out / 登出" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:text="Sign Up / 註冊" />
+    <!--<android.support.v7.widget.AppCompatButton-->
+        <!--android:id="@+id/btn_register"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:text="Sign Up / 註冊" />-->
 
     <!--<android.support.v7.widget.AppCompatButton-->
         <!--android:id="@+id/btn_test"-->

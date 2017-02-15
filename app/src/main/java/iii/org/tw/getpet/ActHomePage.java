@@ -65,14 +65,14 @@ public class ActHomePage extends AppCompatActivity
         if( access_token != ""){
             UserId = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
             UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"訪客");
-            header_username.setText("Hi, "+UserName);
+            //header_username.setText("Hi, "+UserName);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.setDrawerListener(toggle);
+//        toggle.syncState();
 
         //輪播功能
         fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
@@ -80,9 +80,9 @@ public class ActHomePage extends AppCompatActivity
         viewFlipper.setAnimation(fade_in);
         viewFlipper.setAnimation(fade_out);
         //sets auto flipping
-        viewFlipper.setAutoStart(true);
-        viewFlipper.setFlipInterval(3000);
-        viewFlipper.startFlipping();
+//        viewFlipper.setAutoStart(true);
+//        viewFlipper.setFlipInterval(3000);
+//        viewFlipper.startFlipping();
     }
 
     public void checkIfNormalLogin(){
@@ -171,8 +171,6 @@ public class ActHomePage extends AppCompatActivity
                     startActivity(intent);
                 }
                 break;
-//            case R.id.contact_us:
-//                break;
             case R.id.login:
                 intent = new Intent(ActHomePage.this, ActLogin.class);
                 startActivityForResult(intent, CDictionary.REQUEST_LOGIN);
@@ -198,24 +196,11 @@ public class ActHomePage extends AppCompatActivity
             startActivity(intent);
         }
     };
-    View.OnClickListener btnGoPairSetting_Click=new View.OnClickListener(){
+    View.OnClickListener btnGoMember_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            //前往配對設定
-            if(access_token == ""){
-                Log.d(CDictionary.Debug_TAG,"not log in");
-                AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
-                dialog.setTitle("尚未登入, 請先登入會員");
-                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        goLoginScreen();
-                    }
-                });
-                dialog.create().show();
-            } else {
-//                Intent intent = new Intent(ActHomePage.this, ActCategory.class);
-//                startActivity(intent);
-            }
+            //前往會員設定
+                Intent intent = new Intent(ActHomePage.this, ActMember.class);
+                startActivity(intent);
         }
     };
     View.OnClickListener btnGoPetHelper_Click=new View.OnClickListener(){
@@ -252,40 +237,27 @@ public class ActHomePage extends AppCompatActivity
             }
         }
     };
-    View.OnClickListener btnGoSetting_Click=new View.OnClickListener(){
+    View.OnClickListener btnGoAboutUs_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            //前往系統設定
-            if(access_token == ""){
-                Log.d(CDictionary.Debug_TAG,"not log in");
-                AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
-                dialog.setTitle("尚未登入, 請先登入會員");
-                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        goLoginScreen();
-                    }
-                });
-                dialog.create().show();
-            } else {
-//                Intent intent = new Intent(ActHomePage.this, ActAdoptUploadList.class);
-//                startActivity(intent);
-            }
+            //前往關於我們
+                Intent intent = new Intent(ActHomePage.this, ActAdoptUploadList.class);
+                startActivity(intent);
         }
     };
 
     public void initComponent(){
         btnGoAdoptSearch = (Button)findViewById(R.id.btnGoAdoptSearch);
         btnGoAdoptSearch.setOnClickListener(btnGoAdoptSearch_Click);
-        btnGoPairSetting = (Button)findViewById(R.id.btnGoPairSetting);
-        btnGoPairSetting.setOnClickListener(btnGoPairSetting_Click);
+        btnGoMember = (Button)findViewById(R.id.btnGoMember);
+        btnGoMember.setOnClickListener(btnGoMember_Click);
         btnGoPetHelper = (Button)findViewById(R.id.btnGoPetHelper);
         btnGoPetHelper.setOnClickListener(btnGoPetHelper_Click);
         btnGoMapSearch = (Button)findViewById(R.id.btnGoMapSearch);
         btnGoMapSearch.setOnClickListener(btnGoMapSearch_Click);
         btnGoUpload = (Button)findViewById(R.id.btnGoUpload);
         btnGoUpload.setOnClickListener(btnGoUpload_Click);
-        btnGoSetting = (Button)findViewById(R.id.btnGoSetting);
-        btnGoSetting.setOnClickListener(btnGoSetting_Click);
+        btnGoAboutUs = (Button)findViewById(R.id.btnGoAboutUs);
+        btnGoAboutUs.setOnClickListener(btnGoAboutUs_Click);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -300,7 +272,7 @@ public class ActHomePage extends AppCompatActivity
         viewFlipper=(ViewFlipper)findViewById(R.id.viewflipper);
     }
 
-    Button btnGoAdoptSearch,btnGoPairSetting,btnGoPetHelper,btnGoMapSearch,btnGoUpload,btnGoSetting;
+    Button btnGoAdoptSearch,btnGoMember,btnGoPetHelper,btnGoMapSearch,btnGoUpload,btnGoAboutUs;
     TextView header_username;
     NavigationView navigationView;
     ImageView ivPhoto1,ivPhoto2,ivPhoto3,ivPhoto4,ivPhoto5;

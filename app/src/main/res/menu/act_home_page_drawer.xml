@@ -5,16 +5,16 @@
         <menu>
             <item
                 android:id="@+id/messagebox"
-                android:icon="@drawable/item_icon"
+
                 android:title="訊息夾" />
             <item
                 android:id="@+id/folowinglist"
-                android:icon="@drawable/item_icon"
+
                 android:title="追蹤清單" />
 
             <item
                 android:id="@+id/login"
-                android:icon="@drawable/item_icon"
+
                 android:title="登入 / 登出" />
         </menu>
 

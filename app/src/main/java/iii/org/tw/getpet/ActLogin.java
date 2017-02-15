@@ -68,7 +68,7 @@ public class ActLogin extends AppCompatActivity {
             input_account.setVisibility(View.GONE);
             input_password.setVisibility(View.GONE);
             btn_login.setVisibility(View.GONE);
-            btn_register.setVisibility(View.GONE);
+            //btn_register.setVisibility(View.GONE);
 
             tv_username.setVisibility(View.VISIBLE);
             tv_username.setText("Hi, "+userInfo.getString(CDictionary.SK_username,"")+"\n您已登入本系統");
@@ -388,8 +388,8 @@ public class ActLogin extends AppCompatActivity {
     };
 
     public void initComponent(){
-        btn_register = (Button)findViewById(R.id.btn_register);
-        btn_register.setOnClickListener(btn_register_Click);
+//        btn_register = (Button)findViewById(R.id.btn_register);
+//        btn_register.setOnClickListener(btn_register_Click);
 
         btn_login = (Button)findViewById(R.id.btn_login);
         btn_login.setOnClickListener(btn_login_Click);
@@ -406,7 +406,7 @@ public class ActLogin extends AppCompatActivity {
 //        btn_test.setOnClickListener(btn_test_Click);
     }
 
-    Button btn_login, btn_register,btn_logout, btn_test;
+    Button btn_login, btn_logout, btn_register, btn_test;
     EditText input_account, input_password;
     TextView tv_username;
 
