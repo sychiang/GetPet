@@ -26,7 +26,7 @@
                 android:id="@+id/line1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -36,7 +36,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="寵物類別"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <Spinner
                     android:id="@+id/spinner_animalKind"
@@ -50,7 +50,7 @@
                 android:id="@+id/line2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -60,7 +60,7 @@
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:text="寵物品種"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <Spinner
                     android:id="@+id/spinner_animalType"
@@ -73,7 +73,7 @@
                 android:id="@+id/line3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -82,7 +82,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="所在縣市"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <Spinner
                     android:id="@+id/spinner_animalArea"
@@ -95,7 +95,7 @@
                 android:id="@+id/line4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -104,7 +104,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="性別"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <Spinner
                     android:id="@+id/spinner_animalGender"
@@ -118,7 +118,7 @@
                 android:id="@+id/line5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -127,7 +127,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="是否結紮"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <Spinner
                     android:id="@+id/spinner_animalBirth"
@@ -141,7 +141,7 @@
                 android:id="@+id/line6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -150,7 +150,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="有無晶片"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <Spinner
                     android:id="@+id/spinner_animalChip"
@@ -164,7 +164,7 @@
                 android:id="@+id/line7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -173,7 +173,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="動物姓名"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/edTxt_animalName"
@@ -189,7 +189,7 @@
                 android:id="@+id/line8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -198,7 +198,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="年齡"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/edTxt_animalAge"
@@ -212,7 +212,7 @@
                 android:id="@+id/line9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -221,7 +221,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="毛色"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/edTxt_animalColor"
@@ -235,7 +235,7 @@
                 android:id="@+id/line11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -244,7 +244,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="健康狀態"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/edTxt_animalHealthy"
@@ -258,7 +258,7 @@
                 android:id="@+id/line12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -267,7 +267,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="病況說明"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/edTxt_animalDisease_Other"
@@ -281,7 +281,7 @@
                 android:id="@+id/line13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -290,7 +290,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="送養理由"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/edTxt_animalReason"
@@ -304,7 +304,7 @@
                 android:id="@+id/line14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -313,7 +313,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="送養備註"
-                    android:textSize="20dp" />
+                    android:textSize="18dp" />
 
                 <EditText
                     android:id="@+id/edTxt_animalNote"
@@ -327,7 +327,7 @@
                 android:id="@+id/line15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <Button
@@ -341,7 +341,7 @@
                 android:id="@+id/line16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <TextView
@@ -350,14 +350,14 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:text="點擊+號選擇圖片"
-                    android:textSize="23dp" />
+                    android:textSize="20dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/line17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <ImageButton
@@ -422,14 +422,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-
             <!--********************************************************-->
 
             <LinearLayout
                 android:id="@+id/line18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20px"
+                android:layout_margin="10px"
                 android:orientation="horizontal">
 
                 <Button

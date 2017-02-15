@@ -229,6 +229,7 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
                                         public void onClick(DialogInterface dialog, int which) {
                                             Intent intent = new Intent(ActShelterPetList.this, ActSearchShelter.class);
                                             startActivity(intent);
+                                            finish();
                                         }
                                     });
                                     dialog.create().show();
@@ -278,6 +279,7 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

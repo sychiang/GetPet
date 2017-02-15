@@ -184,6 +184,7 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

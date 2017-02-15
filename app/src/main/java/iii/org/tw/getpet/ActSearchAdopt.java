@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import common.CDictionary;
@@ -62,7 +63,7 @@ public class ActSearchAdopt extends AppCompatActivity {
         });
 
         //類型下拉選單
-        final String[] type = {"全部", "狗", "貓", "老鼠", "鳥", "兔"};
+        final String[] type = {"全部", "狗", "貓", "老鼠", "鳥", "兔子","其他"};
         ArrayAdapter<String> typeList = new ArrayAdapter<>(ActSearchAdopt.this,
                 R.layout.spinnercontent,
                 type);
@@ -101,6 +102,7 @@ public class ActSearchAdopt extends AppCompatActivity {
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -114,16 +116,19 @@ public class ActSearchAdopt extends AppCompatActivity {
             Intent intent = new Intent(ActSearchAdopt.this, ActAdoptPairList.class);
             intent.putExtras(bundle);
             startActivity(intent);
+            //finish();
         }
     };
 
     public void initComponent(){
-        btnSearch = (Button)findViewById(R.id.btnSearch);
+        //btnSearch = (Button)findViewById(R.id.btnSearch);
+        btnSearch = (ImageButton)findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(btnSearch_Click);
         spinner_area = (Spinner)findViewById(R.id.spinner_area);
         spinner_type = (Spinner)findViewById(R.id.spinner_type);
     }
 
-    Button btnSearch;
+    //Button btnSearch;
+    ImageButton btnSearch;
     Spinner spinner_area, spinner_type;
 }

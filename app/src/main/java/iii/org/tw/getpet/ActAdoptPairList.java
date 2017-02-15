@@ -1,5 +1,6 @@
 package iii.org.tw.getpet;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
@@ -48,10 +49,13 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
     // 最後可見條目的索引
     private int lastVisibleIndex;
 
+    private ProgressDialog progressDialog = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_adopt_pair_list);
+        setTitle("iPet 動物資訊");
         Intent intent = getIntent();
         String url = "http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas?";
         String condArea = intent.getExtras().getString(CDictionary.BK_Area);
@@ -85,7 +89,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
             case "苗栗縣":
                 url += "$filter=animalAddress eq '苗栗縣'";
                 break;
-            case "台中市":
+            case "臺中市":
                 url += "$filter=animalAddress eq '台中市'";
                 break;
             case "彰化縣":
@@ -103,10 +107,10 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
             case "嘉義市":
                 url += "$filter=animalAddress eq '嘉義市'";
                 break;
-            case "台南":
+            case "臺南市":
                 url += "$filter=animalAddress eq '台南'";
                 break;
-            case "高雄":
+            case "高雄市":
                 url += "$filter=animalAddress eq '高雄'";
                 break;
             case "屏東縣":
@@ -149,6 +153,9 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                 case "兔":
                     url += "$filter=animalKind eq '兔'";
                     break;
+                case "其他":
+                    url += "$filter=animalKind eq '其他'";
+                    break;
                 default:
                     break;
             }
@@ -168,14 +175,19 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                 case "鳥":
                     url += " and animalKind eq '鳥'";
                     break;
-                case "兔":
+                case "兔子":
                     url += " and animalKind eq '兔'";
+                    break;
+                case "其他":
+                    url += " and animalKind eq '其他'";
                     break;
                 default:
                     break;
             }
         }
         Log.d(CDictionary.Debug_TAG, url);
+
+        progressDialog = ProgressDialog.show(ActAdoptPairList.this, "請稍後...", "資料讀取中...", true);
 
         listview = (ListView) findViewById(R.id.pair_petlist);
         // 實例化底部布局
@@ -221,6 +233,13 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                                     listview.addFooterView(moreView);
                                     adapter = new AdoptPairListAdapter(ActAdoptPairList.this, showlist);
                                     listview.setAdapter(adapter);
+
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            progressDialog.dismiss();
+                                        }
+                                    });
                                     // 绑定監聽器
                                     listview.setOnScrollListener(ActAdoptPairList.this);
 
@@ -241,14 +260,17 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                                         }
                                     });
                                 } else {
+                                    progressDialog.dismiss();
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairList.this);
                                     dialog.setView(R.layout.nodata_alertdialog);
                                     dialog.setTitle("查無資料");
+                                    //dialog.setMessage("查無資料");
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             Intent intent = new Intent(ActAdoptPairList.this, ActSearchAdopt.class);
                                             startActivity(intent);
+                                            finish();
                                         }
                                     });
                                     dialog.create().show();
@@ -257,9 +279,21 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
 
                             @Override
                             public void onError(ANError anError) {
-
+                                progressDialog.dismiss();
+                                AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairList.this);
+                                dialog.setView(R.layout.nodata_alertdialog);
+                                dialog.setTitle("連線失敗, 請稍後再試");
+                                //dialog.setMessage("查無資料");
+                                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(ActAdoptPairList.this, ActSearchAdopt.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                });
+                                dialog.create().show();
                             }
-
                         });
 
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -329,6 +363,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

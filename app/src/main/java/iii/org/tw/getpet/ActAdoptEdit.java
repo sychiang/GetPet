@@ -67,6 +67,7 @@ import okhttp3.Response;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 
 public class ActAdoptEdit extends AppCompatActivity {
+    private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
     Bitmap iv_bitmap_getFromUrl;
     boolean iv_Boolean_判斷是否該觸發發品種列表刷新事件 = false;
     object_petDataForSelfDB iv_object_petDataForSelfDB;
@@ -168,6 +169,14 @@ public class ActAdoptEdit extends AppCompatActivity {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        //取得使用者基本資料
+        UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+UserName);
+        UserId = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
+        access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER TOKEN："+access_token);
     }
 
     private void fill表單欄位() throws ExecutionException, InterruptedException {
@@ -684,6 +693,7 @@ public class ActAdoptEdit extends AppCompatActivity {
         Request request = new Request.Builder()
                 .url("http://twpetanimal.ddns.net:9487/api/v1/animalDatas/" + p_animalId)
                 .addHeader("Content-Type", "raw")
+                .addHeader("Authorization","Bearer "+access_token)
                 .delete()
                 .build();
         Call call = Iv_OkHttp_client.newCall(request);
@@ -748,8 +758,10 @@ public class ActAdoptEdit extends AppCompatActivity {
         Request request = new Request.Builder()
                 .url("http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas")
                 .addHeader("Content-Type", "raw")
+                .addHeader("Authorization","Bearer "+access_token)
                 .post(requestBody)
                 .build();
+
         Call call = Iv_OkHttp_client.newCall(request);
         call.enqueue(new Callback() {
             @Override
@@ -1052,6 +1064,7 @@ public class ActAdoptEdit extends AppCompatActivity {
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

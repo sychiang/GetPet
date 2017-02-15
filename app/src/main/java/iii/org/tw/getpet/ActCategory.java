@@ -51,6 +51,7 @@ public class ActCategory extends AppCompatActivity {
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -90,10 +91,12 @@ public class ActCategory extends AppCompatActivity {
                         case 0:
                             intent = new Intent(ActCategory.this, ActSearchShelter.class);
                             startActivity(intent);
+                            finish();
                             break;
                         case 1:
                             intent = new Intent(ActCategory.this, ActSearchAdopt.class);
                             startActivity(intent);
+                            finish();
                             break;
                         default:
                             break;

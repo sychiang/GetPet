@@ -1,5 +1,6 @@
 package iii.org.tw.getpet;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -54,6 +55,8 @@ public class ActLogin extends AppCompatActivity {
 
     OkHttpClient Iv_OkHttp_client = new OkHttpClient();
     public static final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
+
+    private ProgressDialog progressDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,6 +178,7 @@ public class ActLogin extends AppCompatActivity {
     private void goMainScreen() {
         Intent intent = new Intent(ActLogin.this, ActHomePage.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -187,6 +191,7 @@ public class ActLogin extends AppCompatActivity {
         public void onClick(View arg0) {
             Intent intent = new Intent(ActLogin.this, ActRegister.class);
             startActivity(intent);
+            finish();
         }
     };
 
@@ -207,6 +212,7 @@ public class ActLogin extends AppCompatActivity {
 
     View.OnClickListener btn_login_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
+            progressDialog = ProgressDialog.show(ActLogin.this, "資料傳送中, 請稍後...", "", true);
             requestForToken();
         }
     };
@@ -246,6 +252,8 @@ public class ActLogin extends AppCompatActivity {
                         if(access_token != ""){
                             requestForUserInfo();
                         } else{
+                            progressDialog.dismiss();
+
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
                             dialog.setTitle("登入失敗");
                             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
@@ -265,6 +273,8 @@ public class ActLogin extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        progressDialog.dismiss();
+
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
                         dialog.setTitle("登入失敗");
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
@@ -320,6 +330,9 @@ public class ActLogin extends AppCompatActivity {
                         Log.d(CDictionary.Debug_TAG,"測試暫存 TOKEN: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,""));
                         Log.d(CDictionary.Debug_TAG,"測試暫存 USERID: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,""));
                         Log.d(CDictionary.Debug_TAG,"測試暫存 EMAIL: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_useremail,""));
+
+                        progressDialog.dismiss();
+
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
                         dialog.setTitle("登入成功");
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
@@ -329,6 +342,7 @@ public class ActLogin extends AppCompatActivity {
                             }
                         });
                         dialog.create().show();
+
                     }
                 });
             }

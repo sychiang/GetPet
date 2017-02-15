@@ -1,5 +1,6 @@
 package iii.org.tw.getpet;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -40,6 +41,8 @@ public class ActRegister extends AppCompatActivity {
 
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
 
+    private ProgressDialog progressDialog = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +62,7 @@ public class ActRegister extends AppCompatActivity {
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -85,6 +89,7 @@ public class ActRegister extends AppCompatActivity {
                             }else {
                                 //sendRequestToServer();
                                 if(input_password.getText().toString().equals(input_cfmpassword.getText().toString())){
+                                    progressDialog = ProgressDialog.show(ActRegister.this, "資料傳送中, 請稍後...", "", true);
                                     sendRegisterRequestToServer();
                                 } else {
                                     new AlertDialog.Builder(ActRegister.this)
@@ -142,6 +147,7 @@ public class ActRegister extends AppCompatActivity {
                     }
                     @Override
                     public void onFailure(Call call, IOException e) {
+                        progressDialog.dismiss();
                         Log.d(CDictionary.Debug_TAG,"POST FAIL......");
                     }
                 });
@@ -182,6 +188,7 @@ public class ActRegister extends AppCompatActivity {
                         if(access_token != ""){
                             requestForUserInfo();
                         } else{
+                            progressDialog.dismiss();
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
                             dialog.setTitle("註冊失敗");
                             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
@@ -201,6 +208,7 @@ public class ActRegister extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        progressDialog.dismiss();
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
                         dialog.setTitle("註冊失敗");
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
@@ -247,6 +255,7 @@ public class ActRegister extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        progressDialog.dismiss();
                         SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
                         userInfo.edit().putString(CDictionary.SK_username,input_username.getText().toString())
                                 .putString(CDictionary.SK_token,access_token)
@@ -264,6 +273,7 @@ public class ActRegister extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(ActRegister.this, ActHomePage.class);
                                 startActivity(intent);
+                                finish();
                             }
                         });
                         dialog.create().show();
@@ -272,6 +282,7 @@ public class ActRegister extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call call, IOException e) {
+                progressDialog.dismiss();
                 Log.d(CDictionary.Debug_TAG,"GET USERINFO FAIL......");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
                 dialog.setTitle("註冊失敗");

@@ -61,6 +61,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 public class ActAdoptUpload extends AppCompatActivity {
     object_ConditionOfAdoptPet iv_object_conditionOfAdoptPet_a;
     public static ActAdoptUpload scrollingActivity;
+    private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
 
     OkHttpClient Iv_OkHttp_client = new OkHttpClient();
     public static final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
@@ -97,7 +98,7 @@ public class ActAdoptUpload extends AppCompatActivity {
             "南投縣", "雲林縣", "嘉義縣", "嘉義市", "臺南市", "高雄市",
             "屏東縣", "花蓮縣", "臺東縣", "澎湖縣", "金門縣", "連江縣"};
     final String[] iv_array_animalGender = {"公","母","未知"};
-    final String[] iv_array_YesOrNO = {"否","是"};
+    final String[] iv_array_YesOrNO = {"是","否","未知"};
     private ArrayList<String>[] iv_Array_動物品種清單;
     private ArrayList<String> iv_ArrayList_動物類別清單;
 
@@ -105,6 +106,7 @@ public class ActAdoptUpload extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_adopt_upload);
+        setTitle("新增送養寵物");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -121,6 +123,14 @@ public class ActAdoptUpload extends AppCompatActivity {
             //已有權限，可進行檔案存取
         }
         init();
+
+        //取得使用者基本資料
+        UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+UserName);
+        UserId = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
+        access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER TOKEN："+access_token);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -445,6 +455,7 @@ public class ActAdoptUpload extends AppCompatActivity {
         l_PetData_PetObj.setAnimalReason(edTxt_animalReason.getText().toString());
         l_PetData_PetObj.setAnimalData_Condition(iv_ArrayList_object_ConditionOfAdoptPet);
         l_PetData_PetObj.setAnimalData_Pic(iv_ArrayList_object_OfPictureImgurSite);
+        l_PetData_PetObj.setAnimalOwner_userID(UserId);
         //****************
         Gson l_gsn_gson = new Gson();
         String l_strPetDataObjToJSONString = l_gsn_gson.toJson(l_PetData_PetObj);
@@ -455,6 +466,7 @@ public class ActAdoptUpload extends AppCompatActivity {
         Request request = new Request.Builder()
                 .url("http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas")
                 .addHeader("Content-Type", "raw")
+                .addHeader("Authorization","Bearer "+access_token)
                 .post(requestBody)
                 .build();
 
@@ -546,6 +558,7 @@ public class ActAdoptUpload extends AppCompatActivity {
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

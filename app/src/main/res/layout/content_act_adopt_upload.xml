@@ -17,7 +17,7 @@
             android:id="@+id/line1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
 
             <TextView
@@ -26,8 +26,8 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
-                android:text="寵物類別" />
+                android:textSize="18dp"
+                android:text="動物種類" />
             <Spinner
                 android:layout_weight="1"
                 android:layout_width="530px"
@@ -40,7 +40,7 @@
             android:id="@+id/line2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
 
             <TextView
@@ -49,8 +49,8 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
-                android:text="寵物品種" />
+                android:textSize="18dp"
+                android:text="動物品種" />
 
             <Spinner
                 android:layout_weight="1"
@@ -63,7 +63,7 @@
             android:id="@+id/line3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
 
             <TextView
@@ -71,7 +71,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:text="所在縣市" />
             <Spinner
                 android:layout_weight="1"
@@ -84,7 +84,7 @@
             android:id="@+id/line4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
 
             <TextView
@@ -92,8 +92,8 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
-                android:text="性別" />
+                android:textSize="18dp"
+                android:text="動物性別" />
             <Spinner
                 android:layout_weight="1"
                 android:layout_width="530px"
@@ -106,7 +106,7 @@
             android:id="@+id/line5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
 
             <TextView
@@ -114,8 +114,8 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
-                android:text="是否結紮" />
+                android:textSize="18dp"
+                android:text="是否已節育" />
             <Spinner
                 android:layout_weight="1"
                 android:layout_width="530px"
@@ -128,7 +128,7 @@
             android:id="@+id/line6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
 
             <TextView
@@ -136,8 +136,8 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
-                android:text="有無晶片" />
+                android:textSize="18dp"
+                android:text="是否有晶片" />
             <Spinner
                 android:layout_weight="1"
                 android:layout_width="530px"
@@ -150,7 +150,7 @@
             android:id="@+id/line7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
 
             <TextView
@@ -158,7 +158,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:text="動物姓名" />
             <EditText
                 android:minWidth="250dp"
@@ -174,7 +174,7 @@
             android:id="@+id/line8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
 
             <TextView
@@ -182,10 +182,13 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
-                android:text="年齡" />
+                android:textSize="18dp"
+                android:text="動物年紀" />
             <EditText
+                android:inputType="number"
+                android:maxLength="2"
                 android:layout_weight="1"
+                android:hint="(月齡)"
                 android:id="@+id/edTxt_animalAge"
                 android:layout_marginLeft="10dp"
                 android:layout_width="250dp"
@@ -196,7 +199,7 @@
             android:id="@+id/line9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
 
             <TextView
@@ -204,10 +207,11 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
-                android:text="毛色" />
+                android:textSize="18dp"
+                android:text="動物毛色" />
             <EditText
                 android:layout_weight="1"
+                android:hint="毛色花紋描述"
                 android:id="@+id/edTxt_animalColor"
                 android:layout_marginLeft="10dp"
                 android:layout_width="250dp"
@@ -218,7 +222,7 @@
             android:id="@+id/line11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
 
             <TextView
@@ -226,7 +230,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:text="健康狀態" />
 
             <EditText
@@ -241,14 +245,14 @@
             android:id="@+id/line12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
             <TextView
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:text="病況說明" />
             <EditText
                 android:layout_weight="1"
@@ -262,14 +266,14 @@
             android:id="@+id/line13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
             <TextView
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:text="送養理由" />
             <EditText
                 android:layout_weight="1"
@@ -283,14 +287,14 @@
             android:id="@+id/line14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
             <TextView
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="20dp"
+                android:textSize="18dp"
                 android:text="送養備註" />
             <EditText
                 android:layout_weight="1"
@@ -304,7 +308,7 @@
             android:id="@+id/line15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
             <Button
                 android:text="設定領養條件(非必填)"
@@ -316,21 +320,21 @@
             android:id="@+id/line16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
             <TextView
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:textSize="23dp"
+                android:textSize="20dp"
                 android:text="點擊+號選擇圖片" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/line17"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20px"
+            android:layout_margin="10px"
             android:orientation="horizontal">
             <ImageButton
                 android:layout_weight="1"
