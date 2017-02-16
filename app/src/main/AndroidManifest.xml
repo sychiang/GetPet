@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ActHomePage"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.iPetNoAction">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,9 +47,13 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyBJavlqelUNNqP_AMMmxzWwVNzDW0UwjHI" />
 
-        <activity android:name=".ActCategory" />
-        <activity android:name=".ActSearchShelter" />
-        <activity android:name=".ActShelterPetList" />
+        <activity android:name=".ActCategory"
+            android:theme="@style/AppTheme.iPet"
+            />
+        <activity android:name=".ActSearchShelter"
+            />
+        <activity android:name=".ActShelterPetList"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".ActShelterPetDetail"
             android:label="@string/title_activity_act_shelter_pet_detail"

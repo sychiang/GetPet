@@ -6,7 +6,14 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!--<item name="android:textColorPrimary">@android:color/white</item>-->
+    </style>
+
+    <style name="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/primary_text_material_light</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -15,13 +22,21 @@
     </style>
 
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="android:textColorPrimary">@color/primary_text_material_light</item>
+    </style>
 
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="iPetTheme" parent="AppTheme" >
+    <style name="AppTheme.iPetNoAction" parent="AppTheme.NoActionBar" >
         <item name="android:colorBackground">@color/background_material_light</item>
+        <item name="android:textColorPrimary">@color/primary_text_material_light</item>
+    </style>
+
+    <style name="AppTheme.iPet" parent="AppTheme" >
+        <item name="android:textColorPrimary">@color/primary_text_material_light</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
     </style>
 
 </resources>

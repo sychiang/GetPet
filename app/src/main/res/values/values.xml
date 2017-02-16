@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background_material_light">#efefef</color>
+    <color name="background_material_light">#cdf1ec</color>
+    <color name="primary_text_default_material_light">#0d775b</color>
+    <color name="primary_material_light">#cdf1ec</color>
 </resources>
