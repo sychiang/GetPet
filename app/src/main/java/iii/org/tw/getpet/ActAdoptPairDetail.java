@@ -1,5 +1,6 @@
 package iii.org.tw.getpet;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -70,6 +71,8 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
     String animalid;
     ArrayList<Integer> followingList = new ArrayList<>();
 
+    private ProgressDialog progressDialog = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,7 +124,7 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
         viewFlipper.setFlipInterval(3000);
         viewFlipper.startFlipping();
 
-        getFollowingList();
+        //getFollowingList();
 
     }
 
@@ -174,33 +177,34 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
     //查看認養條件
     View.OnClickListener btnCheckCond_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = inflater.inflate(R.layout.showcondition_alertdialog, null);
-            TextView tv_condAge = (TextView) view.findViewById(R.id.tv_condAge);
-            TextView tv_condEconomy = (TextView) view.findViewById(R.id.tv_condEconomy);
-            TextView tv_condHome = (TextView) view.findViewById(R.id.tv_condHome);
-            TextView tv_condFamily = (TextView) view.findViewById(R.id.tv_condFamily);
-            TextView tv_condReply = (TextView) view.findViewById(R.id.tv_condReply);
-            TextView tv_condPaper = (TextView) view.findViewById(R.id.tv_condPaper);
-            TextView tv_condFee = (TextView) view.findViewById(R.id.tv_condFee);
-            TextView tv_condOther = (TextView) view.findViewById(R.id.tv_condOther);
-
-            if(intent.getExtras().containsKey(CDictionary.BK_conditionAge))
-                tv_condAge.setText(intent.getExtras().getString(CDictionary.BK_conditionAge));
-            if(intent.getExtras().containsKey(CDictionary.BK_conditionEconomy))
-                tv_condEconomy.setText(intent.getExtras().getString(CDictionary.BK_conditionEconomy));
-            if(intent.getExtras().containsKey(CDictionary.BK_conditionHome))
-                tv_condHome.setText(intent.getExtras().getString(CDictionary.BK_conditionHome));
-            if(intent.getExtras().containsKey(CDictionary.BK_conditionFamily))
-                tv_condFamily.setText(intent.getExtras().getString(CDictionary.BK_conditionFamily));
-            if(intent.getExtras().containsKey(CDictionary.BK_conditionReply))
-                tv_condReply.setText(intent.getExtras().getString(CDictionary.BK_conditionReply));
-            if(intent.getExtras().containsKey(CDictionary.BK_conditionPaper))
-                tv_condPaper.setText(intent.getExtras().getString(CDictionary.BK_conditionPaper));
-            if(intent.getExtras().containsKey(CDictionary.BK_conditionFee))
-                tv_condFee.setText(intent.getExtras().getString(CDictionary.BK_conditionFee));
-            if(intent.getExtras().containsKey(CDictionary.BK_conditionOther))
-                tv_condOther.setText(intent.getExtras().getString(CDictionary.BK_conditionOther));
+//            inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            View view = inflater.inflate(R.layout.showcondition_alertdialog, null);
+//            TextView tv_condAge = (TextView) view.findViewById(R.id.tv_condAge);
+//            TextView tv_condEconomy = (TextView) view.findViewById(R.id.tv_condEconomy);
+//            TextView tv_condHome = (TextView) view.findViewById(R.id.tv_condHome);
+//            TextView tv_condFamily = (TextView) view.findViewById(R.id.tv_condFamily);
+//            TextView tv_condReply = (TextView) view.findViewById(R.id.tv_condReply);
+//            TextView tv_condPaper = (TextView) view.findViewById(R.id.tv_condPaper);
+//            TextView tv_condFee = (TextView) view.findViewById(R.id.tv_condFee);
+//            TextView tv_condOther = (TextView) view.findViewById(R.id.tv_condOther);
+//
+//            if(intent.getExtras().containsKey(CDictionary.BK_conditionAge))
+//                tv_condAge.setText(intent.getExtras().getString(CDictionary.BK_conditionAge));
+//            if(intent.getExtras().containsKey(CDictionary.BK_conditionEconomy))
+//                tv_condEconomy.setText(intent.getExtras().getString(CDictionary.BK_conditionEconomy));
+//            if(intent.getExtras().containsKey(CDictionary.BK_conditionHome))
+//                tv_condHome.setText(intent.getExtras().getString(CDictionary.BK_conditionHome));
+//            if(intent.getExtras().containsKey(CDictionary.BK_conditionFamily))
+//                tv_condFamily.setText(intent.getExtras().getString(CDictionary.BK_conditionFamily));
+//            if(intent.getExtras().containsKey(CDictionary.BK_conditionReply))
+//                tv_condReply.setText(intent.getExtras().getString(CDictionary.BK_conditionReply));
+//            if(intent.getExtras().containsKey(CDictionary.BK_conditionPaper))
+//                tv_condPaper.setText(intent.getExtras().getString(CDictionary.BK_conditionPaper));
+//            if(intent.getExtras().containsKey(CDictionary.BK_conditionFee))
+//                tv_condFee.setText(intent.getExtras().getString(CDictionary.BK_conditionFee));
+//            if(intent.getExtras().containsKey(CDictionary.BK_conditionOther))
+//                tv_condOther.setText(intent.getExtras().getString(CDictionary.BK_conditionOther));
+            View view = showConditionView();
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
             dialog.setView(view);
@@ -212,6 +216,37 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
             dialog.create().show();
         }
     };
+
+    public View showConditionView(){
+        inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.showcondition_alertdialog, null);
+        TextView tv_condAge = (TextView) view.findViewById(R.id.tv_condAge);
+        TextView tv_condEconomy = (TextView) view.findViewById(R.id.tv_condEconomy);
+        TextView tv_condHome = (TextView) view.findViewById(R.id.tv_condHome);
+        TextView tv_condFamily = (TextView) view.findViewById(R.id.tv_condFamily);
+        TextView tv_condReply = (TextView) view.findViewById(R.id.tv_condReply);
+        TextView tv_condPaper = (TextView) view.findViewById(R.id.tv_condPaper);
+        TextView tv_condFee = (TextView) view.findViewById(R.id.tv_condFee);
+        TextView tv_condOther = (TextView) view.findViewById(R.id.tv_condOther);
+
+        if(intent.getExtras().containsKey(CDictionary.BK_conditionAge))
+            tv_condAge.setText(intent.getExtras().getString(CDictionary.BK_conditionAge));
+        if(intent.getExtras().containsKey(CDictionary.BK_conditionEconomy))
+            tv_condEconomy.setText(intent.getExtras().getString(CDictionary.BK_conditionEconomy));
+        if(intent.getExtras().containsKey(CDictionary.BK_conditionHome))
+            tv_condHome.setText(intent.getExtras().getString(CDictionary.BK_conditionHome));
+        if(intent.getExtras().containsKey(CDictionary.BK_conditionFamily))
+            tv_condFamily.setText(intent.getExtras().getString(CDictionary.BK_conditionFamily));
+        if(intent.getExtras().containsKey(CDictionary.BK_conditionReply))
+            tv_condReply.setText(intent.getExtras().getString(CDictionary.BK_conditionReply));
+        if(intent.getExtras().containsKey(CDictionary.BK_conditionPaper))
+            tv_condPaper.setText(intent.getExtras().getString(CDictionary.BK_conditionPaper));
+        if(intent.getExtras().containsKey(CDictionary.BK_conditionFee))
+            tv_condFee.setText(intent.getExtras().getString(CDictionary.BK_conditionFee));
+        if(intent.getExtras().containsKey(CDictionary.BK_conditionOther))
+            tv_condOther.setText(intent.getExtras().getString(CDictionary.BK_conditionOther));
+        return view;
+    }
     //留言板
     View.OnClickListener btnLeaveMsg_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
@@ -306,81 +341,95 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
     //我要認養
     View.OnClickListener btnAdopt_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            //我要認養
-            OkHttpClient Iv_OkHttp_client = new OkHttpClient();
-            final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
+            View view = showConditionView();
 
-            JSONObject jsonObject = new JSONObject();
-            Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
-            try {
-                jsonObject.put("msgID", 0);
-                Log.d(CDictionary.Debug_TAG,"GET msgID: "+jsonObject.optString("msgID"));
-                jsonObject.put("msgTime","");
-                Log.d(CDictionary.Debug_TAG,"GET msgTime: "+jsonObject.optString("msgTime"));
-                jsonObject.put("msgFrom_userID", UserId);
-                Log.d(CDictionary.Debug_TAG,"GET msgFrom_userID: "+jsonObject.optString("msgFrom_userID"));
-                jsonObject.put("msgTo_userID", intent.getExtras().getString(CDictionary.BK_animalOwner_userID));
-                //jsonObject.put("msgTo_userID", "86644d36-0c69-4117-bb75-c500486eea71");
-                Log.d(CDictionary.Debug_TAG,"GET msgTo_userID: "+jsonObject.optString("msgTo_userID"));
-                jsonObject.put("msgType", "認養通知");
-                Log.d(CDictionary.Debug_TAG,"GET msgType: "+jsonObject.optString("msgType"));
-                jsonObject.put("msgFromURL", "nil");
-                Log.d(CDictionary.Debug_TAG,"GET msgFromURL: "+jsonObject.optString("msgFromURL"));
-                jsonObject.put("msgContent", "您好 我想認養你的寵物");
-                Log.d(CDictionary.Debug_TAG,"GET msgContent: "+jsonObject.optString("msgContent"));
-                jsonObject.put("msgRead", "未讀");
-                Log.d(CDictionary.Debug_TAG,"GET msgRead: "+jsonObject.optString("msgRead"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
-            Log.d(CDictionary.Debug_TAG,"GET JSON STRING: "+jsonObject.toString());
-            Request postRequest = new Request.Builder()
-                    .url("http://twpetanimal.ddns.net:9487/api/v1/MsgUsers")
-                    .addHeader("Accept", "application/json")
-                    .addHeader("Content-Type", "application/json")
-                    .addHeader("Authorization","Bearer "+access_token)
-                    .post(requestBody)
-                    .build();
-
-            Call call = Iv_OkHttp_client.newCall(postRequest);
-            call.enqueue(new Callback() {
+            AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
+            dialog.setView(view);
+            dialog.setTitle("以下認養條件是否已詳閱完畢?");
+            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                 @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    final String json = response.body().string();
-                    Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
-                            dialog.setMessage("系統已為您送出認養通知給送養人");
-                            dialog.setTitle("認養通知已送出");
-                            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            });
-                            dialog.create().show();
-                        }
-                    });
-                }
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    Log.d(CDictionary.Debug_TAG,"POST FAIL......");
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
-                    dialog.setTitle("認養通知傳送失敗");
-                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-                    dialog.create().show();
+                public void onClick(DialogInterface dialog, int which) {
+                    sendRequestForAdopt();
                 }
             });
+            dialog.create().show();
         }
     };
+
+    public void sendRequestForAdopt(){
+        OkHttpClient Iv_OkHttp_client = new OkHttpClient();
+        final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
+
+        JSONObject jsonObject = new JSONObject();
+        Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
+        try {
+            jsonObject.put("msgID", 0);
+            Log.d(CDictionary.Debug_TAG,"GET msgID: "+jsonObject.optString("msgID"));
+            jsonObject.put("msgTime","");
+            Log.d(CDictionary.Debug_TAG,"GET msgTime: "+jsonObject.optString("msgTime"));
+            jsonObject.put("msgFrom_userID", UserId);
+            Log.d(CDictionary.Debug_TAG,"GET msgFrom_userID: "+jsonObject.optString("msgFrom_userID"));
+            jsonObject.put("msgTo_userID", intent.getExtras().getString(CDictionary.BK_animalOwner_userID));
+            //jsonObject.put("msgTo_userID", "86644d36-0c69-4117-bb75-c500486eea71");
+            Log.d(CDictionary.Debug_TAG,"GET msgTo_userID: "+jsonObject.optString("msgTo_userID"));
+            jsonObject.put("msgType", "認養通知");
+            Log.d(CDictionary.Debug_TAG,"GET msgType: "+jsonObject.optString("msgType"));
+            jsonObject.put("msgFromURL", "nil");
+            Log.d(CDictionary.Debug_TAG,"GET msgFromURL: "+jsonObject.optString("msgFromURL"));
+            jsonObject.put("msgContent", "您好 我想認養你的寵物");
+            Log.d(CDictionary.Debug_TAG,"GET msgContent: "+jsonObject.optString("msgContent"));
+            jsonObject.put("msgRead", "未讀");
+            Log.d(CDictionary.Debug_TAG,"GET msgRead: "+jsonObject.optString("msgRead"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
+        Log.d(CDictionary.Debug_TAG,"GET JSON STRING: "+jsonObject.toString());
+        Request postRequest = new Request.Builder()
+                .url("http://twpetanimal.ddns.net:9487/api/v1/MsgUsers")
+                .addHeader("Accept", "application/json")
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization","Bearer "+access_token)
+                .post(requestBody)
+                .build();
+
+        Call call = Iv_OkHttp_client.newCall(postRequest);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String json = response.body().string();
+                Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
+                        dialog.setMessage("系統已為您送出認養通知給送養人");
+                        dialog.setTitle("認養通知已送出");
+                        dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                        dialog.create().show();
+                    }
+                });
+            }
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
+                dialog.setTitle("連線錯誤, 請稍後再試");
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                dialog.create().show();
+            }
+        });
+    }
 
     private void initComponent(){
         tvName = (TextView)findViewById(R.id.tvName);

@@ -16,6 +16,7 @@ public class ActMapCategory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_map_category);
+        initComponent();
     }
 
     @Override
