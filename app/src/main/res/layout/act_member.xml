@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorSilverGray"
     tools:context="iii.org.tw.getpet.ActMember">
 
     <LinearLayout
@@ -15,6 +16,7 @@
 
         <!--預留圖片瀏覽-->
         <ViewFlipper
+            android:background="@color/colorSilverGray"
             android:id="@+id/viewflipper"
             android:layout_width="match_parent"
             android:layout_height="250dp"
@@ -22,6 +24,7 @@
             android:foregroundGravity="center">
 
             <ImageView
+                android:background="@color/colorSilverGray"
                 android:id="@+id/ivPhoto1"
                 android:layout_width="1200px"
                 android:layout_height="820px"
@@ -34,45 +37,47 @@
     </LinearLayout>
 
     <LinearLayout
+        android:background="@color/colorSilverGray"
         android:id="@+id/downArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
+            android:background="@color/colorSilverGray"
             android:id="@+id/line1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
+                android:background="@color/colorSilverGray"
                 android:id="@+id/btnGoRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/member_verification"
-                android:gravity="bottom|center_horizontal"
-                android:text="會員註冊"
+                android:src="@drawable/vc_signup_xhdpi"
+                android:gravity="center"
                 android:textSize="14dp" />
 
-            <Button
+            <ImageButton
+                android:background="@color/colorSilverGray"
                 android:id="@+id/btnGoSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/member_login"
-                android:gravity="bottom|center_horizontal"
+                android:src="@drawable/vc_login_xhdpi"
+                android:gravity="center"
                 android:text="會員登入"
                 android:textSize="14dp" />
 
         </LinearLayout>
 
         <LinearLayout
+            android:background="@color/colorSilverGray"
             android:id="@+id/line2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -80,27 +85,27 @@
             android:layout_marginTop="20px"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
+                android:background="@color/colorSilverGray"
                 android:id="@+id/btnGoMsgBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/member_message"
-                android:gravity="bottom|center_horizontal"
+                android:src="@drawable/vc_message_xhdpi"
+                android:gravity="center"
                 android:text="個人訊息"
                 android:textSize="14dp" />
 
-            <Button
+            <ImageButton
+                android:background="@color/colorSilverGray"
                 android:id="@+id/btnGoFollowing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/member_list"
-                android:gravity="bottom|center_horizontal"
+                android:src="@drawable/vc_tracklist_xhdpi"
+                android:gravity="center"
                 android:text="追蹤清單"
                 android:textSize="14dp" />
 

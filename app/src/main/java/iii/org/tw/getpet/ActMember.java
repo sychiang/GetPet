@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -111,16 +112,16 @@ public class ActMember extends AppCompatActivity {
     }
 
     public void initComponent(){
-        btnGoRegister = (Button)findViewById(R.id.btnGoRegister);
+        btnGoRegister = (ImageButton)findViewById(R.id.btnGoRegister);
         btnGoRegister.setOnClickListener(btnGoRegister_Click);
 
-        btnGoSignIn = (Button)findViewById(R.id.btnGoSignIn);
+        btnGoSignIn = (ImageButton)findViewById(R.id.btnGoSignIn);
         btnGoSignIn.setOnClickListener(btnGoSignIn_Click);
 
-        btnGoMsgBox = (Button)findViewById(R.id.btnGoMsgBox);
+        btnGoMsgBox = (ImageButton)findViewById(R.id.btnGoMsgBox);
         btnGoMsgBox.setOnClickListener(btnGoMsgBox_Click);
 
-        btnGoFollowing = (Button)findViewById(R.id.btnGoFollowing);
+        btnGoFollowing = (ImageButton)findViewById(R.id.btnGoFollowing);
         btnGoFollowing.setOnClickListener(btnGoFollowing_Click);
 
         ivPhoto1 = (ImageView)findViewById(R.id.ivPhoto1);
@@ -128,7 +129,8 @@ public class ActMember extends AppCompatActivity {
         viewFlipper=(ViewFlipper)findViewById(R.id.viewflipper);
     }
 
-    Button btnGoRegister,btnGoSignIn,btnGoMsgBox,btnGoFollowing;
+    //Button btnGoRegister,btnGoSignIn,btnGoMsgBox,btnGoFollowing;
+    ImageButton btnGoRegister,btnGoSignIn,btnGoMsgBox,btnGoFollowing;
     ImageView ivPhoto1,ivPhoto2,ivPhoto3,ivPhoto4,ivPhoto5;
     ViewFlipper viewFlipper;
     Animation fade_in,fade_out;

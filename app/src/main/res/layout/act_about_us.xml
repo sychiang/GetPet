@@ -49,18 +49,20 @@
             <ImageButton
                 android:id="@+id/btn_rank"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                android:src="@drawable/icon_star_mdpi" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ori_track_track" />
 
             <ImageButton
                 android:id="@+id/btn_contactus"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="#FFFFFF"
-                android:src="@drawable/icon_message_mdpi" />
+                android:scaleType="fitCenter"
+                android:src="@drawable/ori_message_message" />
         </LinearLayout>
 
     </RelativeLayout>
