@@ -100,7 +100,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActMapCategory" />
         <activity android:name=".ActMapSearch" />
-        <activity android:name=".ActMember"></activity>
+        <activity android:name=".ActMember" />
+        <activity android:name=".ActAboutUs"></activity>
     </application>
 
 </manifest>

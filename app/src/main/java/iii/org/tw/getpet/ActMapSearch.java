@@ -46,16 +46,15 @@ public class ActMapSearch extends AppCompatActivity implements OnMapReadyCallbac
 
         l_CountDownLatch = new CountDownLatch(1);
 
-        getDataFromServer();
+        //getDataFromServer();
         final MapFragment map = (MapFragment) getFragmentManager().findFragmentById(R.id.map); //取得地圖
-
 
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         //getDataFromServer();
-        final GoogleMap mGoogleMap = googleMap;
+        //final GoogleMap mGoogleMap = googleMap;
 
 //        final Thread l_thread = new Thread(new Runnable() {
 //            @Override
@@ -85,8 +84,8 @@ public class ActMapSearch extends AppCompatActivity implements OnMapReadyCallbac
 //
 //        l_thread.start();
         LatLng gps = new LatLng(22.628228, 120.2908483);    //設定經緯度 預設南區資策會
-        Marker marker = mGoogleMap.addMarker(new MarkerOptions().position(gps).title("南區資策會").snippet("")); //設地標
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gps, 16));      //設定顯示大小
+        Marker marker = googleMap.addMarker(new MarkerOptions().position(gps).title("南區資策會").snippet("")); //設地標
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gps, 16));      //設定顯示大小
     }
 
     public void getDataFromServer() {

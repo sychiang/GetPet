@@ -240,7 +240,7 @@ public class ActHomePage extends AppCompatActivity
     View.OnClickListener btnGoAboutUs_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //前往關於我們
-                Intent intent = new Intent(ActHomePage.this, ActAdoptUploadList.class);
+                Intent intent = new Intent(ActHomePage.this, ActAboutUs.class);
                 startActivity(intent);
         }
     };
