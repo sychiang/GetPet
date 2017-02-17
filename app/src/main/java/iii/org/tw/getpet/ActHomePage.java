@@ -193,7 +193,7 @@ public class ActHomePage extends AppCompatActivity
     View.OnClickListener btnGoAdoptSearch_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //前往認養專區
-            Intent intent = new Intent(ActHomePage.this, ActCategory.class);
+            Intent intent = new Intent(ActHomePage.this, ActSearchAdopt.class);
             startActivity(intent);
         }
     };
@@ -220,7 +220,7 @@ public class ActHomePage extends AppCompatActivity
     };
     View.OnClickListener btnGoUpload_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            //前往送養管理
+            //前往送養專區
             if(access_token == ""){
                 Log.d(CDictionary.Debug_TAG,"not log in");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
@@ -233,15 +233,15 @@ public class ActHomePage extends AppCompatActivity
                 });
                 dialog.create().show();
             } else {
-                Intent intent = new Intent(ActHomePage.this, ActAdoptUploadList.class);
+                Intent intent = new Intent(ActHomePage.this, ActAdoptUpload.class);
                 startActivity(intent);
             }
         }
     };
-    View.OnClickListener btnGoAboutUs_Click=new View.OnClickListener(){
+    View.OnClickListener btnGoShelter_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            //前往關於我們
-                Intent intent = new Intent(ActHomePage.this, ActAboutUs.class);
+            //前往收容所資訊
+                Intent intent = new Intent(ActHomePage.this, ActSearchShelter.class);
                 startActivity(intent);
         }
     };
@@ -257,8 +257,9 @@ public class ActHomePage extends AppCompatActivity
         btnGoMapSearch.setOnClickListener(btnGoMapSearch_Click);
         btnGoUpload = (ImageButton)findViewById(R.id.btnGoUpload);
         btnGoUpload.setOnClickListener(btnGoUpload_Click);
-        btnGoAboutUs = (ImageButton)findViewById(R.id.btnGoAboutUs);
-        btnGoAboutUs.setOnClickListener(btnGoAboutUs_Click);
+
+        btnGoShelter = (ImageButton)findViewById(R.id.btnGoShelter);
+        btnGoShelter.setOnClickListener(btnGoShelter_Click);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -280,5 +281,6 @@ public class ActHomePage extends AppCompatActivity
     ViewFlipper viewFlipper;
     Animation fade_in,fade_out;
 
-    ImageButton btnGoAdoptSearch,btnGoMember,btnGoPetHelper,btnGoMapSearch,btnGoUpload,btnGoAboutUs;
+    ImageButton btnGoAdoptSearch,btnGoMember,btnGoPetHelper,btnGoMapSearch,btnGoUpload,btnGoShelter;
+
 }

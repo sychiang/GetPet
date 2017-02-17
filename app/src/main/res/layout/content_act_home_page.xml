@@ -10,10 +10,10 @@
     tools:context="iii.org.tw.getpet.ActHomePage">
 
     <LinearLayout
-        android:layout_weight="1"
         android:id="@+id/upArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <!--預留圖片瀏覽-->
@@ -69,10 +69,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_weight="1"
         android:id="@+id/downArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <LinearLayout
@@ -82,89 +82,179 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:src="@drawable/vc_home_adopt"
-                android:scaleType="fitCenter"
-                android:background="#cdf1ec"
-                android:id="@+id/btnGoAdoptSearch"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="認養專區"
-                android:textSize="14dp" />
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageButton
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/btnGoAdoptSearch"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="#cdf1ec"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/vc_home_adopt" />
+                <TextView
+                    android:layout_marginTop="10px"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnGoAdoptSearch"
+                    android:text="認養專區"
+                    android:textColor="@color/colorHomeText"
+                    android:textSize="14dp" />
+            </RelativeLayout>
 
-            <ImageButton
-                android:src="@drawable/vc_home_shelter"
-                android:scaleType="fitCenter"
-                android:background="#cdf1ec"
-                android:id="@+id/btnGoAboutUs"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="收容所資訊"
-                android:textSize="14dp" />
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageButton
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/btnGoShelter"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="#cdf1ec"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/vc_home_help" />
+                <TextView
+                    android:layout_marginTop="10px"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnGoShelter"
+                    android:text="收容所資訊"
+                    android:textColor="@color/colorHomeText"
+                    android:textSize="14dp" />
+            </RelativeLayout>
 
-            <ImageButton
-                android:src="@drawable/vc_home_help"
-                android:scaleType="fitCenter"
-                android:background="#cdf1ec"
-                android:id="@+id/btnGoPetHelper"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="寵物小幫手"
-                android:textSize="14dp" />
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <ImageButton
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/btnGoPetHelper"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="#cdf1ec"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/vc_home_help" />
+                <TextView
+                    android:layout_marginTop="10px"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnGoPetHelper"
+                    android:text="寵物小幫手"
+                    android:textColor="@color/colorHomeText"
+                    android:textSize="14dp" />
+            </RelativeLayout>
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="40px"
             android:id="@+id/line2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:src="@drawable/vc_home_upload"
-                android:scaleType="fitCenter"
-                android:background="#cdf1ec"
-                android:id="@+id/btnGoUpload"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="送養管理"
-                android:textSize="14dp" />
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
-            <ImageButton
-                android:src="@drawable/vc_home_adopt"
-                android:scaleType="fitCenter"
-                android:background="#cdf1ec"
-                android:id="@+id/btnGoMapSearch"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="地圖尋找"
-                android:textSize="14dp" />
+                <ImageButton
+                    android:id="@+id/btnGoUpload"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_vertical"
+                    android:background="#cdf1ec"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/vc_home_upload" />
 
-            <ImageButton
-                android:src="@drawable/vc_home_member"
-                android:scaleType="fitCenter"
-                android:background="#cdf1ec"
-                android:id="@+id/btnGoMember"
-                android:layout_width="80dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="會員專區"
-                android:textSize="14dp" />
+                <TextView
+                    android:layout_marginTop="10px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnGoUpload"
+                    android:layout_centerHorizontal="true"
+                    android:text="送養管理"
+                    android:textColor="@color/colorHomeText"
+                    android:textSize="14dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/btnGoMapSearch"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_vertical"
+                    android:background="#cdf1ec"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/vc_home_adopt" />
+
+                <TextView
+                    android:layout_marginTop="10px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnGoMapSearch"
+                    android:layout_centerHorizontal="true"
+                    android:text="地圖尋找"
+                    android:textColor="@color/colorHomeText"
+                    android:textSize="14dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/btnGoMember"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_vertical"
+                    android:background="#cdf1ec"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/vc_home_member" />
+
+                <TextView
+                    android:layout_marginTop="10px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnGoMember"
+                    android:layout_centerHorizontal="true"
+                    android:text="會員專區"
+                    android:textColor="@color/colorHomeText"
+                    android:textSize="14dp" />
+            </RelativeLayout>
 
         </LinearLayout>
-
+        <LinearLayout
+            android:layout_marginTop="10px"
+            android:background="#47D1C8"
+            android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+        </LinearLayout>
 
     </LinearLayout>
 

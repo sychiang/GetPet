@@ -28,6 +28,7 @@ import model.Board;
 import model.UserMsg;
 
 public class ActBoardList extends AppCompatActivity {
+    static   ActBoardList iv_ActBoardList ;
     ArrayList<Board> myDataset = new ArrayList<Board>();
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
     BoardListAdapter adapter;
@@ -44,6 +45,7 @@ public class ActBoardList extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 
         //初始化元件
+        iv_ActBoardList = this;
         recyclerList = (RecyclerView) findViewById(R.id.boardlist_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -71,6 +73,15 @@ public class ActBoardList extends AppCompatActivity {
 
         getDatafromServer();
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == CDictionary.requestCodeOfAddNewMessage && resultCode == RESULT_OK){
+            ActBoardList.iv_ActBoardList.finish();
+        }
     }
 
     public void getDatafromServer(){

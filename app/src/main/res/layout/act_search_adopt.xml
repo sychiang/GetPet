@@ -8,84 +8,116 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/cardview_light_background"
     tools:context="iii.org.tw.getpet.ActSearchShelter">
 
     <LinearLayout
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_marginTop="50px"
-            android:paddingLeft="10px"
-            android:background="@drawable/spinner_style"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_marginTop="50px"
-                android:text="縣市"
-                android:textSize="25sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Spinner
-                android:layout_margin="50px"
-                android:id="@+id/spinner_area"
-                android:layout_width="500px"
-                android:layout_height="wrap_content">
-            </Spinner>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="50px"
-            android:paddingLeft="10px"
-            android:background="@drawable/spinner_style"
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_marginTop="50px"
-                android:text="類型"
-                android:textSize="25sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Spinner
-                android:layout_margin="50px"
-                android:id="@+id/spinner_type"
-                android:layout_width="500px"
-                android:layout_height="wrap_content">
-            </Spinner>
-
-        </LinearLayout>
-
-        <!--<Button-->
-            <!--android:layout_marginTop="50px"-->
-            <!--android:id="@+id/btnSearch"-->
-            <!--android:background="@drawable/searchbtn_style"-->
-            <!--android:drawableLeft="@drawable/icon_search_mdpi"-->
-            <!--android:layout_width="750px"-->
-            <!--android:layout_height="170px"-->
-            <!--android:gravity="left|center_vertical"-->
-            <!--android:textSize="25sp"-->
-            <!--android:textColor="#000000"-->
-            <!--android:text="Search" />-->
-        <ImageButton
-            android:layout_marginTop="50px"
-            android:id="@+id/btnSearch"
-            android:layout_gravity="right"
-            android:background="@android:color/white"
-            android:src="@drawable/icon_search_mdpi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50px"
+            android:background="@drawable/spinner_style"
+            android:orientation="horizontal"
+            android:paddingLeft="10px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50px"
+                android:text="所在縣市"
+                android:textSize="25sp" />
+
+            <Spinner
+                android:id="@+id/spinner_area"
+                android:layout_width="600px"
+                android:layout_height="wrap_content"
+                android:layout_margin="50px"></Spinner>
+
+        </LinearLayout>
+
+        <!--<LinearLayout-->
+        <!--android:layout_marginTop="50px"-->
+        <!--android:paddingLeft="10px"-->
+        <!--android:background="@drawable/spinner_style"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+        <!--android:layout_marginTop="50px"-->
+        <!--android:text="類型"-->
+        <!--android:textSize="25sp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+        <!--<Spinner-->
+        <!--android:layout_margin="50px"-->
+        <!--android:id="@+id/spinner_type"-->
+        <!--android:layout_width="500px"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--</Spinner>-->
+        <!--</LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50px"
+            android:background="@drawable/spinner_style"
+            android:orientation="horizontal"
+            android:paddingLeft="10px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50px"
+                android:text="寵物類別"
+                android:textSize="25sp" />
+
+            <Spinner
+                android:id="@+id/spinner_animalKind2"
+                android:layout_width="600px"
+                android:layout_height="wrap_content"
+                android:layout_margin="50px"></Spinner>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50px"
+            android:background="@drawable/spinner_style"
+            android:orientation="horizontal"
+            android:paddingLeft="10px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50px"
+                android:text="寵物品種"
+                android:textSize="25sp" />
+
+            <Spinner
+                android:id="@+id/spinner_animalType2"
+                android:layout_width="600px"
+                android:layout_height="wrap_content"
+                android:layout_margin="50px"></Spinner>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="50px"
+            android:background="@android:color/white"
             android:gravity="right|center_vertical"
-            android:textSize="25sp"
+            android:src="@drawable/icon_search_mdpi"
+            android:text="Search"
             android:textColor="#000000"
-            android:text="Search" />
+            android:textSize="25sp" />
 
     </LinearLayout>
 

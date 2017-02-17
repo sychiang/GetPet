@@ -11,6 +11,7 @@ public class CDictionary {
     //Bundle key
     public static final String BK_Area = "BK_Area";
     public static final String BK_Type = "BK_Type";
+    public static final String BK_Kind = "BK_Kind";
     public static final String BK_animal_id = "BK_animal_id";
     public static final String BK_animal_kind = "BK_animal_kind";
     public static final String BK_animal_sex = "BK_animal_sex";
@@ -91,5 +92,7 @@ public class CDictionary {
 
     //Intent key
     public static final String IK_adoptuploaditem = "IK_adoptuploaditem";
+
+    public static final int requestCodeOfAddNewMessage = 10003;
 
 }

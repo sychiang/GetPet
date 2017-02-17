@@ -62,6 +62,8 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
         Log.d(CDictionary.Debug_TAG, "get cond1" + condArea);
         String condType = intent.getExtras().getString(CDictionary.BK_Type);
         Log.d(CDictionary.Debug_TAG, "get cond2" + condType);
+        String condKind = intent.getExtras().getString(CDictionary.BK_Kind);
+        Log.d(CDictionary.Debug_TAG, "get cond3" + condKind);
         switch (condArea) {
             case "全部":
                 break;
@@ -185,6 +187,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                     break;
             }
         }
+
         Log.d(CDictionary.Debug_TAG, url);
 
         progressDialog = ProgressDialog.show(ActAdoptPairList.this, "請稍後...", "資料讀取中...", true);

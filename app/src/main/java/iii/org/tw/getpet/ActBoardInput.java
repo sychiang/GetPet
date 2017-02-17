@@ -157,6 +157,7 @@ public class ActBoardInput extends AppCompatActivity {
         bundle.putString(CDictionary.BK_animalID,animalid);
         intent.putExtras(bundle);
         startActivity(intent);
+        ActBoardList.iv_ActBoardList.finish();
         finish();
     }
 

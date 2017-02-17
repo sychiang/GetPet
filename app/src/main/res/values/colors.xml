@@ -5,6 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorSilverGray">#efefef</color>
     <color name="primary_text_material_light">#FFFFFF</color>
-    <color name="colorNormalText">#2d4b44</color>
+    <color name="colorNormalText">#000000</color>
     <color name="colorBackground">#cdf1ec</color>
+    <color name="colorHeaderText">#2d4b44</color>
+    <color name="colorHomeText">#76C2AF</color>
 </resources>

@@ -35,6 +35,7 @@ import model.CMessage;
 import model.UserMsg;
 
 public class ActMsgBox extends AppCompatActivity {
+    static ActMsgBox iv_ActMsgBox;
     ArrayList<UserMsg> myDataset = new ArrayList<UserMsg>();
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
     MsgListAdapter adapter;
@@ -46,6 +47,7 @@ public class ActMsgBox extends AppCompatActivity {
         setContentView(R.layout.act_msg_box);
 
         //初始化元件
+        iv_ActMsgBox = this;
         recyclerList = (RecyclerView) findViewById(R.id.msgboxlist_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);

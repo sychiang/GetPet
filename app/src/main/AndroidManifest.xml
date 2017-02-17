@@ -49,7 +49,8 @@
         <activity android:name=".ActCategory"
             android:theme="@style/AppTheme.iPet" />
 
-        <activity android:name=".ActSearchShelter" />
+        <activity android:name=".ActSearchShelter"
+            android:theme="@style/AppTheme.iPet"/>
 
         <activity android:name=".ActShelterPetList"
             android:theme="@style/AppTheme.NoActionBar"/>
@@ -57,7 +58,7 @@
         <activity
             android:name=".ActShelterPetDetail"
             android:label="@string/title_activity_act_shelter_pet_detail"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.iPetNoAction" />
 
         <activity android:name=".ActMsgBox"
             android:theme="@style/AppTheme.iPet"/>
@@ -72,11 +73,13 @@
         <activity android:name=".ActLogin"
             android:theme="@style/AppTheme.iPet" />
 
-        <activity android:name=".ActSearchAdopt" />
+        <activity android:name=".ActSearchAdopt"
+            android:theme="@style/AppTheme.iPet" />
 
         <activity android:name=".ActFollowingList" />
 
-        <activity android:name=".ActRegister" />
+        <activity android:name=".ActRegister"
+            android:theme="@style/AppTheme.iPet" />
 
         <activity
             android:name=".ActAdoptUpload"
