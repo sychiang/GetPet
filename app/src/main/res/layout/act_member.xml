@@ -8,6 +8,7 @@
     tools:context="iii.org.tw.getpet.ActMember">
 
     <LinearLayout
+        android:layout_weight="0.2"
         android:id="@+id/upArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +36,7 @@
     </LinearLayout>
 
     <LinearLayout
-
+        android:layout_weight="1"
         android:id="@+id/downArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,8 +54,8 @@
                 android:scaleType="fitCenter"
                 android:background="#cdf1ec"
                 android:id="@+id/btnGoRegister"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -65,8 +66,8 @@
                 android:scaleType="fitCenter"
                 android:background="#cdf1ec"
                 android:id="@+id/btnGoSignIn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -88,8 +89,8 @@
                 android:scaleType="fitCenter"
                 android:background="#cdf1ec"
                 android:id="@+id/btnGoMsgBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -101,8 +102,8 @@
                 android:scaleType="fitCenter"
                 android:background="#cdf1ec"
                 android:id="@+id/btnGoFollowing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -114,14 +115,23 @@
                 android:scaleType="fitCenter"
                 android:background="#cdf1ec"
                 android:id="@+id/btnGoUploadlist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="送養清單"
                 android:textSize="14dp" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="#47D1C8"
+            android:id="@+id/line3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
         </LinearLayout>
 
     </LinearLayout>
