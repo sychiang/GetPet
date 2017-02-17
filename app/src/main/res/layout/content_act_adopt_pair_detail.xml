@@ -11,290 +11,355 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="iii.org.tw.getpet.ActShelterPetDetail"
-    tools:showIn="@layout/act_shelter_pet_detail">
+    tools:showIn="@layout/act_adopt_pair_detail">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <!--預留圖片瀏覽-->
             <ViewFlipper
-                android:foregroundGravity="center"
                 android:id="@+id/viewflipper"
                 android:layout_width="match_parent"
                 android:layout_height="243dp"
-                android:layout_marginBottom="20dp" >
+                android:layout_marginBottom="20dp"
+                android:foregroundGravity="center">
 
                 <ImageView
-                    android:src="@drawable/default_nopic"
-                    android:layout_gravity="center"
                     android:id="@+id/ivPhotoOne"
                     android:layout_width="800px"
                     android:layout_height="800px"
-                    android:scaleType="fitCenter" />
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/default_nopic" />
 
                 <ImageView
-                    android:src="@drawable/default_nopic"
-                    android:layout_gravity="center"
                     android:id="@+id/ivPhotoTwo"
                     android:layout_width="800px"
                     android:layout_height="800px"
+                    android:layout_gravity="center"
                     android:scaleType="fitCenter"
-                    />
+                    android:src="@drawable/default_nopic" />
 
                 <ImageView
-                    android:src="@drawable/default_nopic"
-                    android:layout_gravity="center"
                     android:id="@+id/ivPhotoThree"
                     android:layout_width="800px"
                     android:layout_height="800px"
+                    android:layout_gravity="center"
                     android:scaleType="fitCenter"
-                    />
+                    android:src="@drawable/default_nopic" />
 
             </ViewFlipper>
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_margin="20px"
                     android:id="@+id/line1"
-                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:text="小名："
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent" />
-
-                    <TextView
-                        android:id="@+id/tvName"
-                        android:text="xxxxxxxxxx"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent" />
-                    <TextView
-                        android:text="品種："
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent" />
-
-                    <TextView
-                        android:id="@+id/tvType"
-                        android:text="xxxxxxxxxx"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent" />
-
-                </LinearLayout>
-                <LinearLayout
+                    android:layout_height="wrap_content"
                     android:layout_margin="20px"
-                    android:id="@+id/line2"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:orientation="horizontal">
+
+                    <!--<TextView-->
+                        <!--android:layout_width="70dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:text="小名：" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tvName"-->
+                        <!--android:layout_width="80dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:text="xxxxxxxxxx" />-->
                     <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
                         android:text="性別："
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent" />
+                        android:textColor="#2d4b44"
+                        android:textStyle="normal|bold"/>
 
                     <TextView
                         android:id="@+id/tvSex"
-                        android:text="xxxxxxxxxx"
                         android:layout_width="80dp"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx"
+                        android:textColor="#E0904B" />
+
                     <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:text="品種："
+                        android:textColor="#2d4b44"
+                        android:textStyle="normal|bold"/>
+
+                    <TextView
+                        android:id="@+id/tvType"
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/line2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20px"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
                         android:text="毛色："
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent" />
+                        android:textColor="#2d4b44"
+                        android:textStyle="normal|bold"/>
 
                     <TextView
                         android:id="@+id/tvColor"
-                        android:text="xxxxxxxxxx"
                         android:layout_width="80dp"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_margin="20px"
-                    android:id="@+id/line3"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx" />
                     <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
                         android:text="年紀："
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent" />
+                        android:textColor="#2d4b44"
+                        android:textStyle="normal|bold"/>
 
                     <TextView
                         android:id="@+id/tvAge"
-                        android:text="xxxxxxxxxx"
                         android:layout_width="80dp"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/line3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20px"
+                    android:orientation="horizontal">
+
                     <TextView
-                        android:text="所在地："
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent" />
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:text="地區："
+                        android:textColor="#2d4b44"
+                        android:textStyle="normal|bold"/>
 
                     <TextView
                         android:id="@+id/tvArea"
-                        android:text="xxxxxxxxxx"
                         android:layout_width="80dp"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_margin="20px"
-                    android:id="@+id/line4"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx" />
                     <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
                         android:text="晶片："
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent" />
+                        android:textColor="#2d4b44"
+                        android:textStyle="normal|bold"/>
 
                     <TextView
                         android:id="@+id/tvIfChip"
-                        android:text="xxxxxxxxxx"
                         android:layout_width="80dp"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/line4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20px"
+                    android:orientation="horizontal">
+
                     <TextView
-                        android:text="生育："
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent" />
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:text="節育："
+                        android:textColor="#2d4b44"
+                        android:textStyle="normal|bold"/>
 
                     <TextView
                         android:id="@+id/tvIfBirth"
-                        android:text="xxxxxxxxxx"
-                        android:layout_width="100dp"
-                        android:layout_height="match_parent" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_margin="20px"
-                    android:id="@+id/line5"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx" />
                     <TextView
-                        android:text="健康狀態："
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent" />
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:text="健康："
+                        android:textColor="#2d4b44"
+                        android:textStyle="normal|bold"/>
 
                     <TextView
                         android:id="@+id/tvHealthy"
-                        android:text="xxxxxxxxxx"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx" />
 
                 </LinearLayout>
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/line5"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="20px"-->
+                    <!--android:orientation="horizontal">-->
+
+                <!--</LinearLayout>-->
+
                 <LinearLayout
-                    android:layout_margin="20px"
                     android:id="@+id/line6"
-                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20px"
+                    android:orientation="horizontal">
+
                     <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
                         android:text="病況說明："
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent" />
+                        android:textColor="#2d4b44"
+                        android:textStyle="normal|bold"/>
 
                     <TextView
                         android:id="@+id/tvDisease"
-                        android:text="xxxxxxxxxx"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx" />
 
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_margin="20px"
                     android:id="@+id/line7"
-                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20px"
+                    android:orientation="horizontal">
+
                     <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="match_parent"
                         android:text="送養理由："
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent" />
+                        android:textColor="#2d4b44"
+                        android:textStyle="normal|bold" />
 
                     <TextView
                         android:id="@+id/tvReason"
-                        android:text="xxxxxxxxxx"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx" />
 
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_margin="20px"
-                    android:id="@+id/line8"
-                    android:orientation="horizontal"
+
+                <TextView
+                    android:paddingBottom="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:id="@+id/lbl_note"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:text="備註："
-                        android:layout_width="70dp"
-                        android:layout_height="match_parent" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="備註："
+                    android:textColor="#D6644F"
+                    android:textStyle="normal|bold" />
+
+                <TextView
+                    android:paddingBottom="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:text="-------------------------------------------------"
+                    android:textColor="@android:color/white"
+                    android:textStyle="normal|bold" />
+
+                <LinearLayout
+                    android:id="@+id/line9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:orientation="horizontal">
 
                     <ScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="100dp"
+                        android:background="@android:color/white">
+
                         <TextView
                             android:id="@+id/tvNote"
-                            android:text="xxxxxxxxxx"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent" />
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/note_style"
+                            android:text="xxxxxxxxxx" />
                     </ScrollView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_margin="20px"
-                    android:id="@+id/line9"
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
 
-                    <Button
-                        android:id="@+id/btnCheckCond"
-                        android:text="認養條件"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" />
+                    <!--<Button-->
+                    <!--android:id="@+id/btnCheckCond"-->
+                    <!--android:text="認養條件"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent" />-->
 
                 </LinearLayout>
+                <!--<LinearLayout-->
+                <!--android:layout_margin="20px"-->
+                <!--android:id="@+id/line9"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content">-->
+                <!--<Button-->
+                <!--android:id="@+id/btnCheckCond"-->
+                <!--android:text="認養條件"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent" />-->
+                <!--</LinearLayout>-->
                 <LinearLayout
-                    android:layout_margin="20px"
                     android:id="@+id/line10"
-                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20px"
+                    android:orientation="horizontal">
 
-                    <Button
-                        android:layout_weight="1"
-                        android:id="@+id/btnLeaveMsg"
-                        android:text="留言板"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent" />
-                    <Button
-                        android:layout_weight="1"
+                    <ImageButton
                         android:id="@+id/btnTrack"
-                        android:text="我要追蹤"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent" />
-
-                    <Button
+                        android:layout_height="50dp"
                         android:layout_weight="1"
+                        android:background="#cdf1ec"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/icon_follow"
+                        android:text="我要追蹤" />
+
+                    <ImageButton
                         android:id="@+id/btnAdopt"
-                        android:text="我要認養"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent" />
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="#cdf1ec"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/icon_adopt"
+                        android:text="我要認養" />
+
+                    <ImageButton
+                        android:id="@+id/btnLeaveMsg"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:background="#cdf1ec"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/icon_board"
+                        android:text="留言板" />
 
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-
-
-
 
     </ScrollView>
 

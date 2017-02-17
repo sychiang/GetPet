@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -246,17 +247,17 @@ public class ActHomePage extends AppCompatActivity
     };
 
     public void initComponent(){
-        btnGoAdoptSearch = (Button)findViewById(R.id.btnGoAdoptSearch);
+        btnGoAdoptSearch = (ImageButton)findViewById(R.id.btnGoAdoptSearch);
         btnGoAdoptSearch.setOnClickListener(btnGoAdoptSearch_Click);
-        btnGoMember = (Button)findViewById(R.id.btnGoMember);
+        btnGoMember = (ImageButton)findViewById(R.id.btnGoMember);
         btnGoMember.setOnClickListener(btnGoMember_Click);
-        btnGoPetHelper = (Button)findViewById(R.id.btnGoPetHelper);
+        btnGoPetHelper = (ImageButton)findViewById(R.id.btnGoPetHelper);
         btnGoPetHelper.setOnClickListener(btnGoPetHelper_Click);
-        btnGoMapSearch = (Button)findViewById(R.id.btnGoMapSearch);
+        btnGoMapSearch = (ImageButton)findViewById(R.id.btnGoMapSearch);
         btnGoMapSearch.setOnClickListener(btnGoMapSearch_Click);
-        btnGoUpload = (Button)findViewById(R.id.btnGoUpload);
+        btnGoUpload = (ImageButton)findViewById(R.id.btnGoUpload);
         btnGoUpload.setOnClickListener(btnGoUpload_Click);
-        btnGoAboutUs = (Button)findViewById(R.id.btnGoAboutUs);
+        btnGoAboutUs = (ImageButton)findViewById(R.id.btnGoAboutUs);
         btnGoAboutUs.setOnClickListener(btnGoAboutUs_Click);
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -272,10 +273,12 @@ public class ActHomePage extends AppCompatActivity
         viewFlipper=(ViewFlipper)findViewById(R.id.viewflipper);
     }
 
-    Button btnGoAdoptSearch,btnGoMember,btnGoPetHelper,btnGoMapSearch,btnGoUpload,btnGoAboutUs;
+    //Button btnGoAdoptSearch,btnGoMember,btnGoPetHelper,btnGoMapSearch,btnGoUpload,btnGoAboutUs;
     TextView header_username;
     NavigationView navigationView;
     ImageView ivPhoto1,ivPhoto2,ivPhoto3,ivPhoto4,ivPhoto5;
     ViewFlipper viewFlipper;
     Animation fade_in,fade_out;
+
+    ImageButton btnGoAdoptSearch,btnGoMember,btnGoPetHelper,btnGoMapSearch,btnGoUpload,btnGoAboutUs;
 }

@@ -10,6 +10,7 @@
     tools:context="iii.org.tw.getpet.ActHomePage">
 
     <LinearLayout
+        android:layout_weight="1"
         android:id="@+id/upArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,6 +69,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_weight="1"
         android:id="@+id/downArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,36 +82,39 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
+                android:src="@drawable/vc_home_adopt"
+                android:scaleType="fitCenter"
+                android:background="#cdf1ec"
                 android:id="@+id/btnGoAdoptSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/home_icon1"
                 android:text="認養專區"
                 android:textSize="14dp" />
 
-            <Button
-                android:id="@+id/btnGoMember"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageButton
+                android:src="@drawable/vc_home_shelter"
+                android:scaleType="fitCenter"
+                android:background="#cdf1ec"
+                android:id="@+id/btnGoAboutUs"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/home_icon2"
-                android:text="會員專區"
+                android:text="收容所資訊"
                 android:textSize="14dp" />
 
-            <Button
+            <ImageButton
+                android:src="@drawable/vc_home_help"
+                android:scaleType="fitCenter"
+                android:background="#cdf1ec"
                 android:id="@+id/btnGoPetHelper"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/home_icon3"
                 android:text="寵物小幫手"
                 android:textSize="14dp" />
 
@@ -122,37 +127,40 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/btnGoMapSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/home_icon4"
-                android:text="地圖尋找"
-                android:textSize="14dp" />
-
-            <Button
+            <ImageButton
+                android:src="@drawable/vc_home_upload"
+                android:scaleType="fitCenter"
+                android:background="#cdf1ec"
                 android:id="@+id/btnGoUpload"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/home_icon5"
                 android:text="送養管理"
                 android:textSize="14dp" />
 
-            <Button
-                android:id="@+id/btnGoAboutUs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageButton
+                android:src="@drawable/vc_home_adopt"
+                android:scaleType="fitCenter"
+                android:background="#cdf1ec"
+                android:id="@+id/btnGoMapSearch"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:drawableTop="@drawable/home_icon6"
-                android:text="關於我們"
+                android:text="地圖尋找"
+                android:textSize="14dp" />
+
+            <ImageButton
+                android:src="@drawable/vc_home_member"
+                android:scaleType="fitCenter"
+                android:background="#cdf1ec"
+                android:id="@+id/btnGoMember"
+                android:layout_width="80dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="會員專區"
                 android:textSize="14dp" />
 
         </LinearLayout>

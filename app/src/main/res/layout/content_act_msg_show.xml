@@ -17,10 +17,10 @@
         android:id="@+id/lblsubject"
         android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:text="主旨"
         android:layout_margin="10px"
+        android:text="主旨"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/msg_subject"
@@ -29,8 +29,6 @@
         android:layout_alignTop="@+id/lblsubject"
         android:layout_toRightOf="@+id/lblsubject"
         android:text="顯示訊息主旨"
-        android:textColor="#040404"
-        android:typeface="sans"
         android:textSize="20sp" />
 
     <TextView
@@ -41,7 +39,7 @@
         android:layout_margin="10px"
         android:text="寄件人"
         android:textSize="20sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/msg_sender"
@@ -50,66 +48,70 @@
         android:layout_alignTop="@+id/lblsender"
         android:layout_toRightOf="@+id/lblsender"
         android:text="顯示寄件人"
-        android:textColor="#040404"
-        android:typeface="sans"
-        android:textSize="15sp" />
+        android:textSize="20sp" />
 
     <ScrollView
         android:id="@+id/scrollview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10px"
-        android:layout_below="@+id/lblsender">
+        android:layout_below="@+id/lblsender"
+        android:layout_margin="10px">
+
         <TextView
             android:id="@+id/msg_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:text="顯示訊息內文顯示訊息內文顯示訊息內文顯示訊息內文顯示訊息內文顯示訊息內文顯示訊息內文顯示訊息內文"
-            android:textColor="#040404"
-            android:typeface="sans"
             android:textSize="20sp" />
     </ScrollView>
 
     <!--<ImageButton-->
-        <!--android:layout_marginTop="10px"-->
-        <!--android:id="@+id/btnDelete"-->
-        <!--android:layout_below="@+id/scrollview"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:src="@drawable/delete_icon"-->
-        <!--android:background="@drawable/deletebtn_style"-->
-        <!--android:textSize="20sp"/>-->
+    <!--android:layout_marginTop="10px"-->
+    <!--android:id="@+id/btnDelete"-->
+    <!--android:layout_below="@+id/scrollview"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@drawable/delete_icon"-->
+    <!--android:background="@drawable/deletebtn_style"-->
+    <!--android:textSize="20sp"/>-->
 
-    <Button
+    <ImageButton
+        android:layout_marginTop="10px"
         android:id="@+id/btnDelete"
-        android:layout_below="@+id/scrollview"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentLeft="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/delete_icon"
-        android:background="@drawable/deletebtn_style"
-        android:text=""
-        android:textSize="20sp"/>
+        android:layout_below="@+id/scrollview"
+        android:background="@android:color/white"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_msg_del" />
 
-    <Button
-    android:id="@+id/btnOK"
-    android:layout_below="@+id/scrollview"
-    android:layout_alignParentRight="true"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="確定"
-    android:textSize="20sp"/>
+    <ImageButton
+        android:layout_marginTop="10px"
+        android:id="@+id/btnOK"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/scrollview"
+        android:background="@android:color/white"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_msg_ok"
+        android:text="確定"
+        android:textSize="20sp" />
 
-    <Button
+    <ImageButton
+        android:layout_marginTop="10px"
         android:id="@+id/btnReply"
-        android:visibility="visible"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_below="@+id/scrollview"
         android:layout_toLeftOf="@+id/btnOK"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:scaleType="fitCenter"
+        android:src="@drawable/icon_msg_reply"
         android:text="回覆"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:visibility="visible" />
 
 </RelativeLayout>

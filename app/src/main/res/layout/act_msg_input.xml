@@ -56,11 +56,14 @@
             android:minWidth="200dp" />
 
     </LinearLayout>
-    <Button
+    <ImageButton
+        android:background="@android:color/white"
+        android:src="@drawable/icon_msg_reply"
+        android:scaleType="fitCenter"
         android:layout_gravity="right"
         android:id="@+id/btnSubmit"
         android:text="送出"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
 
 </LinearLayout>

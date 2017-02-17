@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -101,17 +102,17 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
             Glide.with(ActAdoptPairDetail.this).load(intent.getExtras().getString(CDictionary.BK_animalPicURL3)).into(ivPhotoThree);
         }
 
-        tvName.setText(intent.getExtras().getString(CDictionary.BK_animalName));
+        //tvName.setText(intent.getExtras().getString(CDictionary.BK_animalName));
         tvType.setText(intent.getExtras().getString(CDictionary.BK_animalType));
         tvSex.setText(intent.getExtras().getString(CDictionary.BK_animalGender));
         tvColor.setText(intent.getExtras().getString(CDictionary.BK_animalColor));
-        tvAge.setText(intent.getExtras().getString(CDictionary.BK_animalAge));
+        //tvAge.setText(intent.getExtras().getString(CDictionary.BK_animalAge));
         tvArea.setText(intent.getExtras().getString(CDictionary.BK_animalAddress));
-        tvIfBirth.setText(intent.getExtras().getString(CDictionary.BK_animalBirth));
-        tvIfChip.setText(intent.getExtras().getString(CDictionary.BK_animalChip));
+        //tvIfBirth.setText(intent.getExtras().getString(CDictionary.BK_animalBirth));
+        //tvIfChip.setText(intent.getExtras().getString(CDictionary.BK_animalChip));
         tvHealthy.setText(intent.getExtras().getString(CDictionary.BK_animalHealthy));
-        tvDisease.setText(intent.getExtras().getString(CDictionary.BK_animalDisease_Other));
-        tvReason.setText(intent.getExtras().getString(CDictionary.BK_animalReason));
+        //tvDisease.setText(intent.getExtras().getString(CDictionary.BK_animalDisease_Other));
+        //tvReason.setText(intent.getExtras().getString(CDictionary.BK_animalReason));
         tvNote.setText(intent.getExtras().getString(CDictionary.BK_animalNote));
 
         //輪播功能
@@ -432,7 +433,7 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
     }
 
     private void initComponent(){
-        tvName = (TextView)findViewById(R.id.tvName);
+        //tvName = (TextView)findViewById(R.id.tvName);
         tvType = (TextView)findViewById(R.id.tvType);
         tvSex = (TextView)findViewById(R.id.tvSex);
         tvColor = (TextView)findViewById(R.id.tvColor);
@@ -449,24 +450,26 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
         ivPhotoThree = (ImageView)findViewById(R.id.ivPhotoThree);
         viewFlipper=(ViewFlipper)findViewById(R.id.viewflipper);
 
-        btnCheckCond = (Button)findViewById(R.id.btnCheckCond);
-        btnCheckCond.setOnClickListener(btnCheckCond_Click);
+        //btnCheckCond = (Button)findViewById(R.id.btnCheckCond);
+        //btnCheckCond.setOnClickListener(btnCheckCond_Click);
 
-        btnLeaveMsg = (Button)findViewById(R.id.btnLeaveMsg);
+        btnLeaveMsg = (ImageButton)findViewById(R.id.btnLeaveMsg);
         btnLeaveMsg.setOnClickListener(btnLeaveMsg_Click);
 
-        btnTrack = (Button)findViewById(R.id.btnTrack);
+        btnTrack = (ImageButton)findViewById(R.id.btnTrack);
         btnTrack.setOnClickListener(btnTrack_Click);
 
-        btnAdopt = (Button)findViewById(R.id.btnAdopt);
+        btnAdopt = (ImageButton)findViewById(R.id.btnAdopt);
         btnAdopt.setOnClickListener(btnAdopt_Click);
 
     }
-    Button btnCheckCond,btnLeaveMsg,btnTrack,btnAdopt;
+    //Button btnCheckCond,btnLeaveMsg,btnTrack,btnAdopt;
     ImageView ivPhotoOne,ivPhotoTwo,ivPhotoThree;
     TextView tvName, tvType, tvSex, tvColor, tvAge, tvArea,tvIfBirth,tvIfChip,tvHealthy,tvDisease,tvReason,tvNote;
     ViewFlipper viewFlipper;
     Animation fade_in,fade_out;
+
+    ImageButton btnLeaveMsg,btnTrack,btnAdopt;
     //content_line1,content_line2,content_line3,content_line4,content_line5,
     //content_line6,content_line7,content_line8,content_line9,content_line10;
 }

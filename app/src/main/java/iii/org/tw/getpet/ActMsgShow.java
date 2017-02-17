@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -36,7 +37,7 @@ public class ActMsgShow extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_msg_show);
-        setTitle("訊息內容");
+        setTitle("");
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         initComponent();
@@ -52,9 +53,10 @@ public class ActMsgShow extends AppCompatActivity {
             msg_sender.setText(msgFrom_userName);
             msg_content.setText(msgContent);
         }
-        if((msgType.equals("留言板通知")) || (msgType.equals("系統通知"))){
-            btnReply.setVisibility(View.GONE);
-        }
+
+//        if((msgType.equals("留言板通知")) || (msgType.equals("系統通知"))){
+//            btnReply.setVisibility(View.GONE);
+//        }
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -160,19 +162,21 @@ public class ActMsgShow extends AppCompatActivity {
 
 
     public void initComponent(){
-        btnOK = (Button)findViewById(R.id.btnOK);
+        btnOK = (ImageButton)findViewById(R.id.btnOK);
         btnOK.setOnClickListener(btnOK_Click);
 
-        btnReply = (Button)findViewById(R.id.btnReply);
+        btnReply = (ImageButton)findViewById(R.id.btnReply);
         btnReply.setOnClickListener(btnReply_Click);
 
-        btnDelete = (Button)findViewById(R.id.btnDelete);
+        btnDelete = (ImageButton)findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(btnDelete_Click);
 
         msg_subject = (TextView) findViewById(R.id.msg_subject);
         msg_sender = (TextView) findViewById(R.id.msg_sender);
         msg_content = (TextView) findViewById(R.id.msg_content);
     }
-    Button btnOK, btnReply, btnDelete;
+    //Button btnOK, btnReply, btnDelete;
     TextView msg_subject, msg_sender, msg_content;
+
+    ImageButton btnOK, btnReply, btnDelete;
 }

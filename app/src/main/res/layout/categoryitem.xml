@@ -6,10 +6,12 @@
     android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#cdf1ec"
     card_view:cardCornerRadius="4dp"
     android:layout_margin="5dp">
 
     <LinearLayout
+        android:background="#cdf1ec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -17,9 +19,9 @@
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="500px"
-            android:src="@drawable/demophoto"
+            android:src="@drawable/category_shelter"
             android:layout_gravity="center"/>
 
         <TextView

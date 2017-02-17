@@ -12,6 +12,7 @@
     tools:context="iii.org.tw.getpet.ActCategory">
 
     <android.support.v7.widget.RecyclerView
+        android:background="#cdf1ec"
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

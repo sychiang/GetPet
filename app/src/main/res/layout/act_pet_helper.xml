@@ -7,15 +7,30 @@
     android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
-    android:paddingTop="0dp"
     tools:context="iii.org.tw.getpet.ActPetHelper">
+
+    <ImageButton
+        android:background="#77B3D4"
+        android:id="@+id/btn_goForward"
+        android:src="@drawable/icon_wb_next"
+        android:scaleType="fitCenter"
+        android:layout_alignParentRight="true"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+    <ImageButton
+        android:background="#77B3D4"
+        android:id="@+id/btn_goBack"
+        android:src="@drawable/icon_wb_back"
+        android:scaleType="fitCenter"
+        android:layout_alignParentLeft="true"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
 
     <WebView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/webView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/btn_goBack"
+        android:id="@+id/webView"       />
 
 </RelativeLayout>

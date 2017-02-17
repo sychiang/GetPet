@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -175,14 +176,16 @@ public class ActMsgInput extends AppCompatActivity {
     }
 
     public void initComponent(){
-        btnSubmit = (Button)findViewById(R.id.btnSubmit);
+        btnSubmit = (ImageButton)findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(btnSubmit_Click);
 
         edTxt_msgContent=(EditText)findViewById(R.id.edTxt_msgContent);
 
         tv_msgTo_userName=(TextView)findViewById(R.id.tv_msgTo_userName);
     }
-    Button btnSubmit;
+    //Button btnSubmit;
     EditText edTxt_msgTo_userID, edTxt_msgContent;
     TextView tv_msgTo_userName;
+
+    ImageButton btnSubmit;
 }
