@@ -57,7 +57,7 @@ public class ShelterPetListAdapter extends BaseAdapter{
         String bodytype="";
         switch (item.getAnimal_bodytype()){
             case "MINI":
-                bodytype = "MINI";
+                bodytype = "迷你";
                 break;
             case "SMALL":
                 bodytype = "小型";

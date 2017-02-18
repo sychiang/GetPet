@@ -51,6 +51,7 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_shelter_pet_list);
+        setTitle("收容所資訊");
         Intent intent = getIntent();
         String url = "http://data.coa.gov.tw/Service/OpenData/AnimalOpenData.aspx?$top=50";
         String condArea = intent.getExtras().getString(CDictionary.BK_Area);

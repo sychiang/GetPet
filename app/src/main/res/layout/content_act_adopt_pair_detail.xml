@@ -82,28 +82,29 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:text="性別："
-                        android:textColor="#2d4b44"
-                        android:textStyle="normal|bold"/>
+                        android:textColor="@color/colorHeaderText2"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/tvSex"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:text="xxxxxxxxxx"
-                        android:textColor="#E0904B" />
+                        android:textColor="@color/colorNormalText" />
 
                     <TextView
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:text="品種："
-                        android:textColor="#2d4b44"
-                        android:textStyle="normal|bold"/>
+                        android:textColor="@color/colorHeaderText2"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/tvType"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx" />
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorNormalText"/>
 
                 </LinearLayout>
 
@@ -118,26 +119,29 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:text="毛色："
-                        android:textColor="#2d4b44"
-                        android:textStyle="normal|bold"/>
+                        android:textColor="@color/colorHeaderText2"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/tvColor"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx" />
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorNormalText"/>
+
                     <TextView
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:text="年紀："
-                        android:textColor="#2d4b44"
-                        android:textStyle="normal|bold"/>
+                        android:textColor="@color/colorHeaderText2"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvAge"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx" />
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorNormalText"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -151,26 +155,28 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:text="地區："
-                        android:textColor="#2d4b44"
-                        android:textStyle="normal|bold"/>
+                        android:textColor="@color/colorHeaderText2"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/tvArea"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx" />
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorNormalText"/>
                     <TextView
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:text="晶片："
-                        android:textColor="#2d4b44"
-                        android:textStyle="normal|bold"/>
+                        android:textColor="@color/colorHeaderText2"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/tvIfChip"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx" />
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorNormalText"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -184,26 +190,28 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:text="節育："
-                        android:textColor="#2d4b44"
-                        android:textStyle="normal|bold"/>
+                        android:textColor="@color/colorHeaderText2"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/tvIfBirth"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx" />
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorNormalText"/>
                     <TextView
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:text="健康："
-                        android:textColor="#2d4b44"
-                        android:textStyle="normal|bold"/>
+                        android:textColor="@color/colorHeaderText2"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/tvHealthy"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx" />
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorNormalText"/>
 
                 </LinearLayout>
 
@@ -227,14 +235,15 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:text="病況說明："
-                        android:textColor="#2d4b44"
-                        android:textStyle="normal|bold"/>
+                        android:textColor="@color/colorHeaderText2"
+                        android:textStyle="bold"/>
 
                     <TextView
                         android:id="@+id/tvDisease"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx" />
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorNormalText"/>
 
                 </LinearLayout>
 
@@ -249,14 +258,15 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:text="送養理由："
-                        android:textColor="#2d4b44"
-                        android:textStyle="normal|bold" />
+                        android:textColor="@color/colorHeaderText2"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvReason"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx" />
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorNormalText"/>
 
                 </LinearLayout>
 
@@ -268,18 +278,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20px"
                     android:text="備註："
-                    android:textColor="#D6644F"
-                    android:textStyle="normal|bold" />
+                    android:textColor="@color/colorHeaderText2"
+                    android:textStyle="bold" />
 
-                <TextView
-                    android:paddingBottom="0dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20px"
-                    android:text="-------------------------------------------------"
-                    android:textColor="@android:color/white"
-                    android:textStyle="normal|bold" />
+                <!--<TextView-->
+                    <!--android:paddingBottom="0dp"-->
+                    <!--android:layout_marginTop="0dp"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="20px"-->
+                    <!--android:text="-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;"-->
+                    <!--android:textColor="@android:color/white"-->
+                    <!--android:textStyle="normal|bold" />-->
 
                 <LinearLayout
                     android:id="@+id/line9"
@@ -297,8 +307,8 @@
                             android:id="@+id/tvNote"
                             android:layout_width="300dp"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/note_style"
-                            android:text="xxxxxxxxxx" />
+                            android:text="xxxxxxxxxx"
+                            android:textColor="@color/colorNormalText"/>
                     </ScrollView>
 
                     <!--<Button-->
@@ -321,6 +331,7 @@
                 <!--android:layout_height="match_parent" />-->
                 <!--</LinearLayout>-->
                 <LinearLayout
+                    android:background="@color/colorPrimary"
                     android:id="@+id/line10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -332,7 +343,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:background="#cdf1ec"
+                        android:background="@color/colorPrimary"
                         android:scaleType="fitCenter"
                         android:src="@drawable/icon_follow"
                         android:text="我要追蹤" />
@@ -342,7 +353,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:background="#cdf1ec"
+                        android:background="@color/colorPrimary"
                         android:scaleType="fitCenter"
                         android:src="@drawable/icon_adopt"
                         android:text="我要認養" />
@@ -352,7 +363,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:background="#cdf1ec"
+                        android:background="@color/colorPrimary"
                         android:scaleType="fitCenter"
                         android:src="@drawable/icon_board"
                         android:text="留言板" />

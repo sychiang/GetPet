@@ -53,7 +53,7 @@
             android:theme="@style/AppTheme.iPet"/>
 
         <activity android:name=".ActShelterPetList"
-            android:theme="@style/AppTheme.iPetNoAction"/>
+            android:theme="@style/AppTheme.iPet"/>
 
         <activity
             android:name=".ActShelterPetDetail"
