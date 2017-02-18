@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/act_register"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -12,7 +12,7 @@
     tools:context="iii.org.tw.getpet.ActRegister">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -26,7 +26,6 @@
             android:textSize="30dp"/>
 
         <TextView
-            android:layout_margin="10px"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center_vertical|right"
@@ -36,135 +35,72 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:orientation="horizontal"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
 
-        <TextView
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|right"
-            android:paddingRight="10px"
-            android:text="帳號(暱稱)"
-            android:textSize="18dp"/>
-
-        <EditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/input_username"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:hint="至少為2個字元, 最多8個"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="8"
-            android:paddingLeft="10px"
-            android:background="@drawable/edittext_style"
-            android:minWidth="400dp"/>
+            android:hint="帳號(暱稱)" />
+    </android.support.design.widget.TextInputLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:orientation="horizontal"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/view3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
 
-        <TextView
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|right"
-            android:paddingRight="10px"
-            android:text="電子郵件"
-            android:textSize="18dp"/>
-
-        <EditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/input_email"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:hint="example@gmail.com"
-            android:inputType="textEmailAddress"
-            android:paddingLeft="10px"
-            android:background="@drawable/edittext_style"
-            android:minWidth="400dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="90dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical|right"
-            android:paddingRight="10px"
-            android:text="密碼"
-            android:textSize="18dp"/>
-
-        <EditText
-            android:id="@+id/input_password"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:hint="Ex@mple"
-            android:inputType="textPassword"
-            android:paddingLeft="10px"
-            android:background="@drawable/edittext_style"
-            android:minWidth="400dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="90dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical|right"
-            android:paddingRight="10px"
-            android:text="確認密碼"
-            android:textSize="18dp"/>
-
-        <EditText
-            android:id="@+id/input_cfmpassword"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:inputType="textPassword"
-            android:paddingLeft="10px"
-            android:background="@drawable/edittext_style"
-            android:minWidth="400dp"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_margin="5dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:visibility="invisible"
-            android:layout_width="90dp"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical|right"
-            android:paddingRight="10px"
-            android:textSize="20dp"/>
-
-        <Button
-            android:id="@+id/btnSubmit"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="註冊"/>
+            android:inputType="textEmailAddress"
+            android:hint="電子郵件" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/view4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
 
-    </LinearLayout>
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="密碼" />
+    </android.support.design.widget.TextInputLayout>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/input_cfmpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="確認密碼" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up / 註冊" />
+
     <LinearLayout
         android:layout_marginTop="10dp"
         android:orientation="horizontal"

@@ -67,12 +67,12 @@
             android:layout_marginTop="50px"
             android:id="@+id/btnSearch"
             android:background="@drawable/searchbtn_style"
-            android:drawableLeft="@drawable/icon_search_mdpi"
             android:layout_width="750px"
-            android:paddingLeft="10px"
             android:layout_height="170px"
+            android:paddingLeft="10px"
             android:textSize="25sp"
             android:textColor="#000000"
+            android:gravity="center"
             android:text="搜尋" />
 
     </LinearLayout>

@@ -81,6 +81,7 @@
             android:theme="@style/AppTheme.iPet"/>
 
         <activity android:name=".ActRegister"
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.iPet" />
 
         <activity
