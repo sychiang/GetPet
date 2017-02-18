@@ -115,7 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:background="@drawable/adoptsearchbtn_style"
+            android:background="@drawable/searchbtn_style_adopt"
             android:text="搜尋"
             android:textColor="@color/colorMyTitle"
             android:textSize="25sp" />
@@ -124,7 +124,7 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
         <!--android:layout_marginTop="50px"-->
-        <!--android:background="@drawable/adoptsearchbtn_style"-->
+        <!--android:background="@drawable/searchbtn_style_adopt"-->
         <!--android:orientation="horizontal"-->
         <!--android:paddingLeft="10px">-->
 

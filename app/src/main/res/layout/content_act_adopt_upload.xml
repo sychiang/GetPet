@@ -334,6 +334,7 @@
             android:orientation="horizontal">
             <Button
                 android:text="設定領養條件(非必填)"
+                android:textColor="@color/colorHeaderText2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnAdoptCondition" />
