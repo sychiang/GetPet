@@ -8,7 +8,6 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +35,7 @@ import okhttp3.Response;
 
 public class ActSearchAdopt extends AppCompatActivity {
     String selectedArea = "";
+    String selectedKind = "";
     String selectedType = "";
     //**
     private ArrayList<String>[] iv_Array_動物品種清單;
@@ -72,14 +72,14 @@ public class ActSearchAdopt extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedArea = area[position];
-                Log.d(CDictionary.Debug_TAG,selectedArea);
+                Log.d(CDictionary.Debug_TAG,"cond1: "+selectedArea);
                 //Toast.makeText(MainActivity.this, "你選的是" + lunch[position], Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActSearchAdopt.this);
-                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>請選擇欲查詢的縣市</font>"));
+                dialog.setTitle("請選擇欲查詢的縣市");
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -186,6 +186,8 @@ public class ActSearchAdopt extends AppCompatActivity {
 
                     iv_ArrayList_動物類別清單 = new ArrayList<String>();
                     //**
+                    iv_ArrayList_動物類別清單.add("全部");
+                    //**
                     for (int i = 0; i < l_JSONArray_jObj.length(); i += 1) {
                         JSONObject l_JSONObject = (JSONObject) l_JSONArray_jObj.get(i);
                         if (!iv_ArrayList_動物類別清單.contains(l_JSONObject.getString("animalKind"))) {
@@ -232,8 +234,16 @@ public class ActSearchAdopt extends AppCompatActivity {
                         spinner_animalKind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                ArrayAdapter<String> l_ArrayAdapter_spinner_animalType = new ArrayAdapter<String>(ActSearchAdopt.this, R.layout.spinnercontent_adopt, iv_Array_動物品種清單[position]);
-                                spinner_animalType.setAdapter(l_ArrayAdapter_spinner_animalType);
+                                selectedKind = iv_ArrayList_動物類別清單.get(position);
+                                Log.d(CDictionary.Debug_TAG,"cond2: "+selectedKind);
+                                if(iv_ArrayList_動物類別清單.get(position).equals("全部")){
+                                    String[] type = {"全部"};
+                                    ArrayAdapter<String> l_ArrayAdapter_spinner_animalType = new ArrayAdapter<String>(ActSearchAdopt.this, R.layout.spinnercontent_adopt, type);
+                                    spinner_animalType.setAdapter(l_ArrayAdapter_spinner_animalType);
+                                } else {
+                                    ArrayAdapter<String> l_ArrayAdapter_spinner_animalType = new ArrayAdapter<String>(ActSearchAdopt.this, R.layout.spinnercontent_adopt, iv_Array_動物品種清單[position]);
+                                    spinner_animalType.setAdapter(l_ArrayAdapter_spinner_animalType);
+                                }
                             }
 
                             @Override

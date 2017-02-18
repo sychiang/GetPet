@@ -651,8 +651,8 @@ public class ActAdoptEdit extends AppCompatActivity {
         btnDelete = (Button) findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(btn_click);
         //**************
-//        btnCamera = (Button) findViewById(R.id.btnCamera);
-//        btnCamera.setOnClickListener(btn_click);
+        btnConfirmAdopted = (Button) findViewById(R.id.btnConfirmAdopted);
+        btnConfirmAdopted.setOnClickListener(btn_click);
         //**************
         imgBtn1 = (ImageButton) findViewById(R.id.imgBtn1);
         imgBtn1.setOnClickListener(btn_click);
@@ -990,6 +990,9 @@ public class ActAdoptEdit extends AppCompatActivity {
                         intent.putExtra("l_object_ConditionOfAdoptPet_objA", iv_object_petDataForSelfDB.getAnimalData_Condition().get(0));
                     startActivityForResult(intent, CDictionary.IntentRqCodeOfPetAdoptCondition);
                     break;
+                case R.id.btnConfirmAdopted:
+
+                    break;
             }
 //            if (v.getId() == R.id.btnEdit || v.getId() == R.id.btnDelete || v.getId() == R.id.btnCamera) {
 //                return;
@@ -1072,7 +1075,7 @@ public class ActAdoptEdit extends AppCompatActivity {
     }
 
     ImageButton imgBtn1, imgBtn2, imgBtn3, imgBtn4, imgBtn5;
-    Button btnAdoptCondition, btnEdit, btnDelete, btnCamera;
+    Button btnAdoptCondition, btnEdit, btnDelete, btnConfirmAdopted;
     ImageButton[] imgBtnArray = {imgBtn1, imgBtn2, imgBtn3, imgBtn4, imgBtn5};
     //*********************
     EditText edTxt_animalID, edTxt_animalName, edTxt_animalAddress, edTxt_animalDate, edTxt_animalGender,

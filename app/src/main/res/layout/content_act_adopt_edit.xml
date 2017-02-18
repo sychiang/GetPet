@@ -371,7 +371,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="點擊下方圖示選擇圖片"
+                    android:text="點擊下方圖示上傳圖片"
                     android:textSize="20dp" />
             </LinearLayout>
 
@@ -462,7 +462,9 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:textColor="@color/colorNormalText"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:background="@color/colorPrimary"
                     android:id="@+id/btnEdit"
                     android:layout_weight="1"
                     android:layout_width="0dp"
@@ -470,12 +472,24 @@
                     android:text="送出編輯" />
 
                 <Button
-                    android:textColor="@color/colorNormalText"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:background="@color/colorPrimary"
                     android:id="@+id/btnDelete"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="刪除資料" />
+                    android:text="取消送養" />
+
+                <Button
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:background="@color/colorPrimary"
+                    android:id="@+id/btnConfirmAdopted"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="確認送養" />
 
             </LinearLayout>
 

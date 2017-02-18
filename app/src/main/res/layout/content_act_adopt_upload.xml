@@ -21,6 +21,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:gravity="center_vertical"
                 android:layout_weight="1"
                 android:layout_width="100dp"
@@ -29,6 +30,8 @@
                 android:textSize="18dp"
                 android:text="動物種類" />
             <Spinner
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:layout_weight="1"
                 android:layout_width="530px"
                 android:layout_height="wrap_content"
@@ -44,6 +47,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:gravity="center_vertical"
                 android:layout_weight="1"
                 android:layout_width="100dp"
@@ -67,6 +71,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -88,6 +93,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -110,6 +116,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -132,6 +139,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -154,6 +162,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -161,6 +170,7 @@
                 android:textSize="18dp"
                 android:text="動物姓名" />
             <EditText
+                android:textColor="@color/colorNormalText"
                 android:minWidth="250dp"
                 android:layout_weight="1"
                 android:id="@+id/edTxt_animalName"
@@ -178,6 +188,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -185,6 +196,7 @@
                 android:textSize="18dp"
                 android:text="動物年紀" />
             <EditText
+                android:textColor="@color/colorNormalText"
                 android:inputType="number"
                 android:maxLength="2"
                 android:layout_weight="1"
@@ -203,6 +215,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -210,6 +223,7 @@
                 android:textSize="18dp"
                 android:text="動物毛色" />
             <EditText
+                android:textColor="@color/colorNormalText"
                 android:layout_weight="1"
                 android:hint="毛色花紋描述"
                 android:id="@+id/edTxt_animalColor"
@@ -226,6 +240,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -234,6 +249,7 @@
                 android:text="健康狀態" />
 
             <EditText
+                android:textColor="@color/colorNormalText"
                 android:layout_weight="1"
                 android:id="@+id/edTxt_animalHealthy"
                 android:layout_marginLeft="10dp"
@@ -248,6 +264,7 @@
             android:layout_margin="10px"
             android:orientation="horizontal">
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -255,6 +272,7 @@
                 android:textSize="18dp"
                 android:text="病況說明" />
             <EditText
+                android:textColor="@color/colorNormalText"
                 android:layout_weight="1"
                 android:id="@+id/edTxt_animalDisease_Other"
                 android:layout_marginLeft="10dp"
@@ -269,6 +287,7 @@
             android:layout_margin="10px"
             android:orientation="horizontal">
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -276,6 +295,7 @@
                 android:textSize="18dp"
                 android:text="送養理由" />
             <EditText
+                android:textColor="@color/colorNormalText"
                 android:layout_weight="1"
                 android:id="@+id/edTxt_animalReason"
                 android:layout_marginLeft="10dp"
@@ -290,6 +310,7 @@
             android:layout_margin="10px"
             android:orientation="horizontal">
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:layout_weight="1"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -297,6 +318,7 @@
                 android:textSize="18dp"
                 android:text="送養備註" />
             <EditText
+                android:textColor="@color/colorNormalText"
                 android:layout_weight="1"
                 android:id="@+id/edTxt_animalNote"
                 android:layout_marginLeft="10dp"
@@ -323,12 +345,13 @@
             android:layout_margin="10px"
             android:orientation="horizontal">
             <TextView
+                android:textColor="@color/colorHeaderText2"
                 android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:textSize="20dp"
-                android:text="點擊+號選擇圖片" />
+                android:text="點擊下方圖示上傳圖片" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/line17"
@@ -337,47 +360,55 @@
             android:layout_margin="10px"
             android:orientation="horizontal">
             <ImageButton
+                android:background="@color/colorBackground"
                 android:layout_weight="1"
                 android:id="@+id/imgBtn1"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_ios7_plus_empty" />
+                android:src="@drawable/icon_album" />
             <ImageButton
+                android:background="@color/colorBackground"
                 android:layout_weight="1"
                 android:id="@+id/imgBtn2"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_ios7_plus_empty" />
+                android:src="@drawable/icon_album" />
             <ImageButton
+                android:background="@color/colorBackground"
                 android:layout_weight="1"
                 android:id="@+id/imgBtn3"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_ios7_plus_empty" />
+                android:src="@drawable/icon_album" />
             <ImageButton
+                android:background="@color/colorBackground"
                 android:layout_weight="1"
                 android:id="@+id/imgBtn4"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_ios7_plus_empty" />
+                android:src="@drawable/icon_album" />
             <ImageButton
+                android:background="@color/colorBackground"
                 android:layout_weight="1"
                 android:id="@+id/imgBtn5"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="50dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/icon_ios7_plus_empty" />
+                android:src="@drawable/icon_album" />
         </LinearLayout>
         <Button
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:layout_margin="10px"
+            android:background="@color/colorPrimary"
             android:text="送出資料"
             android:id="@+id/btn_sendout"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
-
 
 </android.support.v4.widget.NestedScrollView>

@@ -12,7 +12,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -94,12 +93,12 @@ public class ActAdoptUpload extends AppCompatActivity {
     boolean[] selectedImgForUploadArray = {selectedImgForUpload1, selectedImgForUpload2, selectedImgForUpload3, selectedImgForUpload4, selectedImgForUpload5};
     ArrayList<object_OfPictureImgurSite> iv_ArrayList_object_OfPictureImgurSite;
     ArrayList<object_ConditionOfAdoptPet> iv_ArrayList_object_ConditionOfAdoptPet;
-    final String[] area = {"臺北市", "新北市", "基隆市", "宜蘭縣",
+    final String[] area = {"請選擇","臺北市", "新北市", "基隆市", "宜蘭縣",
             "桃園縣", "新竹縣", "新竹市", "苗栗縣", "臺中市", "彰化縣",
             "南投縣", "雲林縣", "嘉義縣", "嘉義市", "臺南市", "高雄市",
             "屏東縣", "花蓮縣", "臺東縣", "澎湖縣", "金門縣", "連江縣"};
-    final String[] iv_array_animalGender = {"公","母","未知"};
-    final String[] iv_array_YesOrNO = {"是","否","未知"};
+    final String[] iv_array_animalGender = {"請選擇","公","母","未知"};
+    final String[] iv_array_YesOrNO = {"請選擇","是","否","未知"};
     private ArrayList<String>[] iv_Array_動物品種清單;
     private ArrayList<String> iv_ArrayList_動物類別清單;
 
@@ -224,6 +223,8 @@ public class ActAdoptUpload extends AppCompatActivity {
 
                     iv_ArrayList_動物類別清單 = new ArrayList<String>();
                     //**
+                    iv_ArrayList_動物類別清單.add("請選擇");
+                    //**
                     for (int i = 0; i < l_JSONArray_jObj.length(); i += 1) {
                         JSONObject l_JSONObject = (JSONObject) l_JSONArray_jObj.get(i);
                         if (!iv_ArrayList_動物類別清單.contains(l_JSONObject.getString("animalKind"))) {
@@ -268,8 +269,14 @@ public class ActAdoptUpload extends AppCompatActivity {
                         spinner_animalKind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                ArrayAdapter<String> l_ArrayAdapter_spinner_animalType = new ArrayAdapter<String>(ActAdoptUpload.this, R.layout.spinnercontent_upload, iv_Array_動物品種清單[position]);
-                                spinner_animalType.setAdapter(l_ArrayAdapter_spinner_animalType);
+                                if(iv_ArrayList_動物類別清單.get(position).equals("請選擇")){
+                                    String[] type = {"請選擇"};
+                                    ArrayAdapter<String> l_ArrayAdapter_spinner_animalType = new ArrayAdapter<String>(ActAdoptUpload.this, R.layout.spinnercontent_upload, type);
+                                    spinner_animalType.setAdapter(l_ArrayAdapter_spinner_animalType);
+                                } else {
+                                    ArrayAdapter<String> l_ArrayAdapter_spinner_animalType = new ArrayAdapter<String>(ActAdoptUpload.this, R.layout.spinnercontent_upload, iv_Array_動物品種清單[position]);
+                                    spinner_animalType.setAdapter(l_ArrayAdapter_spinner_animalType);
+                                }
                             }
 
                             @Override
@@ -300,6 +307,9 @@ public class ActAdoptUpload extends AppCompatActivity {
                 case "bird":
                     p_ArrayList_動物類別清單.set(i, "鳥");
                     break;
+                case "other":
+                    p_ArrayList_動物類別清單.set(i, "其他");
+                    break;
                 case "reptile":
                     p_ArrayList_動物類別清單.set(i, "蛇");
                     break;
@@ -326,8 +336,8 @@ public class ActAdoptUpload extends AppCompatActivity {
     View.OnClickListener btn_sendout_click=new View.OnClickListener(){
         public void onClick(View arg0) {
             iv_ADialog_a = new AlertDialog.Builder(ActAdoptUpload.this)
-                    .setMessage(Html.fromHtml("<font color='#2d4b44'>是否確定送出資料</font>"))
-                    .setTitle(Html.fromHtml("<font color='#2d4b44'>送出確認</font>"))
+                    .setMessage("是否確定送出資料")
+                    .setTitle("送出確認")
                     .setPositiveButton("送出", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -335,8 +345,8 @@ public class ActAdoptUpload extends AppCompatActivity {
 
                             if (l_string_未填寫的欄位有哪些.length() > 10) {
                                 new AlertDialog.Builder(ActAdoptUpload.this)
-                                        .setMessage(Html.fromHtml("<font color='#2d4b44'>"+l_string_未填寫的欄位有哪些+"</font>"))
-                                        .setTitle(Html.fromHtml("<font color='#2d4b44'>欄位未填</font>"))
+                                        .setMessage(l_string_未填寫的欄位有哪些)
+                                        .setTitle("欄位未填")
                                         .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -491,7 +501,7 @@ public class ActAdoptUpload extends AppCompatActivity {
                             String id = jObj.getString("animalID");
                             //Toast.makeText(ActAdoptUpload.this, "上傳成功!(測試用_此次新增資料的id: " + id + ")", Toast.LENGTH_SHORT).show();
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptUpload.this);
-                            dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>資料上傳成功</font>"));
+                            dialog.setTitle("資料上傳成功");
                             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
