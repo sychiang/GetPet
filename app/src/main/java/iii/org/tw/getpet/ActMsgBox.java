@@ -46,7 +46,6 @@ public class ActMsgBox extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_msg_box);
-        setTitle("個人訊息");
 
         //初始化元件
         iv_ActMsgBox = this;
@@ -127,7 +126,7 @@ public class ActMsgBox extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.d(CDictionary.Debug_TAG,"TEST ON RESUME");
-        getDatafromServer();
+        //getDatafromServer();
     }
 
     @Override

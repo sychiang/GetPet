@@ -151,7 +151,7 @@ public class ActMsgInput extends AppCompatActivity {
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        
+
                     }
                 });
                 dialog.create().show();
@@ -162,6 +162,8 @@ public class ActMsgInput extends AppCompatActivity {
     private void goMsgBox() {
         Intent intent = new Intent(ActMsgInput.this, ActMsgBox.class);
         startActivity(intent);
+        ActMsgBox.iv_ActMsgBox.finish();
+        ActMsgShow.iv_ActMsgShow.finish();
         finish();
     }
 

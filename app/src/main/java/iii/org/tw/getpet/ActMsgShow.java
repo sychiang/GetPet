@@ -30,6 +30,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class ActMsgShow extends AppCompatActivity {
+    static ActMsgShow iv_ActMsgShow;
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
     private String msgID, msgTime, msgFrom_userID, msgFrom_userName, msgTo_userID, msgType, msgFromURL, msgContent, msgRead;
     private  int msg_id;
@@ -49,6 +50,7 @@ public class ActMsgShow extends AppCompatActivity {
             msgType = intent.getExtras().getString(CDictionary.BK_msg_subject);
             msgContent = intent.getExtras().getString(CDictionary.BK_msg_content);
             msg_id = intent.getExtras().getInt(CDictionary.BK_msg_id);
+            Log.d(CDictionary.Debug_TAG,"MSG ID: "+msg_id);
 
             msg_subject.setText(msgType);
             msg_sender.setText(msgFrom_userName);
@@ -67,6 +69,14 @@ public class ActMsgShow extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+
+        //取得使用者基本資料
+        UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER NAME："+UserName);
+        UserId = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
+        access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
+        Log.d(CDictionary.Debug_TAG,"GET USER TOKEN："+access_token);
     }
     @Override
     public void finish() {
@@ -78,6 +88,7 @@ public class ActMsgShow extends AppCompatActivity {
             //finish();
             Intent intent = new Intent(ActMsgShow.this, ActMsgBox.class);
             startActivity(intent);
+            ActMsgBox.iv_ActMsgBox.finish();
             finish();
         }
     };
@@ -137,6 +148,7 @@ public class ActMsgShow extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(ActMsgShow.this,ActMsgBox.class);
                                 startActivity(intent);
+                                ActMsgBox.iv_ActMsgBox.finish();
                                 finish();
                             }
                         });
@@ -160,7 +172,12 @@ public class ActMsgShow extends AppCompatActivity {
         });
     }
 
+
+
     public void initComponent(){
+        //**
+        iv_ActMsgShow = this;
+        //**
         btnOK = (ImageButton)findViewById(R.id.btnOK);
         btnOK.setOnClickListener(btnOK_Click);
 
