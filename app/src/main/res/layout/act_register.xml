@@ -111,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:text="1. 帳號(暱稱): 長度至少為2個字元, 最多8個\n2. 密碼: 長度至少為6個字元，可使用下列四種字元：\n    英文大寫字元(A-Z)、英文小寫字元(a-z)\n    10個基本數字(0-9)、非英文字母字元(ex:!、$、#、%)\n"/>
+            android:text="1. 帳號(暱稱): 長度至少為2個字, 最多8個\n2. 密碼: 長度至少為6個字元，可使用下列四種字元：\n    英文大寫字元(A-Z)、英文小寫字元(a-z)\n    10個基本數字(0-9)、非英文字母字元(ex:!、$、#、%)\n"/>
 
     </LinearLayout>
 
