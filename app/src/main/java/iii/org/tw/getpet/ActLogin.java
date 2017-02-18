@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -199,7 +200,7 @@ public class ActLogin extends AppCompatActivity {
         public void onClick(View arg0) {
             userInfo.edit().clear().commit();
             AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
-            dialog.setTitle("您已登出系統");
+            dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>您已登出系統</font>"));
             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -212,7 +213,8 @@ public class ActLogin extends AppCompatActivity {
 
     View.OnClickListener btn_login_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            progressDialog = ProgressDialog.show(ActLogin.this, "資料傳送中, 請稍後...", "", true);
+            progressDialog = ProgressDialog.show(ActLogin.this, Html.fromHtml("<font color='#2d4b44'>資料傳送中, 請稍後...</font>"), "", true);
+            //progressDialog = ProgressDialog.show(ActLogin.this, "資料傳送中, 請稍後...", "", true);
             requestForToken();
         }
     };
@@ -255,7 +257,7 @@ public class ActLogin extends AppCompatActivity {
                             progressDialog.dismiss();
 
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
-                            dialog.setTitle("登入失敗");
+                            dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>登入失敗</font>"));
                             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -276,7 +278,7 @@ public class ActLogin extends AppCompatActivity {
                         progressDialog.dismiss();
 
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
-                        dialog.setTitle("登入失敗");
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>登入失敗</font>"));
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -334,7 +336,7 @@ public class ActLogin extends AppCompatActivity {
                         progressDialog.dismiss();
 
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
-                        dialog.setTitle("登入成功");
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>登入成功</font>"));
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -350,7 +352,7 @@ public class ActLogin extends AppCompatActivity {
             public void onFailure(Call call, IOException e) {
                 Log.d(CDictionary.Debug_TAG,"GET USERINFO FAIL......");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
-                dialog.setTitle("登入失敗");
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>登入失敗</font>"));
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

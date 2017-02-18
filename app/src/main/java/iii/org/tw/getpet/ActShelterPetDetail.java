@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -200,7 +201,7 @@ public class ActShelterPetDetail extends AppCompatActivity implements OnMapReady
             content_line10.setText("以上資訊供參考，詳細辦理方法依各收容單位為準。");
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(ActShelterPetDetail.this);
-            dialog.setTitle("認養須知");
+            dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>認養須知</font>"));
             dialog.setView(view);
             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                 @Override

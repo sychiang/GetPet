@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -98,7 +99,7 @@ public class ActMsgBox extends AppCompatActivity {
                                     recyclerList.setAdapter(adapter);
                                 } else {
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgBox.this);
-                                    dialog.setTitle("目前尚無訊息");
+                                    dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>目前尚無訊息</font>"));
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -69,16 +70,16 @@ public class ActRegister extends AppCompatActivity {
     View.OnClickListener btnSubmit_Click = new View.OnClickListener(){
         public void onClick(View arg0) {
             AlertDialog dialog = new AlertDialog.Builder(ActRegister.this)
-                    .setMessage("是否確定送出資料")
-                    .setTitle("送出確認")
+                    .setMessage(Html.fromHtml("<font color='#2d4b44'>是否確定送出資料?</font>"))
+                    .setTitle(Html.fromHtml("<font color='#2d4b44'>送出確認</font>"))
                     .setPositiveButton("送出", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String emptyInputField = checkInput();
                             if (emptyInputField.length() > 10) {
                                 new AlertDialog.Builder(ActRegister.this)
-                                        .setMessage(emptyInputField)
-                                        .setTitle("欄位未填")
+                                        .setMessage(Html.fromHtml("<font color='#2d4b44'>"+emptyInputField+"</font>"))
+                                        .setTitle(Html.fromHtml("<font color='#2d4b44'>欄位未填</font>"))
                                         .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -88,11 +89,11 @@ public class ActRegister extends AppCompatActivity {
                             }else {
                                 //sendRequestToServer();
                                 if(input_password.getText().toString().equals(input_cfmpassword.getText().toString())){
-                                    progressDialog = ProgressDialog.show(ActRegister.this, "資料傳送中, 請稍後...", "", true);
+                                    progressDialog = ProgressDialog.show(ActRegister.this, Html.fromHtml("<font color='#2d4b44'>資料傳送中, 請稍後...</font>"), "", true);
                                     sendRegisterRequestToServer();
                                 } else {
                                     new AlertDialog.Builder(ActRegister.this)
-                                            .setTitle("確認密碼錯誤")
+                                            .setTitle(Html.fromHtml("<font color='#2d4b44'>確認密碼錯誤</font>"))
                                             .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
@@ -149,7 +150,7 @@ public class ActRegister extends AppCompatActivity {
                         progressDialog.dismiss();
                         Log.d(CDictionary.Debug_TAG,"POST FAIL......");
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
-                        dialog.setTitle("連線錯誤, 請稍後再試");
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -198,7 +199,7 @@ public class ActRegister extends AppCompatActivity {
                         } else{
                             progressDialog.dismiss();
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
-                            dialog.setTitle("註冊失敗");
+                            dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>註冊失敗</font>"));
                             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -218,7 +219,7 @@ public class ActRegister extends AppCompatActivity {
                     public void run() {
                         progressDialog.dismiss();
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
-                        dialog.setTitle("註冊失敗");
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>註冊失敗</font>"));
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -275,7 +276,7 @@ public class ActRegister extends AppCompatActivity {
                         Log.d(CDictionary.Debug_TAG,"測試暫存 USERID: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,""));
                         Log.d(CDictionary.Debug_TAG,"測試暫存 EMAIL: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_useremail,""));
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
-                        dialog.setTitle("註冊成功");
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>註冊成功</font>"));
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -293,7 +294,7 @@ public class ActRegister extends AppCompatActivity {
                 progressDialog.dismiss();
                 Log.d(CDictionary.Debug_TAG,"GET USERINFO FAIL......");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActRegister.this);
-                dialog.setTitle("註冊失敗");
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>註冊失敗</font>"));
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

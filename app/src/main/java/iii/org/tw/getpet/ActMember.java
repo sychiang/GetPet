@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -43,7 +44,7 @@ public class ActMember extends AppCompatActivity {
                 startActivity(intent);
             } else {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActMember.this);
-                dialog.setTitle("您已是會員");
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>您已是會員</font>"));
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -67,7 +68,7 @@ public class ActMember extends AppCompatActivity {
             if(access_token == ""){
                 Log.d(CDictionary.Debug_TAG,"not log in");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActMember.this);
-                dialog.setTitle("尚未登入, 請先登入會員");
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>尚未登入, 請先登入會員</font>"));
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -89,7 +90,7 @@ public class ActMember extends AppCompatActivity {
             if(access_token == ""){
                 Log.d(CDictionary.Debug_TAG,"not log in");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActMember.this);
-                dialog.setTitle("尚未登入, 請先登入會員");
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>尚未登入, 請先登入會員</font>"));
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -101,6 +102,28 @@ public class ActMember extends AppCompatActivity {
                 Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+access_token);
                 Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
                 intent = new Intent(ActMember.this, ActFollowingList.class);
+                startActivity(intent);
+            }
+        }
+    };
+
+    View.OnClickListener btnGoUploadlist_Click=new View.OnClickListener(){
+        public void onClick(View arg0) {
+            if(access_token == ""){
+                Log.d(CDictionary.Debug_TAG,"not log in");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActMember.this);
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>尚未登入, 請先登入會員</font>"));
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        goLoginScreen();
+                    }
+                });
+                dialog.create().show();
+            } else {
+                Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+access_token);
+                Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
+                intent = new Intent(ActMember.this, ActAdoptUploadList.class);
                 startActivity(intent);
             }
         }
@@ -124,13 +147,16 @@ public class ActMember extends AppCompatActivity {
         btnGoFollowing = (ImageButton)findViewById(R.id.btnGoFollowing);
         btnGoFollowing.setOnClickListener(btnGoFollowing_Click);
 
+        btnGoUploadlist = (ImageButton)findViewById(R.id.btnGoUploadlist);
+        btnGoUploadlist.setOnClickListener(btnGoUploadlist_Click);
+
         ivPhoto1 = (ImageView)findViewById(R.id.ivPhoto1);
 
         viewFlipper=(ViewFlipper)findViewById(R.id.viewflipper);
     }
 
     //Button btnGoRegister,btnGoSignIn,btnGoMsgBox,btnGoFollowing;
-    ImageButton btnGoRegister,btnGoSignIn,btnGoMsgBox,btnGoFollowing;
+    ImageButton btnGoRegister,btnGoSignIn,btnGoMsgBox,btnGoFollowing,btnGoUploadlist;
     ImageView ivPhoto1,ivPhoto2,ivPhoto3,ivPhoto4,ivPhoto5;
     ViewFlipper viewFlipper;
     Animation fade_in,fade_out;

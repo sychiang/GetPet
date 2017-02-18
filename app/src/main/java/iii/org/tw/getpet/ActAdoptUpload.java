@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -325,8 +326,8 @@ public class ActAdoptUpload extends AppCompatActivity {
     View.OnClickListener btn_sendout_click=new View.OnClickListener(){
         public void onClick(View arg0) {
             iv_ADialog_a = new AlertDialog.Builder(ActAdoptUpload.this)
-                    .setMessage("是否確定送出資料")
-                    .setTitle("送出確認")
+                    .setMessage(Html.fromHtml("<font color='#2d4b44'>是否確定送出資料</font>"))
+                    .setTitle(Html.fromHtml("<font color='#2d4b44'>送出確認</font>"))
                     .setPositiveButton("送出", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -334,8 +335,8 @@ public class ActAdoptUpload extends AppCompatActivity {
 
                             if (l_string_未填寫的欄位有哪些.length() > 10) {
                                 new AlertDialog.Builder(ActAdoptUpload.this)
-                                        .setMessage(l_string_未填寫的欄位有哪些)
-                                        .setTitle("欄位未填")
+                                        .setMessage(Html.fromHtml("<font color='#2d4b44'>"+l_string_未填寫的欄位有哪些+"</font>"))
+                                        .setTitle(Html.fromHtml("<font color='#2d4b44'>欄位未填</font>"))
                                         .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -490,7 +491,7 @@ public class ActAdoptUpload extends AppCompatActivity {
                             String id = jObj.getString("animalID");
                             //Toast.makeText(ActAdoptUpload.this, "上傳成功!(測試用_此次新增資料的id: " + id + ")", Toast.LENGTH_SHORT).show();
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptUpload.this);
-                            dialog.setTitle("資料上傳成功");
+                            dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>資料上傳成功</font>"));
                             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

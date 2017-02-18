@@ -29,6 +29,7 @@
                 android:layout_height="820px"
                 android:layout_gravity="center"
                 android:scaleType="fitCenter"
+                android:background="@color/colorBackground"
                 android:src="@drawable/category_adoptpair" />
 
         </ViewFlipper>
@@ -52,7 +53,7 @@
             <ImageButton
                 android:src="@drawable/vc_member_register"
                 android:scaleType="fitCenter"
-                android:background="#cdf1ec"
+                android:background="@color/colorBackground"
                 android:id="@+id/btnGoRegister"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -64,7 +65,7 @@
             <ImageButton
                 android:src="@drawable/vc_member_login"
                 android:scaleType="fitCenter"
-                android:background="#cdf1ec"
+                android:background="@color/colorBackground"
                 android:id="@+id/btnGoSignIn"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -87,7 +88,7 @@
             <ImageButton
                 android:src="@drawable/vc_member_msg"
                 android:scaleType="fitCenter"
-                android:background="#cdf1ec"
+                android:background="@color/colorBackground"
                 android:id="@+id/btnGoMsgBox"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -100,7 +101,7 @@
             <ImageButton
                 android:src="@drawable/vc_member_following"
                 android:scaleType="fitCenter"
-                android:background="#cdf1ec"
+                android:background="@color/colorBackground"
                 android:id="@+id/btnGoFollowing"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -113,7 +114,7 @@
             <ImageButton
                 android:src="@drawable/vc_member_uploadlist"
                 android:scaleType="fitCenter"
-                android:background="#cdf1ec"
+                android:background="@color/colorBackground"
                 android:id="@+id/btnGoUploadlist"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
@@ -126,7 +127,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:background="#47D1C8"
+            android:background="@color/colorPrimary"
             android:id="@+id/line3"
             android:layout_width="match_parent"
             android:layout_height="0dp"

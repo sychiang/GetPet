@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -190,7 +191,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
 
         Log.d(CDictionary.Debug_TAG, url);
 
-        progressDialog = ProgressDialog.show(ActAdoptPairList.this, "請稍後...", "資料讀取中...", true);
+        progressDialog = ProgressDialog.show(ActAdoptPairList.this, Html.fromHtml("<font color='#2d4b44'>請稍後...</font>"), Html.fromHtml("<font color='#2d4b44'>資料讀取中...</font>"), true);
 
         listview = (ListView) findViewById(R.id.pair_petlist);
         // 實例化底部布局
@@ -265,8 +266,8 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                                 } else {
                                     progressDialog.dismiss();
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairList.this);
-                                    dialog.setView(R.layout.nodata_alertdialog);
-                                    dialog.setTitle("查無資料");
+                                    //dialog.setView(R.layout.nodata_alertdialog);
+                                    dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>查無資料</font>"));
                                     //dialog.setMessage("查無資料");
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
@@ -285,7 +286,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                                 progressDialog.dismiss();
                                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairList.this);
                                 dialog.setView(R.layout.nodata_alertdialog);
-                                dialog.setTitle("連線失敗, 請稍後再試");
+                                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
                                 //dialog.setMessage("查無資料");
                                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                     @Override

@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -139,8 +140,8 @@ public class ActFollowingDetail extends AppCompatActivity {
 
                         } else {
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingDetail.this);
-                            dialog.setView(R.layout.nodata_alertdialog);
-                            dialog.setTitle("查無資料");
+                            //dialog.setView(R.layout.nodata_alertdialog);
+                            dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>查無資料</font>"));
                             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -156,7 +157,7 @@ public class ActFollowingDetail extends AppCompatActivity {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingDetail.this);
-                        dialog.setTitle("連線失敗");
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -195,6 +196,33 @@ public class ActFollowingDetail extends AppCompatActivity {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public View showConditionView(){
+        inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.showcondition_alertdialog, null);
+
+        tv_condAge = (TextView) view.findViewById(R.id.tv_condAge);
+        tv_condEconomy = (TextView) view.findViewById(R.id.tv_condEconomy);
+        tv_condHome = (TextView) view.findViewById(R.id.tv_condHome);
+        tv_condFamily = (TextView) view.findViewById(R.id.tv_condFamily);
+        tv_condReply = (TextView) view.findViewById(R.id.tv_condReply);
+        tv_condPaper = (TextView) view.findViewById(R.id.tv_condPaper);
+        tv_condFee = (TextView) view.findViewById(R.id.tv_condFee);
+        tv_condOther = (TextView) view.findViewById(R.id.tv_condOther);
+
+        if(adoptpair.getAnimalData_Condition().size()>0){
+            Log.d(CDictionary.Debug_TAG,"GET COND: "+adoptpair.getAnimalData_Condition().get(0).getConditionID());
+            tv_condAge.setText(adoptpair.getAnimalData_Condition().get(0).getConditionAge());
+            tv_condEconomy.setText(adoptpair.getAnimalData_Condition().get(0).getConditionEconomy());
+            tv_condHome.setText(adoptpair.getAnimalData_Condition().get(0).getConditionHome());
+            tv_condFamily.setText(adoptpair.getAnimalData_Condition().get(0).getConditionFamily());
+            tv_condReply.setText(adoptpair.getAnimalData_Condition().get(0).getConditionReply());
+            tv_condPaper.setText(adoptpair.getAnimalData_Condition().get(0).getConditionPaper());
+            tv_condFee.setText(adoptpair.getAnimalData_Condition().get(0).getConditionFee());
+            tv_condOther.setText(adoptpair.getAnimalData_Condition().get(0).getConditionOther());
+        }
+        return view;
     }
 
     //查看認養條件
@@ -238,88 +266,125 @@ public class ActFollowingDetail extends AppCompatActivity {
     View.OnClickListener btnLeaveMsg_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //開啟留言板
-
+            Intent intent = new Intent(ActFollowingDetail.this,ActBoardList.class);
+            Bundle bundle = new Bundle();
+            bundle.putString(CDictionary.BK_animalID,animalid);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
     };
 
     View.OnClickListener btnAdopt_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             //我要認養
-            OkHttpClient Iv_OkHttp_client = new OkHttpClient();
-            final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
+            if(access_token == ""){
+                Log.d(CDictionary.Debug_TAG,"not log in");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingDetail.this);
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>尚未登入</font>"));
+                dialog.setMessage(Html.fromHtml("<font color='#2d4b44'>請先登入會員</font>"));
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        goLoginScreen();
+                    }
+                });
+                dialog.create().show();
+            } else {
+                View view = showConditionView();
 
-            JSONObject jsonObject = new JSONObject();
-            Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
-            try {
-                jsonObject.put("msgID", 0);
-                Log.d(CDictionary.Debug_TAG,"GET msgID: "+jsonObject.optString("msgID"));
-                jsonObject.put("msgTime","");
-                Log.d(CDictionary.Debug_TAG,"GET msgTime: "+jsonObject.optString("msgTime"));
-                jsonObject.put("msgFrom_userID", UserId);
-                Log.d(CDictionary.Debug_TAG,"GET msgFrom_userID: "+jsonObject.optString("msgFrom_userID"));
-                jsonObject.put("msgTo_userID", adoptpair.getAnimalOwner_userID());
-                //jsonObject.put("msgTo_userID", "86644d36-0c69-4117-bb75-c500486eea71");
-                Log.d(CDictionary.Debug_TAG,"GET msgTo_userID: "+jsonObject.optString("msgTo_userID"));
-                jsonObject.put("msgType", "認養通知");
-                Log.d(CDictionary.Debug_TAG,"GET msgType: "+jsonObject.optString("msgType"));
-                jsonObject.put("msgFromURL", "nil");
-                Log.d(CDictionary.Debug_TAG,"GET msgFromURL: "+jsonObject.optString("msgFromURL"));
-                jsonObject.put("msgContent", "您好 我想認養你的寵物");
-                Log.d(CDictionary.Debug_TAG,"GET msgContent: "+jsonObject.optString("msgContent"));
-                jsonObject.put("msgRead", "未讀");
-                Log.d(CDictionary.Debug_TAG,"GET msgRead: "+jsonObject.optString("msgRead"));
-            } catch (JSONException e) {
-                e.printStackTrace();
+                AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
+                dialog.setView(view);
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>以下認養條件是否已詳閱完畢?</font>"));
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sendRequestForAdopt();
+                    }
+                });
+                dialog.create().show();
             }
-
-            RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
-            Log.d(CDictionary.Debug_TAG,"GET JSON STRING: "+jsonObject.toString());
-            Request postRequest = new Request.Builder()
-                    .url("http://twpetanimal.ddns.net:9487/api/v1/MsgUsers")
-                    .addHeader("Accept", "application/json")
-                    .addHeader("Content-Type", "application/json")
-                    .addHeader("Authorization","Bearer "+access_token)
-                    .post(requestBody)
-                    .build();
-
-            Call call = Iv_OkHttp_client.newCall(postRequest);
-            call.enqueue(new Callback() {
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    final String json = response.body().string();
-                    Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingDetail.this);
-                            dialog.setMessage("系統已為您送出認養通知給送養人");
-                            dialog.setTitle("認養通知已送出");
-                            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            });
-                            dialog.create().show();
-                        }
-                    });
-                }
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    Log.d(CDictionary.Debug_TAG,"POST FAIL......");
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingDetail.this);
-                    dialog.setTitle("認養通知傳送失敗");
-                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-                    dialog.create().show();
-                }
-            });
-
         }
     };
+
+    public void sendRequestForAdopt(){
+        OkHttpClient Iv_OkHttp_client = new OkHttpClient();
+        final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
+
+        JSONObject jsonObject = new JSONObject();
+        Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
+        try {
+            jsonObject.put("msgID", 0);
+            Log.d(CDictionary.Debug_TAG,"GET msgID: "+jsonObject.optString("msgID"));
+            jsonObject.put("msgTime","");
+            Log.d(CDictionary.Debug_TAG,"GET msgTime: "+jsonObject.optString("msgTime"));
+            jsonObject.put("msgFrom_userID", UserId);
+            Log.d(CDictionary.Debug_TAG,"GET msgFrom_userID: "+jsonObject.optString("msgFrom_userID"));
+            jsonObject.put("msgTo_userID", adoptpair.getAnimalOwner_userID());
+            //jsonObject.put("msgTo_userID", "86644d36-0c69-4117-bb75-c500486eea71");
+            Log.d(CDictionary.Debug_TAG,"GET msgTo_userID: "+jsonObject.optString("msgTo_userID"));
+            jsonObject.put("msgType", "認養通知");
+            Log.d(CDictionary.Debug_TAG,"GET msgType: "+jsonObject.optString("msgType"));
+            jsonObject.put("msgFromURL", "nil");
+            Log.d(CDictionary.Debug_TAG,"GET msgFromURL: "+jsonObject.optString("msgFromURL"));
+            jsonObject.put("msgContent", "您好 我想認養你的寵物");
+            Log.d(CDictionary.Debug_TAG,"GET msgContent: "+jsonObject.optString("msgContent"));
+            jsonObject.put("msgRead", "未讀");
+            Log.d(CDictionary.Debug_TAG,"GET msgRead: "+jsonObject.optString("msgRead"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
+        Log.d(CDictionary.Debug_TAG,"GET JSON STRING: "+jsonObject.toString());
+        Request postRequest = new Request.Builder()
+                .url("http://twpetanimal.ddns.net:9487/api/v1/MsgUsers")
+                .addHeader("Accept", "application/json")
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Authorization","Bearer "+access_token)
+                .post(requestBody)
+                .build();
+
+        Call call = Iv_OkHttp_client.newCall(postRequest);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String json = response.body().string();
+                Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingDetail.this);
+                        dialog.setMessage(Html.fromHtml("<font color='#2d4b44'>系統已為您送出認養通知給送養人</font>"));
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>認養通知已送出</font>"));
+                        dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                        dialog.create().show();
+                    }
+                });
+            }
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d(CDictionary.Debug_TAG,"POST FAIL......");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingDetail.this);
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                dialog.create().show();
+            }
+        });
+    }
+
+    private void goLoginScreen() {
+        Intent intent = new Intent(ActFollowingDetail.this, ActLogin.class);
+        startActivity(intent);
+        finish();
+    }
 
     private void initComponent(){
         tvName = (TextView)findViewById(R.id.tvName);

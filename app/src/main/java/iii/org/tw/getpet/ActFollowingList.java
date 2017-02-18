@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -141,7 +142,7 @@ public class ActFollowingList extends AppCompatActivity implements AbsListView.O
                                     });
                                 } else {
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActFollowingList.this);
-                                    dialog.setTitle("尚未有追蹤項目");
+                                    dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>尚未有追蹤的寵物</font>"));
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {

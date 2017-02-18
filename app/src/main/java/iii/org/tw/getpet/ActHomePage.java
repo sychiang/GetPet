@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -140,7 +141,8 @@ public class ActHomePage extends AppCompatActivity
                 if(access_token == ""){
                     Log.d(CDictionary.Debug_TAG,"not log in");
                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
-                    dialog.setTitle("尚未登入, 請先登入會員");
+                    dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>尚未登入</font>"));
+                    dialog.setMessage(Html.fromHtml("<font color='#2d4b44'>請先登入會員</font>"));
                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -159,7 +161,8 @@ public class ActHomePage extends AppCompatActivity
                 if(access_token == ""){
                     Log.d(CDictionary.Debug_TAG,"not log in");
                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
-                    dialog.setTitle("尚未登入, 請先登入會員");
+                    dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>尚未登入</font>"));
+                    dialog.setMessage(Html.fromHtml("<font color='#2d4b44'>請先登入會員</font>"));
                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -224,7 +227,8 @@ public class ActHomePage extends AppCompatActivity
             if(access_token == ""){
                 Log.d(CDictionary.Debug_TAG,"not log in");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActHomePage.this);
-                dialog.setTitle("尚未登入, 請先登入會員");
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>尚未登入</font>"));
+                dialog.setMessage(Html.fromHtml("<font color='#2d4b44'>請先登入會員</font>"));
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

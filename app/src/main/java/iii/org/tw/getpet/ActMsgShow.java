@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -96,7 +97,7 @@ public class ActMsgShow extends AppCompatActivity {
         public void onClick(View arg0) {
             Log.d(CDictionary.Debug_TAG,"DEL BTN CLICK");
             AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgShow.this);
-            dialog.setTitle("確定要刪除此訊息?");
+            dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>確定要刪除此訊息?</font>"));
             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -130,7 +131,7 @@ public class ActMsgShow extends AppCompatActivity {
                     @Override
                     public void run() {
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgShow.this);
-                        dialog.setTitle("訊息已刪除");
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>訊息已刪除</font>"));
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -147,7 +148,7 @@ public class ActMsgShow extends AppCompatActivity {
             public void onFailure(Call call, IOException e) {
                 Log.d(CDictionary.Debug_TAG,"POST FAIL......");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgShow.this);
-                dialog.setTitle("連線錯誤, 請稍後再試");
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -158,8 +159,6 @@ public class ActMsgShow extends AppCompatActivity {
             }
         });
     }
-
-
 
     public void initComponent(){
         btnOK = (ImageButton)findViewById(R.id.btnOK);

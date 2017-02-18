@@ -19,6 +19,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -933,8 +934,8 @@ public class ActAdoptEdit extends AppCompatActivity {
                     break;
                 case R.id.btnEdit:
                     iv_ADialog_a = new AlertDialog.Builder(ActAdoptEdit.this)
-                            .setMessage("是否確定送出資料")
-                            .setTitle("送出確認")
+                            .setMessage(Html.fromHtml("<font color='#2d4b44'>是否確定送出資料?</font>"))
+                            .setTitle(Html.fromHtml("<font color='#2d4b44'>送出確認</font>"))
                             .setPositiveButton("送出", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -951,8 +952,8 @@ public class ActAdoptEdit extends AppCompatActivity {
 
                                     if (l_string_未填寫的欄位有哪些.length() > 10) {
                                         new AlertDialog.Builder(ActAdoptEdit.this)
-                                                .setMessage(l_string_未填寫的欄位有哪些)
-                                                .setTitle("欄位未填")
+                                                .setMessage(Html.fromHtml("<font color='#2d4b44'>"+l_string_未填寫的欄位有哪些+"</font>"))
+                                                .setTitle(Html.fromHtml("<font color='#2d4b44'>欄位未填</font>"))
                                                 .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
@@ -998,8 +999,9 @@ public class ActAdoptEdit extends AppCompatActivity {
                 //**
                 //**
                 iv_AlertDialog_Builder = new AlertDialog.Builder(ActAdoptEdit.this)
-                        .setMessage("如欲使用相簿內的相片 請點選相簿\n如欲使用相機直接拍攝 請點擊相機")
-                        .setTitle("請選擇使用相簿或相機")
+                        .setMessage(Html.fromHtml("<font color='#2d4b44'>如欲使用相簿內的相片 請點選相簿\n" +
+                                "如欲使用相機直接拍攝 請點擊相機</font>"))
+                        .setTitle(Html.fromHtml("<font color='#2d4b44'>請選擇使用相簿或相機</font>"))
                         .setPositiveButton("相簿", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

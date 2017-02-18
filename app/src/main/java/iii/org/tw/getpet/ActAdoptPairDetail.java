@@ -12,6 +12,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -81,7 +82,7 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         intent = getIntent();
-        setTitle("找一個家的"+intent.getExtras().getString(CDictionary.BK_animalName));
+        setTitle(Html.fromHtml("<font color='#666666'>找一個家的"+intent.getExtras().getString(CDictionary.BK_animalName)+"</font>"));
         animalid = intent.getExtras().getString(CDictionary.BK_animalID);
         initComponent();
         //取得使用者基本資料
@@ -106,13 +107,13 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
         tvType.setText(intent.getExtras().getString(CDictionary.BK_animalType));
         tvSex.setText(intent.getExtras().getString(CDictionary.BK_animalGender));
         tvColor.setText(intent.getExtras().getString(CDictionary.BK_animalColor));
-        //tvAge.setText(intent.getExtras().getString(CDictionary.BK_animalAge));
+        tvAge.setText(intent.getExtras().getString(CDictionary.BK_animalAge));
         tvArea.setText(intent.getExtras().getString(CDictionary.BK_animalAddress));
-        //tvIfBirth.setText(intent.getExtras().getString(CDictionary.BK_animalBirth));
-        //tvIfChip.setText(intent.getExtras().getString(CDictionary.BK_animalChip));
+        tvIfBirth.setText(intent.getExtras().getString(CDictionary.BK_animalBirth));
+        tvIfChip.setText(intent.getExtras().getString(CDictionary.BK_animalChip));
         tvHealthy.setText(intent.getExtras().getString(CDictionary.BK_animalHealthy));
-        //tvDisease.setText(intent.getExtras().getString(CDictionary.BK_animalDisease_Other));
-        //tvReason.setText(intent.getExtras().getString(CDictionary.BK_animalReason));
+        tvDisease.setText(intent.getExtras().getString(CDictionary.BK_animalDisease_Other));
+        tvReason.setText(intent.getExtras().getString(CDictionary.BK_animalReason));
         tvNote.setText(intent.getExtras().getString(CDictionary.BK_animalNote));
 
         //輪播功能
@@ -261,6 +262,19 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
     //我要追蹤
     View.OnClickListener btnTrack_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
+            if(access_token == ""){
+                Log.d(CDictionary.Debug_TAG,"not log in");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>尚未登入</font>"));
+                dialog.setMessage(Html.fromHtml("<font color='#2d4b44'>請先登入會員</font>"));
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        goLoginScreen();
+                    }
+                });
+                dialog.create().show();
+            } else {
                 //我要追蹤
                 OkHttpClient Iv_OkHttp_client = new OkHttpClient();
                 final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
@@ -300,7 +314,7 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
                                 if(response.code() == 409){
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
                                     //dialog.setTitle("此動物已存在於您的追蹤清單");
-                                    dialog.setMessage("此動物已存在於您的追蹤清單");
+                                    dialog.setMessage(Html.fromHtml("<font color='#2d4b44'>此動物已存在於您的追蹤清單</font>"));
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -310,7 +324,7 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
                                     dialog.create().show();
                                 } else {
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
-                                    dialog.setTitle("已為您加入追蹤清單");
+                                    dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>已為您加入追蹤清單</font>"));
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -325,35 +339,50 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
                     @Override
                     public void onFailure(Call call, IOException e) {
                         Log.d(CDictionary.Debug_TAG,"POST FAIL......");
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
-                    dialog.setTitle("連線失敗, 請稍後再試");
-                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
+                        dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                        }
-                    });
-                    dialog.create().show();
+                            }
+                        });
+                        dialog.create().show();
                     }
                 });
+            }
         }
     };
 
     //我要認養
     View.OnClickListener btnAdopt_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            View view = showConditionView();
+            if(access_token == ""){
+                Log.d(CDictionary.Debug_TAG,"not log in");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>尚未登入</font>"));
+                dialog.setMessage(Html.fromHtml("<font color='#2d4b44'>請先登入會員</font>"));
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        goLoginScreen();
+                    }
+                });
+                dialog.create().show();
+            } else {
+                View view = showConditionView();
 
-            AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
-            dialog.setView(view);
-            dialog.setTitle("以下認養條件是否已詳閱完畢?");
-            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    sendRequestForAdopt();
-                }
-            });
-            dialog.create().show();
+                AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
+                dialog.setView(view);
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>以下認養條件是否已詳閱完畢?</font>"));
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        sendRequestForAdopt();
+                    }
+                });
+                dialog.create().show();
+            }
         }
     };
 
@@ -405,8 +434,8 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
                     @Override
                     public void run() {
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
-                        dialog.setMessage("系統已為您送出認養通知給送養人");
-                        dialog.setTitle("認養通知已送出");
+                        dialog.setMessage(Html.fromHtml("<font color='#2d4b44'>系統已為您送出認養通知給送養人</font>"));
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>認養通知已送出</font>"));
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -420,7 +449,7 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
             public void onFailure(Call call, IOException e) {
                 Log.d(CDictionary.Debug_TAG,"POST FAIL......");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairDetail.this);
-                dialog.setTitle("連線錯誤, 請稍後再試");
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -430,6 +459,12 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
                 dialog.create().show();
             }
         });
+    }
+
+    private void goLoginScreen() {
+        Intent intent = new Intent(ActAdoptPairDetail.this, ActLogin.class);
+        startActivity(intent);
+        finish();
     }
 
     private void initComponent(){

@@ -59,9 +59,10 @@
             android:textStyle="bold"/>
 
         <!-- 加入最愛 -->
-        <ImageView android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/edit_icon"
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/icon_edit"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"/>
 

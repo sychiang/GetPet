@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -59,15 +60,15 @@ public class ActAdoptUploadList extends AppCompatActivity {
         access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
         Log.d(CDictionary.Debug_TAG,"GET USER TOKEN："+access_token);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ActAdoptUploadList.this, ActAdoptUpload.class);
-                startActivity(intent);
-
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(ActAdoptUploadList.this, ActAdoptUpload.class);
+//                startActivity(intent);
+//
+//            }
+//        });
         getDatafromServer();
     }
 
@@ -96,7 +97,7 @@ public class ActAdoptUploadList extends AppCompatActivity {
                                     recyclerList.setAdapter(adapter);
                                 } else {
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptUploadList.this);
-                                    dialog.setTitle("您目前尚無上傳資料");
+                                    dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>您目前尚無上傳資料</font>"));
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -52,16 +53,16 @@ public class ActBoardInput extends AppCompatActivity {
     View.OnClickListener btnSubmit_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             AlertDialog dialog = new AlertDialog.Builder(ActBoardInput.this)
-                    .setMessage("是否確定送出資料")
-                    .setTitle("送出確認")
+                    .setMessage(Html.fromHtml("<font color='#2d4b44'>是否確定送出資料</font>"))
+                    .setTitle(Html.fromHtml("<font color='#2d4b44'>您已送出確認是會員</font>"))
                     .setPositiveButton("送出", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String emptyInputField = checkInput();
                             if (emptyInputField.length() > 10) {
                                 new AlertDialog.Builder(ActBoardInput.this)
-                                        .setMessage(emptyInputField)
-                                        .setTitle("欄位未填")
+                                        .setMessage(Html.fromHtml("<font color='#2d4b44'>"+emptyInputField+"</font>"))
+                                        .setTitle(Html.fromHtml("<font color='#2d4b44'>欄位未填</font>"))
                                         .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -119,7 +120,7 @@ public class ActBoardInput extends AppCompatActivity {
                     @Override
                     public void run() {
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActBoardInput.this);
-                        dialog.setTitle("留言已送出");
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>留言已送出</font>"));
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -134,7 +135,7 @@ public class ActBoardInput extends AppCompatActivity {
             public void onFailure(Call call, IOException e) {
                 Log.d(CDictionary.Debug_TAG,"POST FAIL......");
                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActBoardInput.this);
-                dialog.setTitle("連線錯誤, 請稍後再試");
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

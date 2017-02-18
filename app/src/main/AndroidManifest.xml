@@ -53,7 +53,7 @@
             android:theme="@style/AppTheme.iPet"/>
 
         <activity android:name=".ActShelterPetList"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.iPetNoAction"/>
 
         <activity
             android:name=".ActShelterPetDetail"
@@ -63,12 +63,13 @@
         <activity android:name=".ActMsgBox"
             android:theme="@style/AppTheme.iPet"/>
 
-        <activity android:name=".ActAdoptPairList" />
+        <activity android:name=".ActAdoptPairList"
+            android:theme="@style/AppTheme.iPet"/>
 
         <activity
             android:name=".ActAdoptPairDetail"
             android:label="@string/title_activity_act_adopt_pair_detail"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.iPetNoAction" />
 
         <activity android:name=".ActLogin"
             android:theme="@style/AppTheme.iPet" />
@@ -76,7 +77,8 @@
         <activity android:name=".ActSearchAdopt"
             android:theme="@style/AppTheme.iPet" />
 
-        <activity android:name=".ActFollowingList" />
+        <activity android:name=".ActFollowingList"
+            android:theme="@style/AppTheme.iPet"/>
 
         <activity android:name=".ActRegister"
             android:theme="@style/AppTheme.iPet" />
@@ -84,16 +86,18 @@
         <activity
             android:name=".ActAdoptUpload"
             android:label="@string/title_activity_act_adopt_upload"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.iPetNoAction" />
 
         <activity
             android:name=".ActConditionInput"
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
 
         <activity
             android:name=".ActFollowingDetail"
             android:label="@string/title_activity_act_following_detail"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.iPetNoAction" />
 
         <activity
             android:name=".ActMsgShow"
@@ -102,16 +106,19 @@
 
         <activity
             android:name=".ActMsgInput"
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
 
         <activity
             android:name=".ActAdoptUploadList"
-            android:label="@string/title_activity_act_adopt_upload_list" />
+            android:label="@string/title_activity_act_adopt_upload_list"
+            android:theme="@style/AppTheme.iPet"/>
 
         <activity
             android:name=".ActAdoptEdit"
-            android:label="@string/title_activity_act_adopt_edit"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="送養資料編輯"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.iPetNoAction" />
 
         <activity
             android:name=".ActBoardList"
@@ -120,20 +127,24 @@
 
         <activity
             android:name=".ActBoardInput"
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/Base.Theme.AppCompat.Light.Dialog" />
 
         <activity
             android:name=".ActPetHelper"
             android:theme="@style/AppTheme.iPet" />
 
-        <activity android:name=".ActMapCategory" />
+        <activity android:name=".ActMapCategory"
+            android:theme="@style/AppTheme.iPet"/>
 
-        <activity android:name=".ActMapSearch" />
+        <activity android:name=".ActMapSearch"
+            android:theme="@style/AppTheme.iPet"/>
 
         <activity android:name=".ActMember"
             android:theme="@style/AppTheme.iPet"/>
 
-        <activity android:name=".ActAboutUs"/>
+        <activity android:name=".ActAboutUs"
+            android:theme="@style/AppTheme.iPet"/>
 
     </application>
 
