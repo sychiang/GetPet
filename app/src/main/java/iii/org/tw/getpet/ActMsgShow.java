@@ -57,9 +57,6 @@ public class ActMsgShow extends AppCompatActivity {
             msg_content.setText(msgContent);
         }
 
-//        if((msgType.equals("留言板通知")) || (msgType.equals("系統通知"))){
-//            btnReply.setVisibility(View.GONE);
-//        }
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {

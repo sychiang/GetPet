@@ -61,10 +61,10 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
         String url = "http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas?";
         String condArea = intent.getExtras().getString(CDictionary.BK_Area);
         Log.d(CDictionary.Debug_TAG, "get cond1" + condArea);
-        String condType = intent.getExtras().getString(CDictionary.BK_Type);
-        Log.d(CDictionary.Debug_TAG, "get cond2" + condType);
         String condKind = intent.getExtras().getString(CDictionary.BK_Kind);
-        Log.d(CDictionary.Debug_TAG, "get cond3" + condKind);
+        Log.d(CDictionary.Debug_TAG, "get cond2" + condKind);
+        String condType = intent.getExtras().getString(CDictionary.BK_Type);
+        Log.d(CDictionary.Debug_TAG, "get cond3" + condType);
         switch (condArea) {
             case "全部":
                 break;
@@ -138,51 +138,65 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                 break;
         }
         if (condArea.equals("全部")) {
-            switch (condType) {
+            Log.d(CDictionary.Debug_TAG,"縣市全部");
+            switch (condKind) {
                 case "全部":
                     break;
                 case "狗":
                     url += "$filter=animalKind eq '狗'";
+                    url += "and animalType eq '"+condType+"'";
                     break;
                 case "貓":
                     url += "$filter=animalKind eq '貓'";
+                    url += "and animalType eq '"+condType+"'";
                     break;
                 case "老鼠":
                     url += "$filter=animalKind eq '老鼠'";
+                    url += "and animalType eq '"+condType+"'";
                     break;
                 case "鳥":
                     url += "$filter=animalKind eq '鳥'";
+                    url += "and animalType eq '"+condType+"'";
                     break;
-                case "兔":
+                case "兔子":
                     url += "$filter=animalKind eq '兔'";
+                    url += "and animalType eq '"+condType+"'";
                     break;
                 case "其他":
                     url += "$filter=animalKind eq '其他'";
+                    url += "and animalType eq '"+condType+"'";
                     break;
                 default:
                     break;
             }
         } else {
-            switch (condType) {
+            Log.d(CDictionary.Debug_TAG,"特定縣市");
+            switch (condKind) {
                 case "全部":
                     break;
                 case "狗":
                     url += " and animalKind eq '狗'";
+                    url += "and animalType eq '"+condType+"'";
                     break;
                 case "貓":
                     url += " and animalKind eq '貓'";
+                    url += "and animalType eq '"+condType+"'";
                     break;
                 case "老鼠":
                     url += " and animalKind eq '老鼠'";
+                    url += "and animalType eq '"+condType+"'";
                     break;
                 case "鳥":
                     url += " and animalKind eq '鳥'";
+                    url += "and animalType eq '"+condType+"'";
                     break;
                 case "兔子":
                     url += " and animalKind eq '兔'";
+                    url += "and animalType eq '"+condType+"'";
                     break;
                 case "其他":
                     url += " and animalKind eq '其他'";
+                    url += "and animalType eq '"+condType+"'";
                     break;
                 default:
                     break;

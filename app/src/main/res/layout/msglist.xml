@@ -24,8 +24,8 @@
             android:gravity="center" />
 
         <TextView
-            android:layout_alignTop="@+id/msglist_tvTitle"
             android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/msglist_tvSender"
             android:id="@+id/msglist_tvIfRead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,6 +41,17 @@
             android:textSize="20sp"
             android:text="寄件人"
             android:gravity="center" />
+
+        <TextView
+            android:layout_alignTop="@+id/msglist_tvTitle"
+            android:layout_alignParentRight="true"
+            android:id="@+id/msglist_tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="寄件日期"
+            android:gravity="center" />
+
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

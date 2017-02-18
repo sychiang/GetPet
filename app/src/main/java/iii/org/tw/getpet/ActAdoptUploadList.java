@@ -101,8 +101,9 @@ public class ActAdoptUploadList extends AppCompatActivity {
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-//                                            Intent intent = new Intent(ActMsgBox.this, ActHomePage.class);
-//                                            startActivity(intent);
+                                            Intent intent = new Intent(ActAdoptUploadList.this, ActHomePage.class);
+                                            startActivity(intent);
+                                            finish();
                                         }
                                     });
                                     dialog.create().show();

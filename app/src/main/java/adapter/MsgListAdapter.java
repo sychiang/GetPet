@@ -49,7 +49,7 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.ViewHold
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvTitle, tvSender, tvIfRead;
+        public TextView tvTitle, tvSender, tvIfRead, tvTime;
         public CardView cardView;
 
         public ViewHolder(View view) {
@@ -58,6 +58,7 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.ViewHold
             tvTitle = (TextView) view.findViewById(R.id.msglist_tvTitle);
             tvSender = (TextView) view.findViewById(R.id.msglist_tvSender);
             tvIfRead = (TextView) view.findViewById(R.id.msglist_tvIfRead);
+            tvTime = (TextView) view.findViewById(R.id.msglist_tvTime);
         }
     }
 
@@ -153,6 +154,7 @@ public class MsgListAdapter extends RecyclerView.Adapter<MsgListAdapter.ViewHold
         holder.tvTitle.setText(message.getMsgType());
         holder.tvSender.setText(message.getMsgFrom_userName());
         holder.tvIfRead.setText(message.getMsgRead());
+        holder.tvTime.setText(message.getMsgTime());
     }
 
     @Override

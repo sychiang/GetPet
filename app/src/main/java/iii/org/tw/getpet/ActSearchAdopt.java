@@ -41,6 +41,7 @@ public class ActSearchAdopt extends AppCompatActivity {
     private ArrayList<String>[] iv_Array_動物品種清單;
     private ArrayList<String> iv_ArrayList_動物類別清單;
     private ArrayList<Bitmap> iv_ArrayList_Bitmap;
+    ArrayList<String> arrayListType;
     //**
     ArrayAdapter<String> iv_ArrayAdapter_spinner_animalType;
     ArrayAdapter<String> iv_ArrayAdapter_spinner_animalKind;
@@ -72,7 +73,7 @@ public class ActSearchAdopt extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selectedArea = area[position];
-                Log.d(CDictionary.Debug_TAG,"cond1: "+selectedArea);
+                Log.d(CDictionary.Debug_TAG,"縣市: "+selectedArea);
                 //Toast.makeText(MainActivity.this, "你選的是" + lunch[position], Toast.LENGTH_SHORT).show();
             }
 
@@ -138,8 +139,15 @@ public class ActSearchAdopt extends AppCompatActivity {
     //搜尋按鈕點擊後事件
     View.OnClickListener btnSearch_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
+            selectedArea = spinner_area.getSelectedItem().toString();
+            Log.d(CDictionary.Debug_TAG,"縣市: "+selectedArea);
+            selectedKind = spinner_animalKind.getSelectedItem().toString();
+            Log.d(CDictionary.Debug_TAG,"種類: "+selectedKind);
+            selectedType = spinner_animalType.getSelectedItem().toString();
+            Log.d(CDictionary.Debug_TAG,"品種: "+selectedType);
             Bundle bundle = new Bundle();
             bundle.putString(CDictionary.BK_Area, selectedArea);
+            bundle.putString(CDictionary.BK_Kind, selectedKind);
             bundle.putString(CDictionary.BK_Type, selectedType);
             Intent intent = new Intent(ActSearchAdopt.this, ActAdoptPairList.class);
             intent.putExtras(bundle);
@@ -149,8 +157,8 @@ public class ActSearchAdopt extends AppCompatActivity {
     };
 
     public void initComponent(){
-        //btnSearch = (Button)findViewById(R.id.btnSearch);
-        btnSearch = (ImageButton)findViewById(R.id.btnSearch);
+        btnSearch = (Button)findViewById(R.id.btnSearch);
+        //btnSearch = (ImageButton)findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(btnSearch_Click);
         spinner_area = (Spinner)findViewById(R.id.spinner_area);
         spinner_type = (Spinner)findViewById(R.id.spinner_type);
@@ -234,14 +242,14 @@ public class ActSearchAdopt extends AppCompatActivity {
                         spinner_animalKind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                selectedKind = iv_ArrayList_動物類別清單.get(position);
-                                Log.d(CDictionary.Debug_TAG,"cond2: "+selectedKind);
                                 if(iv_ArrayList_動物類別清單.get(position).equals("全部")){
                                     String[] type = {"全部"};
                                     ArrayAdapter<String> l_ArrayAdapter_spinner_animalType = new ArrayAdapter<String>(ActSearchAdopt.this, R.layout.spinnercontent_adopt, type);
                                     spinner_animalType.setAdapter(l_ArrayAdapter_spinner_animalType);
                                 } else {
+                                    arrayListType = iv_Array_動物品種清單[position];
                                     ArrayAdapter<String> l_ArrayAdapter_spinner_animalType = new ArrayAdapter<String>(ActSearchAdopt.this, R.layout.spinnercontent_adopt, iv_Array_動物品種清單[position]);
+                                    l_ArrayAdapter_spinner_animalType.setDropDownViewResource(R.layout.spinnercontent_upload);
                                     spinner_animalType.setAdapter(l_ArrayAdapter_spinner_animalType);
                                 }
                             }
@@ -289,8 +297,8 @@ public class ActSearchAdopt extends AppCompatActivity {
     }
     //**
 
-    //Button btnSearch;
-    ImageButton btnSearch;
+    Button btnSearch;
+    //ImageButton btnSearch;
     Spinner spinner_area, spinner_type;
     //**
     Spinner spinner_animalArea, spinner_animalKind, spinner_animalType, spinner_animalGender, spinner_animalChip, spinner_animalBirth;
