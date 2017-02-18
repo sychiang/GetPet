@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -66,7 +67,7 @@ public class ActFollowingDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_following_detail);
-        setTitle("iPet 幸福轉運站");
+        //setTitle(Html.fromHtml("<font color='#666666'>找一個家的"+adoptpair.getAnimalName()+"</font>"));
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initComponent();
@@ -169,6 +170,7 @@ public class ActFollowingDetail extends AppCompatActivity {
                         dialog.create().show();
                     }
                 });
+
 
         //輪播功能
         fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
@@ -404,17 +406,18 @@ public class ActFollowingDetail extends AppCompatActivity {
         ivPhotoThree = (ImageView)findViewById(R.id.ivPhotoThree);
         viewFlipper=(ViewFlipper)findViewById(R.id.viewflipper);
 
-        btnCheckCond = (Button)findViewById(R.id.btnCheckCond);
-        btnCheckCond.setOnClickListener(btnCheckCond_Click);
+//        btnCheckCond = (Button)findViewById(R.id.btnCheckCond);
+//        btnCheckCond.setOnClickListener(btnCheckCond_Click);
 
-        btnLeaveMsg = (Button)findViewById(R.id.btnLeaveMsg);
+        btnLeaveMsg = (ImageButton)findViewById(R.id.btnLeaveMsg);
         btnLeaveMsg.setOnClickListener(btnLeaveMsg_Click);
 
-        btnAdopt = (Button)findViewById(R.id.btnAdopt);
+        btnAdopt = (ImageButton)findViewById(R.id.btnAdopt);
         btnAdopt.setOnClickListener(btnAdopt_Click);
 
     }
-    Button btnCheckCond,btnLeaveMsg,btnAdopt;
+    //Button btnCheckCond,btnLeaveMsg,btnAdopt;
+    ImageButton btnCheckCond,btnLeaveMsg,btnAdopt;
     ImageView ivPhotoOne,ivPhotoTwo,ivPhotoThree;
     TextView tvName, tvType, tvSex, tvColor, tvAge, tvArea,tvIfBirth,tvIfChip,tvHealthy,tvDisease,tvReason,tvNote;
     TextView tv_condAge, tv_condEconomy, tv_condHome, tv_condFamily, tv_condReply, tv_condPaper, tv_condFee, tv_condOther;

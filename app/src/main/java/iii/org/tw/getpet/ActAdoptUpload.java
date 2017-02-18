@@ -1,17 +1,23 @@
 package iii.org.tw.getpet;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -32,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,6 +64,11 @@ import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.SyncHttpClient;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static iii.org.tw.getpet.ActAdoptEdit.iv_requestCodeOfImgBtn1ForCamera;
+import static iii.org.tw.getpet.ActAdoptEdit.iv_requestCodeOfImgBtn2ForCamera;
+import static iii.org.tw.getpet.ActAdoptEdit.iv_requestCodeOfImgBtn3ForCamera;
+import static iii.org.tw.getpet.ActAdoptEdit.iv_requestCodeOfImgBtn4ForCamera;
+import static iii.org.tw.getpet.ActAdoptEdit.iv_requestCodeOfImgBtn5ForCamera;
 
 public class ActAdoptUpload extends AppCompatActivity {
     object_ConditionOfAdoptPet iv_object_conditionOfAdoptPet_a;
@@ -89,6 +101,7 @@ public class ActAdoptUpload extends AppCompatActivity {
     AlertDialog iv_ADialog_a;
     AlertDialog iv_ADialog_b;
     //**
+
     Bitmap[] bitmapArray = {bitmap1, bitmap2, bitmap3, bitmap4, bitmap5};
     boolean[] selectedImgForUploadArray = {selectedImgForUpload1, selectedImgForUpload2, selectedImgForUpload3, selectedImgForUpload4, selectedImgForUpload5};
     ArrayList<object_OfPictureImgurSite> iv_ArrayList_object_OfPictureImgurSite;
@@ -101,6 +114,7 @@ public class ActAdoptUpload extends AppCompatActivity {
     final String[] iv_array_YesOrNO = {"請選擇","是","否","未知"};
     private ArrayList<String>[] iv_Array_動物品種清單;
     private ArrayList<String> iv_ArrayList_動物類別清單;
+    private ImageButton[] iv_ImageButtonArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,7 +160,7 @@ public class ActAdoptUpload extends AppCompatActivity {
         int IntentRCodeOfOpenAlbum = 0;
 
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
             switch (v.getId()) {
                 case R.id.imgBtn1:
                     IntentRCodeOfOpenAlbum = requestCodeImgBtn1;
@@ -179,6 +193,66 @@ public class ActAdoptUpload extends AppCompatActivity {
             if (v.getId() != R.id.btnAdoptCondition) {
                 //Toast.makeText(ScrollingActivity.this,String.valueOf(IntentRCodeOfOpenAlbum),Toast.LENGTH_SHORT).show();
                 //**
+
+                if (v.getId() != R.id.btnAdoptCondition) {
+                    //Toast.makeText(ScrollingActivity.this,String.valueOf(IntentRCodeOfOpenAlbum),Toast.LENGTH_SHORT).show();
+                    //**
+                    //**
+                    /*iv_AlertDialog_Builder = */new AlertDialog.Builder(ActAdoptUpload.this)
+                            .setMessage(Html.fromHtml("<font color='#2d4b44'>如欲使用相簿內的相片 請點選相簿\n" +
+                                    "如欲使用相機直接拍攝 請點擊相機</font>"))
+                            .setTitle(Html.fromHtml("<font color='#2d4b44'>請選擇使用相簿或相機</font>"))
+                            .setPositiveButton("相簿", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //**
+                                    Intent intent = new Intent();
+                                    //開啟Pictures畫面Type設定為image
+                                    intent.setType("image/*");
+                                    //使用Intent.ACTION_GET_CONTENT這個Action會開啟選取圖檔視窗讓您選取手機內圖檔
+                                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                                    //取得相片後返回本畫面
+                                    startActivityForResult(intent, IntentRCodeOfOpenAlbum);
+                                    //**
+                                }
+                            })
+                            .setNeutralButton("取消", null)
+                            .setNegativeButton("相機", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    int l_IntentRCodeOfOpenCamera = 0;
+                                    switch (v.getId()) {
+                                        case R.id.imgBtn1:
+                                            l_IntentRCodeOfOpenCamera = iv_requestCodeOfImgBtn1ForCamera;
+                                            //Toast.makeText(ScrollingActivity.this,"String.valueOf(R.id.imgBtn1)",Toast.LENGTH_SHORT).show();
+                                            break;
+                                        case R.id.imgBtn2:
+                                            l_IntentRCodeOfOpenCamera = iv_requestCodeOfImgBtn2ForCamera;
+                                            //Toast.makeText(ScrollingActivity.this,"String.valueOf(R.id.imgBtn2)",Toast.LENGTH_SHORT).show();
+                                            break;
+                                        case R.id.imgBtn3:
+                                            l_IntentRCodeOfOpenCamera = iv_requestCodeOfImgBtn3ForCamera;
+                                            //Toast.makeText(ScrollingActivity.this,"String.valueOf(R.id.imgBtn3)",Toast.LENGTH_SHORT).show();
+                                            break;
+                                        case R.id.imgBtn4:
+                                            l_IntentRCodeOfOpenCamera = iv_requestCodeOfImgBtn4ForCamera;
+                                            //Toast.makeText(ScrollingActivity.this,"String.valueOf(R.id.imgBtn4)",Toast.LENGTH_SHORT).show();
+                                            break;
+                                        case R.id.imgBtn5:
+                                            l_IntentRCodeOfOpenCamera = iv_requestCodeOfImgBtn5ForCamera;
+                                            //Toast.makeText(ScrollingActivity.this,"String.valueOf(R.id.imgBtn5)",Toast.LENGTH_SHORT).show();
+                                            break;
+                                    }
+                                    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                                        startActivityForResult(takePictureIntent, l_IntentRCodeOfOpenCamera);
+                                    }
+                                }
+                            })
+                            .show();
+                }
+                //**
+                /*
                 Intent intent = new Intent();
                 //開啟Pictures畫面Type設定為image
                 intent.setType("image/*");
@@ -186,13 +260,214 @@ public class ActAdoptUpload extends AppCompatActivity {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 //取得相片後返回本畫面
                 startActivityForResult(intent, IntentRCodeOfOpenAlbum);
+                */
                 //**
             }
 
         }
     };
+
+    //****
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //***
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+        //******如果是彈跳視窗的回應********************************
+        if (resultCode == CDictionary.IntentRqCodeOfPetAdoptCondition) {
+            iv_object_conditionOfAdoptPet_a =
+                    (object_ConditionOfAdoptPet) data.getSerializableExtra("l_object_ConditionOfAdoptPet_objA");
+
+            //**
+            Log.d("test", iv_object_conditionOfAdoptPet_a.toString());
+            //*
+
+
+        }
+        //***
+        ///**************
+        if ((requestCode == iv_requestCodeOfImgBtn1ForCamera ||
+                requestCode == iv_requestCodeOfImgBtn2ForCamera ||
+                requestCode == iv_requestCodeOfImgBtn3ForCamera ||
+                requestCode == iv_requestCodeOfImgBtn4ForCamera ||
+                requestCode == iv_requestCodeOfImgBtn5ForCamera) && resultCode == RESULT_OK) {
+            ImageButton l_partTimeImgBtn = (ImageButton) findViewById(R.id.imgBtn1);
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            //img.setImageBitmap(imageBitmap);
+            float mScale = 1;
+
+            //如果圖片寬度大於手機寬度則進行縮放，否則直接將圖片放入ImageView內
+            if (imageBitmap.getWidth() >= 480) {
+                //判斷縮放比例
+                mScale = (float) 480 / imageBitmap.getWidth();
+            }
+
+            Matrix mMat = new Matrix();
+            mMat.setScale(mScale, mScale);
+
+            imageBitmap = Bitmap.createBitmap(imageBitmap,
+                    0,
+                    0,
+                    imageBitmap.getWidth(),
+                    imageBitmap.getHeight(),
+                    mMat,
+                    false);
+
+            //**check requestCode to decide show image on which button
+            switch (requestCode) {
+                case iv_requestCodeOfImgBtn1ForCamera:
+                    //((ImageButton) findViewById(R.id.imgBtn1)).setImageBitmap(imageBitmap);
+                    //selectedImgForUpload1 = true;
+                    iv_ImageButtonArray[0].setImageBitmap(imageBitmap);
+                    selectedImgForUploadArray[0] = true;
+                    bitmapArray[0] = imageBitmap;
+                    //iv_booleanArray_ImgHasChange[0] = true;
+                    Log.d("bitmapArray[0]", "已換成相機圖片");
+                    //Toast.makeText(ScrollingActivity.this, selectedImgForUpload1==true? "TrueY":"FalseY", Toast.LENGTH_SHORT).show();
+                    break;
+                case iv_requestCodeOfImgBtn2ForCamera:
+                    iv_ImageButtonArray[1].setImageBitmap(imageBitmap);
+                    selectedImgForUploadArray[1] = true;
+                    bitmapArray[1] = imageBitmap;
+                    //iv_booleanArray_ImgHasChange[1] = true;
+
+                    //Toast.makeText(ScrollingActivity.this, "String.valueOf(R.id.imgBtn2)", Toast.LENGTH_SHORT).show();
+                    break;
+                case iv_requestCodeOfImgBtn3ForCamera:
+                    iv_ImageButtonArray[2].setImageBitmap(imageBitmap);
+                    selectedImgForUploadArray[2] = true;
+                    bitmapArray[2] = imageBitmap;
+                    //iv_booleanArray_ImgHasChange[2] = true;
+
+                    //Toast.makeText(ScrollingActivity.this, "String.valueOf(R.id.imgBtn3)", Toast.LENGTH_SHORT).show();
+                    break;
+                case iv_requestCodeOfImgBtn4ForCamera:
+                    iv_ImageButtonArray[3].setImageBitmap(imageBitmap);
+                    selectedImgForUploadArray[3] = true;
+                    bitmapArray[3] = imageBitmap;
+                    //iv_booleanArray_ImgHasChange[3] = true;
+
+                    //Toast.makeText(ScrollingActivity.this, "String.valueOf(R.id.imgBtn4)", Toast.LENGTH_SHORT).show();
+                    break;
+                case iv_requestCodeOfImgBtn5ForCamera:
+                    iv_ImageButtonArray[4].setImageBitmap(imageBitmap);
+                    selectedImgForUploadArray[4] = true;
+                    bitmapArray[4] = imageBitmap;
+                    //iv_booleanArray_ImgHasChange[4] = true;
+                    //Toast.makeText(ScrollingActivity.this, "String.valueOf(R.id.imgBtn5)", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+            //**
+        }
+        //**
+
+
+        //***********如果是圖片按鈕的回應************************
+
+        if ((requestCode == requestCodeImgBtn1 ||
+                requestCode == requestCodeImgBtn2 ||
+                requestCode == requestCodeImgBtn3 ||
+                requestCode == requestCodeImgBtn4 ||
+                requestCode == requestCodeImgBtn5) && resultCode == RESULT_OK) {
+            //****
+            Bitmap mScaleBitmap = null;
+
+            ///*************
+            Log.d("OK", "OK");
+
+            //取得圖檔的路徑位置
+            Uri uri = data.getData();
+            //寫log
+            // Log.e("uri", uri.toString());
+            //抽象資料的接口
+            //Toast.makeText(ScrollingActivity.this,"11",Toast.LENGTH_SHORT).show();
+
+
+            ContentResolver cr = this.getContentResolver();
+            try {
+                //由抽象資料接口轉換圖檔路徑為Bitmap
+                Bitmap bitmap = BitmapFactory.decodeStream(cr.openInputStream(uri));
+                //取得圖片控制項ImageView
+                //ImageButton imageView = (ImageButton) findViewById(R.id.imgBtn1);
+                // 將Bitmap設定到ImageView
+                //*****************
+
+
+                float mScale = 1;
+
+                //如果圖片寬度大於手機寬度則進行縮放，否則直接將圖片放入ImageView內
+                if (bitmap.getWidth() >= 480) {
+                    //判斷縮放比例
+                    mScale = (float) 480 / bitmap.getWidth();
+                }
+
+                Matrix mMat = new Matrix();
+                mMat.setScale(mScale, mScale);
+
+                mScaleBitmap = Bitmap.createBitmap(bitmap,
+                        0,
+                        0,
+                        bitmap.getWidth(),
+                        bitmap.getHeight(),
+                        mMat,
+                        false);
+
+
+                //***************
+
+                ImageButton imgBtn = (ImageButton) findViewById(R.id.imgBtn1);
+                //**check requestCode to decide show image on which button
+                switch (requestCode) {
+                    case requestCodeImgBtn1:
+                        imgBtn = (ImageButton) findViewById(R.id.imgBtn1);
+                        //selectedImgForUpload1 = true;
+                        selectedImgForUploadArray[0] = true;
+                        bitmapArray[0] = mScaleBitmap;
+                        //Toast.makeText(ScrollingActivity.this, selectedImgForUpload1==true? "TrueY":"FalseY", Toast.LENGTH_SHORT).show();
+                        break;
+                    case requestCodeImgBtn2:
+                        imgBtn = (ImageButton) findViewById(R.id.imgBtn2);
+                        selectedImgForUploadArray[1] = true;
+                        bitmapArray[1] = mScaleBitmap;
+                        //Toast.makeText(ScrollingActivity.this, "String.valueOf(R.id.imgBtn2)", Toast.LENGTH_SHORT).show();
+                        break;
+                    case requestCodeImgBtn3:
+                        imgBtn = (ImageButton) findViewById(R.id.imgBtn3);
+                        selectedImgForUploadArray[2] = true;
+                        bitmapArray[2] = mScaleBitmap;
+                        //Toast.makeText(ScrollingActivity.this, "String.valueOf(R.id.imgBtn3)", Toast.LENGTH_SHORT).show();
+                        break;
+                    case requestCodeImgBtn4:
+                        imgBtn = (ImageButton) findViewById(R.id.imgBtn4);
+                        selectedImgForUploadArray[3] = true;
+                        bitmapArray[3] = mScaleBitmap;
+                        //Toast.makeText(ScrollingActivity.this, "String.valueOf(R.id.imgBtn4)", Toast.LENGTH_SHORT).show();
+                        break;
+                    case requestCodeImgBtn5:
+                        imgBtn = (ImageButton) findViewById(R.id.imgBtn5);
+                        selectedImgForUploadArray[4] = true;
+                        bitmapArray[4] = mScaleBitmap;
+                        //Toast.makeText(ScrollingActivity.this, "String.valueOf(R.id.imgBtn5)", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+                //**
+
+                imgBtn.setImageBitmap(mScaleBitmap);
+                Log.d("mScaleBitmapSize", "" + mScaleBitmap.getWidth() + "  and " + mScaleBitmap.getHeight());
+                Log.d("bitmapSize", "" + bitmap.getWidth() + "  and " + bitmap.getHeight());
+                //**
+
+            } catch (FileNotFoundException e) {
+                Log.e("Exception", e.getMessage(), e);
+            }
+        }
+    }
     private int iv_int_countHowManyPicNeedUpload;
 
+    //*****
     public void Factory_DynamicAnimalTypeListCreator(String p_String_url) {
         OkHttpClient l_okHttpClient_client = new OkHttpClient();
 
@@ -294,6 +569,7 @@ public class ActAdoptUpload extends AppCompatActivity {
             }
         });
     }
+    //*****
 
     private void switch英文的動物類別轉換為中文(ArrayList<String> p_ArrayList_動物類別清單) {
         for (int i = 0; i < p_ArrayList_動物類別清單.size(); i += 1) {
@@ -310,9 +586,6 @@ public class ActAdoptUpload extends AppCompatActivity {
                 case "other":
                     p_ArrayList_動物類別清單.set(i, "其他");
                     break;
-                case "reptile":
-                    p_ArrayList_動物類別清單.set(i, "蛇");
-                    break;
                 case "rabbit":
                     p_ArrayList_動物類別清單.set(i, "兔子");
                     break;
@@ -321,7 +594,7 @@ public class ActAdoptUpload extends AppCompatActivity {
                     break;
             }
         }
-        Log.d(CDictionary.Debug_TAG, "轉換後類別清單: "+iv_ArrayList_動物類別清單.toString());
+        Log.d("轉換後類別清單", iv_ArrayList_動物類別清單.toString());
     }
 
     private void init() {
@@ -336,8 +609,8 @@ public class ActAdoptUpload extends AppCompatActivity {
     View.OnClickListener btn_sendout_click=new View.OnClickListener(){
         public void onClick(View arg0) {
             iv_ADialog_a = new AlertDialog.Builder(ActAdoptUpload.this)
-                    .setMessage("是否確定送出資料")
-                    .setTitle("送出確認")
+                    .setMessage(Html.fromHtml("<font color='#2d4b44'>是否確定送出資料</font>"))
+                    .setTitle(Html.fromHtml("<font color='#2d4b44'>送出確認</font>"))
                     .setPositiveButton("送出", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -345,8 +618,8 @@ public class ActAdoptUpload extends AppCompatActivity {
 
                             if (l_string_未填寫的欄位有哪些.length() > 10) {
                                 new AlertDialog.Builder(ActAdoptUpload.this)
-                                        .setMessage(l_string_未填寫的欄位有哪些)
-                                        .setTitle("欄位未填")
+                                        .setMessage(Html.fromHtml("<font color='#2d4b44'>"+l_string_未填寫的欄位有哪些+"</font>"))
+                                        .setTitle(Html.fromHtml("<font color='#2d4b44'>欄位未填</font>"))
                                         .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
@@ -424,6 +697,9 @@ public class ActAdoptUpload extends AppCompatActivity {
 
         btn_sendout = (Button) findViewById(R.id.btn_sendout);
         btn_sendout.setOnClickListener(btn_sendout_click);
+
+        //**
+        iv_ImageButtonArray = new ImageButton[]{imgBtn1, imgBtn2, imgBtn3, imgBtn4, imgBtn5};
     }
 
     public String check確認是否欄位都有填寫() {
@@ -498,10 +774,10 @@ public class ActAdoptUpload extends AppCompatActivity {
                     public void run() {
                         try {
                             JSONObject jObj = new JSONObject(json);
-                            String id = jObj.getString("animalID");
+                            //String id = jObj.getString("animalID");
                             //Toast.makeText(ActAdoptUpload.this, "上傳成功!(測試用_此次新增資料的id: " + id + ")", Toast.LENGTH_SHORT).show();
                             AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptUpload.this);
-                            dialog.setTitle("資料上傳成功");
+                            dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>資料上傳成功</font>"));
                             dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -521,6 +797,8 @@ public class ActAdoptUpload extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void uploadImageAndGetSiteBack() throws Exception {
         iv_int_countHowManyPicNeedUpload = 0;
@@ -609,13 +887,13 @@ public class ActAdoptUpload extends AppCompatActivity {
             String strDate = sdFormat.format(date);
             Log.d(" 1進入imgurUpload", " 進入imgurUpload");
 
-            String urlString = "https://imgur-apiv3.p.mashape.com/3/image";
-            String mashapeKey = ""; //設定自己的 Mashape Key
-            String clientId = ""; //設定自己的 Clinet ID
+            String urlString = "https://api.imgur.com/3/image/";
+            // String mashapeKey = ""; //設定自己的 Mashape Key
+            String clientId = "d8371f0a27e5085"; //設定自己的 Clinet ID
             String titleString = "GetPet" + strDate; //設定圖片的標題
 
             SyncHttpClient client0 = new SyncHttpClient();
-            client0.addHeader("X-Mashape-Key", mashapeKey);
+            //client0.addHeader("X-Mashape-Key", mashapeKey);
             client0.addHeader("Authorization", "Client-ID " + clientId);
             client0.addHeader("Content-Type", "application/x-www-form-urlencoded");
 

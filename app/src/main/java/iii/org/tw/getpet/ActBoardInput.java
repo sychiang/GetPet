@@ -53,8 +53,7 @@ public class ActBoardInput extends AppCompatActivity {
     View.OnClickListener btnSubmit_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             AlertDialog dialog = new AlertDialog.Builder(ActBoardInput.this)
-                    .setMessage(Html.fromHtml("<font color='#2d4b44'>是否確定送出資料</font>"))
-                    .setTitle(Html.fromHtml("<font color='#2d4b44'>您已送出確認是會員</font>"))
+                    .setTitle(Html.fromHtml("<font color='#2d4b44'>是否確定送出資料?</font>"))
                     .setPositiveButton("送出", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

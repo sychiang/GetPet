@@ -82,7 +82,7 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         intent = getIntent();
-        setTitle(Html.fromHtml("<font color='#666666'>找一個家的"+intent.getExtras().getString(CDictionary.BK_animalName)+"</font>"));
+        //setTitle(Html.fromHtml("<font color='#666666'>找一個家的"+intent.getExtras().getString(CDictionary.BK_animalName)+"</font>"));
         animalid = intent.getExtras().getString(CDictionary.BK_animalID);
         initComponent();
         //取得使用者基本資料
@@ -103,7 +103,7 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
             Glide.with(ActAdoptPairDetail.this).load(intent.getExtras().getString(CDictionary.BK_animalPicURL3)).into(ivPhotoThree);
         }
 
-        //tvName.setText(intent.getExtras().getString(CDictionary.BK_animalName));
+        tvName.setText(intent.getExtras().getString(CDictionary.BK_animalName));
         tvType.setText(intent.getExtras().getString(CDictionary.BK_animalType));
         tvSex.setText(intent.getExtras().getString(CDictionary.BK_animalGender));
         tvColor.setText(intent.getExtras().getString(CDictionary.BK_animalColor));
@@ -468,7 +468,7 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
     }
 
     private void initComponent(){
-        //tvName = (TextView)findViewById(R.id.tvName);
+        tvName = (TextView)findViewById(R.id.tvName);
         tvType = (TextView)findViewById(R.id.tvType);
         tvSex = (TextView)findViewById(R.id.tvSex);
         tvColor = (TextView)findViewById(R.id.tvColor);

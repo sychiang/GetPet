@@ -60,6 +60,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <LinearLayout
+                    android:id="@+id/line0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20px"
+                    android:orientation="horizontal">
+
+                    <!--<TextView-->
+                    <!--android:layout_width="75dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:text="小名：" -->
+                    <!--android:textColor="@color/colorHeaderText2"-->
+                    <!--android:textStyle="bold"/>-->
+
+                    <TextView
+                        android:textSize="25dp"
+                        android:id="@+id/tvName"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorHeaderText2"/>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/line1"
@@ -68,18 +91,8 @@
                     android:layout_margin="20px"
                     android:orientation="horizontal">
 
-                    <!--<TextView-->
-                        <!--android:layout_width="70dp"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:text="小名：" />-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/tvName"-->
-                        <!--android:layout_width="80dp"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:text="xxxxxxxxxx" />-->
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="75dp"
                         android:layout_height="match_parent"
                         android:text="性別："
                         android:textColor="@color/colorHeaderText2"
@@ -93,7 +106,7 @@
                         android:textColor="@color/colorNormalText" />
 
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:text="品種："
                         android:textColor="@color/colorHeaderText2"
@@ -101,7 +114,7 @@
 
                     <TextView
                         android:id="@+id/tvType"
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
                         android:layout_height="match_parent"
                         android:text="xxxxxxxxxx"
                         android:textColor="@color/colorNormalText"/>
@@ -116,21 +129,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:text="毛色："
-                        android:textColor="@color/colorHeaderText2"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/tvColor"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx"
-                        android:textColor="@color/colorNormalText"/>
-
-                    <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="75dp"
                         android:layout_height="match_parent"
                         android:text="年紀："
                         android:textColor="@color/colorHeaderText2"
@@ -139,6 +138,20 @@
                     <TextView
                         android:id="@+id/tvAge"
                         android:layout_width="80dp"
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorNormalText"/>
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:text="毛色："
+                        android:textColor="@color/colorHeaderText2"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvColor"
+                        android:layout_width="100dp"
                         android:layout_height="match_parent"
                         android:text="xxxxxxxxxx"
                         android:textColor="@color/colorNormalText"/>
@@ -152,7 +165,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="75dp"
                         android:layout_height="match_parent"
                         android:text="地區："
                         android:textColor="@color/colorHeaderText2"
@@ -165,7 +178,7 @@
                         android:text="xxxxxxxxxx"
                         android:textColor="@color/colorNormalText"/>
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:text="晶片："
                         android:textColor="@color/colorHeaderText2"
@@ -173,7 +186,7 @@
 
                     <TextView
                         android:id="@+id/tvIfChip"
-                        android:layout_width="80dp"
+                        android:layout_width="100dp"
                         android:layout_height="match_parent"
                         android:text="xxxxxxxxxx"
                         android:textColor="@color/colorNormalText"/>
@@ -185,22 +198,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20px"
                     android:orientation="horizontal">
-
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:text="節育："
-                        android:textColor="@color/colorHeaderText2"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:id="@+id/tvIfBirth"
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx"
-                        android:textColor="@color/colorNormalText"/>
-                    <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="75dp"
                         android:layout_height="match_parent"
                         android:text="健康："
                         android:textColor="@color/colorHeaderText2"
@@ -212,6 +211,21 @@
                         android:layout_height="match_parent"
                         android:text="xxxxxxxxxx"
                         android:textColor="@color/colorNormalText"/>
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:text="節育："
+                        android:textColor="@color/colorHeaderText2"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tvIfBirth"
+                        android:layout_width="100dp"
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorNormalText"/>
+
 
                 </LinearLayout>
 
@@ -232,7 +246,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="75dp"
                         android:layout_height="match_parent"
                         android:text="病況說明："
                         android:textColor="@color/colorHeaderText2"
@@ -255,7 +269,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
+                        android:layout_width="75dp"
                         android:layout_height="match_parent"
                         android:text="送養理由："
                         android:textColor="@color/colorHeaderText2"
@@ -272,7 +286,7 @@
 
                 <TextView
                     android:paddingBottom="0dp"
-                    android:layout_marginBottom="0dp"
+                    android:layout_marginBottom="20px"
                     android:id="@+id/lbl_note"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -305,7 +319,7 @@
 
                         <TextView
                             android:id="@+id/tvNote"
-                            android:layout_width="300dp"
+                            android:layout_width="320dp"
                             android:layout_height="wrap_content"
                             android:text="xxxxxxxxxx"
                             android:textColor="@color/colorNormalText"/>
@@ -331,7 +345,6 @@
                 <!--android:layout_height="match_parent" />-->
                 <!--</LinearLayout>-->
                 <LinearLayout
-                    android:background="@color/colorPrimary"
                     android:id="@+id/line10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -343,7 +356,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:background="@color/colorPrimary"
+                        android:background="@color/colorBackground"
                         android:scaleType="fitCenter"
                         android:src="@drawable/icon_follow"
                         android:text="我要追蹤" />
@@ -353,7 +366,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:background="@color/colorPrimary"
+                        android:background="@color/colorBackground"
                         android:scaleType="fitCenter"
                         android:src="@drawable/icon_adopt"
                         android:text="我要認養" />
@@ -363,7 +376,7 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:background="@color/colorPrimary"
+                        android:background="@color/colorBackground"
                         android:scaleType="fitCenter"
                         android:src="@drawable/icon_board"
                         android:text="留言板" />

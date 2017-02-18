@@ -68,7 +68,7 @@
 
         <activity
             android:name=".ActAdoptPairDetail"
-            android:label="@string/title_activity_act_adopt_pair_detail"
+            android:label="iPet 幸福轉運站"
             android:theme="@style/AppTheme.iPetNoAction" />
 
         <activity android:name=".ActLogin"
@@ -97,7 +97,7 @@
 
         <activity
             android:name=".ActFollowingDetail"
-            android:label="@string/title_activity_act_following_detail"
+            android:label="iPet 幸福轉運站"
             android:theme="@style/AppTheme.iPetNoAction" />
 
         <activity

@@ -19,7 +19,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -554,7 +553,7 @@ public class ActAdoptEdit extends AppCompatActivity {
                 case "bird":
                     p_ArrayList_動物類別清單.set(i, "鳥");
                     break;
-                case "OTHER":
+                case "other":
                     p_ArrayList_動物類別清單.set(i, "其他");
                     break;
                 case "rabbit":
@@ -651,8 +650,8 @@ public class ActAdoptEdit extends AppCompatActivity {
         btnDelete = (Button) findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(btn_click);
         //**************
-        btnConfirmAdopted = (Button) findViewById(R.id.btnConfirmAdopted);
-        btnConfirmAdopted.setOnClickListener(btn_click);
+//        btnCamera = (Button) findViewById(R.id.btnCamera);
+//        btnCamera.setOnClickListener(btn_click);
         //**************
         imgBtn1 = (ImageButton) findViewById(R.id.imgBtn1);
         imgBtn1.setOnClickListener(btn_click);
@@ -864,12 +863,12 @@ public class ActAdoptEdit extends AppCompatActivity {
             Log.d(" 1進入imgurUpload", " 進入imgurUpload");
 
             //String urlString = "https://imgur-apiv3.p.mashape.com/3/image/";
-            String urlString = "https://imgur-apiv3.p.mashape.com/3/image";
-            String mashapeKey = ""; //設定自己的 Mashape Key
+            String urlString = "https://api.imgur.com/3/image/";
+            //String mashapeKey = ""; //設定自己的 Mashape Key
             String clientId = ""; //設定自己的 Clinet ID
             String titleString = "GetPet" + strDate; //設定圖片的標題
             SyncHttpClient client0 = new SyncHttpClient();
-            client0.addHeader("X-Mashape-Key", mashapeKey);
+            //client0.addHeader("X-Mashape-Key", mashapeKey);
             client0.addHeader("Authorization", "Client-ID " + clientId);
             client0.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
@@ -934,8 +933,8 @@ public class ActAdoptEdit extends AppCompatActivity {
                     break;
                 case R.id.btnEdit:
                     iv_ADialog_a = new AlertDialog.Builder(ActAdoptEdit.this)
-                            .setMessage(Html.fromHtml("<font color='#2d4b44'>是否確定送出資料?</font>"))
-                            .setTitle(Html.fromHtml("<font color='#2d4b44'>送出確認</font>"))
+                            .setMessage("是否確定送出資料")
+                            .setTitle("送出確認")
                             .setPositiveButton("送出", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -952,8 +951,8 @@ public class ActAdoptEdit extends AppCompatActivity {
 
                                     if (l_string_未填寫的欄位有哪些.length() > 10) {
                                         new AlertDialog.Builder(ActAdoptEdit.this)
-                                                .setMessage(Html.fromHtml("<font color='#2d4b44'>"+l_string_未填寫的欄位有哪些+"</font>"))
-                                                .setTitle(Html.fromHtml("<font color='#2d4b44'>欄位未填</font>"))
+                                                .setMessage(l_string_未填寫的欄位有哪些)
+                                                .setTitle("欄位未填")
                                                 .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
@@ -990,9 +989,6 @@ public class ActAdoptEdit extends AppCompatActivity {
                         intent.putExtra("l_object_ConditionOfAdoptPet_objA", iv_object_petDataForSelfDB.getAnimalData_Condition().get(0));
                     startActivityForResult(intent, CDictionary.IntentRqCodeOfPetAdoptCondition);
                     break;
-                case R.id.btnConfirmAdopted:
-
-                    break;
             }
 //            if (v.getId() == R.id.btnEdit || v.getId() == R.id.btnDelete || v.getId() == R.id.btnCamera) {
 //                return;
@@ -1002,9 +998,8 @@ public class ActAdoptEdit extends AppCompatActivity {
                 //**
                 //**
                 iv_AlertDialog_Builder = new AlertDialog.Builder(ActAdoptEdit.this)
-                        .setMessage(Html.fromHtml("<font color='#2d4b44'>如欲使用相簿內的相片 請點選相簿\n" +
-                                "如欲使用相機直接拍攝 請點擊相機</font>"))
-                        .setTitle(Html.fromHtml("<font color='#2d4b44'>請選擇使用相簿或相機</font>"))
+                        .setMessage("如欲使用相簿內的相片 請點選相簿\n如欲使用相機直接拍攝 請點擊相機")
+                        .setTitle("請選擇使用相簿或相機")
                         .setPositiveButton("相簿", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -1075,7 +1070,7 @@ public class ActAdoptEdit extends AppCompatActivity {
     }
 
     ImageButton imgBtn1, imgBtn2, imgBtn3, imgBtn4, imgBtn5;
-    Button btnAdoptCondition, btnEdit, btnDelete, btnConfirmAdopted;
+    Button btnAdoptCondition, btnEdit, btnDelete, btnCamera;
     ImageButton[] imgBtnArray = {imgBtn1, imgBtn2, imgBtn3, imgBtn4, imgBtn5};
     //*********************
     EditText edTxt_animalID, edTxt_animalName, edTxt_animalAddress, edTxt_animalDate, edTxt_animalGender,
