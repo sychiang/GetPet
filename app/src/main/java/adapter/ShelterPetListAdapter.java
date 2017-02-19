@@ -51,6 +51,7 @@ public class ShelterPetListAdapter extends BaseAdapter{
         ImageView ivImage = (ImageView) rowView.findViewById(R.id.shel_image);
         TextView tvType = (TextView) rowView.findViewById(R.id.shel_type);
         TextView tvAge = (TextView) rowView.findViewById(R.id.shel_age);
+        TextView tvSex = (TextView) rowView.findViewById(R.id.shel_gender);
         TextView tvLocation = (TextView) rowView.findViewById(R.id.shel_location);
         TextView tvDate = (TextView) rowView.findViewById(R.id.shel_date);
 
@@ -82,6 +83,17 @@ public class ShelterPetListAdapter extends BaseAdapter{
             default:
                 age = "";
         }
+        switch (item.getAnimal_sex()){
+            case "M":
+                tvSex.setText("公");
+                break;
+            case "F":
+                tvSex.setText("母");
+                break;
+            default:
+                tvSex.setText("未知");
+                break;
+        }
 
         String imgURL = item.getAlbum_file();
         if(imgURL.toLowerCase().endsWith(".jpg") || imgURL.toLowerCase().endsWith(".png")){
@@ -90,7 +102,7 @@ public class ShelterPetListAdapter extends BaseAdapter{
         }
         tvType.setText(bodytype+item.getAnimal_kind());
         tvAge.setText(age);
-        tvLocation.setText(item.getShelter_name().substring(0,3));
+        tvLocation.setText(item.getShelter_name().substring(0,2));
         tvDate.setText(item.getAnimal_opendate());
         return rowView;
     }
