@@ -1,5 +1,6 @@
 package iii.org.tw.getpet;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -37,6 +38,8 @@ public class ActAdoptUploadList extends AppCompatActivity {
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
     AdoptUploadListAdapter adapter;
     RecyclerView recyclerList;
+    static ActAdoptUploadList iv_ActAdoptUploadList;
+    private ProgressDialog progressDialog = null;
 
 
     @Override
@@ -48,6 +51,7 @@ public class ActAdoptUploadList extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 
         //初始化元件
+        iv_ActAdoptUploadList = this;
         recyclerList = (RecyclerView) findViewById(R.id.adoptUploadList_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -69,6 +73,7 @@ public class ActAdoptUploadList extends AppCompatActivity {
 //
 //            }
 //        });
+        progressDialog = ProgressDialog.show(ActAdoptUploadList.this, Html.fromHtml("<font color='#2d4b44'>資料讀取中, 請稍後...</font>"), "", true);
         getDatafromServer();
     }
 
@@ -86,6 +91,7 @@ public class ActAdoptUploadList extends AppCompatActivity {
                         new ParsedRequestListener<ArrayList<AdoptPair>>() {
                             @Override
                             public void onResponse(ArrayList<AdoptPair> response) {
+                                progressDialog.dismiss();
                                 String size = String.format("%d", response.size());
                                 Log.d(CDictionary.Debug_TAG, size);
                                 if (response.size() > 0) {
@@ -112,7 +118,18 @@ public class ActAdoptUploadList extends AppCompatActivity {
 
                             @Override
                             public void onError(ANError anError) {
-
+                                progressDialog.dismiss();
+                                AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptUploadList.this);
+                                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
+                                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(ActAdoptUploadList.this, ActMember.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                });
+                                dialog.create().show();
                             }
                         });
     }

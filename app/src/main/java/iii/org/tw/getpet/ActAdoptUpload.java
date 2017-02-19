@@ -1,6 +1,7 @@
 package iii.org.tw.getpet;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -115,6 +116,8 @@ public class ActAdoptUpload extends AppCompatActivity {
     private ArrayList<String>[] iv_Array_動物品種清單;
     private ArrayList<String> iv_ArrayList_動物類別清單;
     private ImageButton[] iv_ImageButtonArray;
+
+    private ProgressDialog progressDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -628,6 +631,7 @@ public class ActAdoptUpload extends AppCompatActivity {
                                         .show();
                             }else {
                                 try {
+                                    progressDialog = ProgressDialog.show(ActAdoptUpload.this, Html.fromHtml("<font color='#2d4b44'>資料傳送中, 請稍後...</font>"), "", true);
                                     uploadImageAndGetSiteBack();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -771,6 +775,7 @@ public class ActAdoptUpload extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                progressDialog.dismiss();
                 final String json = response.body().string();
                 Log.d("http", json);
                 //textView.setText(json);

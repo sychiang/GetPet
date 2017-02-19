@@ -1,6 +1,7 @@
 package iii.org.tw.getpet;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -139,6 +141,8 @@ public class ActAdoptEdit extends AppCompatActivity {
     private ArrayList<String> iv_ArrayList_動物類別清單;
     private ArrayList<Bitmap> iv_ArrayList_Bitmap;
 
+    private ProgressDialog progressDialog = null;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,7 +215,7 @@ public class ActAdoptEdit extends AppCompatActivity {
         //********
     }
 
-    private void fill塞圖片到imageButton(ImageButton[] p_ImageButtonArray, final object_petDataForSelfDB p_object_petDataForSelfDB) throws ExecutionException, InterruptedException {
+    private void fill塞圖片到imageButton(final ImageButton[] p_ImageButtonArray, final object_petDataForSelfDB p_object_petDataForSelfDB) throws ExecutionException, InterruptedException {
         //***********
         iv_ArrayList_Bitmap = new ArrayList<>();
         for (int i = 0; i < bitmapArray.length; i++) {
@@ -220,10 +224,13 @@ public class ActAdoptEdit extends AppCompatActivity {
         iv_forCountIn塞圖片到imageButton = 0;
         //final CountDownLatch l_latch = new CountDownLatch(p_object_petDataForSelfDB.getAnimalData_Pic().size());
         //Log.d("++++ length", p_object_petDataForSelfDB.getAnimalData_Pic().size() + "");
+        //*
+        final CountDownLatch l_CountDownLatch =new CountDownLatch(p_object_petDataForSelfDB.getAnimalData_Pic().size());
+        //**
 
         for (final object_OfPictureImgurSite obj : p_object_petDataForSelfDB.getAnimalData_Pic()) {
             if (obj.getAnimalPicAddress().length() != 0&& iv_forCountIn塞圖片到imageButton<5) {
-                Glide.with(this).load(obj.getAnimalPicAddress()).into(p_ImageButtonArray[iv_forCountIn塞圖片到imageButton]);
+                //Glide.with(this).load(obj.getAnimalPicAddress()).into(p_ImageButtonArray[iv_forCountIn塞圖片到imageButton]);
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -238,11 +245,16 @@ public class ActAdoptEdit extends AppCompatActivity {
                                     iv_ArrayList_Bitmap.add(iv_bitmap_getFromUrl);
                                     Log.d("bitmap length", iv_ArrayList_Bitmap.size() + "");
                                     //iv_forCountIn塞圖片到imageButton+=1;
+                                    //**
+                                    l_CountDownLatch.countDown();
+                                    //**
+
                                 }
                             });
                         } catch (IOException e) {
                             System.out.println(e);
                         }
+
                     }
                 });
                 thread.start();
@@ -250,6 +262,35 @@ public class ActAdoptEdit extends AppCompatActivity {
                 iv_forCountIn塞圖片到imageButton += 1;
             }
         }
+///**
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    l_CountDownLatch.await();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                //**
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int i = 0; i < iv_ArrayList_Bitmap.size(); i++) {
+                            p_ImageButtonArray[i].setImageBitmap(iv_ArrayList_Bitmap.get(i));
+                            Log.d("進入設定圖片",i+"");
+
+                        }
+
+                    }
+                });
+
+                //*
+            }
+        });
+        thread2.start();
+        //**
+
     }
 
     @Override
@@ -592,6 +633,7 @@ public class ActAdoptEdit extends AppCompatActivity {
     }
 
     private void init() {
+
         Factory_DynamicAnimalTypeListCreator("");
         iv_int_countHowManyPicNeedUpload = 0;
         iv_ArrayList_object_ConditionOfAdoptPet = new ArrayList<>();
@@ -677,15 +719,27 @@ public class ActAdoptEdit extends AppCompatActivity {
         //************
         String p_string_未填寫的欄位有哪些 = "尚未填寫以下欄位:\n";
         Log.d("原始長度", p_string_未填寫的欄位有哪些.length() + "");
-        //*********
-        p_string_未填寫的欄位有哪些 += edTxt_animalName.getText().toString().isEmpty() ? "寵物姓名\n" : "";
-        p_string_未填寫的欄位有哪些 += edTxt_animalAge.getText().toString().isEmpty() ? "寵物年齡\n" : "";
-        //p_string_未填寫的欄位有哪些 += edTxt_animalChip.getText().toString().isEmpty() ? "是否植入晶片\n" : "";
+        p_string_未填寫的欄位有哪些 += spinner_animalKind.getSelectedItem().toString().equals("請選擇") ? "未選種類\n" : "";
+        p_string_未填寫的欄位有哪些 += spinner_animalType.getSelectedItem().toString().equals("請選擇") ? "未選品種\n" : "";
+        p_string_未填寫的欄位有哪些 += spinner_animalArea.getSelectedItem().toString().equals("請選擇") ? "未選縣市\n" : "";
+        p_string_未填寫的欄位有哪些 += spinner_animalGender.getSelectedItem().toString().equals("請選擇") ? "未選性別\n" : "";
+        p_string_未填寫的欄位有哪些 += spinner_animalBirth.getSelectedItem().toString().equals("請選擇") ? "未選是否已節育\n" : "";
+        p_string_未填寫的欄位有哪些 += spinner_animalChip.getSelectedItem().toString().equals("請選擇") ? "未選是否有晶片\n" : "";
+
+        p_string_未填寫的欄位有哪些 += edTxt_animalName.getText().toString().isEmpty() ? "動物姓名\n" : "";
+        p_string_未填寫的欄位有哪些 += edTxt_animalAge.getText().toString().isEmpty() ? "動物年齡\n" : "";
+        p_string_未填寫的欄位有哪些 += edTxt_animalColor.getText().toString().isEmpty() ? "動物毛色\n" : "";
         p_string_未填寫的欄位有哪些 += edTxt_animalHealthy.getText().toString().isEmpty() ? "健康狀態\n" : "";
-        p_string_未填寫的欄位有哪些 += spinner_animalArea.getSelectedItem().toString().equals("全部") ? "未選縣市\n" : "";
-        p_string_未填寫的欄位有哪些 += edTxt_animalColor.getText().toString().isEmpty() ? "毛色\n" : "";
-        //p_string_未填寫的欄位有哪些 += edTxt_animalDate.getText().toString().isEmpty() ? "送養日期\n" : "";
-        p_string_未填寫的欄位有哪些 += edTxt_animalReason.getText().toString().isEmpty() ? "送養理由\n" : "";
+
+        //*********
+//        p_string_未填寫的欄位有哪些 += edTxt_animalName.getText().toString().isEmpty() ? "寵物姓名\n" : "";
+//        p_string_未填寫的欄位有哪些 += edTxt_animalAge.getText().toString().isEmpty() ? "寵物年齡\n" : "";
+//        //p_string_未填寫的欄位有哪些 += edTxt_animalChip.getText().toString().isEmpty() ? "是否植入晶片\n" : "";
+//        p_string_未填寫的欄位有哪些 += edTxt_animalHealthy.getText().toString().isEmpty() ? "健康狀態\n" : "";
+//        p_string_未填寫的欄位有哪些 += spinner_animalArea.getSelectedItem().toString().equals("全部") ? "未選縣市\n" : "";
+//        p_string_未填寫的欄位有哪些 += edTxt_animalColor.getText().toString().isEmpty() ? "毛色\n" : "";
+//        //p_string_未填寫的欄位有哪些 += edTxt_animalDate.getText().toString().isEmpty() ? "送養日期\n" : "";
+//        p_string_未填寫的欄位有哪些 += edTxt_animalReason.getText().toString().isEmpty() ? "送養理由\n" : "";
         return p_string_未填寫的欄位有哪些;
     }
 
@@ -709,17 +763,13 @@ public class ActAdoptEdit extends AppCompatActivity {
                 Log.d("http", json);
                 //textView.setText(json);
                 //parseJson(json);
-                Intent l_intent = new Intent(ActAdoptEdit.this, ActAdoptUploadList.class);
-                startActivity(l_intent);
-                finish();
+
             }
         });
     }
 
     @Override
     public void finish() {
-        Intent l_intent = new Intent(ActAdoptEdit.this, ActAdoptUploadList.class);
-        startActivity(l_intent);
         super.finish();
     }
 
@@ -771,6 +821,7 @@ public class ActAdoptEdit extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                progressDialog.dismiss();
                 final String json = response.body().string();
                 Log.d("http", json);
                 //textView.setText(json);
@@ -790,9 +841,7 @@ public class ActAdoptEdit extends AppCompatActivity {
             }
         });
         //*******************
-        Intent l_intent = new Intent(this, ActAdoptUploadList.class);
-        startActivity(l_intent);
-        finish();
+
     }
 
     private void uploadImageAndGetSiteBack() throws Exception {
@@ -805,6 +854,7 @@ public class ActAdoptEdit extends AppCompatActivity {
                 }
             }
         }
+        Log.d("需要上船的圖片數量",iv_int_countHowManyPicNeedUpload+"");
         //********
         CountDownLatch latch = new CountDownLatch(iv_int_countHowManyPicNeedUpload);//N个工人的协作
         Log.d("", "進入uploadImageAndGetSiteBack");
@@ -865,7 +915,7 @@ public class ActAdoptEdit extends AppCompatActivity {
             //String urlString = "https://imgur-apiv3.p.mashape.com/3/image/";
             String urlString = "https://api.imgur.com/3/image/";
             //String mashapeKey = ""; //設定自己的 Mashape Key
-            String clientId = ""; //設定自己的 Clinet ID
+            String clientId = "d8371f0a27e5085"; //設定自己的 Clinet ID
             String titleString = "GetPet" + strDate; //設定圖片的標題
             SyncHttpClient client0 = new SyncHttpClient();
             //client0.addHeader("X-Mashape-Key", mashapeKey);
@@ -933,26 +983,49 @@ public class ActAdoptEdit extends AppCompatActivity {
                     break;
                 case R.id.btnEdit:
                     iv_ADialog_a = new AlertDialog.Builder(ActAdoptEdit.this)
-                            .setMessage("是否確定送出資料")
-                            .setTitle("送出確認")
+                            .setMessage(Html.fromHtml("<font color='#2d4b44'>是否確定送出資料</font>"))
+                            .setTitle(Html.fromHtml("<font color='#2d4b44'>送出確認</font>"))
                             .setPositiveButton("送出", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+
+
+
+
                                     //**
+
+
+
+
+                                    for (Boolean b:iv_booleanArray_ImgHasChange
+                                            ) {
+                                        Log.d("真假顯示",b.toString());
+                                    }
                                     for (int i = 0; i < iv_ArrayList_Bitmap.size(); i += 1) {
 
                                         if (iv_booleanArray_ImgHasChange[i] == false) {
+                                            Log.d("回圈內真假顯示",iv_booleanArray_ImgHasChange[i]+"");
+                                            Log.d("I的值",i+"");
                                             bitmapArray[i] = iv_ArrayList_Bitmap.get(i);
                                             selectedImgForUploadArray[i] = true;
                                         }
 
                                     }
+
+
+                                    //**
+
+
+                                    //**
+
+
+
                                     String l_string_未填寫的欄位有哪些 = check確認是否欄位都有填寫();
 
                                     if (l_string_未填寫的欄位有哪些.length() > 10) {
                                         new AlertDialog.Builder(ActAdoptEdit.this)
-                                                .setMessage(l_string_未填寫的欄位有哪些)
-                                                .setTitle("欄位未填")
+                                                .setMessage(Html.fromHtml("<font color='#2d4b44'>"+l_string_未填寫的欄位有哪些+"</font>"))
+                                                .setTitle(Html.fromHtml("<font color='#2d4b44'>欄位未填</font>"))
                                                 .setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
@@ -961,12 +1034,18 @@ public class ActAdoptEdit extends AppCompatActivity {
                                                 .show();
                                     } else {
                                         try {
+                                            progressDialog = ProgressDialog.show(ActAdoptEdit.this, Html.fromHtml("<font color='#2d4b44'>資料傳送中, 請稍後...</font>"), "", true);
                                             delete資料(String.valueOf(iv_object_petDataForSelfDB.getAnimalID()));
                                             uploadImageAndGetSiteBack();
+
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
                                         addAllDataToDBServer();
+                                        Intent l_intent = new Intent(ActAdoptEdit.this, ActAdoptUploadList.class);
+                                        ActAdoptUploadList.iv_ActAdoptUploadList.finish();
+                                        startActivity(l_intent);
+                                        finish();
                                     }
                                 }
                             })
@@ -993,13 +1072,14 @@ public class ActAdoptEdit extends AppCompatActivity {
 //            if (v.getId() == R.id.btnEdit || v.getId() == R.id.btnDelete || v.getId() == R.id.btnCamera) {
 //                return;
 //            }
-            if (v.getId() != R.id.btnAdoptCondition) {
+            if (v.getId() != R.id.btnAdoptCondition && v.getId() != R.id.btnEdit) {
                 //Toast.makeText(ScrollingActivity.this,String.valueOf(IntentRCodeOfOpenAlbum),Toast.LENGTH_SHORT).show();
                 //**
                 //**
                 iv_AlertDialog_Builder = new AlertDialog.Builder(ActAdoptEdit.this)
-                        .setMessage("如欲使用相簿內的相片 請點選相簿\n如欲使用相機直接拍攝 請點擊相機")
-                        .setTitle("請選擇使用相簿或相機")
+                        .setMessage(Html.fromHtml("<font color='#2d4b44'>如欲使用相簿內的相片 請點選相簿\n" +
+                                "如欲使用相機直接拍攝 請點擊相機</font>"))
+                        .setTitle(Html.fromHtml("<font color='#2d4b44'>請選擇使用相簿或相機</font>"))
                         .setPositiveButton("相簿", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

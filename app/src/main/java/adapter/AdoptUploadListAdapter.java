@@ -18,6 +18,7 @@ import java.util.List;
 
 import common.CDictionary;
 import iii.org.tw.getpet.ActAdoptEdit;
+import iii.org.tw.getpet.ActAdoptUploadList;
 import iii.org.tw.getpet.ActHomePage;
 import iii.org.tw.getpet.R;
 import model.AdoptPair;
@@ -106,16 +107,16 @@ public class AdoptUploadListAdapter extends RecyclerView.Adapter<AdoptUploadList
 
                     if(mData.get(position).getAnimalData_Condition().size()>0){
                         object_ConditionOfAdoptPet conditionOfAdoptPet = new object_ConditionOfAdoptPet();
-                        conditionOfAdoptPet.setConditionID(mData.get(position).getAnimalData_Condition().get(position).getConditionID());
-                        conditionOfAdoptPet.setCondition_animalID(mData.get(position).getAnimalData_Condition().get(position).getCondition_animalID());
-                        conditionOfAdoptPet.setConditionAge(mData.get(position).getAnimalData_Condition().get(position).getConditionAge());
-                        conditionOfAdoptPet.setConditionEconomy(mData.get(position).getAnimalData_Condition().get(position).getConditionEconomy());
-                        conditionOfAdoptPet.setConditionHome(mData.get(position).getAnimalData_Condition().get(position).getConditionHome());
-                        conditionOfAdoptPet.setConditionFamily(mData.get(position).getAnimalData_Condition().get(position).getConditionFamily());
-                        conditionOfAdoptPet.setConditionReply(mData.get(position).getAnimalData_Condition().get(position).getConditionReply());
-                        conditionOfAdoptPet.setConditionPaper(mData.get(position).getAnimalData_Condition().get(position).getConditionPaper());
-                        conditionOfAdoptPet.setConditionFee(mData.get(position).getAnimalData_Condition().get(position).getConditionFee());
-                        conditionOfAdoptPet.setConditionOther(mData.get(position).getAnimalData_Condition().get(position).getConditionOther());
+                        conditionOfAdoptPet.setConditionID(mData.get(position).getAnimalData_Condition().get(0).getConditionID());
+                        conditionOfAdoptPet.setCondition_animalID(mData.get(position).getAnimalData_Condition().get(0).getCondition_animalID());
+                        conditionOfAdoptPet.setConditionAge(mData.get(position).getAnimalData_Condition().get(0).getConditionAge());
+                        conditionOfAdoptPet.setConditionEconomy(mData.get(position).getAnimalData_Condition().get(0).getConditionEconomy());
+                        conditionOfAdoptPet.setConditionHome(mData.get(position).getAnimalData_Condition().get(0).getConditionHome());
+                        conditionOfAdoptPet.setConditionFamily(mData.get(position).getAnimalData_Condition().get(0).getConditionFamily());
+                        conditionOfAdoptPet.setConditionReply(mData.get(position).getAnimalData_Condition().get(0).getConditionReply());
+                        conditionOfAdoptPet.setConditionPaper(mData.get(position).getAnimalData_Condition().get(0).getConditionPaper());
+                        conditionOfAdoptPet.setConditionFee(mData.get(position).getAnimalData_Condition().get(0).getConditionFee());
+                        conditionOfAdoptPet.setConditionOther(mData.get(position).getAnimalData_Condition().get(0).getConditionOther());
                         obj.getAnimalData_Condition().add(conditionOfAdoptPet);
                     }
 
