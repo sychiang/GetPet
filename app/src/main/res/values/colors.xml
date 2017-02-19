@@ -12,4 +12,5 @@
     <color name="colorHomeText">#76c2af</color>
     <color name="colorMyTitle">#FFFFFF</color>
     <color name="colorListDate">#A6D37F</color>
+    <color name="mycolorAccent">#76C2AF</color>
 </resources>

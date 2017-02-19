@@ -32,12 +32,14 @@
         <item name="android:colorBackground">@color/background_material_light</item>
         <item name="android:textColorPrimary">@color/colorMyTitle</item>
         <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="colorAccent">@color/mycolorAccent</item>
     </style>
 
     <style name="AppTheme.iPet" parent="AppTheme" >
         <item name="android:colorBackground">@color/background_material_light</item>
         <item name="android:textColorPrimary">@color/colorMyTitle</item>
         <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="colorAccent">@color/mycolorAccent</item>
     </style>
 
 </resources>

@@ -40,6 +40,8 @@
         android:layout_gravity="right"
         android:id="@+id/btnSubmit"
         android:text="送出"
+        android:background="@drawable/btn_style_normal"
+        android:textColor="@color/colorMyTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
