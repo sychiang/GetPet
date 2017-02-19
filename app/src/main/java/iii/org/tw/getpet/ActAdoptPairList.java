@@ -144,59 +144,83 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                     break;
                 case "狗":
                     url += "$filter=animalKind eq '狗'";
-                    url += "and animalType eq '"+condType+"'";
+                    if(!condType.equals("全部")){
+                        url += "and animalType eq '"+condType+"'";
+                    }
                     break;
                 case "貓":
                     url += "$filter=animalKind eq '貓'";
-                    url += "and animalType eq '"+condType+"'";
+                    if(!condType.equals("全部")){
+                        url += "and animalType eq '"+condType+"'";
+                    }
                     break;
                 case "老鼠":
                     url += "$filter=animalKind eq '老鼠'";
-                    url += "and animalType eq '"+condType+"'";
+                    if(!condType.equals("全部")){
+                        url += "and animalType eq '"+condType+"'";
+                    }
                     break;
                 case "鳥":
                     url += "$filter=animalKind eq '鳥'";
-                    url += "and animalType eq '"+condType+"'";
+                    if(!condType.equals("全部")){
+                        url += "and animalType eq '"+condType+"'";
+                    }
                     break;
                 case "兔子":
-                    url += "$filter=animalKind eq '兔'";
-                    url += "and animalType eq '"+condType+"'";
+                    url += "$filter=animalKind eq '兔子'";
+                    if(!condType.equals("全部")){
+                        url += "and animalType eq '"+condType+"'";
+                    }
                     break;
                 case "其他":
                     url += "$filter=animalKind eq '其他'";
-                    url += "and animalType eq '"+condType+"'";
+                    if(!condType.equals("全部")){
+                        url += "and animalType eq '"+condType+"'";
+                    }
                     break;
                 default:
                     break;
             }
         } else {
-            Log.d(CDictionary.Debug_TAG,"特定縣市");
+            Log.d(CDictionary.Debug_TAG,"特定縣市: "+condArea);
             switch (condKind) {
                 case "全部":
                     break;
                 case "狗":
                     url += " and animalKind eq '狗'";
-                    url += "and animalType eq '"+condType+"'";
+                    if(!condType.equals("全部")){
+                        url += "and animalType eq '"+condType+"'";
+                    }
                     break;
                 case "貓":
                     url += " and animalKind eq '貓'";
-                    url += "and animalType eq '"+condType+"'";
+                    if(!condType.equals("全部")){
+                        url += "and animalType eq '"+condType+"'";
+                    }
                     break;
                 case "老鼠":
                     url += " and animalKind eq '老鼠'";
-                    url += "and animalType eq '"+condType+"'";
+                    if(!condType.equals("全部")){
+                        url += "and animalType eq '"+condType+"'";
+                    }
                     break;
                 case "鳥":
                     url += " and animalKind eq '鳥'";
-                    url += "and animalType eq '"+condType+"'";
+                    if(!condType.equals("全部")){
+                        url += "and animalType eq '"+condType+"'";
+                    }
                     break;
                 case "兔子":
-                    url += " and animalKind eq '兔'";
-                    url += "and animalType eq '"+condType+"'";
+                    url += " and animalKind eq '兔子'";
+                    if(!condType.equals("全部")){
+                        url += "and animalType eq '"+condType+"'";
+                    }
                     break;
                 case "其他":
                     url += " and animalKind eq '其他'";
-                    url += "and animalType eq '"+condType+"'";
+                    if(!condType.equals("全部")){
+                        url += "and animalType eq '"+condType+"'";
+                    }
                     break;
                 default:
                     break;
@@ -299,7 +323,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                             public void onError(ANError anError) {
                                 progressDialog.dismiss();
                                 AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptPairList.this);
-                                dialog.setView(R.layout.nodata_alertdialog);
+                                //dialog.setView(R.layout.nodata_alertdialog);
                                 dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
                                 //dialog.setMessage("查無資料");
                                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
