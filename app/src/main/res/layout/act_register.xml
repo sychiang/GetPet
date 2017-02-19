@@ -97,7 +97,7 @@
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btnSubmit"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/btn_style_normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign Up / 註冊" />

@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/btn_style_normal"
         android:text="Sign In / 登入" />
 
     <android.support.v7.widget.AppCompatButton

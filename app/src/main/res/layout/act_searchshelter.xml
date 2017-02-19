@@ -11,68 +11,82 @@
     tools:context="iii.org.tw.getpet.ActSearchShelter">
 
     <LinearLayout
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="50px"
-            android:paddingLeft="10px"
             android:background="@drawable/spinner_style"
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:paddingLeft="10px">
 
             <TextView
-                android:layout_marginTop="50px"
-                android:text="縣市"
-                android:textSize="25sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Spinner
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50px"
+                android:layout_marginRight="23px"
+                android:text="所在縣市"
+                android:textSize="25sp" />
 
-                android:layout_margin="50px"
+            <Spinner
                 android:id="@+id/spinner_area"
-                android:layout_width="500px"
-                android:layout_height="wrap_content">
-            </Spinner>
+                android:layout_width="600px"
+                android:layout_height="wrap_content"
+                android:layout_margin="50px"></Spinner>
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="50px"
-            android:paddingLeft="10px"
             android:background="@drawable/spinner_style"
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:paddingLeft="10px">
 
             <TextView
-                android:layout_marginTop="50px"
-                android:text="類型"
-                android:textSize="25sp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50px"
+                android:layout_marginRight="23px"
+                android:text="寵物類別"
+                android:textSize="25sp" />
+
             <Spinner
-                android:layout_margin="50px"
                 android:id="@+id/spinner_type"
-                android:layout_width="500px"
-                android:layout_height="wrap_content">
-            </Spinner>
+                android:layout_width="600px"
+                android:layout_height="wrap_content"
+                android:layout_margin="50px"></Spinner>
 
         </LinearLayout>
-
         <Button
             android:layout_marginTop="50px"
             android:id="@+id/btnSearch"
-            android:background="@drawable/searchbtn_style_shelter"
-            android:layout_width="755px"
-            android:layout_height="170px"
-            android:paddingLeft="10px"
-            android:textSize="25sp"
-            android:gravity="center"
-            android:text="搜尋" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/searchbtn_style_adopt"
+            android:text="搜尋"
+            android:textColor="@color/colorMyTitle"
+            android:textSize="25sp" />
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="50px"-->
+        <!--android:background="@drawable/searchbtn_style_adopt"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:paddingLeft="10px">-->
+
+        <!---->
+
+        <!--</LinearLayout>-->
+
+
 
     </LinearLayout>
 

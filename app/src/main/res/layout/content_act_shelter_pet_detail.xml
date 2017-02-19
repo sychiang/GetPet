@@ -264,7 +264,6 @@
 
             </LinearLayout>
             <RelativeLayout
-                android:background="@color/colorPrimary"
                 android:layout_margin="20px"
                 android:id="@+id/line10"
                 android:orientation="horizontal"
@@ -272,7 +271,8 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:textColor="@color/colorHeaderText"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/colorMyTitle"
                     android:layout_alignParentRight="true"
                     android:id="@+id/btnHowToAdopt"
                     android:text="如何認養?"

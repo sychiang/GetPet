@@ -214,7 +214,6 @@ public class ActLogin extends AppCompatActivity {
     View.OnClickListener btn_login_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
             progressDialog = ProgressDialog.show(ActLogin.this, Html.fromHtml("<font color='#2d4b44'>資料傳送中, 請稍後...</font>"), "", true);
-            //progressDialog = ProgressDialog.show(ActLogin.this, "資料傳送中, 請稍後...", "", true);
             requestForToken();
         }
     };

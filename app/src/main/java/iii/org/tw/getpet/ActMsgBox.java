@@ -1,5 +1,6 @@
 package iii.org.tw.getpet;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
@@ -41,6 +42,7 @@ public class ActMsgBox extends AppCompatActivity {
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
     MsgListAdapter adapter;
     RecyclerView recyclerList;
+    private ProgressDialog progressDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +72,11 @@ public class ActMsgBox extends AppCompatActivity {
         Log.d(CDictionary.Debug_TAG,"GET USER TOKEN："+access_token);
 
         getDatafromServer();
+
     }
 
     public void getDatafromServer(){
+        progressDialog = ProgressDialog.show(ActMsgBox.this, Html.fromHtml("<font color='#2d4b44'>資料讀取中, 請稍後...</font>"), "", true);
         String url = "http://twpetanimal.ddns.net:9487/api/v1/MsgUsers";
         url += "/"+UserId;
         Log.d(CDictionary.Debug_TAG,"GET URL："+url);
@@ -96,13 +100,15 @@ public class ActMsgBox extends AppCompatActivity {
                                     }
                                     adapter = new MsgListAdapter(myDataset);
                                     recyclerList.setAdapter(adapter);
+                                    progressDialog.dismiss();
                                 } else {
+                                    progressDialog.dismiss();
                                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgBox.this);
                                     dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>目前尚無訊息</font>"));
                                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-
+                                            goMemberScreen();
                                         }
                                     });
                                     dialog.create().show();
@@ -111,9 +117,24 @@ public class ActMsgBox extends AppCompatActivity {
 
                             @Override
                             public void onError(ANError anError) {
-
+                                progressDialog.dismiss();
+                                AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgBox.this);
+                                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
+                                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        goMemberScreen();
+                                    }
+                                });
+                                dialog.create().show();
                             }
                         });
+    }
+
+    public void goMemberScreen(){
+        Intent intent = new Intent(this,ActMember.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

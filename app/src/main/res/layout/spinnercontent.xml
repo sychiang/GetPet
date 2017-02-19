@@ -4,7 +4,7 @@
     android:layout_width="300px"
     android:layout_height="wrap_content"
     android:ellipsize="marquee"
-    android:gravity="center"
+    android:gravity="left"
     android:paddingLeft="30px"
     android:singleLine="true"
     android:textSize="25sp">
