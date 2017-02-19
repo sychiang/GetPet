@@ -705,14 +705,19 @@ public class ActAdoptUpload extends AppCompatActivity {
     public String check確認是否欄位都有填寫() {
         String p_string_未填寫的欄位有哪些 = "尚未填寫以下欄位:\n";
         Log.d("原始長度", p_string_未填寫的欄位有哪些.length() + "");
-        p_string_未填寫的欄位有哪些 += edTxt_animalName.getText().toString().isEmpty() ? "寵物姓名\n" : "";
-        p_string_未填寫的欄位有哪些 += edTxt_animalAge.getText().toString().isEmpty() ? "寵物年齡\n" : "";
-        //p_string_未填寫的欄位有哪些 += edTxt_animalChip.getText().toString().isEmpty() ? "是否植入晶片\n" : "";
+        p_string_未填寫的欄位有哪些 += spinner_animalKind.getSelectedItem().toString().equals("請選擇") ? "未選種類\n" : "";
+        p_string_未填寫的欄位有哪些 += spinner_animalType.getSelectedItem().toString().equals("請選擇") ? "未選品種\n" : "";
+        p_string_未填寫的欄位有哪些 += spinner_animalArea.getSelectedItem().toString().equals("請選擇") ? "未選縣市\n" : "";
+        p_string_未填寫的欄位有哪些 += spinner_animalGender.getSelectedItem().toString().equals("請選擇") ? "未選性別\n" : "";
+        p_string_未填寫的欄位有哪些 += spinner_animalBirth.getSelectedItem().toString().equals("請選擇") ? "未選是否已節育\n" : "";
+        p_string_未填寫的欄位有哪些 += spinner_animalChip.getSelectedItem().toString().equals("請選擇") ? "未選是否有晶片\n" : "";
+
+        p_string_未填寫的欄位有哪些 += edTxt_animalName.getText().toString().isEmpty() ? "動物姓名\n" : "";
+        p_string_未填寫的欄位有哪些 += edTxt_animalAge.getText().toString().isEmpty() ? "動物年齡\n" : "";
+        p_string_未填寫的欄位有哪些 += edTxt_animalColor.getText().toString().isEmpty() ? "動物毛色\n" : "";
         p_string_未填寫的欄位有哪些 += edTxt_animalHealthy.getText().toString().isEmpty() ? "健康狀態\n" : "";
-        p_string_未填寫的欄位有哪些 += spinner_animalArea.getSelectedItem().toString().equals("全部") ? "未選縣市\n" : "";
-        p_string_未填寫的欄位有哪些 += edTxt_animalColor.getText().toString().isEmpty() ? "毛色\n" : "";
         //p_string_未填寫的欄位有哪些 += edTxt_animalDate.getText().toString().isEmpty() ? "送養日期\n" : "";
-        p_string_未填寫的欄位有哪些 += edTxt_animalReason.getText().toString().isEmpty() ? "送養理由\n" : "";
+        //p_string_未填寫的欄位有哪些 += edTxt_animalReason.getText().toString().isEmpty() ? "送養理由\n" : "";
         return p_string_未填寫的欄位有哪些;
     }
 

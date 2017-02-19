@@ -170,6 +170,7 @@
                 android:textSize="18dp"
                 android:text="動物姓名" />
             <EditText
+                android:hint="(必填)"
                 android:textColor="@color/colorNormalText"
                 android:minWidth="250dp"
                 android:layout_weight="1"
@@ -194,13 +195,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:textSize="18dp"
-                android:text="動物年紀" />
+                android:text="動物年齡" />
             <EditText
                 android:textColor="@color/colorNormalText"
                 android:inputType="number"
                 android:maxLength="2"
                 android:layout_weight="1"
-                android:hint="(月齡)"
+                android:hint="(月齡/必填)"
                 android:id="@+id/edTxt_animalAge"
                 android:layout_marginLeft="10dp"
                 android:layout_width="250dp"
@@ -225,7 +226,7 @@
             <EditText
                 android:textColor="@color/colorNormalText"
                 android:layout_weight="1"
-                android:hint="毛色花紋描述"
+                android:hint="(毛色花紋描述/必填)"
                 android:id="@+id/edTxt_animalColor"
                 android:layout_marginLeft="10dp"
                 android:layout_width="250dp"
@@ -249,6 +250,7 @@
                 android:text="健康狀態" />
 
             <EditText
+                android:hint="(必填)"
                 android:textColor="@color/colorNormalText"
                 android:layout_weight="1"
                 android:id="@+id/edTxt_animalHealthy"
@@ -272,6 +274,7 @@
                 android:textSize="18dp"
                 android:text="病況說明" />
             <EditText
+                android:hint="(非必填)"
                 android:textColor="@color/colorNormalText"
                 android:layout_weight="1"
                 android:id="@+id/edTxt_animalDisease_Other"
@@ -295,6 +298,7 @@
                 android:textSize="18dp"
                 android:text="送養理由" />
             <EditText
+                android:hint="(非必填)"
                 android:textColor="@color/colorNormalText"
                 android:layout_weight="1"
                 android:id="@+id/edTxt_animalReason"
@@ -318,6 +322,7 @@
                 android:textSize="18dp"
                 android:text="送養備註" />
             <EditText
+                android:hint="(非必填)"
                 android:textColor="@color/colorNormalText"
                 android:layout_weight="1"
                 android:id="@+id/edTxt_animalNote"
@@ -405,7 +410,7 @@
             android:textSize="18dp"
             android:textStyle="bold"
             android:layout_margin="10px"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/btn_style_normal"
             android:text="送出資料"
             android:id="@+id/btn_sendout"
             android:layout_width="match_parent"

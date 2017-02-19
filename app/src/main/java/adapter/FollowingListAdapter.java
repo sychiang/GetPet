@@ -55,8 +55,11 @@ public class FollowingListAdapter extends BaseAdapter {
         ImageView ivImage = (ImageView) rowView.findViewById(R.id.followpet_image);
         TextView tvName = (TextView) rowView.findViewById(R.id.followpet_name);
         TextView tvAge = (TextView) rowView.findViewById(R.id.followpet_age);
+        TextView tvGender = (TextView) rowView.findViewById(R.id.followpet_gender);
         TextView tvLocation = (TextView) rowView.findViewById(R.id.followpet_location);
-        TextView tvDate = (TextView) rowView.findViewById(R.id.followpet_location);
+        //TextView tvDate = (TextView) rowView.findViewById(R.id.followpet_date);
+
+
 
         if(item.getAnimalPicAddress().toLowerCase().contains(".jpg") || item.getAnimalPicAddress().toLowerCase().contains(".png")){
             String imgURL = item.getAnimalPicAddress();
@@ -66,6 +69,7 @@ public class FollowingListAdapter extends BaseAdapter {
 
         tvName.setText(item.getAnimalName());
         tvAge.setText(String.format("%d",item.getAnimalAge()));
+        tvGender.setText(item.getAnimalGender());
         tvLocation.setText(item.getAnimalAddress());
         //tvDate.setText(item.get());
         return rowView;

@@ -14,6 +14,7 @@
         android:layout_marginRight="5dip">
 
         <ImageView
+            android:layout_marginTop="5dp"
             android:id="@+id/followpet_image"
             android:layout_width="100dip"
             android:layout_height="100dip"
@@ -30,51 +31,81 @@
         android:layout_toRightOf="@+id/thumbnail"
         android:layout_marginTop="10dp"
         android:text="米格魯"
-        android:textColor="#040404"
+        android:textColor="@color/colorNormalText"
         android:typeface="sans"
-        android:textSize="15dip"
+        android:textSize="20dp"
         android:textStyle="bold"/>
 
     <!-- 年齡 -->
     <TextView
+        android:gravity="center_vertical|left"
         android:id="@+id/followpet_age"
-        android:layout_width="wrap_content"
+        android:layout_width="25dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/followpet_name"
         android:layout_toRightOf="@+id/thumbnail"
-        android:layout_marginTop="10dp"
-        android:text="1歲"
-        android:textColor="#040404"
+        android:layout_marginTop="5dp"
+        android:text="1"
+        android:textColor="@color/colorNormalText"
         android:typeface="sans"
-        android:textSize="15dip"
-        android:textStyle="bold"/>
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/lblMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/followpet_name"
+        android:layout_toRightOf="@+id/followpet_age"
+        android:layout_marginTop="8dp"
+        android:text="month"
+        android:textColor="@color/colorNormalText"
+        android:gravity="center_horizontal"
+        android:typeface="sans"
+        android:textSize="18dp" />
+
+    <!-- 性別 -->
+    <TextView
+        android:gravity="center_vertical|left"
+        android:id="@+id/followpet_gender"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/followpet_age"
+        android:textColor="@color/colorHeaderText"
+        android:textSize="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="未知" />
 
     <!-- 所在地 -->
     <TextView
+        android:gravity="center_vertical|left"
         android:id="@+id/followpet_location"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/followpet_age"
-        android:textColor="#343434"
-        android:textSize="10dip"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/thumbnail"
-        android:text="高雄市" />
-
-    <!-- 日期 -->
-    <TextView
-        android:id="@+id/followpet_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/thumbnail"
-        android:gravity="right"
-        android:text="2017-01-07"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dip"
-        android:textSize="10dip"
-        android:textColor="#10bcc9"
-        android:textStyle="bold"/>
+        android:textColor="@color/colorHeaderText"
+        android:textSize="20dp"
+        android:text="高雄市"
+        android:layout_alignBaseline="@+id/followpet_gender"
+        android:layout_alignBottom="@+id/followpet_gender"
+        android:layout_toRightOf="@+id/followpet_gender"
+        android:layout_toEndOf="@+id/followpet_gender" />
+
+    <!-- 日期 -->
+    <!--<TextView-->
+        <!--android:id="@+id/followpet_date"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_toRightOf="@+id/thumbnail"-->
+        <!--android:layout_below="@+id/followpet_gender"-->
+        <!--android:gravity="right"-->
+        <!--android:text="2017-01-07"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_marginRight="5dip"-->
+        <!--android:textSize="20dp"-->
+        <!--android:textColor="@color/colorListDate"-->
+        <!--android:textStyle="bold"/>-->
+
+
 
     <!--&lt;!&ndash; 加入最愛 &ndash;&gt;-->
     <!--<ImageView android:layout_width="wrap_content"-->

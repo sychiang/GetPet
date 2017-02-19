@@ -271,7 +271,7 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:background="@color/colorPrimary"
+                    android:background="@drawable/btn_style_normal"
                     android:textColor="@color/colorMyTitle"
                     android:layout_alignParentRight="true"
                     android:id="@+id/btnHowToAdopt"

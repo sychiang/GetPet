@@ -78,6 +78,7 @@
             android:theme="@style/AppTheme.iPet" />
 
         <activity android:name=".ActFollowingList"
+            android:label="追蹤清單"
             android:theme="@style/AppTheme.iPet"/>
 
         <activity android:name=".ActRegister"

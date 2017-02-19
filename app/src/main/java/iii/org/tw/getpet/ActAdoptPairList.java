@@ -93,7 +93,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                 url += "$filter=animalAddress eq '苗栗縣'";
                 break;
             case "臺中市":
-                url += "$filter=animalAddress eq '台中市'";
+                url += "$filter=animalAddress eq '臺中市'";
                 break;
             case "彰化縣":
                 url += "$filter=animalAddress eq '彰化縣'";
@@ -111,10 +111,10 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                 url += "$filter=animalAddress eq '嘉義市'";
                 break;
             case "臺南市":
-                url += "$filter=animalAddress eq '台南'";
+                url += "$filter=animalAddress eq '臺南市'";
                 break;
             case "高雄市":
-                url += "$filter=animalAddress eq '高雄'";
+                url += "$filter=animalAddress eq '高雄市'";
                 break;
             case "屏東縣":
                 url += "$filter=animalAddress eq '屏東縣'";
