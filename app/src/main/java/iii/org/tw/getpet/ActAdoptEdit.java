@@ -1055,7 +1055,7 @@ public class ActAdoptEdit extends AppCompatActivity {
                     break;
                 case R.id.btnDelete:
                     AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptEdit.this);
-                    dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>確定要刪除此訊息?</font>"));
+                    dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>確定要刪除此筆資料?</font>"));
                     dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
