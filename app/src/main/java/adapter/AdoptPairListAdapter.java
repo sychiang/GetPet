@@ -57,6 +57,7 @@ public class AdoptPairListAdapter extends BaseAdapter{
         TextView tvAge = (TextView) rowView.findViewById(R.id.pair_age);
         TextView tvLocation = (TextView) rowView.findViewById(R.id.pair_location);
         TextView tvDate = (TextView) rowView.findViewById(R.id.pair_date);
+        TextView tvGender = (TextView) rowView.findViewById(R.id.pair_gender);
 
         if(item.getAnimalData_Pic().size()>0){
             String imgURL = item.getAnimalData_Pic().get(0).getAnimalPicAddress();
@@ -71,6 +72,7 @@ public class AdoptPairListAdapter extends BaseAdapter{
         tvAge.setText(String.format("%d",item.getAnimalAge()));
         tvLocation.setText(item.getAnimalAddress());
         tvDate.setText(item.getAnimalDate());
+        tvGender.setText(item.getAnimalGender());
         return rowView;
     }
 }
