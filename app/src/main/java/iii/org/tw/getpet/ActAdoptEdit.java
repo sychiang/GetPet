@@ -151,6 +151,7 @@ public class ActAdoptEdit extends AppCompatActivity {
 
         int permission = ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE);
+
         if (checkSelfPermission(Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.CAMERA},
@@ -1053,7 +1054,22 @@ public class ActAdoptEdit extends AppCompatActivity {
                             .show();
                     break;
                 case R.id.btnDelete:
-                    delete資料(String.valueOf(iv_object_petDataForSelfDB.getAnimalID()));
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActAdoptEdit.this);
+                    dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>確定要刪除此訊息?</font>"));
+                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            progressDialog = ProgressDialog.show(ActAdoptEdit.this, Html.fromHtml("<font color='#2d4b44'>資料刪除中, 請稍後...</font>"), "", true);
+                            delete資料(String.valueOf(iv_object_petDataForSelfDB.getAnimalID()));
+                            progressDialog.dismiss();
+                            Intent l_intent = new Intent(ActAdoptEdit.this, ActAdoptUploadList.class);
+                            ActAdoptUploadList.iv_ActAdoptUploadList.finish();
+                            startActivity(l_intent);
+                            finish();
+                        }
+                    });
+                    dialog.setNegativeButton("取消", null);
+                    dialog.create().show();
                     break;
 //                case R.id.btnCamera:
 //                    Intent intentCamera = new Intent(
@@ -1072,7 +1088,7 @@ public class ActAdoptEdit extends AppCompatActivity {
 //            if (v.getId() == R.id.btnEdit || v.getId() == R.id.btnDelete || v.getId() == R.id.btnCamera) {
 //                return;
 //            }
-            if (v.getId() != R.id.btnAdoptCondition && v.getId() != R.id.btnEdit) {
+            if (v.getId() != R.id.btnAdoptCondition && v.getId() != R.id.btnEdit && v.getId() != R.id.btnDelete && v.getId() != R.id.btnConfirmAdopted) {
                 //Toast.makeText(ScrollingActivity.this,String.valueOf(IntentRCodeOfOpenAlbum),Toast.LENGTH_SHORT).show();
                 //**
                 //**

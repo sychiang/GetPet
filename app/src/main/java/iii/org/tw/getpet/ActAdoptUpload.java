@@ -784,7 +784,6 @@ public class ActAdoptUpload extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                progressDialog.dismiss();
                 final String json = response.body().string();
                 Log.d("http", json);
                 //textView.setText(json);
@@ -792,6 +791,7 @@ public class ActAdoptUpload extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
+                            progressDialog.dismiss();
                             JSONObject jObj = new JSONObject(json);
                             //String id = jObj.getString("animalID");
                             //Toast.makeText(ActAdoptUpload.this, "上傳成功!(測試用_此次新增資料的id: " + id + ")", Toast.LENGTH_SHORT).show();
