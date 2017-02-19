@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import common.CDictionary;
 
@@ -67,14 +68,15 @@ public class ActMapCategory extends AppCompatActivity {
     };
 
     public void initComponent(){
-        btn_AnimalHospital = (Button)findViewById(R.id.btn_AnimalHospital);
+        btn_AnimalHospital = (ImageButton)findViewById(R.id.btn_AnimalHospital);
         btn_AnimalHospital.setOnClickListener(btn_AnimalHospital_Click);
 
-        btn_PetShop = (Button)findViewById(R.id.btn_PetShop);
+        btn_PetShop = (ImageButton)findViewById(R.id.btn_PetShop);
         btn_PetShop.setOnClickListener(btn_PetShop_Click);
 
-        btn_Injection = (Button)findViewById(R.id.btn_Injection);
+        btn_Injection = (ImageButton)findViewById(R.id.btn_Injection);
         btn_Injection.setOnClickListener(btn_Injection_Click);
     }
-    Button btn_AnimalHospital,btn_PetShop,btn_Injection;
+    //Button btn_AnimalHospital,btn_PetShop,btn_Injection;
+    ImageButton btn_AnimalHospital,btn_PetShop,btn_Injection;
 }
