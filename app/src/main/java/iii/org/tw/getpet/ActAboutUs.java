@@ -17,7 +17,7 @@ public class ActAboutUs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_about_us);
-        initComponent();   
+        initComponent();
 
         tv_content.setText("以認養代替購買，以送養代替拋棄\n" +
                 "這是一個非官方的網站，目的是希望透過網站及APP即時分享 狗狗 & 貓貓 的認養及送養資訊，讓想要養寵物的各位以認養代替購買，以送養代替拋棄。\n" +

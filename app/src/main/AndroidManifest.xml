@@ -57,7 +57,7 @@
 
         <activity
             android:name=".ActShelterPetDetail"
-            android:label="@string/title_activity_act_shelter_pet_detail"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.iPetNoAction" />
 
         <activity android:name=".ActMsgBox"
@@ -68,10 +68,11 @@
 
         <activity
             android:name=".ActAdoptPairDetail"
-            android:label="iPet 幸福轉運站"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.iPetNoAction" />
 
         <activity android:name=".ActLogin"
+            android:label="會員登入"
             android:theme="@style/AppTheme.iPet" />
 
         <activity android:name=".ActSearchAdopt"

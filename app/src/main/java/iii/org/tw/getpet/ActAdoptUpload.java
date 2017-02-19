@@ -10,8 +10,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -119,6 +121,7 @@ public class ActAdoptUpload extends AppCompatActivity {
 
     private ProgressDialog progressDialog = null;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,6 +133,12 @@ public class ActAdoptUpload extends AppCompatActivity {
 
         int permission = ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE);
+
+        if (checkSelfPermission(Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA},
+                    0);
+        }
 
         if (permission != PackageManager.PERMISSION_GRANTED) {
             //未取得權限，向使用者要求允許權限
@@ -630,8 +639,8 @@ public class ActAdoptUpload extends AppCompatActivity {
                                         })
                                         .show();
                             }else {
+                                progressDialog = ProgressDialog.show(ActAdoptUpload.this, Html.fromHtml("<font color='#2d4b44'>資料傳送中, 請稍後...</font>"), "", true);
                                 try {
-                                    progressDialog = ProgressDialog.show(ActAdoptUpload.this, Html.fromHtml("<font color='#2d4b44'>資料傳送中, 請稍後...</font>"), "", true);
                                     uploadImageAndGetSiteBack();
                                 } catch (Exception e) {
                                     e.printStackTrace();
