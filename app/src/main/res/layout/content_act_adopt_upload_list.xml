@@ -15,55 +15,116 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-        <!--  ListView最左邊的縮略圖 -->
-        <LinearLayout android:id="@+id/thumbnail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="3dip"
-            android:layout_alignParentLeft="true"
-            android:layout_marginRight="5dip">
+    <!--  ListView最左邊的縮圖 -->
+    <LinearLayout android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dip"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip">
 
-            <ImageView
-                android:id="@+id/iv_upload_image"
-                android:layout_width="100dip"
-                android:layout_height="100dip"
-                android:scaleType="centerInside"
-                android:src="@drawable/default_nopic"/>
-        </LinearLayout>
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:id="@+id/iv_upload_image"
+            android:layout_width="100dip"
+            android:layout_height="100dip"
+            android:scaleType="centerInside"
+            android:src="@drawable/default_nopic"/>
+    </LinearLayout>
 
-        <!-- 小名 -->
+    <!-- 小名 -->
+    <TextView
+        android:id="@+id/tv_upload_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/thumbnail"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_marginTop="5dp"
+        android:text="米格魯"
+        android:textColor="@color/colorNormalText"
+        android:typeface="sans"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+        <!-- 種類 -->
         <TextView
-            android:id="@+id/tv_upload_name"
+            android:id="@+id/tv_upload_kind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/thumbnail"
-            android:layout_marginTop="10dp"
-            android:text="米格魯"
-            android:textColor="#040404"
+            android:layout_alignTop="@+id/thumbnail"
+            android:layout_toRightOf="@+id/tv_upload_name"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:text="狗狗"
+            android:textColor="@color/colorNormalText"
             android:typeface="sans"
-            android:textSize="15dip"
+            android:textSize="20dp"
             android:textStyle="bold"/>
 
-        <!-- 日期 -->
-        <TextView
-            android:id="@+id/tv_upload_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_upload_name"
-            android:layout_toRightOf="@+id/thumbnail"
-            android:gravity="right"
-            android:text="2017-01-07"
-            android:layout_marginTop="10dp"
-            android:textSize="10dip"
-            android:textColor="#10bcc9"
-            android:textStyle="bold"/>
+    <!-- 品種 -->
+    <TextView
+        android:gravity="center_vertical|left"
+        android:id="@+id/tv_upload_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_upload_name"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_marginTop="5dp"
+        android:text="MIX米克斯"
+        android:textColor="@color/colorNormalText"
+        android:typeface="sans"
+        android:textSize="20dp" />
 
-        <!-- 加入最愛 -->
+
+    <!-- 認養狀態 -->
+    <TextView
+        android:gravity="center_vertical|left"
+        android:id="@+id/tv_upload_ifadopted"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_upload_type"
+        android:textColor="@color/colorHeaderText"
+        android:textSize="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="尚未被領養" />
+
+    <!-- 認養人 -->
+    <TextView
+        android:gravity="center_vertical|left"
+        android:id="@+id/tv_upload_getter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorHeaderText"
+        android:textSize="20dp"
+        android:text="認養人"
+        android:visibility="invisible"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:layout_below="@id/tv_upload_ifadopted" />
+
+    <!-- 日期 -->
+    <TextView
+        android:id="@+id/tv_upload_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/thumbnail"
+        android:gravity="right"
+        android:text="2017-01-07"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dip"
+        android:textSize="18dp"
+        android:textColor="@color/colorListDate"
+        android:textStyle="bold"/>
+
+        <!-- 編輯 -->
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/icon_edit"
             android:layout_alignParentRight="true"
+            android:layout_alignBottom="@+id/tv_upload_ifadopted"
             android:layout_centerVertical="true"/>
 
     </RelativeLayout>

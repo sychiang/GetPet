@@ -43,7 +43,7 @@ public class AdoptUploadListAdapter extends RecyclerView.Adapter<AdoptUploadList
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView tv_upload_date, tv_upload_name;
+        public TextView tv_upload_date, tv_upload_name,tv_upload_kind,tv_upload_type,tv_upload_ifadopted,tv_upload_getter;
         public CardView cardView;
         public ImageView iv_upload_image;
 
@@ -52,6 +52,10 @@ public class AdoptUploadListAdapter extends RecyclerView.Adapter<AdoptUploadList
             cardView = (CardView) view;
             tv_upload_date = (TextView) view.findViewById(R.id.tv_upload_date);
             tv_upload_name = (TextView) view.findViewById(R.id.tv_upload_name);
+            tv_upload_kind = (TextView) view.findViewById(R.id.tv_upload_kind);
+            tv_upload_type = (TextView) view.findViewById(R.id.tv_upload_type);
+            tv_upload_getter = (TextView) view.findViewById(R.id.tv_upload_getter);
+            tv_upload_ifadopted = (TextView) view.findViewById(R.id.tv_upload_ifadopted);
             iv_upload_image = (ImageView) view.findViewById(R.id.iv_upload_image);
         }
     }
@@ -141,6 +145,17 @@ public class AdoptUploadListAdapter extends RecyclerView.Adapter<AdoptUploadList
         AdoptPair item = mData.get(position);
         holder.tv_upload_name.setText(item.getAnimalName());
         holder.tv_upload_date.setText(item.getAnimalDate());
+
+        holder.tv_upload_kind.setText(item.getAnimalKind());
+        holder.tv_upload_type.setText(item.getAnimalType());
+        if(item.getAnimalAdopted()!= null){
+            holder.tv_upload_ifadopted.setText(item.getAnimalAdopted());
+        }
+        if(item.getAnimalGetter_userID() != null){
+            holder.tv_upload_getter.setText(item.getAnimalGetter_userID());
+            holder.tv_upload_getter.setVisibility(View.VISIBLE);
+        }
+
         if(item.getAnimalData_Pic().size()>0){
             String imgURL = item.getAnimalData_Pic().get(0).getAnimalPicAddress();
             if(imgURL != null){
@@ -155,4 +170,5 @@ public class AdoptUploadListAdapter extends RecyclerView.Adapter<AdoptUploadList
     public int getItemCount() {
         return mData.size();
     }
+
 }
