@@ -88,7 +88,7 @@ public class ActBoardList extends AppCompatActivity {
                 }
             }
         });
-        progressDialog = ProgressDialog.show(ActBoardList.this, Html.fromHtml("<font color='#2d4b44'>資料傳送中, 請稍後...</font>"), "", true);
+        progressDialog = ProgressDialog.show(ActBoardList.this, Html.fromHtml("<font color='#2d4b44'>資料讀取中, 請稍後...</font>"), "", true);
         getDatafromServer();
     }
 

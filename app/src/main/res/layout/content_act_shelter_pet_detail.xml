@@ -35,13 +35,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorHeaderText2"
                     android:text="流水編號："
-                    android:layout_width="80dp"
+                    android:layout_width="95dp"
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:textSize="18dp"
                     android:textColor="@color/colorNormalText"
                     android:id="@+id/tvID"
                     android:text="xxxxxxxxxx"
@@ -56,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorHeaderText2"
                     android:text="類型："
@@ -63,12 +66,14 @@
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:textSize="18dp"
                     android:textColor="@color/colorNormalText"
                     android:id="@+id/tvKind"
                     android:text="xxxxxxxxxx"
                     android:layout_width="80dp"
                     android:layout_height="match_parent" />
                 <TextView
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorHeaderText2"
                     android:text="性別："
@@ -76,6 +81,7 @@
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:textSize="18dp"
                     android:textColor="@color/colorNormalText"
                     android:id="@+id/tvSex"
                     android:text="xxxxxxxxxx"
@@ -89,6 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorHeaderText2"
                     android:text="體型："
@@ -96,12 +103,14 @@
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:textSize="18dp"
                     android:textColor="@color/colorNormalText"
                     android:id="@+id/tvBodyType"
                     android:text="xxxxxxxxxx"
                     android:layout_width="80dp"
                     android:layout_height="match_parent" />
                 <TextView
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorHeaderText2"
                     android:text="毛色："
@@ -109,6 +118,7 @@
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:textSize="18dp"
                     android:textColor="@color/colorNormalText"
                     android:id="@+id/tvColor"
                     android:text="xxxxxxxxxx"
@@ -122,6 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorHeaderText2"
                     android:text="年紀："
@@ -129,6 +140,7 @@
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:textSize="18dp"
                     android:textColor="@color/colorNormalText"
                     android:id="@+id/tvAge"
                     android:text="xxxxxxxxxx"
@@ -143,6 +155,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorHeaderText2"
                     android:text="收容所："
@@ -150,6 +163,7 @@
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:textSize="18dp"
                     android:textColor="@color/colorNormalText"
                     android:id="@+id/tvShelterName"
                     android:text="xxxxxxxxxx"
@@ -164,6 +178,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorHeaderText2"
                     android:text="地址："
@@ -171,6 +186,7 @@
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:textSize="18dp"
                     android:textColor="@color/colorNormalText"
                     android:id="@+id/tvShelterAddress"
                     android:text="xxxxxxxxxx"
@@ -185,6 +201,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorHeaderText2"
                     android:text="電話："
@@ -192,6 +209,7 @@
                     android:layout_height="match_parent" />
 
                 <TextView
+                    android:textSize="18dp"
                     android:textColor="@color/colorNormalText"
                     android:id="@+id/tvShelterTel"
                     android:text="xxxxxxxxxx"
@@ -206,6 +224,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     android:textColor="@color/colorHeaderText2"
                     android:text="備註："
@@ -235,10 +254,11 @@
                     android:layout_height="100dp"
                     android:background="@android:color/white">
                     <TextView
+                        android:textSize="18dp"
                         android:textColor="@color/colorNormalText"
                         android:id="@+id/tvRemark"
                         android:text="xxxxxxxxxx"
-                        android:layout_width="300dp"
+                        android:layout_width="320dp"
                         android:layout_height="match_parent" />
                 </ScrollView>
 

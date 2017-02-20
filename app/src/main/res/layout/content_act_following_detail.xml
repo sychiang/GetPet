@@ -76,12 +76,13 @@
                     <!--android:textStyle="bold"/>-->
 
                     <TextView
-                    android:textSize="25dp"
-                    android:id="@+id/tvName"
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent"
-                    android:text="xxxxxxxxxx"
-                    android:textColor="@color/colorHeaderText2"/>
+                        android:id="@+id/tvName"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:text="xxxxxxxxxx"
+                        android:textColor="@color/colorHeaderText2"
+                        android:textSize="25dp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -93,32 +94,36 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="75dp"
+                        android:textSize="18dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:text="性別："
                         android:textColor="@color/colorHeaderText2"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:textSize="18dp"
                         android:id="@+id/tvSex"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx"
+                        android:text="xxxxx"
                         android:textColor="@color/colorNormalText" />
 
                     <TextView
-                        android:layout_width="50dp"
+                        android:textSize="18dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:text="品種："
                         android:textColor="@color/colorHeaderText2"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:textSize="18dp"
                         android:id="@+id/tvType"
                         android:layout_width="100dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx"
-                        android:textColor="@color/colorNormalText"/>
+                        android:text="xxxxx"
+                        android:textColor="@color/colorNormalText" />
 
                 </LinearLayout>
 
@@ -130,32 +135,36 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="75dp"
+                        android:textSize="18dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:text="年紀："
                         android:textColor="@color/colorHeaderText2"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:textSize="18dp"
                         android:id="@+id/tvAge"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx"
-                        android:textColor="@color/colorNormalText"/>
+                        android:text="xxxxx"
+                        android:textColor="@color/colorNormalText" />
 
                     <TextView
-                        android:layout_width="50dp"
+                        android:textSize="18dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:text="毛色："
                         android:textColor="@color/colorHeaderText2"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:textSize="18dp"
                         android:id="@+id/tvColor"
                         android:layout_width="100dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx"
-                        android:textColor="@color/colorNormalText"/>
+                        android:text="xxxxx"
+                        android:textColor="@color/colorNormalText" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -166,31 +175,36 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="75dp"
+                        android:textSize="18dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:text="地區："
                         android:textColor="@color/colorHeaderText2"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:textSize="18dp"
                         android:id="@+id/tvArea"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx"
-                        android:textColor="@color/colorNormalText"/>
+                        android:text="xxxxx"
+                        android:textColor="@color/colorNormalText" />
+
                     <TextView
-                        android:layout_width="50dp"
+                        android:textSize="18dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:text="晶片："
                         android:textColor="@color/colorHeaderText2"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:textSize="18dp"
                         android:id="@+id/tvIfChip"
                         android:layout_width="100dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx"
-                        android:textColor="@color/colorNormalText"/>
+                        android:text="xxxxx"
+                        android:textColor="@color/colorNormalText" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -199,33 +213,38 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20px"
                     android:orientation="horizontal">
+
                     <TextView
-                        android:layout_width="75dp"
+                        android:textSize="18dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:text="健康："
                         android:textColor="@color/colorHeaderText2"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:textSize="18dp"
                         android:id="@+id/tvHealthy"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx"
-                        android:textColor="@color/colorNormalText"/>
+                        android:text="xxxxx"
+                        android:textColor="@color/colorNormalText" />
 
                     <TextView
-                        android:layout_width="50dp"
+                        android:textSize="18dp"
+                        android:layout_width="60dp"
                         android:layout_height="match_parent"
                         android:text="節育："
                         android:textColor="@color/colorHeaderText2"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:textSize="18dp"
                         android:id="@+id/tvIfBirth"
                         android:layout_width="100dp"
                         android:layout_height="match_parent"
-                        android:text="xxxxxxxxxx"
-                        android:textColor="@color/colorNormalText"/>
+                        android:text="xxxxx"
+                        android:textColor="@color/colorNormalText" />
 
 
                 </LinearLayout>
@@ -247,18 +266,20 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="75dp"
+                        android:textSize="18dp"
+                        android:layout_width="95dp"
                         android:layout_height="match_parent"
                         android:text="健診狀況："
                         android:textColor="@color/colorHeaderText2"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <TextView
+                        android:textSize="18dp"
                         android:id="@+id/tvDisease"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="xxxxxxxxxx"
-                        android:textColor="@color/colorNormalText"/>
+                        android:textColor="@color/colorNormalText" />
 
                 </LinearLayout>
 
@@ -270,28 +291,31 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="75dp"
+                        android:textSize="18dp"
+                        android:layout_width="95dp"
                         android:layout_height="match_parent"
                         android:text="送養理由："
                         android:textColor="@color/colorHeaderText2"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:textSize="18dp"
                         android:id="@+id/tvReason"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:text="xxxxxxxxxx"
-                        android:textColor="@color/colorNormalText"/>
+                        android:textColor="@color/colorNormalText" />
 
                 </LinearLayout>
 
                 <TextView
-                    android:paddingBottom="0dp"
-                    android:layout_marginBottom="20px"
                     android:id="@+id/lbl_note"
-                    android:layout_width="wrap_content"
+                    android:textSize="18dp"
+                    android:layout_width="95dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="20px"
                     android:layout_marginLeft="20px"
+                    android:paddingBottom="0dp"
                     android:text="備註："
                     android:textColor="@color/colorHeaderText2"
                     android:textStyle="bold" />
@@ -319,11 +343,12 @@
                         android:background="@android:color/white">
 
                         <TextView
+                            android:textSize="18dp"
                             android:id="@+id/tvNote"
                             android:layout_width="320dp"
                             android:layout_height="wrap_content"
                             android:text="xxxxxxxxxx"
-                            android:textColor="@color/colorNormalText"/>
+                            android:textColor="@color/colorNormalText" />
                     </ScrollView>
 
                     <!--<Button-->
@@ -353,14 +378,14 @@
                     android:orientation="horizontal">
 
                     <!--<ImageButton-->
-                        <!--android:id="@+id/btnTrack"-->
-                        <!--android:layout_width="0dp"-->
-                        <!--android:layout_height="50dp"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:background="@color/colorBackground"-->
-                        <!--android:scaleType="fitCenter"-->
-                        <!--android:src="@drawable/icon_follow"-->
-                        <!--android:text="我要追蹤" />-->
+                    <!--android:id="@+id/btnTrack"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="@color/colorBackground"-->
+                    <!--android:scaleType="fitCenter"-->
+                    <!--android:src="@drawable/icon_follow"-->
+                    <!--android:text="我要追蹤" />-->
 
                     <ImageButton
                         android:id="@+id/btnAdopt"

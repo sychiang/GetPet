@@ -271,10 +271,10 @@ public class ActHomePage extends AppCompatActivity
         header_username = (TextView)header.findViewById(R.id.header_username);
 
         ivPhoto1 = (ImageView)findViewById(R.id.ivPhoto1);
-        ivPhoto2 = (ImageView)findViewById(R.id.ivPhoto2);
-        ivPhoto3 = (ImageView)findViewById(R.id.ivPhoto3);
-        ivPhoto4 = (ImageView)findViewById(R.id.ivPhoto4);
-        ivPhoto5 = (ImageView)findViewById(R.id.ivPhoto5);
+//        ivPhoto2 = (ImageView)findViewById(R.id.ivPhoto2);
+//        ivPhoto3 = (ImageView)findViewById(R.id.ivPhoto3);
+//        ivPhoto4 = (ImageView)findViewById(R.id.ivPhoto4);
+//        ivPhoto5 = (ImageView)findViewById(R.id.ivPhoto5);
         viewFlipper=(ViewFlipper)findViewById(R.id.viewflipper);
     }
 

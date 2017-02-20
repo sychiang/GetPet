@@ -9,7 +9,7 @@
     <color name="colorBackground">#cdf1ec</color>
     <color name="colorHeaderText">#2d4b44</color>
     <color name="colorHeaderText2">#666666</color>
-    <color name="colorHomeText">#76c2af</color>
+    <color name="colorHomeText">#000000</color>
     <color name="colorMyTitle">#FFFFFF</color>
     <color name="colorListDate">#A6D37F</color>
     <color name="mycolorAccent">#76C2AF</color>

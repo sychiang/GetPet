@@ -143,7 +143,7 @@
         <activity
             android:name=".ActPetHelper"
             android:label="寵物小幫手"
-            android:theme="@style/AppTheme.iPetNoAction" />
+            android:theme="@style/AppTheme.iPet" />
 
         <activity android:name=".ActMapCategory"
             android:label="地圖尋找"
