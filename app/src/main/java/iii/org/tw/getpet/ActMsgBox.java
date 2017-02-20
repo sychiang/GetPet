@@ -56,13 +56,13 @@ public class ActMsgBox extends AppCompatActivity {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerList.setLayoutManager(layoutManager);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
 
         UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
         Log.d(CDictionary.Debug_TAG,"GET USER NAME："+UserName);
@@ -162,7 +162,6 @@ public class ActMsgBox extends AppCompatActivity {
         if (id == R.id.action_backtohome) {
             Intent intent = new Intent(this, ActHomePage.class);
             startActivity(intent);
-
         }
         return super.onOptionsItemSelected(item);
     }

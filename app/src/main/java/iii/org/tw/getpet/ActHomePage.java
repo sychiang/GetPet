@@ -250,6 +250,22 @@ public class ActHomePage extends AppCompatActivity
         }
     };
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_aboutus, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_goaboutus) {
+            Intent intent = new Intent(this, ActAboutUs.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public void initComponent(){
         btnGoAdoptSearch = (ImageButton)findViewById(R.id.btnGoAdoptSearch);
         btnGoAdoptSearch.setOnClickListener(btnGoAdoptSearch_Click);

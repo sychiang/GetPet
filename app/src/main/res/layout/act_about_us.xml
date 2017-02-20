@@ -35,11 +35,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textSize="20sp" />
+                android:textSize="18sp" />
         </ScrollView>
 
 
         <LinearLayout
+            android:background="@color/colorBackground"
             android:id="@+id/line1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,7 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
+                android:background="@color/colorBackground"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ori_track_track" />
 
@@ -60,7 +61,7 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
+                android:background="@color/colorBackground"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ori_message_message" />
         </LinearLayout>
