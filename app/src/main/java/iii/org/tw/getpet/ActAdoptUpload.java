@@ -14,8 +14,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -61,7 +59,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import cz.msebera.android.httpclient.Header;
-import com.loopj.android.http.AsyncHttpClient;
+
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.SyncHttpClient;
@@ -120,6 +118,7 @@ public class ActAdoptUpload extends AppCompatActivity {
     private ImageButton[] iv_ImageButtonArray;
 
     private ProgressDialog progressDialog = null;
+    private CountDownLatch iv_latch;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -645,7 +644,22 @@ public class ActAdoptUpload extends AppCompatActivity {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-                                addAllDataToDBServer();
+                                Thread l_thread =new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        try {
+                                            iv_latch.await();
+                                            Log.d(" await完畢", " ");
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                        addAllDataToDBServer();
+
+                                    }
+                                });
+                                l_thread.start();
+
                             }
                         }
                     })
@@ -831,7 +845,7 @@ public class ActAdoptUpload extends AppCompatActivity {
                 }
             }
         }
-        CountDownLatch latch = new CountDownLatch(iv_int_countHowManyPicNeedUpload);//N个工人的协作
+        iv_latch = new CountDownLatch(iv_int_countHowManyPicNeedUpload);//N个工人的协作
         Log.d("", "進入uploadImageAndGetSiteBack");
         for (int i = 0; i < selectedImgForUploadArray.length; i++) {
             if (selectedImgForUploadArray[i] == true) {
@@ -839,12 +853,11 @@ public class ActAdoptUpload extends AppCompatActivity {
                 String bitmapStream = transBitmapToStream(bitmapArray[i]);
                 //imgurUpload(bitmapStream);
                 Log.d(" 進入迴圈", String.valueOf(selectedImgForUploadArray.length));
-                uploadImgByCallable l_uploadImgByCallable = new uploadImgByCallable(bitmapStream, latch);
+                uploadImgByCallable l_uploadImgByCallable = new uploadImgByCallable(bitmapStream, iv_latch);
                 l_uploadImgByCallable.start();
             }
         }
-        latch.await();
-        Log.d(" await完畢", " ");
+
     }
 
     public String create取得現在時間字串(){
