@@ -47,7 +47,7 @@ public class ActMapSearch extends AppCompatActivity implements OnMapReadyCallbac
         mapType = intent.getExtras().getString(CDictionary.BK_mapType);
         url += "?$filter=mapType eq '"+mapType+"'";
         setContentView(R.layout.act_map_search);
-        setTitle(Html.fromHtml("<font color='#2d4b44'>"+mapType+"</font>"));
+        setTitle(mapType);
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map); //取得地圖
         mapFragment.getMapAsync(this);
 

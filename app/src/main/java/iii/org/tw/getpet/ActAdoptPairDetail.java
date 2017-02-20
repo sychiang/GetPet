@@ -381,6 +381,7 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
                         sendRequestForAdopt();
                     }
                 });
+                dialog.setNegativeButton("取消", null);
                 dialog.create().show();
             }
         }

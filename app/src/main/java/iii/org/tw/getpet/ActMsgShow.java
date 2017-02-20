@@ -39,7 +39,7 @@ public class ActMsgShow extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_msg_show);
-        setTitle("訊息內容");
+        setTitle(Html.fromHtml("<font color='#2d4b44'>訊息內容</font>"));
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         initComponent();

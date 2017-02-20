@@ -1,5 +1,6 @@
 package iii.org.tw.getpet;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class ActBoardList extends AppCompatActivity {
     RecyclerView recyclerList;
     Intent intent;
     String animalid;
+    private ProgressDialog progressDialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,7 @@ public class ActBoardList extends AppCompatActivity {
                 }
             }
         });
+        progressDialog = ProgressDialog.show(ActBoardList.this, Html.fromHtml("<font color='#2d4b44'>資料傳送中, 請稍後...</font>"), "", true);
         getDatafromServer();
     }
 
@@ -121,6 +124,7 @@ public class ActBoardList extends AppCompatActivity {
                         new ParsedRequestListener<ArrayList<Board>>() {
                             @Override
                             public void onResponse(ArrayList<Board> response) {
+                                progressDialog.dismiss();
                                 String size = String.format("%d", response.size());
                                 Log.d(CDictionary.Debug_TAG, size);
                                 if (response.size() > 0) {
@@ -145,7 +149,16 @@ public class ActBoardList extends AppCompatActivity {
 
                             @Override
                             public void onError(ANError anError) {
+                                progressDialog.dismiss();
+                                AlertDialog.Builder dialog = new AlertDialog.Builder(ActBoardList.this);
+                                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
+                                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
 
+                                    }
+                                });
+                                dialog.create().show();
                             }
                         });
     }

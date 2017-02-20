@@ -34,7 +34,7 @@ public class ActBoardInput extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_board_input);
-        setTitle("新增留言");
+        setTitle(Html.fromHtml("<font color='#2d4b44'>新增留言</font>"));
         initComponent();
 
         UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");

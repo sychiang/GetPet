@@ -272,7 +272,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:textSize="18dp"
-                android:text="病況說明" />
+                android:text="健診狀況" />
             <EditText
                 android:hint="(非必填)"
                 android:textColor="@color/colorNormalText"
