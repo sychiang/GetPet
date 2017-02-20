@@ -135,8 +135,8 @@ public class ActAdoptEdit extends AppCompatActivity {
             "桃園縣", "新竹縣", "新竹市", "苗栗縣", "臺中市", "彰化縣",
             "南投縣", "雲林縣", "嘉義縣", "嘉義市", "臺南市", "高雄市",
             "屏東縣", "花蓮縣", "臺東縣", "澎湖縣", "金門縣", "連江縣"};
-    final String[] iv_array_animalGender = {"公", "母"};
-    final String[] iv_array_YesOrNO = {"否", "是"};
+    final String[] iv_array_animalGender = {"公", "母","未知"};
+    final String[] iv_array_YesOrNO = {"否", "是","未知"};
     private ArrayList<String>[] iv_Array_動物品種清單;
     private ArrayList<String> iv_ArrayList_動物類別清單;
     private ArrayList<Bitmap> iv_ArrayList_Bitmap;
@@ -216,6 +216,11 @@ public class ActAdoptEdit extends AppCompatActivity {
         //*******
         fill塞圖片到imageButton(iv_ImageButtonArray, l_object_petDataForSelfDB);
         //********
+        if(l_object_petDataForSelfDB.getAnimalGetter_userID()!=null){
+            btnEdit.setEnabled(false);
+            btnDelete.setEnabled(false);
+            btnConfirmAdopted.setEnabled(false);
+        }
     }
 
     private void fill塞圖片到imageButton(final ImageButton[] p_ImageButtonArray, final object_petDataForSelfDB p_object_petDataForSelfDB) throws ExecutionException, InterruptedException {
