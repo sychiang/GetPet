@@ -39,7 +39,7 @@ public class ActMsgShow extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_msg_show);
-        setTitle("");
+        setTitle("訊息內容");
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         initComponent();

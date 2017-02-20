@@ -46,7 +46,7 @@ public class ActShelterPetDetail extends AppCompatActivity implements OnMapReady
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_shelter_pet_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setTitle("收容所毛孩");
+        //setTitle("收容所毛孩");
         setSupportActionBar(toolbar);
         initComponent();
         intent = getIntent();

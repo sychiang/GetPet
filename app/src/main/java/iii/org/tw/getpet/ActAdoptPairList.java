@@ -56,7 +56,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_adopt_pair_list);
-        setTitle("iPet 動物資訊");
+        //setTitle("iPet 動物資訊");
         Intent intent = getIntent();
         String url = "http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas?";
         String condArea = intent.getExtras().getString(CDictionary.BK_Area);

@@ -111,6 +111,32 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
+
+                <ImageButton
+                    android:id="@+id/btnGoMember"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_vertical"
+                    android:background="#cdf1ec"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/vc_home_member" />
+
+                <TextView
+                    android:layout_marginTop="10px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnGoMember"
+                    android:layout_centerHorizontal="true"
+                    android:text="會員專區"
+                    android:textColor="@color/colorHomeText"
+                    android:textSize="14dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
                 <ImageButton
                     android:layout_centerHorizontal="true"
                     android:id="@+id/btnGoShelter"
@@ -132,30 +158,7 @@
                     android:textSize="14dp" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-                <ImageButton
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/btnGoPetHelper"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1"
-                    android:background="#cdf1ec"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/vc_home_help" />
-                <TextView
-                    android:layout_marginTop="10px"
-                    android:layout_centerHorizontal="true"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/btnGoPetHelper"
-                    android:text="寵物小幫手"
-                    android:textColor="@color/colorHomeText"
-                    android:textSize="14dp" />
-            </RelativeLayout>
+
 
         </LinearLayout>
 
@@ -188,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/btnGoUpload"
                     android:layout_centerHorizontal="true"
-                    android:text="送養管理"
+                    android:text="送養專區"
                     android:textColor="@color/colorHomeText"
                     android:textSize="14dp" />
             </RelativeLayout>
@@ -218,32 +221,31 @@
                     android:textColor="@color/colorHomeText"
                     android:textSize="14dp" />
             </RelativeLayout>
-
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
-
                 <ImageButton
-                    android:id="@+id/btnGoMember"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/btnGoPetHelper"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_centerHorizontal="true"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
                     android:background="#cdf1ec"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/vc_home_member" />
-
+                    android:src="@drawable/vc_home_help" />
                 <TextView
                     android:layout_marginTop="10px"
+                    android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/btnGoMember"
-                    android:layout_centerHorizontal="true"
-                    android:text="會員專區"
+                    android:layout_below="@+id/btnGoPetHelper"
+                    android:text="寵物小幫手"
                     android:textColor="@color/colorHomeText"
                     android:textSize="14dp" />
             </RelativeLayout>
+
 
         </LinearLayout>
         <LinearLayout

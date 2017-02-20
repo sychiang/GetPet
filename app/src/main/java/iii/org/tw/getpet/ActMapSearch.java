@@ -3,6 +3,7 @@ package iii.org.tw.getpet;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,6 +47,7 @@ public class ActMapSearch extends AppCompatActivity implements OnMapReadyCallbac
         mapType = intent.getExtras().getString(CDictionary.BK_mapType);
         url += "?$filter=mapType eq '"+mapType+"'";
         setContentView(R.layout.act_map_search);
+        setTitle(Html.fromHtml("<font color='#2d4b44'>"+mapType+"</font>"));
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map); //取得地圖
         mapFragment.getMapAsync(this);
 
