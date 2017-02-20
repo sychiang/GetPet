@@ -34,7 +34,7 @@ public class ActBoardInput extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_board_input);
-        setTitle("");
+        setTitle("新增留言");
         initComponent();
 
         UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
