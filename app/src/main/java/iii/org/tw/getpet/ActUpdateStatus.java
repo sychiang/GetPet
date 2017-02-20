@@ -2,7 +2,6 @@ package iii.org.tw.getpet;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,6 +19,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import common.CDictionary;
+import model.object_petDataForSelfDB;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -29,15 +28,17 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class ActMsgInput extends AppCompatActivity {
+import static iii.org.tw.getpet.R.id.tv_msgTo_userName;
+
+public class ActUpdateStatus extends AppCompatActivity {
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
-    private String msgID, msgTime, msgFrom_userID, msgFrom_userName, msgTo_userID, msgType, msgFromURL, msgContent, msgRead;
+    object_petDataForSelfDB iv_object_petDataForSelfDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.act_msg_input);
-        setTitle(Html.fromHtml("<font color='#2d4b44'>訊息回覆</font>"));
+        setContentView(R.layout.act_update_status);
+        setTitle(Html.fromHtml("<font color='#2d4b44'>送養確認</font>"));
         initComponent();
 
         UserName = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,"");
@@ -47,18 +48,12 @@ public class ActMsgInput extends AppCompatActivity {
         access_token = getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,"");
         Log.d(CDictionary.Debug_TAG,"GET USER ID："+access_token);
 
-        Intent intent = getIntent();
-        if(intent != null){
-            msgFrom_userID = intent.getExtras().getString(CDictionary.BK_msg_fromuserid);
-            msgFrom_userName = intent.getExtras().getString(CDictionary.BK_msg_fromusername);
-            tv_msgTo_userName.setText(msgFrom_userName);
-        }
 
     }
 
     View.OnClickListener btnSubmit_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            AlertDialog dialog = new AlertDialog.Builder(ActMsgInput.this)
+            AlertDialog dialog = new AlertDialog.Builder(ActUpdateStatus.this)
                     .setMessage(Html.fromHtml("<font color='#2d4b44'>是否確定送出資料</font>"))
                     .setTitle(Html.fromHtml("<font color='#2d4b44'>送出確認</font>"))
                     .setPositiveButton("送出", new DialogInterface.OnClickListener() {
@@ -66,7 +61,7 @@ public class ActMsgInput extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
                             String emptyInputField = checkInput();
                             if (emptyInputField.length() > 10) {
-                                new AlertDialog.Builder(ActMsgInput.this)
+                                new AlertDialog.Builder(ActUpdateStatus.this)
                                         .setMessage(Html.fromHtml("<font color='#2d4b44'>"+emptyInputField+"</font>"))
                                         .setTitle(Html.fromHtml("<font color='#2d4b44'>欄位未填</font>"))
                                         .setPositiveButton("確定", new DialogInterface.OnClickListener() {
@@ -84,59 +79,69 @@ public class ActMsgInput extends AppCompatActivity {
                     .show();
         }
     };
-
     public void sendRequestToServer(){
-        OkHttpClient Iv_OkHttp_client = new OkHttpClient();
-        final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
+        Intent l_intent = getIntent();
+        //object_petDataForSelfDB l_object_petDataForSelfDB = (object_petDataForSelfDB) l_intent.getSerializableExtra("object_ConditionOfAdoptPet_objA");
+        iv_object_petDataForSelfDB = (object_petDataForSelfDB) l_intent.getSerializableExtra("object_ConditionOfAdoptPet_objA");
+
+        String strURL = "http://twpetanimal.ddns.net:9487/api/v1/animalDatas";
+        strURL += "/"+String.format("%d",iv_object_petDataForSelfDB.getAnimalID());
+        Log.d(CDictionary.Debug_TAG,"GET URL: "+strURL);
+        //傳送PUT修改為已被認養
+        OkHttpClient okhttpclient = new OkHttpClient();
+        final MediaType mediatype_json = MediaType.parse("application/json; charset=utf-8");
 
         JSONObject jsonObject = new JSONObject();
-        Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
+        Log.d(CDictionary.Debug_TAG,"CREATE JSON OBJ: "+jsonObject.toString());
         try {
-            jsonObject.put("msgID", 0);
-            Log.d(CDictionary.Debug_TAG,"GET msgID: "+jsonObject.optString("msgID"));
-            jsonObject.put("msgTime","");
-            Log.d(CDictionary.Debug_TAG,"GET msgTime: "+jsonObject.optString("msgTime"));
-            jsonObject.put("msgFrom_userID", UserId);
-            Log.d(CDictionary.Debug_TAG,"GET msgFrom_userID: "+jsonObject.optString("msgFrom_userID"));
-            jsonObject.put("msgTo_userID", msgFrom_userID);
-            Log.d(CDictionary.Debug_TAG,"GET msgTo_userID: "+jsonObject.optString("msgTo_userID"));
-            jsonObject.put("msgType", "站內信");
-            Log.d(CDictionary.Debug_TAG,"GET msgType: "+jsonObject.optString("msgType"));
-            jsonObject.put("msgFromURL", "nil");
-            Log.d(CDictionary.Debug_TAG,"GET msgFromURL: "+jsonObject.optString("msgFromURL"));
-            jsonObject.put("msgContent", edTxt_msgContent.getText().toString());
-            Log.d(CDictionary.Debug_TAG,"GET msgContent: "+jsonObject.optString("msgContent"));
-            jsonObject.put("msgRead", "未讀");
-            Log.d(CDictionary.Debug_TAG,"GET msgRead: "+jsonObject.optString("msgRead"));
+            jsonObject.put("animalID", iv_object_petDataForSelfDB.getAnimalID());
+            jsonObject.put("animalKind", iv_object_petDataForSelfDB.getAnimalKind());
+            jsonObject.put("animalType", iv_object_petDataForSelfDB.getAnimalType());
+            jsonObject.put("animalName", iv_object_petDataForSelfDB.getAnimalName());
+            jsonObject.put("animalAddress",iv_object_petDataForSelfDB.getAnimalAddress());
+            jsonObject.put("animalDate", iv_object_petDataForSelfDB.getAnimalDate());
+            jsonObject.put("animalGender", iv_object_petDataForSelfDB.getAnimalGender());
+            jsonObject.put("animalAge",iv_object_petDataForSelfDB.getAnimalAge());
+            jsonObject.put("animalColor",iv_object_petDataForSelfDB.getAnimalColor());
+            jsonObject.put("animalBirth",iv_object_petDataForSelfDB.getAnimalBirth());
+            jsonObject.put("animalChip",iv_object_petDataForSelfDB.getAnimalChip());
+            jsonObject.put("animalHealthy",iv_object_petDataForSelfDB.getAnimalHealthy());
+            jsonObject.put("animalDisease_Other",iv_object_petDataForSelfDB.getAnimalDisease_Other());
+            jsonObject.put("animalOwner_userID",iv_object_petDataForSelfDB.getAnimalOwner_userID());
+            jsonObject.put("animalReason",iv_object_petDataForSelfDB.getAnimalReason());
+            jsonObject.put("animalGetter_userID",edTxt_getterAccount.getText().toString());
+            jsonObject.put("animalAdopted","已被領養");
+            jsonObject.put("animalAdoptedDate","");
+            jsonObject.put("animalNote",iv_object_petDataForSelfDB.getAnimalNote());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
-        Log.d(CDictionary.Debug_TAG,"GET JSON STRING: "+jsonObject.toString());
+        RequestBody requestBody =  RequestBody.create(mediatype_json,jsonObject.toString());
         Request postRequest = new Request.Builder()
-                .url("http://twpetanimal.ddns.net:9487/api/v1/MsgUsers")
+                .url(strURL)
                 .addHeader("Accept", "application/json")
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization","Bearer "+access_token)
-                .post(requestBody)
+                .put(requestBody)
                 .build();
 
-        Call call = Iv_OkHttp_client.newCall(postRequest);
+        Call call = okhttpclient.newCall(postRequest);
         call.enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String json = response.body().string();
-                Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
+                Log.d(CDictionary.Debug_TAG,"RESPONSE BODY: "+json);
+                Log.d(CDictionary.Debug_TAG,"RESPONSE CODE: "+response.code());
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgInput.this);
-                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>訊息已送出</font>"));
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActUpdateStatus.this);
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>資料傳送完畢</font>"));
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                goMsgBox();
+                                goUploadList();
                             }
                         });
                         dialog.create().show();
@@ -145,8 +150,8 @@ public class ActMsgInput extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call call, IOException e) {
-                Log.d(CDictionary.Debug_TAG,"POST FAIL......");
-                AlertDialog.Builder dialog = new AlertDialog.Builder(ActMsgInput.this);
+                Log.d(CDictionary.Debug_TAG,"PUT FAIL......");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActUpdateStatus.this);
                 dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
                 dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                     @Override
@@ -159,17 +164,18 @@ public class ActMsgInput extends AppCompatActivity {
         });
     }
 
-    private void goMsgBox() {
-        Intent intent = new Intent(ActMsgInput.this, ActMsgBox.class);
+    private void goUploadList() {
+        Intent intent = new Intent(ActUpdateStatus.this, ActAdoptUploadList.class);
         startActivity(intent);
-        ActMsgBox.iv_ActMsgBox.finish();
-        ActMsgShow.iv_ActMsgShow.finish();
+        startActivity(intent);
+        ActAdoptUploadList.iv_ActAdoptUploadList.finish();
+        ActAdoptEdit.iv_ActAdoptEdit.finish();
         finish();
     }
 
     public String checkInput() {
         String emptyInputField = "尚未填寫以下欄位:\n";
-        emptyInputField += edTxt_msgContent.getText().toString().isEmpty() ? "內文\n" : "";
+        emptyInputField += edTxt_getterAccount.getText().toString().isEmpty() ? "認養人帳號\n" : "";
         return emptyInputField;
     }
 
@@ -179,13 +185,10 @@ public class ActMsgInput extends AppCompatActivity {
     }
 
     public void initComponent(){
-        btnSubmit = (ImageButton)findViewById(R.id.btnSubmit);
+        btnSubmit = (Button)findViewById(R.id.btnSubmit);
         btnSubmit.setOnClickListener(btnSubmit_Click);
-        edTxt_msgContent=(EditText)findViewById(R.id.edTxt_msgContent);
-        tv_msgTo_userName=(TextView)findViewById(R.id.tv_msgTo_userName);
+        edTxt_getterAccount=(EditText)findViewById(R.id.edTxt_getterAccount);
     }
-    //Button btnSubmit;
-    EditText edTxt_msgTo_userID, edTxt_msgContent;
-    TextView tv_msgTo_userName;
-    ImageButton btnSubmit;
+    Button btnSubmit;
+    EditText edTxt_getterAccount;
 }

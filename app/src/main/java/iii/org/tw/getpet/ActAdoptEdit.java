@@ -142,12 +142,14 @@ public class ActAdoptEdit extends AppCompatActivity {
     private ArrayList<Bitmap> iv_ArrayList_Bitmap;
 
     private ProgressDialog progressDialog = null;
+    static ActAdoptEdit iv_ActAdoptEdit;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_adopt_edit);
+        iv_ActAdoptEdit = this;
 
         int permission = ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.READ_EXTERNAL_STORAGE);
@@ -272,7 +274,6 @@ public class ActAdoptEdit extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
                 //**
                 runOnUiThread(new Runnable() {
                     @Override
@@ -280,18 +281,14 @@ public class ActAdoptEdit extends AppCompatActivity {
                         for (int i = 0; i < iv_ArrayList_Bitmap.size(); i++) {
                             p_ImageButtonArray[i].setImageBitmap(iv_ArrayList_Bitmap.get(i));
                             Log.d("進入設定圖片",i+"");
-
                         }
-
                     }
                 });
-
                 //*
             }
         });
         thread2.start();
         //**
-
     }
 
     @Override
@@ -634,7 +631,6 @@ public class ActAdoptEdit extends AppCompatActivity {
     }
 
     private void init() {
-
         Factory_DynamicAnimalTypeListCreator("");
         iv_int_countHowManyPicNeedUpload = 0;
         iv_ArrayList_object_ConditionOfAdoptPet = new ArrayList<>();
@@ -693,8 +689,8 @@ public class ActAdoptEdit extends AppCompatActivity {
         btnDelete = (Button) findViewById(R.id.btnDelete);
         btnDelete.setOnClickListener(btn_click);
         //**************
-//        btnCamera = (Button) findViewById(R.id.btnCamera);
-//        btnCamera.setOnClickListener(btn_click);
+        btnConfirmAdopted = (Button) findViewById(R.id.btnConfirmAdopted);
+        btnConfirmAdopted.setOnClickListener(btnConfirmAdopted_click);
         //**************
         imgBtn1 = (ImageButton) findViewById(R.id.imgBtn1);
         imgBtn1.setOnClickListener(btn_click);
@@ -714,6 +710,18 @@ public class ActAdoptEdit extends AppCompatActivity {
         btnAdoptCondition = (Button) findViewById(R.id.btnAdoptCondition);
         btnAdoptCondition.setOnClickListener(btn_click);
         iv_ImageButtonArray = new ImageButton[]{imgBtn1, imgBtn2, imgBtn3, imgBtn4, imgBtn5};
+    }
+
+    View.OnClickListener btnConfirmAdopted_click=new View.OnClickListener(){
+        public void onClick(View arg0) {
+            Intent intent = new Intent(ActAdoptEdit.this, ActUpdateStatus.class);
+            intent.putExtra("object_ConditionOfAdoptPet_objA",iv_object_petDataForSelfDB);
+            startActivity(intent);
+        }
+    };
+
+    public void updateStatus(){
+
     }
 
     public String check確認是否欄位都有填寫() {
@@ -989,15 +997,7 @@ public class ActAdoptEdit extends AppCompatActivity {
                             .setPositiveButton("送出", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
-
-
-
                                     //**
-
-
-
-
                                     for (Boolean b:iv_booleanArray_ImgHasChange
                                             ) {
                                         Log.d("真假顯示",b.toString());
@@ -1010,19 +1010,10 @@ public class ActAdoptEdit extends AppCompatActivity {
                                             bitmapArray[i] = iv_ArrayList_Bitmap.get(i);
                                             selectedImgForUploadArray[i] = true;
                                         }
-
                                     }
-
-
                                     //**
-
-
                                     //**
-
-
-
                                     String l_string_未填寫的欄位有哪些 = check確認是否欄位都有填寫();
-
                                     if (l_string_未填寫的欄位有哪些.length() > 10) {
                                         new AlertDialog.Builder(ActAdoptEdit.this)
                                                 .setMessage(Html.fromHtml("<font color='#2d4b44'>"+l_string_未填寫的欄位有哪些+"</font>"))
@@ -1166,7 +1157,7 @@ public class ActAdoptEdit extends AppCompatActivity {
     }
 
     ImageButton imgBtn1, imgBtn2, imgBtn3, imgBtn4, imgBtn5;
-    Button btnAdoptCondition, btnEdit, btnDelete, btnCamera;
+    Button btnAdoptCondition, btnEdit, btnDelete, btnCamera,btnConfirmAdopted;
     ImageButton[] imgBtnArray = {imgBtn1, imgBtn2, imgBtn3, imgBtn4, imgBtn5};
     //*********************
     EditText edTxt_animalID, edTxt_animalName, edTxt_animalAddress, edTxt_animalDate, edTxt_animalGender,

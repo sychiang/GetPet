@@ -152,8 +152,9 @@ public class AdoptUploadListAdapter extends RecyclerView.Adapter<AdoptUploadList
             holder.tv_upload_ifadopted.setText(item.getAnimalAdopted());
         }
         if(item.getAnimalGetter_userID() != null){
-            holder.tv_upload_getter.setText(item.getAnimalGetter_userID());
+            holder.tv_upload_getter.setText("已被"+item.getAnimalGetter_userID()+"認養");
             holder.tv_upload_getter.setVisibility(View.VISIBLE);
+            holder.tv_upload_ifadopted.setVisibility(View.INVISIBLE);
         }
 
         if(item.getAnimalData_Pic().size()>0){
