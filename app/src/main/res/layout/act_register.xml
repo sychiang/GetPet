@@ -49,6 +49,7 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:maxLength="8"
+            android:textColor="@color/colorNormalText"
             android:hint="帳號/Account" />
     </android.support.design.widget.TextInputLayout>
 
@@ -64,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
+            android:textColor="@color/colorNormalText"
             android:hint="電子郵件/Email" />
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
@@ -78,6 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textColor="@color/colorNormalText"
             android:hint="密碼/Password" />
     </android.support.design.widget.TextInputLayout>
     <android.support.design.widget.TextInputLayout
@@ -92,6 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textColor="@color/colorNormalText"
             android:hint="確認密碼/Confirm Password" />
     </android.support.design.widget.TextInputLayout>
 
