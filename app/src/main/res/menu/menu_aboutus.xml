@@ -4,7 +4,7 @@
     <item
         android:id="@+id/action_goaboutus"
         android:orderInCategory="100"
-        android:title="回首頁"
-        android:icon="@drawable/icon_aboutus_02"
+        android:title="關於我們"
+        android:icon="@drawable/ic_info_outline"
         app:showAsAction="ifRoom" />
 </menu>
