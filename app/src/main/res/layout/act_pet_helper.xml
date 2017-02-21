@@ -7,10 +7,11 @@
     android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
+    android:background="#2c3e50"
     tools:context="iii.org.tw.getpet.ActPetHelper">
 
     <ImageButton
-        android:background="#77B3D4"
+        android:background="#2c3e50"
         android:id="@+id/btn_goForward"
         android:src="@drawable/icon_wb_next"
         android:scaleType="fitCenter"
@@ -19,7 +20,7 @@
         android:layout_height="30dp" />
 
     <ImageButton
-        android:background="#77B3D4"
+        android:background="#2c3e50"
         android:id="@+id/btn_goBack"
         android:src="@drawable/icon_wb_back"
         android:scaleType="fitCenter"

@@ -5,6 +5,6 @@
         android:id="@+id/action_goaboutus"
         android:orderInCategory="100"
         android:title="回首頁"
-        android:icon="@drawable/icon_aboutus"
+        android:icon="@drawable/icon_aboutus_02"
         app:showAsAction="ifRoom" />
 </menu>
