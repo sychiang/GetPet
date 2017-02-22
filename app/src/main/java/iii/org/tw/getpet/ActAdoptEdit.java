@@ -932,7 +932,7 @@ public class ActAdoptEdit extends AppCompatActivity {
             String clientId = "d8371f0a27e5085"; //設定自己的 Clinet ID
             String titleString = "GetPet" + strDate; //設定圖片的標題
             SyncHttpClient client0 = new SyncHttpClient();
-            //client0.addHeader("X-Mashape-Key", mashapeKey);
+            client0.setConnectTimeout(60000);
             client0.addHeader("Authorization", "Client-ID " + clientId);
             client0.addHeader("Content-Type", "application/x-www-form-urlencoded");
 
