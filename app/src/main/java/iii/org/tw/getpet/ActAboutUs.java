@@ -18,6 +18,7 @@ public class ActAboutUs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_about_us);
         initComponent();
+        btn_rank.setEnabled(false);
 
         tv_content.setText("以認養代替購買，以送養代替拋棄\n\n" +
                 "這是一個非官方的平台，目的是希望透過網站及APP即時分享 狗狗 & 貓貓 的認養及送養資訊，讓想要養寵物的各位以認養代替購買，以送養代替拋棄。\n\n" +
@@ -62,7 +63,7 @@ public class ActAboutUs extends AppCompatActivity {
         public void onClick(View arg0) {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_SENDTO);
-            intent.setData(Uri.parse("mailto:iiisyc92@gmail.com"));
+            intent.setData(Uri.parse("mailto:cr4iii9204@gmail.com"));
             intent.putExtra(Intent.EXTRA_SUBJECT, "[問題/建議]");
             intent.putExtra(Intent.EXTRA_TEXT, "");
             startActivity(intent);

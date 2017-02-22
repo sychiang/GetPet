@@ -135,6 +135,13 @@ public class ActLogin extends AppCompatActivity {
 
     }
 
+    public String checkInput() {
+        String emptyInputField = "以下欄位不可為空:\n";
+        emptyInputField += input_account.getText().toString().isEmpty() ? "帳號\n" : "";
+        emptyInputField += input_password.getText().toString().isEmpty() ? "密碼\n" : "";
+        return emptyInputField;
+    }
+
     public void doRegisterExternal(){
         OkHttpClient Iv_OkHttp_client = new OkHttpClient();
         final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
@@ -213,8 +220,21 @@ public class ActLogin extends AppCompatActivity {
 
     View.OnClickListener btn_login_Click=new View.OnClickListener(){
         public void onClick(View arg0) {
-            progressDialog = ProgressDialog.show(ActLogin.this, Html.fromHtml("<font color='#2d4b44'>資料傳送中, 請稍後...</font>"), "", true);
-            requestForToken();
+            String emptyInputField = checkInput();
+            if (emptyInputField.length() > 10) {
+                new AlertDialog.Builder(ActLogin.this)
+                        .setMessage(Html.fromHtml("<font color='#2d4b44'>"+emptyInputField+"</font>"))
+                        .setTitle(Html.fromHtml("<font color='#2d4b44'>欄位未填</font>"))
+                        .setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        })
+                        .show();
+            }else {
+                progressDialog = ProgressDialog.show(ActLogin.this, Html.fromHtml("<font color='#2d4b44'>資料傳送中, 請稍後...</font>"), "", true);
+                requestForToken();
+            }
         }
     };
 
@@ -240,33 +260,37 @@ public class ActLogin extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String reponseMsg = response.body().string();
-                Log.d(CDictionary.Debug_TAG,"(TOKEN)RESPONSE BODY: "+reponseMsg);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            JSONObject jObj = new JSONObject(reponseMsg);
-                            access_token = jObj.getString("access_token");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        if(access_token != ""){
-                            requestForUserInfo();
-                        } else{
-                            progressDialog.dismiss();
+                Log.d(CDictionary.Debug_TAG,"(REQUEST TOKEN)RESPONSE CODE: "+response.code());
+                if(response.code() == 200){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                JSONObject jObj = new JSONObject(reponseMsg);
+                                access_token = jObj.getString("access_token");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            if(access_token != ""){
+                                requestForUserInfo();
+                            } else{
+                                progressDialog.dismiss();
+                                AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
+                                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>登入失敗</font>"));
+                                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
 
-                            AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
-                            dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>登入失敗</font>"));
-                            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                }
-                            });
-                            dialog.create().show();
+                                    }
+                                });
+                                dialog.create().show();
+                            }
                         }
-                    }
-                });
+                    });
+                } else {
+
+                }
+
             }
             @Override
             public void onFailure(Call call, IOException e) {
@@ -277,7 +301,7 @@ public class ActLogin extends AppCompatActivity {
                         progressDialog.dismiss();
 
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
-                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>登入失敗</font>"));
+                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>連線錯誤, 請稍後再試</font>"));
                         dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -307,45 +331,58 @@ public class ActLogin extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 final String reponseMsg = response.body().string();
-                Log.d(CDictionary.Debug_TAG,"(USERINFO)RESPONSE BODY: "+reponseMsg);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            JSONObject jObj = new JSONObject(reponseMsg);
-                            Email = jObj.getString("Email");
-                            UserName = jObj.getString("UserName");
-                            UserId = jObj.getString("UserId");
-                            HasRegistered = jObj.getString("HasRegistered");
-                            LoginProvider = jObj.getString("LoginProvider");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
-                        userInfo.edit().putString(CDictionary.SK_username,input_account.getText().toString())
-                                .putString(CDictionary.SK_token,access_token)
-                                .putString(CDictionary.SK_userid,UserId)
-                                .putString(CDictionary.SK_useremail,Email)
-                                .commit();
-                        Log.d(CDictionary.Debug_TAG,"測試暫存 USERNAME: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,""));
-                        Log.d(CDictionary.Debug_TAG,"測試暫存 TOKEN: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,""));
-                        Log.d(CDictionary.Debug_TAG,"測試暫存 USERID: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,""));
-                        Log.d(CDictionary.Debug_TAG,"測試暫存 EMAIL: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_useremail,""));
-
-                        progressDialog.dismiss();
-
-                        AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
-                        dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>登入成功</font>"));
-                        dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                goMainScreen();
+                Log.d(CDictionary.Debug_TAG,"(USERINFO)RESPONSE CODE: "+response.code());
+                if(response.code() == 200){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                JSONObject jObj = new JSONObject(reponseMsg);
+                                Email = jObj.getString("Email");
+                                UserName = jObj.getString("UserName");
+                                UserId = jObj.getString("UserId");
+                                HasRegistered = jObj.getString("HasRegistered");
+                                LoginProvider = jObj.getString("LoginProvider");
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        });
-                        dialog.create().show();
+                            SharedPreferences userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
+                            userInfo.edit().putString(CDictionary.SK_username,input_account.getText().toString())
+                                    .putString(CDictionary.SK_token,access_token)
+                                    .putString(CDictionary.SK_userid,UserId)
+                                    .putString(CDictionary.SK_useremail,Email)
+                                    .commit();
+                            Log.d(CDictionary.Debug_TAG,"測試暫存 USERNAME: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_username,""));
+                            Log.d(CDictionary.Debug_TAG,"測試暫存 TOKEN: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_token,""));
+                            Log.d(CDictionary.Debug_TAG,"測試暫存 USERID: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_userid,""));
+                            Log.d(CDictionary.Debug_TAG,"測試暫存 EMAIL: "+getSharedPreferences("userInfo",MODE_PRIVATE).getString(CDictionary.SK_useremail,""));
 
-                    }
-                });
+                            progressDialog.dismiss();
+
+                            AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
+                            dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>登入成功</font>"));
+                            dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    goMainScreen();
+                                }
+                            });
+                            dialog.create().show();
+
+                        }
+                    });
+                } else {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(ActLogin.this);
+                    dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>登入失敗</font>"));
+                    dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    dialog.create().show();
+                }
+
             }
             @Override
             public void onFailure(Call call, IOException e) {

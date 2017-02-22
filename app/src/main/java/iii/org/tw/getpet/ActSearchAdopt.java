@@ -141,10 +141,18 @@ public class ActSearchAdopt extends AppCompatActivity {
         public void onClick(View arg0) {
             selectedArea = spinner_area.getSelectedItem().toString();
             Log.d(CDictionary.Debug_TAG,"縣市: "+selectedArea);
-            selectedKind = spinner_animalKind.getSelectedItem().toString();
-            Log.d(CDictionary.Debug_TAG,"種類: "+selectedKind);
-            selectedType = spinner_animalType.getSelectedItem().toString();
-            Log.d(CDictionary.Debug_TAG,"品種: "+selectedType);
+
+            try{
+                selectedKind = spinner_animalKind.getSelectedItem().toString();
+                Log.d(CDictionary.Debug_TAG,"種類: "+selectedKind);
+                selectedType = spinner_animalType.getSelectedItem().toString();
+                Log.d(CDictionary.Debug_TAG,"品種: "+selectedType);
+
+            }catch (Exception ec){
+                Log.d("BugHappen","yo");
+                return;
+            }
+
             selectedSex = spinner_sex.getSelectedItem().toString();
             Log.d(CDictionary.Debug_TAG,"性別: "+selectedSex);
 
