@@ -87,12 +87,8 @@ public class ActMapSearch extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-
     }
-
     //*
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == MY_LOCATION_REQUEST_CODE) {
@@ -238,7 +234,7 @@ public class ActMapSearch extends AppCompatActivity implements OnMapReadyCallbac
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(markerOptions2.getPosition()));
             CameraPosition cameraPosition2 = new CameraPosition.Builder()
                     .target(markerOptions2.getPosition())
-                    .zoom(17)
+                    .zoom(15)
                     .build();
 
             //***

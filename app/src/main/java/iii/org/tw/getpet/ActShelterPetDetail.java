@@ -121,7 +121,7 @@ public class ActShelterPetDetail extends AppCompatActivity implements OnMapReady
             googleMap.moveCamera(CameraUpdateFactory.newLatLng(markerOptions.getPosition()));
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(markerOptions.getPosition())
-                    .zoom(17)
+                    .zoom(15)
                     .build();
             googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         }

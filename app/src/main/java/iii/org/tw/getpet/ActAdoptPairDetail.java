@@ -117,14 +117,14 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
         tvNote.setText(intent.getExtras().getString(CDictionary.BK_animalNote));
 
         //輪播功能
-        fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
-        fade_out = AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
-        viewFlipper.setAnimation(fade_in);
-        viewFlipper.setAnimation(fade_out);
+//        fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+//        fade_out = AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
+//        viewFlipper.setAnimation(fade_in);
+//        viewFlipper.setAnimation(fade_out);
         //sets auto flipping
-        viewFlipper.setAutoStart(true);
-        viewFlipper.setFlipInterval(3000);
-        viewFlipper.startFlipping();
+//        viewFlipper.setAutoStart(true);
+//        viewFlipper.setFlipInterval(3000);
+//        viewFlipper.startFlipping();
 
         //getFollowingList();
 

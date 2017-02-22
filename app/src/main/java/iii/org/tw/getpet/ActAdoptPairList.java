@@ -58,7 +58,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
         setContentView(R.layout.act_adopt_pair_list);
         //setTitle("iPet 動物資訊");
         Intent intent = getIntent();
-        String url = "http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas?";
+        String url = "http://twpetanimal.ddns.net:9487/api/v1/AnimalDatas?$orderby=animalDate desc";
         String condArea = intent.getExtras().getString(CDictionary.BK_Area);
         Log.d(CDictionary.Debug_TAG, "get cond1" + condArea);
         String condKind = intent.getExtras().getString(CDictionary.BK_Kind);
@@ -69,70 +69,70 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
             case "全部":
                 break;
             case "臺北市":
-                url += "$filter=animalAddress eq '臺北市'";
+                url += "&$filter=animalAddress eq '臺北市'";
                 break;
             case "新北市":
-                url += "$filter=animalAddress eq '新北市'";
+                url += "&$filter=animalAddress eq '新北市'";
                 break;
             case "基隆市":
-                url += "$filter=animalAddress eq '基隆市'";
+                url += "&$filter=animalAddress eq '基隆市'";
                 break;
             case "宜蘭縣":
-                url += "$filter=animalAddress eq '宜蘭縣'";
+                url += "&$filter=animalAddress eq '宜蘭縣'";
                 break;
             case "桃園縣":
-                url += "$filter=animalAddress eq '桃園縣'";
+                url += "&$filter=animalAddress eq '桃園縣'";
                 break;
             case "新竹縣":
-                url += "$filter=animalAddress eq '新竹縣'";
+                url += "&$filter=animalAddress eq '新竹縣'";
                 break;
             case "新竹市":
-                url += "$filter=animalAddress eq '新竹市'";
+                url += "&$filter=animalAddress eq '新竹市'";
                 break;
             case "苗栗縣":
-                url += "$filter=animalAddress eq '苗栗縣'";
+                url += "&$filter=animalAddress eq '苗栗縣'";
                 break;
             case "臺中市":
-                url += "$filter=animalAddress eq '臺中市'";
+                url += "&$filter=animalAddress eq '臺中市'";
                 break;
             case "彰化縣":
-                url += "$filter=animalAddress eq '彰化縣'";
+                url += "&$filter=animalAddress eq '彰化縣'";
                 break;
             case "南投縣":
-                url += "$filter=animalAddress eq '南投縣'";
+                url += "&$filter=animalAddress eq '南投縣'";
                 break;
             case "雲林縣":
-                url += "$filter=animalAddress eq '雲林縣'";
+                url += "&$filter=animalAddress eq '雲林縣'";
                 break;
             case "嘉義縣":
-                url += "$filter=animalAddress eq '嘉義縣'";
+                url += "&$filter=animalAddress eq '嘉義縣'";
                 break;
             case "嘉義市":
-                url += "$filter=animalAddress eq '嘉義市'";
+                url += "&$filter=animalAddress eq '嘉義市'";
                 break;
             case "臺南市":
-                url += "$filter=animalAddress eq '臺南市'";
+                url += "&$filter=animalAddress eq '臺南市'";
                 break;
             case "高雄市":
-                url += "$filter=animalAddress eq '高雄市'";
+                url += "&$filter=animalAddress eq '高雄市'";
                 break;
             case "屏東縣":
-                url += "$filter=animalAddress eq '屏東縣'";
+                url += "&$filter=animalAddress eq '屏東縣'";
                 break;
             case "花蓮縣":
-                url += "$filter=animalAddress eq '花蓮縣'";
+                url += "&$filter=animalAddress eq '花蓮縣'";
                 break;
             case "臺東縣":
-                url += "$filter=animalAddress eq '臺東縣'";
+                url += "&$filter=animalAddress eq '臺東縣'";
                 break;
             case "澎湖縣":
-                url += "$filter=animalAddress eq '澎湖縣'";
+                url += "&$filter=animalAddress eq '澎湖縣'";
                 break;
             case "金門縣":
-                url += "$filter=animalAddress eq '金門縣'";
+                url += "&$filter=animalAddress eq '金門縣'";
                 break;
             case "連江縣":
-                url += "$filter=animalAddress eq '連江縣'";
+                url += "&$filter=animalAddress eq '連江縣'";
                 break;
             default:
                 break;
@@ -143,37 +143,37 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                 case "全部":
                     break;
                 case "狗":
-                    url += "$filter=animalKind eq '狗'";
+                    url += "&$filter=animalKind eq '狗'";
                     if(!condType.equals("全部")){
                         url += "and animalType eq '"+condType+"'";
                     }
                     break;
                 case "貓":
-                    url += "$filter=animalKind eq '貓'";
+                    url += "&$filter=animalKind eq '貓'";
                     if(!condType.equals("全部")){
                         url += "and animalType eq '"+condType+"'";
                     }
                     break;
                 case "老鼠":
-                    url += "$filter=animalKind eq '老鼠'";
+                    url += "&$filter=animalKind eq '老鼠'";
                     if(!condType.equals("全部")){
                         url += "and animalType eq '"+condType+"'";
                     }
                     break;
                 case "鳥":
-                    url += "$filter=animalKind eq '鳥'";
+                    url += "&$filter=animalKind eq '鳥'";
                     if(!condType.equals("全部")){
                         url += "and animalType eq '"+condType+"'";
                     }
                     break;
                 case "兔子":
-                    url += "$filter=animalKind eq '兔子'";
+                    url += "&$filter=animalKind eq '兔子'";
                     if(!condType.equals("全部")){
                         url += "and animalType eq '"+condType+"'";
                     }
                     break;
                 case "其他":
-                    url += "$filter=animalKind eq '其他'";
+                    url += "&$filter=animalKind eq '其他'";
                     if(!condType.equals("全部")){
                         url += "and animalType eq '"+condType+"'";
                     }
@@ -362,18 +362,18 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                     if(petlist.get(position).getAnimalData_Pic().get(0).getAnimalPicAddress().toLowerCase().endsWith(".jpg") ||
                             petlist.get(position).getAnimalData_Pic().get(0).getAnimalPicAddress().toLowerCase().endsWith(".png"))
                         bundle.putString(CDictionary.BK_animalPicURL1, petlist.get(position).getAnimalData_Pic().get(0).getAnimalPicAddress());
-                    if(petlist.get(position).getAnimalData_Pic().size() >= 2){
-                        if(petlist.get(position).getAnimalData_Pic().get(1).getAnimalPicAddress().toLowerCase().endsWith(".jpg") ||
-                                petlist.get(position).getAnimalData_Pic().get(1).getAnimalPicAddress().toLowerCase().endsWith(".png")){
-                            bundle.putString(CDictionary.BK_animalPicURL2, petlist.get(position).getAnimalData_Pic().get(1).getAnimalPicAddress());
-                        }
-                    }
-                    if(petlist.get(position).getAnimalData_Pic().size() >= 3){
-                        if(petlist.get(position).getAnimalData_Pic().get(2).getAnimalPicAddress().toLowerCase().endsWith(".jpg") ||
-                                petlist.get(position).getAnimalData_Pic().get(2).getAnimalPicAddress().toLowerCase().endsWith(".png")){
-                            bundle.putString(CDictionary.BK_animalPicURL3, petlist.get(position).getAnimalData_Pic().get(2).getAnimalPicAddress());
-                        }
-                    }
+//                    if(petlist.get(position).getAnimalData_Pic().size() >= 2){
+//                        if(petlist.get(position).getAnimalData_Pic().get(1).getAnimalPicAddress().toLowerCase().endsWith(".jpg") ||
+//                                petlist.get(position).getAnimalData_Pic().get(1).getAnimalPicAddress().toLowerCase().endsWith(".png")){
+//                            bundle.putString(CDictionary.BK_animalPicURL2, petlist.get(position).getAnimalData_Pic().get(1).getAnimalPicAddress());
+//                        }
+//                    }
+//                    if(petlist.get(position).getAnimalData_Pic().size() >= 3){
+//                        if(petlist.get(position).getAnimalData_Pic().get(2).getAnimalPicAddress().toLowerCase().endsWith(".jpg") ||
+//                                petlist.get(position).getAnimalData_Pic().get(2).getAnimalPicAddress().toLowerCase().endsWith(".png")){
+//                            bundle.putString(CDictionary.BK_animalPicURL3, petlist.get(position).getAnimalData_Pic().get(2).getAnimalPicAddress());
+//                        }
+//                    }
                 }
                 if(petlist.get(position).getAnimalData_Condition().size()>0){
                     bundle.putString(CDictionary.BK_conditionAge,petlist.get(position).getAnimalData_Condition().get(0).getConditionAge());

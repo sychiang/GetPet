@@ -79,6 +79,7 @@ public class ActMsgBox extends AppCompatActivity {
         progressDialog = ProgressDialog.show(ActMsgBox.this, Html.fromHtml("<font color='#2d4b44'>資料讀取中, 請稍後...</font>"), "", true);
         String url = "http://twpetanimal.ddns.net:9487/api/v1/MsgUsers";
         url += "/"+UserId;
+        url += "?$orderby=msgTime desc";
         Log.d(CDictionary.Debug_TAG,"GET URL："+url);
         //取回MSG資料存入集合
         AndroidNetworking.initialize(getApplicationContext());

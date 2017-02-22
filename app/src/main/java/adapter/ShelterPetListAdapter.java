@@ -103,7 +103,7 @@ public class ShelterPetListAdapter extends BaseAdapter{
         tvType.setText(bodytype+item.getAnimal_kind());
         tvAge.setText(age);
         tvLocation.setText(item.getShelter_name().substring(0,2));
-        tvDate.setText(item.getAnimal_opendate());
+        tvDate.setText(item.getAnimal_update().substring(0,10));
         return rowView;
     }
 }

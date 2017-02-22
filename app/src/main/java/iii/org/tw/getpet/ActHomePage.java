@@ -77,10 +77,10 @@ public class ActHomePage extends AppCompatActivity
 //        toggle.syncState();
 
         //輪播功能
-        fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
-        fade_out = AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
-        viewFlipper.setAnimation(fade_in);
-        viewFlipper.setAnimation(fade_out);
+//        fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+//        fade_out = AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
+//        viewFlipper.setAnimation(fade_in);
+//        viewFlipper.setAnimation(fade_out);
         //sets auto flipping
 //        viewFlipper.setAutoStart(true);
 //        viewFlipper.setFlipInterval(3000);
