@@ -99,7 +99,7 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:src="@drawable/vc_member_msg"
+                android:src="@drawable/vc_member_adoptedlist"
                 android:scaleType="fitCenter"
                 android:background="@color/colorBackground"
                 android:id="@+id/btnGoAdoptedList"
