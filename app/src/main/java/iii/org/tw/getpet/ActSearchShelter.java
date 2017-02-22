@@ -22,6 +22,7 @@ import common.CDictionary;
 public class ActSearchShelter extends AppCompatActivity {
     String selectedArea = "";
     String selectedType = "";
+    String selectedSex = "";
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -88,6 +89,34 @@ public class ActSearchShelter extends AppCompatActivity {
                 dialog.create().show();
             }
         });
+
+        //性別下拉選單
+        final String[] sex = {"全部", "公", "母"};
+        ArrayAdapter<String> sexList = new ArrayAdapter<>(ActSearchShelter.this,
+                R.layout.spinnercontent,
+                sex);
+        spinner_sex.setDropDownWidth(500);
+        spinner_sex.setAdapter(sexList);
+        spinner_sex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedSex = sex[position];
+                Log.d(CDictionary.Debug_TAG,selectedSex);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActSearchShelter.this);
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>請選擇欲查詢的性別</font>"));
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                dialog.create().show();
+            }
+        });
+
     }
 
     @Override
@@ -113,6 +142,7 @@ public class ActSearchShelter extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putString(CDictionary.BK_Area, selectedArea);
             bundle.putString(CDictionary.BK_Type, selectedType);
+            bundle.putString(CDictionary.BK_Sex, selectedSex);
             Intent intent = new Intent(ActSearchShelter.this, ActShelterPetList.class);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -124,8 +154,9 @@ public class ActSearchShelter extends AppCompatActivity {
         btnSearch.setOnClickListener(btnSearch_Click);
         spinner_area = (Spinner)findViewById(R.id.spinner_area);
         spinner_type = (Spinner)findViewById(R.id.spinner_type);
+        spinner_sex = (Spinner)findViewById(R.id.spinner_sex);
     }
 
     Button btnSearch;
-    Spinner spinner_area, spinner_type;
+    Spinner spinner_area, spinner_type,spinner_sex;
 }

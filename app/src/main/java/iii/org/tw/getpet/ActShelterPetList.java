@@ -58,6 +58,8 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
         Log.d(CDictionary.Debug_TAG, "get cond1" + condArea);
         String condType = intent.getExtras().getString(CDictionary.BK_Type);
         Log.d(CDictionary.Debug_TAG, "get cond2" + condType);
+        String condSex = intent.getExtras().getString(CDictionary.BK_Sex);
+        Log.d(CDictionary.Debug_TAG, "get cond3" + condSex);
         switch (condArea) {
             case "全部":
                 break;
@@ -152,6 +154,33 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
                     break;
                 case "貓":
                     url += "+and+animal_kind+like+貓";
+                    break;
+                default:
+                    break;
+            }
+        }
+        if(condArea.equals("全部") && condType.equals("全部")){
+            switch (condSex) {
+                case "全部":
+                    break;
+                case "公":
+                    url += "&$filter=animal_sex+like+M";
+                    break;
+                case "母":
+                    url += "&$filter=animal_sex+like+F";
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (condSex) {
+                case "全部":
+                    break;
+                case "公":
+                    url += "+and+animal_sex+like+M";
+                    break;
+                case "母":
+                    url += "+and+animal_sex+like+F";
                     break;
                 default:
                     break;

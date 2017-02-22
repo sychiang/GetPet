@@ -9,6 +9,7 @@ import model.AdoptPair;
 public class CDictionary {
     public static final String Debug_TAG = "Debug_TAG";
     //Bundle key
+    public static final String BK_Sex = "BK_Sex";
     public static final String BK_Area = "BK_Area";
     public static final String BK_Type = "BK_Type";
     public static final String BK_Kind = "BK_Kind";

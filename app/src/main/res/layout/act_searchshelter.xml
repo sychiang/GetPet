@@ -63,6 +63,29 @@
                 android:layout_margin="50px"></Spinner>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50px"
+            android:background="@drawable/spinner_style"
+            android:orientation="horizontal"
+            android:paddingLeft="10px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50px"
+                android:layout_marginRight="23px"
+                android:text="寵物性別"
+                android:textSize="25sp" />
+
+            <Spinner
+                android:id="@+id/spinner_sex"
+                android:layout_width="600px"
+                android:layout_height="wrap_content"
+                android:layout_margin="50px"></Spinner>
+
+        </LinearLayout>
         <Button
             android:layout_marginTop="50px"
             android:id="@+id/btnSearch"
