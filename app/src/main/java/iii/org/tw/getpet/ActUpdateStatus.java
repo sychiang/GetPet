@@ -175,7 +175,7 @@ public class ActUpdateStatus extends AppCompatActivity {
 
     public String checkInput() {
         String emptyInputField = "尚未填寫以下欄位:\n";
-        emptyInputField += edTxt_getterAccount.getText().toString().isEmpty() ? "認養人帳號\n" : "";
+        emptyInputField += edTxt_getterAccount.getText().toString().isEmpty() ? "認養人名稱\n" : "";
         return emptyInputField;
     }
 

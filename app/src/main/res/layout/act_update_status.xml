@@ -23,7 +23,7 @@
         <EditText
             android:textSize="20sp"
             android:textColor="@color/colorNormalText"
-            android:hint="請填入認養人帳號"
+            android:hint="請填入認養人名稱"
             android:inputType="text"
             android:maxLength="8"
             android:id="@+id/edTxt_getterAccount"
@@ -33,12 +33,13 @@
 
     </LinearLayout>
     <Button
+        android:layout_gravity="right"
         android:textSize="20sp"
         android:background="@drawable/btn_style_normal"
         android:id="@+id/btnSubmit"
         android:text="送出"
         android:textColor="@color/colorMyTitle"
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
