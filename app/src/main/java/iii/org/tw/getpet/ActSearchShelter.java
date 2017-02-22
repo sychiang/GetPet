@@ -64,7 +64,7 @@ public class ActSearchShelter extends AppCompatActivity {
         });
 
         //類型下拉選單
-        final String[] type = {"全部", "狗", "貓"};
+        final String[] type = {"全部", "狗", "貓","鴿子"};
         ArrayAdapter<String> typeList = new ArrayAdapter<>(ActSearchShelter.this,
                 R.layout.spinnercontent,
                 type);

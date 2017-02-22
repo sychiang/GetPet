@@ -142,6 +142,9 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
                 case "貓":
                     url += "&$filter=animal_kind+like+貓";
                     break;
+                case "鴿子":
+                    url += "&$filter=animal_kind+like+鴿子";
+                    break;
                 default:
                     break;
             }
@@ -154,6 +157,9 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
                     break;
                 case "貓":
                     url += "+and+animal_kind+like+貓";
+                    break;
+                case "鴿子":
+                    url += "+and+animal_kind+like+鴿子";
                     break;
                 default:
                     break;
