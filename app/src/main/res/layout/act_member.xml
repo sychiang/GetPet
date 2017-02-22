@@ -75,6 +75,19 @@
                 android:text="會員登入"
                 android:textSize="14dp" />
 
+            <ImageButton
+                android:src="@drawable/vc_member_msg"
+                android:scaleType="fitCenter"
+                android:background="@color/colorBackground"
+                android:id="@+id/btnGoMsgBox"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="個人訊息"
+                android:textSize="14dp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -89,13 +102,13 @@
                 android:src="@drawable/vc_member_msg"
                 android:scaleType="fitCenter"
                 android:background="@color/colorBackground"
-                android:id="@+id/btnGoMsgBox"
+                android:id="@+id/btnGoAdoptedList"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="個人訊息"
+                android:text="已認養清單"
                 android:textSize="14dp" />
 
             <ImageButton

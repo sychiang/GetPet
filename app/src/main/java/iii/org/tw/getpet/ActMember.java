@@ -129,6 +129,28 @@ public class ActMember extends AppCompatActivity {
         }
     };
 
+    View.OnClickListener btnGoAdoptedList_Click=new View.OnClickListener(){
+        public void onClick(View arg0) {
+            if(access_token == ""){
+                Log.d(CDictionary.Debug_TAG,"not log in");
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActMember.this);
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>尚未登入, 請先登入會員</font>"));
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        goLoginScreen();
+                    }
+                });
+                dialog.create().show();
+            } else {
+                Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+access_token);
+                Log.d(CDictionary.Debug_TAG,"GET USER ID："+UserId);
+                intent = new Intent(ActMember.this, ActAdoptedList.class);
+                startActivity(intent);
+            }
+        }
+    };
+
     private void goLoginScreen() {
         intent = new Intent(ActMember.this, ActLogin.class);
         startActivity(intent);
@@ -150,13 +172,16 @@ public class ActMember extends AppCompatActivity {
         btnGoUploadlist = (ImageButton)findViewById(R.id.btnGoUploadlist);
         btnGoUploadlist.setOnClickListener(btnGoUploadlist_Click);
 
+        btnGoAdoptedList = (ImageButton)findViewById(R.id.btnGoAdoptedList);
+        btnGoAdoptedList.setOnClickListener(btnGoAdoptedList_Click);
+
         ivPhoto1 = (ImageView)findViewById(R.id.ivPhoto1);
 
         viewFlipper=(ViewFlipper)findViewById(R.id.viewflipper);
     }
 
     //Button btnGoRegister,btnGoSignIn,btnGoMsgBox,btnGoFollowing;
-    ImageButton btnGoRegister,btnGoSignIn,btnGoMsgBox,btnGoFollowing,btnGoUploadlist;
+    ImageButton btnGoRegister,btnGoSignIn,btnGoMsgBox,btnGoFollowing,btnGoUploadlist,btnGoAdoptedList;
     ImageView ivPhoto1,ivPhoto2,ivPhoto3,ivPhoto4,ivPhoto5;
     ViewFlipper viewFlipper;
     Animation fade_in,fade_out;

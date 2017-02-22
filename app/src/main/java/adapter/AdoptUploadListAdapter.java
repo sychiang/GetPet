@@ -124,8 +124,6 @@ public class AdoptUploadListAdapter extends RecyclerView.Adapter<AdoptUploadList
                         obj.getAnimalData_Condition().add(conditionOfAdoptPet);
                     }
 
-
-
                 }
 
 

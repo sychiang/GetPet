@@ -148,9 +148,12 @@
         <activity
             android:name=".ActAboutUs"
             android:theme="@style/AppTheme.iPet" />
-        <activity android:name=".ActUpdateStatus"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/Base.Theme.AppCompat.Light.Dialog"/>
+        <activity
+            android:name=".ActUpdateStatus"
+            android:theme="@style/Base.Theme.AppCompat.Light.Dialog"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".ActAdoptedList"
+            android:theme="@style/AppTheme.iPet"/>
     </application>
 
 </manifest>
