@@ -40,27 +40,6 @@
 
         </LinearLayout>
 
-        <!--<LinearLayout-->
-        <!--android:layout_marginTop="50px"-->
-        <!--android:paddingLeft="10px"-->
-        <!--android:background="@drawable/spinner_style"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--<TextView-->
-        <!--android:layout_marginTop="50px"-->
-        <!--android:text="類型"-->
-        <!--android:textSize="25sp"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content" />-->
-        <!--<Spinner-->
-        <!--android:layout_margin="50px"-->
-        <!--android:id="@+id/spinner_type"-->
-        <!--android:layout_width="500px"-->
-        <!--android:layout_height="wrap_content">-->
-        <!--</Spinner>-->
-        <!--</LinearLayout>-->
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -103,6 +82,28 @@
 
             <Spinner
                 android:id="@+id/spinner_animalType2"
+                android:layout_width="600px"
+                android:layout_height="wrap_content"
+                android:layout_margin="50px"></Spinner>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50px"
+            android:background="@drawable/spinner_style"
+            android:orientation="horizontal"
+            android:paddingLeft="10px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50px"
+                android:layout_marginRight="23px"
+                android:text="寵物性別"
+                android:textSize="25sp" />
+
+            <Spinner
+                android:id="@+id/spinner_sex"
                 android:layout_width="600px"
                 android:layout_height="wrap_content"
                 android:layout_margin="50px"></Spinner>

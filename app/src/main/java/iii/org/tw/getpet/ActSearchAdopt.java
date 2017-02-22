@@ -8,6 +8,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +38,7 @@ public class ActSearchAdopt extends AppCompatActivity {
     String selectedArea = "";
     String selectedKind = "";
     String selectedType = "";
+    String selectedSex = "";
     //**
     private ArrayList<String>[] iv_Array_動物品種清單;
     private ArrayList<String> iv_ArrayList_動物類別清單;
@@ -90,32 +92,30 @@ public class ActSearchAdopt extends AppCompatActivity {
             }
         });
 
-        //類型下拉選單
-//        final String[] type = {"全部", "狗", "貓", "老鼠", "鳥", "兔子","其他"};
-//        ArrayAdapter<String> typeList = new ArrayAdapter<>(ActSearchAdopt.this,
-//                R.layout.spinnercontent,
-//                type);
-//        spinner_type.setDropDownWidth(500);
-//        spinner_type.setAdapter(typeList);
-//        spinner_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                selectedType = type[position];
-//                Log.d(CDictionary.Debug_TAG,selectedType);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                AlertDialog.Builder dialog = new AlertDialog.Builder(ActSearchAdopt.this);
-//                dialog.setTitle("請選擇欲查詢的類型");
-//                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                    }
-//                });
-//                dialog.create().show();
-//            }
-//        });
+        //性別下拉選單
+        final String[] sex = {"全部", "公", "母"};
+        ArrayAdapter<String> sexList = new ArrayAdapter<>(ActSearchAdopt.this,
+                R.layout.spinnercontent,
+                sex);
+        spinner_sex.setDropDownWidth(500);
+        spinner_sex.setAdapter(sexList);
+        spinner_sex.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ActSearchAdopt.this);
+                dialog.setTitle(Html.fromHtml("<font color='#2d4b44'>請選擇欲查詢的性別</font>"));
+                dialog.setPositiveButton("確定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                dialog.create().show();
+            }
+        });
 
     }
 
@@ -145,10 +145,14 @@ public class ActSearchAdopt extends AppCompatActivity {
             Log.d(CDictionary.Debug_TAG,"種類: "+selectedKind);
             selectedType = spinner_animalType.getSelectedItem().toString();
             Log.d(CDictionary.Debug_TAG,"品種: "+selectedType);
+            selectedSex = spinner_sex.getSelectedItem().toString();
+            Log.d(CDictionary.Debug_TAG,"性別: "+selectedSex);
+
             Bundle bundle = new Bundle();
             bundle.putString(CDictionary.BK_Area, selectedArea);
             bundle.putString(CDictionary.BK_Kind, selectedKind);
             bundle.putString(CDictionary.BK_Type, selectedType);
+            bundle.putString(CDictionary.BK_Sex, selectedSex);
             Intent intent = new Intent(ActSearchAdopt.this, ActAdoptPairList.class);
             intent.putExtras(bundle);
             startActivity(intent);
@@ -162,6 +166,7 @@ public class ActSearchAdopt extends AppCompatActivity {
         btnSearch.setOnClickListener(btnSearch_Click);
         spinner_area = (Spinner)findViewById(R.id.spinner_area);
         spinner_type = (Spinner)findViewById(R.id.spinner_type);
+        spinner_sex = (Spinner)findViewById(R.id.spinner_sex);
     }
     //******************
     public void Factory_DynamicAnimalTypeListCreator(String p_String_url) {
@@ -300,7 +305,7 @@ public class ActSearchAdopt extends AppCompatActivity {
 
     Button btnSearch;
     //ImageButton btnSearch;
-    Spinner spinner_area, spinner_type;
+    Spinner spinner_area, spinner_type, spinner_sex;
     //**
     Spinner spinner_animalArea, spinner_animalKind, spinner_animalType, spinner_animalGender, spinner_animalChip, spinner_animalBirth;
     //*

@@ -65,6 +65,8 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
         Log.d(CDictionary.Debug_TAG, "get cond2" + condKind);
         String condType = intent.getExtras().getString(CDictionary.BK_Type);
         Log.d(CDictionary.Debug_TAG, "get cond3" + condType);
+        String condSex = intent.getExtras().getString(CDictionary.BK_Sex);
+        Log.d(CDictionary.Debug_TAG, "get cond4" + condSex);
         switch (condArea) {
             case "全部":
                 break;
@@ -145,25 +147,25 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                 case "狗":
                     url += "&$filter=animalKind eq '狗'";
                     if(!condType.equals("全部")){
-                        url += "and animalType eq '"+condType+"'";
+                        url += " and animalType eq '"+condType+"'";
                     }
                     break;
                 case "貓":
                     url += "&$filter=animalKind eq '貓'";
                     if(!condType.equals("全部")){
-                        url += "and animalType eq '"+condType+"'";
+                        url += " and animalType eq '"+condType+"'";
                     }
                     break;
                 case "老鼠":
                     url += "&$filter=animalKind eq '老鼠'";
                     if(!condType.equals("全部")){
-                        url += "and animalType eq '"+condType+"'";
+                        url += " and animalType eq '"+condType+"'";
                     }
                     break;
                 case "鳥":
                     url += "&$filter=animalKind eq '鳥'";
                     if(!condType.equals("全部")){
-                        url += "and animalType eq '"+condType+"'";
+                        url += " and animalType eq '"+condType+"'";
                     }
                     break;
                 case "兔子":
@@ -175,7 +177,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                 case "其他":
                     url += "&$filter=animalKind eq '其他'";
                     if(!condType.equals("全部")){
-                        url += "and animalType eq '"+condType+"'";
+                        url += " and animalType eq '"+condType+"'";
                     }
                     break;
                 default:
@@ -189,38 +191,65 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                 case "狗":
                     url += " and animalKind eq '狗'";
                     if(!condType.equals("全部")){
-                        url += "and animalType eq '"+condType+"'";
+                        url += " and animalType eq '"+condType+"'";
                     }
                     break;
                 case "貓":
                     url += " and animalKind eq '貓'";
                     if(!condType.equals("全部")){
-                        url += "and animalType eq '"+condType+"'";
+                        url += " and animalType eq '"+condType+"'";
                     }
                     break;
                 case "老鼠":
                     url += " and animalKind eq '老鼠'";
                     if(!condType.equals("全部")){
-                        url += "and animalType eq '"+condType+"'";
+                        url += " and animalType eq '"+condType+"'";
                     }
                     break;
                 case "鳥":
                     url += " and animalKind eq '鳥'";
                     if(!condType.equals("全部")){
-                        url += "and animalType eq '"+condType+"'";
+                        url += " and animalType eq '"+condType+"'";
                     }
                     break;
                 case "兔子":
                     url += " and animalKind eq '兔子'";
                     if(!condType.equals("全部")){
-                        url += "and animalType eq '"+condType+"'";
+                        url += " and animalType eq '"+condType+"'";
                     }
                     break;
                 case "其他":
                     url += " and animalKind eq '其他'";
                     if(!condType.equals("全部")){
-                        url += "and animalType eq '"+condType+"'";
+                        url += " and animalType eq '"+condType+"'";
                     }
+                    break;
+                default:
+                    break;
+            }
+        }
+        if(condArea.equals("全部") && condKind.equals("全部")){
+            switch (condSex) {
+                case "全部":
+                    break;
+                case "公":
+                    url += "&$filter=animalGender eq '公'";
+                    break;
+                case "母":
+                    url += "&$filter=animalGender eq '母'";
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (condSex) {
+                case "全部":
+                    break;
+                case "公":
+                    url += " and animalGender eq '公'";
+                    break;
+                case "母":
+                    url += " and animalGender eq '母'";
                     break;
                 default:
                     break;
