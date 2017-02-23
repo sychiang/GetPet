@@ -482,7 +482,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
         // 所有的條目已經和最大條數相等，則移除底部的View
         if (totalItemCount == MaxDataNum + 1) {
             listview.removeFooterView(moreView);
-            Toast.makeText(this, "數據全部加載完成，沒有更多數據！", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "數據全部加載完成，沒有更多數據！", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -217,9 +217,12 @@ public class ActAdoptEdit extends AppCompatActivity {
         fill塞圖片到imageButton(iv_ImageButtonArray, l_object_petDataForSelfDB);
         //********
         if(l_object_petDataForSelfDB.getAnimalGetter_userID()!=null){
-            btnEdit.setEnabled(false);
-            btnDelete.setEnabled(false);
-            btnConfirmAdopted.setEnabled(false);
+//            btnEdit.setEnabled(false);
+//            btnDelete.setEnabled(false);
+//            btnConfirmAdopted.setEnabled(false);
+            btnEdit.setVisibility(View.GONE);
+            btnDelete.setVisibility(View.GONE);
+            btnConfirmAdopted.setVisibility(View.GONE);
         }
     }
 
