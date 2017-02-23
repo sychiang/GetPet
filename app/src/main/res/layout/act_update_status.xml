@@ -27,7 +27,7 @@
             android:inputType="text"
             android:maxLength="8"
             android:id="@+id/edTxt_getterAccount"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minWidth="200dp" />
 
@@ -39,7 +39,7 @@
         android:id="@+id/btnSubmit"
         android:text="送出"
         android:textColor="@color/colorMyTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 </LinearLayout>

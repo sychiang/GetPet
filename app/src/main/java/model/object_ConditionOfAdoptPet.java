@@ -54,7 +54,12 @@ public class object_ConditionOfAdoptPet implements Serializable {
     }
 
     public void setConditionAge(String conditionAge) {
-        this.conditionAge = (conditionAge.isEmpty() ? "18" : conditionAge);
+        try {
+            this.conditionAge = conditionAge;
+        } catch (Exception e) {
+            this.conditionAge = "18";
+        }
+        //this.conditionAge = (conditionAge.isEmpty() || conditionAge == null) ? "18" : conditionAge;
     }
 
     public String getConditionEconomy() {
@@ -62,7 +67,12 @@ public class object_ConditionOfAdoptPet implements Serializable {
     }
 
     public void setConditionEconomy(String conditionEconomy) {
-        this.conditionEconomy = conditionEconomy.isEmpty() ? "不限" : conditionEconomy;
+        try{
+            this.conditionEconomy = conditionEconomy;
+        } catch (Exception e){
+            this.conditionEconomy = "不限";
+        }
+        //this.conditionEconomy = (conditionEconomy.isEmpty() || conditionEconomy == null) ? "不限" : conditionEconomy;
     }
 
     public String getConditionFamily() {
@@ -70,7 +80,12 @@ public class object_ConditionOfAdoptPet implements Serializable {
     }
 
     public void setConditionFamily(String conditionFamily) {
-        this.conditionFamily = conditionFamily.isEmpty() ? "不限" : conditionFamily;
+        try{
+            this.conditionFamily = conditionFamily;
+        } catch (Exception e){
+            this.conditionFamily = "不限";
+        }
+        //this.conditionFamily = (conditionFamily.isEmpty() || conditionFamily == null) ? "不限" : conditionFamily;
     }
 
     public String getConditionFee() {
@@ -78,7 +93,12 @@ public class object_ConditionOfAdoptPet implements Serializable {
     }
 
     public void setConditionFee(String conditionFee) {
-        this.conditionFee = conditionFee.isEmpty() ? "不限" : conditionFee;
+        try{
+            this.conditionFee = conditionFee;
+        } catch (Exception e){
+            this.conditionFee = "不限";
+        }
+        //this.conditionFee = (conditionFee.isEmpty() || conditionFee == null) ? "不限" : conditionFee;
     }
 
     public String getConditionHome() {
@@ -86,7 +106,12 @@ public class object_ConditionOfAdoptPet implements Serializable {
     }
 
     public void setConditionHome(String conditionHome) {
-        this.conditionHome = conditionHome.isEmpty() ? "不限" : conditionHome;
+        try {
+            this.conditionHome = conditionHome;
+        } catch (Exception e){
+            this.conditionHome = "不限";
+        }
+        //this.conditionHome = (conditionHome.isEmpty() || conditionHome == null) ? "不限" : conditionHome;
     }
 
     public int getConditionID() {
@@ -102,7 +127,12 @@ public class object_ConditionOfAdoptPet implements Serializable {
     }
 
     public void setConditionOther(String conditionOther) {
-        this.conditionOther = conditionOther.isEmpty() ? "不限" : conditionOther;
+        try {
+            this.conditionOther = conditionOther;
+        } catch (Exception e) {
+            this.conditionOther = "不限";
+        }
+        //this.conditionOther = (conditionOther.isEmpty() || conditionOther == null) ? "不限" : conditionOther;
     }
 
     public String getConditionPaper() {
@@ -110,7 +140,12 @@ public class object_ConditionOfAdoptPet implements Serializable {
     }
 
     public void setConditionPaper(String conditionPaper) {
-        this.conditionPaper = conditionPaper.isEmpty() ? "不限" : conditionPaper;
+        try {
+            this.conditionPaper = conditionPaper;
+        } catch (Exception e) {
+            this.conditionPaper = "不限";
+        }
+        //this.conditionPaper = (conditionPaper.isEmpty() || conditionPaper == null) ? "不限" : conditionPaper;
     }
 
     public String getConditionReply() {
@@ -118,7 +153,12 @@ public class object_ConditionOfAdoptPet implements Serializable {
     }
 
     public void setConditionReply(String conditionReply) {
-        this.conditionReply = conditionReply.isEmpty() ? "不限" : conditionReply;
+        try {
+            this.conditionReply = conditionReply;
+        }catch (Exception e){
+            this.conditionReply = "不限";
+        }
+        //this.conditionReply = (conditionReply.isEmpty() || conditionReply == null) ? "不限" : conditionReply;
     }
 
 }
