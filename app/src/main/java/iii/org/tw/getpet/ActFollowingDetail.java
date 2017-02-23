@@ -104,7 +104,7 @@ public class ActFollowingDetail extends AppCompatActivity {
                                         adoptpair.getAnimalData_Pic().get(0).getAnimalPicAddress().toLowerCase().endsWith(".png")){
                                     Glide.with(mContext).load(adoptpair.getAnimalData_Pic().get(0).getAnimalPicAddress()).into(ivPhotoOne);
                                 } else {
-                                    ivPhotoOne.setImageResource(R.drawable.default_photo);
+                                    ivPhotoOne.setImageResource(R.drawable.default_nopic);
                                 }
                                 if(adoptpair.getAnimalData_Pic().size() >= 2){
                                     if(adoptpair.getAnimalData_Pic().get(1).getAnimalPicAddress().toLowerCase().endsWith(".jpg") ||
@@ -130,7 +130,7 @@ public class ActFollowingDetail extends AppCompatActivity {
                             tvType.setText(adoptpair.getAnimalType());
                             tvSex.setText(adoptpair.getAnimalGender());
                             tvColor.setText(adoptpair.getAnimalColor());
-                            tvAge.setText(String.format("%d",adoptpair.getAnimalAge()));
+                            tvAge.setText(String.format("%d",adoptpair.getAnimalAge())+"個月");
                             tvArea.setText(adoptpair.getAnimalAddress());
                             tvIfBirth.setText(adoptpair.getAnimalBirth());
                             tvIfChip.setText(adoptpair.getAnimalChip());
@@ -172,15 +172,15 @@ public class ActFollowingDetail extends AppCompatActivity {
                 });
 
 
-        //輪播功能
-        fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
-        fade_out = AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
-        viewFlipper.setAnimation(fade_in);
-        viewFlipper.setAnimation(fade_out);
-        //sets auto flipping
-        viewFlipper.setAutoStart(true);
-        viewFlipper.setFlipInterval(3000);
-        viewFlipper.startFlipping();
+//        //輪播功能
+//        fade_in = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+//        fade_out = AnimationUtils.loadAnimation(this,android.R.anim.fade_out);
+//        viewFlipper.setAnimation(fade_in);
+//        viewFlipper.setAnimation(fade_out);
+//        //sets auto flipping
+//        viewFlipper.setAutoStart(true);
+//        viewFlipper.setFlipInterval(3000);
+//        viewFlipper.startFlipping();
     }
 
     @Override

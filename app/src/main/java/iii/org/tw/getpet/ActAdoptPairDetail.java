@@ -95,6 +95,8 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
 
         if(intent.getExtras() != null && intent.getExtras().containsKey(CDictionary.BK_animalPicURL1)){
             Glide.with(ActAdoptPairDetail.this).load(intent.getExtras().getString(CDictionary.BK_animalPicURL1)).into(ivPhotoOne);
+        } else {
+            ivPhotoOne.setImageResource(R.drawable.default_nopic);
         }
         if(intent.getExtras() != null && intent.getExtras().containsKey(CDictionary.BK_animalPicURL2)){
             Glide.with(ActAdoptPairDetail.this).load(intent.getExtras().getString(CDictionary.BK_animalPicURL2)).into(ivPhotoTwo);
@@ -107,7 +109,7 @@ public class ActAdoptPairDetail extends AppCompatActivity  {
         tvType.setText(intent.getExtras().getString(CDictionary.BK_animalType));
         tvSex.setText(intent.getExtras().getString(CDictionary.BK_animalGender));
         tvColor.setText(intent.getExtras().getString(CDictionary.BK_animalColor));
-        tvAge.setText(intent.getExtras().getString(CDictionary.BK_animalAge));
+        tvAge.setText(intent.getExtras().getString(CDictionary.BK_animalAge)+"個月");
         tvArea.setText(intent.getExtras().getString(CDictionary.BK_animalAddress));
         tvIfBirth.setText(intent.getExtras().getString(CDictionary.BK_animalBirth));
         tvIfChip.setText(intent.getExtras().getString(CDictionary.BK_animalChip));

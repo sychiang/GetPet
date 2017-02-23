@@ -100,6 +100,8 @@ public class ActShelterPetDetail extends AppCompatActivity implements OnMapReady
         tvRemark.setText(intent.getExtras().getString(CDictionary.BK_animal_remark));
         if(intent.getExtras().containsKey(CDictionary.BK_album_file)){
             Glide.with(ActShelterPetDetail.this).load(intent.getExtras().getString(CDictionary.BK_album_file)).into(ivPhoto);
+        } else {
+            ivPhoto.setImageResource(R.drawable.default_nopic);
         }
 
 //        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
