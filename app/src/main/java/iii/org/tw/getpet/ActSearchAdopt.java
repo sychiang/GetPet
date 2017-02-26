@@ -260,7 +260,9 @@ public class ActSearchAdopt extends AppCompatActivity {
                                     ArrayAdapter<String> l_ArrayAdapter_spinner_animalType = new ArrayAdapter<String>(ActSearchAdopt.this, R.layout.spinnercontent_adopt, type);
                                     spinner_animalType.setAdapter(l_ArrayAdapter_spinner_animalType);
                                 } else {
-                                    iv_Array_動物品種清單[position].add("全部");
+                                    if(!iv_Array_動物品種清單[position].contains("全部")){
+                                        iv_Array_動物品種清單[position].add(0,"全部");
+                                    }
                                     arrayListType = iv_Array_動物品種清單[position];
                                     ArrayAdapter<String> l_ArrayAdapter_spinner_animalType = new ArrayAdapter<String>(ActSearchAdopt.this, R.layout.spinnercontent_adopt, iv_Array_動物品種清單[position]);
                                     l_ArrayAdapter_spinner_animalType.setDropDownViewResource(R.layout.spinnercontent_upload);

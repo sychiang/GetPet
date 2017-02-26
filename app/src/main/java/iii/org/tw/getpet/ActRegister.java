@@ -16,13 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
-import com.facebook.AccessToken;
-import com.google.gson.Gson;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -145,6 +138,7 @@ public class ActRegister extends AppCompatActivity {
                         Log.d(CDictionary.Debug_TAG,"(REGISTER)RESPONSE BODY: "+json);
                         requestForToken();
                     }
+
                     @Override
                     public void onFailure(Call call, IOException e) {
                         progressDialog.dismiss();

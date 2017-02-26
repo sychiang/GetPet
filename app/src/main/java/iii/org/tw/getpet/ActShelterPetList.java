@@ -212,16 +212,11 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
                         new ParsedRequestListener<ArrayList<ShelterPet>>() {
                             @Override
                             public void onResponse(ArrayList<ShelterPet> response) {
-                                String size = String.format("%d", response.size());
-                                Log.d("Debug", size);
                                 if (response.size() > 0) {
                                     for (ShelterPet rs : response) {
                                         petlist.add(rs);
-                                        Log.d("Debug", rs.getAnimal_id());
                                     }
                                     MaxDataNum = petlist.size(); // 設置最大數據條數
-                                    size = String.format("%d", petlist.size());
-                                    Log.d("Debug", size);
                                     if(MaxDataNum<10){
                                         for (int i = 0; i < MaxDataNum; i++) {
                                             showlist.add(petlist.get(i));
@@ -231,9 +226,6 @@ public class ActShelterPetList extends AppCompatActivity implements AbsListView.
                                             showlist.add(petlist.get(i));
                                         }
                                     }
-                                    size = String.format("%d", showlist.size());
-                                    Log.d("Debug", size);
-
                                     // 加上底部View，注意要放在setAdapter方法前
                                     listview.addFooterView(moreView);
                                     adapter = new ShelterPetListAdapter(ActShelterPetList.this, showlist);

@@ -25,18 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.ParsedRequestListener;
-import com.bumptech.glide.Glide;
-import com.facebook.AccessToken;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.accountkit.Account;
-import com.facebook.accountkit.AccountKit;
-import com.facebook.accountkit.AccountKitCallback;
-import com.google.gson.reflect.TypeToken;
+
 
 import org.json.JSONObject;
 
@@ -48,9 +37,7 @@ import model.AnimalPic;
 public class ActHomePage extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    //ArrayList<AnimalPic> picList = new ArrayList<AnimalPic>();
-    //ArrayList<ImageView> imgViewList = new ArrayList<ImageView>();
-    AccessToken accessToken;
+
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
     String fbEmail, fbUsername, fbID;
 
@@ -85,37 +72,6 @@ public class ActHomePage extends AppCompatActivity
 //        viewFlipper.setAutoStart(true);
 //        viewFlipper.setFlipInterval(3000);
 //        viewFlipper.startFlipping();
-    }
-
-    public void checkIfNormalLogin(){
-
-    }
-
-    public void checkIfFBLogin(){
-        if(AccessToken.getCurrentAccessToken() != null && com.facebook.Profile.getCurrentProfile() != null){
-            Log.d(CDictionary.Debug_TAG,"FB TOKEN："+ AccessToken.getCurrentAccessToken().getToken());
-            accessToken = AccessToken.getCurrentAccessToken();
-            GraphRequest request = GraphRequest.newMeRequest(
-                    accessToken,
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(JSONObject object, GraphResponse response) {
-                            //讀出姓名 ID FB個人頁面連結
-                            Log.d(CDictionary.Debug_TAG,"FB RESPONSE BODY: "+response);
-                            fbUsername = object.optString("name");
-                            Log.d(CDictionary.Debug_TAG,"Set userName："+fbUsername);
-                            header_username.setText(fbUsername);
-                            fbID = object.optString("id");
-                            Log.d(CDictionary.Debug_TAG,"Set userID："+fbID);
-                            fbEmail = object.optString("email");
-                            Log.d(CDictionary.Debug_TAG,"Set userID："+fbEmail);
-                        }
-                    });
-            Bundle parameters = new Bundle();
-            parameters.putString("fields", "id,name,link,email");
-            request.setParameters(parameters);
-            request.executeAsync();
-        }
     }
 
     @Override

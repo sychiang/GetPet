@@ -13,23 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
-import com.facebook.FacebookSdk;
-import com.facebook.CallbackManager;
-import com.facebook.AccessToken;
-import com.facebook.*;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
-import com.facebook.login.widget.LoginButton;
-import com.facebook.accountkit.AccountKit;
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -48,10 +32,7 @@ import okhttp3.Response;
 
 public class ActLogin extends AppCompatActivity {
 
-    CallbackManager callbackManager;
-    AccessToken accessToken;
     SharedPreferences userInfo;
-    String fbEmail, fbUsername, fbID;
     private String access_token, Email, UserName,UserId, HasRegistered, LoginProvider;
 
     OkHttpClient Iv_OkHttp_client = new OkHttpClient();
@@ -69,69 +50,11 @@ public class ActLogin extends AppCompatActivity {
             input_account.setVisibility(View.GONE);
             input_password.setVisibility(View.GONE);
             btn_login.setVisibility(View.GONE);
-            //btn_register.setVisibility(View.GONE);
 
             tv_username.setVisibility(View.VISIBLE);
             tv_username.setText("Hi, "+userInfo.getString(CDictionary.SK_username,"")+"\n您已登入本系統");
             btn_logout.setVisibility(View.VISIBLE);
         }
-
-//        //**********實作FB SDK**********//
-//        //宣告FB SDK callback Manager
-//        callbackManager = CallbackManager.Factory.create();
-//        //找到login button (facebook套件裡的登入按鈕元件)
-//        LoginButton btn_FBlogin = (LoginButton) findViewById(R.id.btn_FBlogin);
-////        btn_FBlogin.setReadPermissions(Arrays.asList(
-////                "public_profile", "email", "user_birthday", "user_friends"));    //要求存取使用者的各項資料
-//
-//        btn_FBlogin.setReadPermissions(Arrays.asList("public_profile", "email"));  //要求存取使用者的基本資料&Email
-//
-//        //LoginButton增加callback function
-//        btn_FBlogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-//            @Override
-//            public void onSuccess(LoginResult loginResult) {
-//                //成功登入, accessToken之後或許還會用到 先存起來
-//                accessToken = loginResult.getAccessToken();
-//                Log.d(CDictionary.Debug_TAG,"FB ACCESS TOKEN  GET: "+accessToken.toString());
-//
-//                //send request and call graph api
-//                GraphRequest request = GraphRequest.newMeRequest(
-//                        accessToken,
-//                        new GraphRequest.GraphJSONObjectCallback() {
-//                            //當RESPONSE回來的時候會取得JSON物件
-//                            @Override
-//                            public void onCompleted(JSONObject object, GraphResponse response) {
-//                                //讀出姓名 ID FB個人頁面連結
-//                                Log.d(CDictionary.Debug_TAG,"FB GET RESPONSE"+response);
-//                                Log.d(CDictionary.Debug_TAG,object.optString("name"));
-//                                Log.d(CDictionary.Debug_TAG,object.optString("link"));
-//                                Log.d(CDictionary.Debug_TAG,object.optString("id"));
-//                                Log.d(CDictionary.Debug_TAG,object.optString("email"));
-//
-//                                fbID = object.optString("id");
-//                                fbUsername = object.optString("name");
-//                                fbEmail = object.optString("email");
-//                                doRegisterExternal();
-//                            }
-//                        });
-//                //包入想要得到的資料 送出request
-//                Bundle parameters = new Bundle();
-//                parameters.putString("fields", "id,name,link,email");
-//                request.setParameters(parameters);
-//                request.executeAsync();
-//            }
-//
-//            @Override
-//            public void onCancel() {//取消登入
-//                Log.d("FB","CANCEL");
-//            }
-//
-//            @Override
-//            public void onError(FacebookException exception) {//登入失敗
-//                Log.d("FB",exception.toString());
-//            }
-//        });
-//        //**********實作FB SDK**********//
 
     }
 
@@ -140,47 +63,6 @@ public class ActLogin extends AppCompatActivity {
         emptyInputField += input_account.getText().toString().isEmpty() ? "帳號\n" : "";
         emptyInputField += input_password.getText().toString().isEmpty() ? "密碼\n" : "";
         return emptyInputField;
-    }
-
-    public void doRegisterExternal(){
-        OkHttpClient Iv_OkHttp_client = new OkHttpClient();
-        final MediaType Iv_MTyp_JSON = MediaType.parse("application/json; charset=utf-8");
-
-        JSONObject jsonObject = new JSONObject();
-        Log.d(CDictionary.Debug_TAG,"Create JSONObj: "+jsonObject.toString());
-        try {
-            jsonObject.put("Email", fbEmail);
-            Log.d(CDictionary.Debug_TAG,"GET EMAIL: "+jsonObject.optString("Email"));
-            jsonObject.put("UserName", fbUsername);
-            Log.d(CDictionary.Debug_TAG,"GET USERNAME: "+jsonObject.optString("UserName"));
-            jsonObject.put("Provider", "Facebook");
-            Log.d(CDictionary.Debug_TAG,"GET PROVIDER: "+jsonObject.optString("Provider"));
-            jsonObject.put("ExternalAccessToken", accessToken.getToken());
-            Log.d(CDictionary.Debug_TAG,"GET TOKEN: "+jsonObject.optString("ExternalAccessToken"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        RequestBody requestBody =  RequestBody.create(Iv_MTyp_JSON,jsonObject.toString());
-        Request postRrequest = new Request.Builder()
-                .url("http://twpetanimal.ddns.net:9487/api/v1/Account/RegisterExternal")
-                .addHeader("Accept", "application/json")
-                .addHeader("Content-Type", "application/json")
-                .post(requestBody)
-                .build();
-
-        Call call = Iv_OkHttp_client.newCall(postRrequest);
-        call.enqueue(new Callback() {
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                final String json = response.body().string();
-                Log.d(CDictionary.Debug_TAG,"GET RESPONSE BODY: "+json);
-            }
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d(CDictionary.Debug_TAG,"POST FAIL......");
-            }
-        });
     }
 
     private void goMainScreen() {
@@ -192,7 +74,7 @@ public class ActLogin extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode,resultCode,data);
+        //callbackManager.onActivityResult(requestCode,resultCode,data);
     }
 
     View.OnClickListener btn_register_Click=new View.OnClickListener(){

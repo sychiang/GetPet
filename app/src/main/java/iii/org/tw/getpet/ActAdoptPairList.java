@@ -157,7 +157,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                     }
                     break;
                 case "老鼠":
-                    url += "&$filter=animalKind eq '老鼠'";
+                    url += "&$filter=animalKind eq '鼠'";
                     if(!condType.equals("全部")){
                         url += " and animalType eq '"+condType+"'";
                     }
@@ -201,7 +201,7 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                     }
                     break;
                 case "老鼠":
-                    url += " and animalKind eq '老鼠'";
+                    url += " and animalKind eq '鼠'";
                     if(!condType.equals("全部")){
                         url += " and animalType eq '"+condType+"'";
                     }
@@ -282,7 +282,10 @@ public class ActAdoptPairList extends AppCompatActivity implements AbsListView.O
                                 Log.d(CDictionary.Debug_TAG, size);
                                 if (response.size() > 0) {
                                     for (AdoptPair rs : response) {
-                                        petlist.add(rs);
+                                        //篩選尚未被認養的資料
+                                        if(rs.getAnimalGetter_userID() == null){
+                                            petlist.add(rs);
+                                        }
                                         Log.d(CDictionary.Debug_TAG, ""+rs.getAnimalID());
                                     }
                                     MaxDataNum = petlist.size(); // 設置最大數據條數

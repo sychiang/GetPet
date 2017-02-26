@@ -69,32 +69,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/btn_style_normal"
         android:visibility="gone"
         android:text="Sign Out / 登出" />
-
-    <!--<android.support.v7.widget.AppCompatButton-->
-        <!--android:id="@+id/btn_register"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="10dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="Sign Up / 註冊" />-->
-
-    <!--<android.support.v7.widget.AppCompatButton-->
-        <!--android:id="@+id/btn_test"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginBottom="10dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="TEST" />-->
-
-    <!--<com.facebook.login.widget.LoginButton-->
-        <!--android:id="@+id/btn_FBlogin"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_horizontal"-->
-        <!--android:layout_marginTop="30dp"-->
-        <!--android:layout_marginBottom="30dp" />-->
 
 </LinearLayout>
